@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_host"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="br.com.example.maratonasamsung.ui.main.MainFragment"
+        android:label="main_fragment"
+        tools:layout="@layout/main_fragment" >
+        <action
+            android:id="@+id/action_mainFragment_to_roomTypekFragment"
+            app:destination="@id/roomTypekFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_placeholder2"
+            app:destination="@id/placeholder2" />
+    </fragment>
+    <fragment
+        android:id="@+id/roomAcessFragment"
+        android:name="br.com.example.maratonasamsung.RoomAcessFragment"
+        android:label="fragment_room_acess"
+        tools:layout="@layout/fragment_room_acess" >
+        <action
+            android:id="@+id/action_roomAcessFragment_to_placeholder"
+            app:destination="@id/placeholder" />
+    </fragment>
+    <fragment
+        android:id="@+id/roomCreateFragment"
+        android:name="br.com.example.maratonasamsung.RoomCreateFragment"
+        android:label="fragment_room_create"
+        tools:layout="@layout/fragment_room_create" >
+        <action
+            android:id="@+id/action_roomCreateFragment_to_placeholder"
+            app:destination="@id/placeholder" />
+    </fragment>
+    <fragment
+        android:id="@+id/roomTypekFragment"
+        android:name="br.com.example.maratonasamsung.RoomTypekFragment"
+        android:label="fragment_room_typek"
+        tools:layout="@layout/fragment_room_typek" >
+        <action
+            android:id="@+id/action_roomTypekFragment_to_roomAcessFragment"
+            app:destination="@id/roomAcessFragment" />
+        <action
+            android:id="@+id/action_roomTypekFragment_to_roomCreateFragment"
+            app:destination="@id/roomCreateFragment" />
+        <action
+            android:id="@+id/action_roomTypekFragment_to_placeholder"
+            app:destination="@id/placeholder" />
+    </fragment>
+    <fragment android:id="@+id/placeholder" />
+    <fragment android:id="@+id/placeholder2" />
+</navigation>

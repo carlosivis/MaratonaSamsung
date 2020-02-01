@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorDark">
+
+    <TextView
+        android:id="@+id/txtNome"
+        android:layout_width="83dp"
+        android:layout_height="29dp"
+        android:text="@string/txt_nome"
+        android:textSize="20dp"
+        android:textColor="@color/cardview_light_background"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.2"
+        app:layout_constraintHorizontal_bias="0.25"/>
+    <EditText
+        android:id="@+id/editNome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@id/txtNome"
+        app:layout_constraintTop_toBottomOf="@id/txtNome"
+         />
+
+    <TextView
+        android:id="@+id/txtSala"
+        android:layout_width="152dp"
+        android:layout_height="26dp"
+        android:text="@string/txt_nome_da_sala"
+        android:textSize="20dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/cardview_light_background"
+        app:layout_constraintStart_toStartOf="@id/txtNome"
+        app:layout_constraintTop_toBottomOf="@id/editNome"
+        />
+
+    <EditText
+        android:id="@+id/editSala"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@id/txtNome"
+        app:layout_constraintTop_toBottomOf="@id/txtSala"
+        />
+    <TextView
+        android:id="@+id/txtSenha"
+        android:layout_width="83dp"
+        android:layout_height="29dp"
+        android:text="@string/txt_senha"
+        android:textSize="20dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/cardview_light_background"
+        app:layout_constraintStart_toStartOf="@id/txtNome"
+        app:layout_constraintTop_toBottomOf="@id/editSala"
+        />
+
+    <EditText
+        android:id="@+id/editSenha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPassword"
+        app:layout_constraintStart_toStartOf="@id/txtNome"
+        app:layout_constraintTop_toBottomOf="@id/txtSenha" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_entrar"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editSenha"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
