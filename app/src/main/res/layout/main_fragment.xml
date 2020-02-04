@@ -8,15 +8,26 @@
     tools:context=".ui.main.MainFragment"
     android:background="@color/colorDark">
 
-    <ImageButton
-        android:id="@+id/btnimage"
+    <Button
+        android:id="@+id/btnModoInterativo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_launcher_background"
+        android:text="@string/modo_interativo"
+        android:ems="10"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        />
+    <Button
+        android:id="@+id/btnModoEstudo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/modo_estudo"
+        android:ems="10"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnModoInterativo"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

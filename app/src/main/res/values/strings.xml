@@ -2,8 +2,7 @@
     <string name="app_name">GeoCorpus</string>
     <string name="btnAcesso">Acessar</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
     <string name="txt_nome">Nome:</string>
     <string name="txt_nome_da_sala">Nome da Sala:</string>
     <string name="txt_senha">Senha:</string>
@@ -11,4 +10,6 @@
     <string name="txt_criar">Criar</string>
     <string name="txt_acessar">Acessar</string>
     <string name="txt_modo_offline">Modo Offline</string>
+    <string name="modo_interativo">Modo Interativo</string>
+    <string name="modo_estudo">Modo Estudo</string>
 </resources>

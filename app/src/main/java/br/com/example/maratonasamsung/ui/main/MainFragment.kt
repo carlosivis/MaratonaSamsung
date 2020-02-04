@@ -6,15 +6,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import br.com.example.maratonasamsung.R
 
-class MainFragment : Fragment() {
+class MainFragment : Fragment(), View.OnClickListener {
 
-    companion object {
-        fun newInstance() = MainFragment()
-    }
+    var navController: NavController? = null
 
-    private lateinit var viewModel: MainViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,10 +23,18 @@ class MainFragment : Fragment() {
         return inflater.inflate(R.layout.main_fragment, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        navController = Navigation.findNavController(view)
+        view.findViewById<Button>(R.id.btnModoEstudo).setOnClickListener(this)
+        view.findViewById<Button>(R.id.btnModoInterativo).setOnClickListener(this)
+    }
+    override fun onClick(v: View?) {
+        when(v!!.id){
+            R.id.btnModoInterativo -> navController!!.navigate(R.id.action_mainFragment_to_roomTypekFragment)
+            R.id.btnModoEstudo -> navController!!.navigate(R.id.action_mainFragment_to_placeholder2)
+        }
     }
 
 }
+
