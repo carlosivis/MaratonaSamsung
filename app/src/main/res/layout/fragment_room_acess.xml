@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/colorDark">
+    >
 
     <TextView
         android:id="@+id/txtNome"
@@ -12,7 +12,6 @@
         android:layout_height="29dp"
         android:text="@string/txt_nome"
         android:textSize="20dp"
-        android:textColor="@color/cardview_light_background"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -36,7 +35,6 @@
         android:text="@string/txt_nome_da_sala"
         android:textSize="20dp"
         android:layout_marginTop="10dp"
-        android:textColor="@color/cardview_light_background"
         app:layout_constraintStart_toStartOf="@id/txtNome"
         app:layout_constraintTop_toBottomOf="@id/editNome"
         />
@@ -57,7 +55,6 @@
         android:text="@string/txt_senha"
         android:textSize="20dp"
         android:layout_marginTop="10dp"
-        android:textColor="@color/cardview_light_background"
         app:layout_constraintStart_toStartOf="@id/txtNome"
         app:layout_constraintTop_toBottomOf="@id/editSala"
         />

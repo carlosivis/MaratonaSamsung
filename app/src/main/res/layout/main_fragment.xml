@@ -5,14 +5,13 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.MainFragment"
-    android:background="@color/colorDark">
+    tools:context=".ui.main.MainFragment">
 
     <Button
         android:id="@+id/btnModoInterativo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/modo_interativo"
+        android:text="@string/btnModoInterativo"
         android:ems="10"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,7 +22,7 @@
         android:id="@+id/btnModoEstudo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/modo_estudo"
+        android:text="@string/btnModoEstudo"
         android:ems="10"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
