@@ -23,8 +23,8 @@
         android:label="fragment_room_acess"
         tools:layout="@layout/fragment_room_acess" >
         <action
-            android:id="@+id/action_roomAcessFragment_to_placeholder"
-            app:destination="@id/placeholder" />
+            android:id="@+id/action_roomAcessFragment_to_roomFragment"
+            app:destination="@id/roomFragment" />
     </fragment>
     <fragment
         android:id="@+id/roomCreateFragment"
@@ -32,8 +32,8 @@
         android:label="fragment_room_create"
         tools:layout="@layout/fragment_room_create" >
         <action
-            android:id="@+id/action_roomCreateFragment_to_placeholder"
-            app:destination="@id/placeholder" />
+            android:id="@+id/action_roomCreateFragment_to_roomFragment"
+            app:destination="@id/roomFragment" />
     </fragment>
     <fragment
         android:id="@+id/roomTypekFragment"
@@ -46,14 +46,15 @@
         <action
             android:id="@+id/action_roomTypekFragment_to_roomCreateFragment"
             app:destination="@id/roomCreateFragment" />
-        <action
-            android:id="@+id/action_roomTypekFragment_to_placeholder"
-            app:destination="@id/placeholder" />
     </fragment>
-    <fragment android:id="@+id/placeholder" />
     <fragment
         android:id="@+id/chooseFragment"
         android:name="br.com.example.maratonasamsung.modoEstudo.ChooseFragment"
         android:label="fragment_choose"
         tools:layout="@layout/fragment_choose" />
+    <fragment
+        android:id="@+id/roomFragment"
+        android:name="br.com.example.maratonasamsung.RoomFragment"
+        android:label="fragment_room"
+        tools:layout="@layout/fragment_room" />
 </navigation>
