@@ -34,7 +34,7 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
     }
     override fun onClick(v: View?) {
         when (v!!.id) {
-            R.id.btnEntrar -> navController!!.navigate(R.id.action_roomAcessFragment_to_placeholder)
+            R.id.btnEntrar -> navController!!.navigate(R.id.action_roomAcessFragment_to_roomFragment)
         }
     }
 }

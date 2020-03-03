@@ -1,4 +1,4 @@
-package br.com.example.maratonasamsung
+package br.com.example.maratonasamsung.modoInterativo
 
 
 import android.os.Bundle
@@ -7,9 +7,7 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.Spinner
-import androidx.navigation.fragment.findNavController
+import br.com.example.maratonasamsung.R
 
 /**
  * A simple [Fragment] subclass.
