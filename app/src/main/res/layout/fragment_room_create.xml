@@ -47,6 +47,14 @@
         app:layout_constraintStart_toStartOf="@+id/txtSenha"
         app:layout_constraintTop_toBottomOf="@+id/txtSenha" />
 
+    <RadioButton
+        android:id="@+id/btnPrivado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Privada"
+        app:layout_constraintTop_toBottomOf="@id/txtSenhaSala"
+        app:layout_constraintStart_toStartOf="@id/txtSenhaSala"/>
+
     <Button
         android:id="@+id/btnCriarSala"
         android:layout_width="wrap_content"
