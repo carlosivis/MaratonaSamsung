@@ -32,7 +32,7 @@ class MainFragment : Fragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         when(v!!.id){
             R.id.btnModoInterativo -> navController!!.navigate(R.id.action_mainFragment_to_roomTypekFragment)
-            R.id.btnModoEstudo -> navController!!.navigate(R.id.action_mainFragment_to_placeholder2)
+            R.id.btnModoEstudo -> navController!!.navigate(R.id.action_mainFragment_to_chooseFragment)
         }
     }
 

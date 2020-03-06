@@ -1,4 +1,4 @@
-package br.com.example.maratonasamsung
+package br.com.example.maratonasamsung.modoInterativo
 
 
 import android.os.Bundle
@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import br.com.example.maratonasamsung.R
 
 /**
  * A simple [Fragment] subclass.
@@ -33,7 +34,7 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
     }
     override fun onClick(v: View?) {
         when (v!!.id) {
-            R.id.btnEntrar -> navController!!.navigate(R.id.action_roomAcessFragment_to_placeholder)
+            R.id.btnEntrar -> navController!!.navigate(R.id.action_roomAcessFragment_to_roomFragment)
         }
     }
 }
