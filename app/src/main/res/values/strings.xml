@@ -11,8 +11,12 @@
     <string name="txt_acessar">Acessar</string>
     <string name="txt_modo_interativo">Modo Interativo</string>
     <string name="txt_jogadores">Jogadores</string>
-    <string name="txt_dicas">Dicas</string>
-    <string name="txt_sintomas">Sintomas:</string>
+    <string name="txt_escolha_doenca">Escolha a doença:</string>
+    <string name="txt_adivinhar">Adivinhar</string>
+    <string name="txt_dicas">Dicas:</string>
+    <string name="txt_sintomas">Sintomas</string>
+    <string name="txt_enviar_dica">Enviar dica</string>
+    <string name="txt_pontos">Rodada valendo: xx pontos</string>
     <string name="txt_resposta">Resposta</string>
     <string name="txtModoOffline">Modo Offline</string>
     <string name="btnModoInterativo">Modo Interativo</string>
