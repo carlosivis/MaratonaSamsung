@@ -18,15 +18,16 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="0.2"
         app:layout_constraintHorizontal_bias="0.25"/>
+
     <EditText
         android:id="@+id/editNome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:hint="Digite seu nome aqui"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="@id/txtNome"
-        app:layout_constraintTop_toBottomOf="@id/txtNome"
-         />
+        app:layout_constraintTop_toBottomOf="@id/txtNome" />
 
     <TextView
         android:id="@+id/txtSala"
@@ -44,10 +45,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:hint="Digite o nome da sala"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="@id/txtNome"
-        app:layout_constraintTop_toBottomOf="@id/txtSala"
-        />
+        app:layout_constraintTop_toBottomOf="@id/txtSala" />
     <TextView
         android:id="@+id/txtSenha"
         android:layout_width="83dp"
@@ -64,6 +65,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:hint="Digite a senha da sala"
         android:inputType="textPassword"
         app:layout_constraintStart_toStartOf="@id/txtNome"
         app:layout_constraintTop_toBottomOf="@id/txtSenha" />

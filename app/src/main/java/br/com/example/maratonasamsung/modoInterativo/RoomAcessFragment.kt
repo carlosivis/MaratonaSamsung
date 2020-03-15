@@ -7,9 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import br.com.example.maratonasamsung.R
+import kotlinx.android.synthetic.*
+import kotlinx.android.synthetic.main.fragment_room_acess.*
 
 /**
  * A simple [Fragment] subclass.
@@ -17,7 +21,6 @@ import br.com.example.maratonasamsung.R
 class RoomAcessFragment : Fragment(), View.OnClickListener {
 
     var navController: NavController? = null
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,10 +34,20 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
         view.findViewById<Button>(R.id.btnEntrar).setOnClickListener(this)
+
+        var nomeJogador = editNome.text
+        var nomeSala = editSala.text
+        var senhaSala = editSenha.text
+
+        btnEntrar.setOnClickListener { it: View? ->
+
+        }
     }
+
     override fun onClick(v: View?) {
         when (v!!.id) {
             R.id.btnEntrar -> navController!!.navigate(R.id.action_roomAcessFragment_to_roomFragment)
         }
     }
+
 }
