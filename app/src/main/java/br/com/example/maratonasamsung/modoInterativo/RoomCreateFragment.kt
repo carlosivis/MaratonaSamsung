@@ -14,6 +14,7 @@ import br.com.example.appacessibilidade.Service
 import br.com.example.maratonasamsung.R
 import br.com.example.maratonasamsung.model.Requests.SalaResquest
 import br.com.example.maratonasamsung.model.Responses.SalaResponse
+import kotlinx.android.synthetic.main.fragment_room_acess.*
 import kotlinx.android.synthetic.main.fragment_room_create.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -48,10 +49,12 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
     fun criarSala(){
         Service.retrofit.criarSala(
             SalaResquest(
-                nome = txtNomeSala.text.toString(),
-              //  publica = btnPrivado.isChecked,
-                senha = txtSenhaSala.text.toString(),
+
+                nome = editNomeSala.text.toString(),
+                publica = btnPrivado.isChecked,
+                senha = txtSenhaSala.text.toString()
                 publica = true
+
             )).enqueue(object : Callback<SalaResponse>{
             override fun onFailure(call: Call<SalaResponse>, t: Throwable) {
                 Log.d("Deu ruim", t.toString())
