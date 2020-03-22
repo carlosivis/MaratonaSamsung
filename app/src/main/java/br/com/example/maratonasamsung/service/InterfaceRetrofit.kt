@@ -15,7 +15,7 @@ interface InterfaceRetrofit {
     fun sessao(): Call<SessaoResponse>
 
     @POST("/sala")
-    fun criarSala(sala: SalaRequest): Call<SalaResponse>
+    fun criarSala(@Body sala: SalaRequest): Call<SalaResponse>
 
     @GET("/sala/{sala}")
     fun listaSala(sala: SalaRequest): Call<SalaResponse>

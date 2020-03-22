@@ -16,8 +16,8 @@ import br.com.example.maratonasamsung.model.Requests.JogadorRequest
 import br.com.example.maratonasamsung.model.Requests.SalaRequest
 import br.com.example.maratonasamsung.model.Responses.JogadorResponse
 import br.com.example.maratonasamsung.model.Responses.SalaResponse
+import kotlinx.android.synthetic.main.fragment_room_acess.*
 import kotlinx.android.synthetic.main.fragment_room_create.*
-import okhttp3.MediaType
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -43,19 +43,18 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         when(v!!.id){
             R.id.createBtnCriarSala -> {
-                criarSala()
+               criarSala()
 //                jogador()
-                navController!!.navigate(R.id.action_roomCreateFragment_to_roomFragment)
             }
         }
     }
 
     fun criarSala(){
         Service.retrofit.criarSala(
-            SalaRequest(
-                nome = "maroa",
-                senha = "123"
-            )
+            sala = SalaRequest(
+                "aaa",
+                "sss"
+                    )
         ).enqueue(object : Callback<SalaResponse>{
                 override fun onFailure(call: Call<SalaResponse>, t: Throwable) {
                     Log.d("Deu ruim", t.toString())
@@ -63,6 +62,7 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
 
                 override fun onResponse(call: Call<SalaResponse>, response: Response<SalaResponse>) {
                     Log.d("Nice", response.toString())
+                    navController!!.navigate(R.id.action_roomCreateFragment_to_roomFragment)
                     val sala = response.body()
 //                    jogadorNovo(sala!!.id)
                 }
