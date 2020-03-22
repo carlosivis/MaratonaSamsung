@@ -14,15 +14,11 @@ import br.com.example.appacessibilidade.Service
 import br.com.example.maratonasamsung.R
 import br.com.example.maratonasamsung.model.Requests.SalaResquest
 import br.com.example.maratonasamsung.model.Responses.SalaResponse
-import kotlinx.android.synthetic.main.fragment_room_acess.*
 import kotlinx.android.synthetic.main.fragment_room_create.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-/**
- * A simple [Fragment] subclass.
- */
 class RoomCreateFragment : Fragment(), View.OnClickListener {
 
     var navController: NavController? = null
@@ -34,26 +30,28 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_room_create, container, false)
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
-        view.findViewById<Button>(R.id.btnCriarSala).setOnClickListener(this)
-    }
-    override fun onClick(v: View?) {
-        when(v!!.id){
-            R.id.btnCriarSala -> navController!!.navigate(R.id.action_roomCreateFragment_to_roomFragment)
-        }
+        view.findViewById<Button>(R.id.createBtnCriarSala).setOnClickListener(this)
     }
 
+    override fun onClick(v: View?) {
+        when(v!!.id){
+            R.id.createBtnCriarSala -> {
+                criarSala()
+                navController!!.navigate(R.id.action_roomCreateFragment_to_roomFragment)
+            }
+        }
+    }
 
     fun criarSala(){
         Service.retrofit.criarSala(
             SalaResquest(
 
-                nome = editNomeSala.text.toString(),
-                publica = btnPrivado.isChecked,
-                senha = txtSenhaSala.text.toString()
-                publica = true
+                nome = createEditNomeSala.text.toString(),
+                senha = createTxtSenha.text.toString()
 
             )).enqueue(object : Callback<SalaResponse>{
             override fun onFailure(call: Call<SalaResponse>, t: Throwable) {

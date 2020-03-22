@@ -1,6 +1,5 @@
 package br.com.example.maratonasamsung.ui.main
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -15,7 +14,6 @@ class MainFragment : Fragment(), View.OnClickListener {
 
     var navController: NavController? = null
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -29,6 +27,7 @@ class MainFragment : Fragment(), View.OnClickListener {
         view.findViewById<Button>(R.id.btnModoEstudo).setOnClickListener(this)
         view.findViewById<Button>(R.id.btnModoInterativo).setOnClickListener(this)
     }
+
     override fun onClick(v: View?) {
         when(v!!.id){
             R.id.btnModoInterativo -> navController!!.navigate(R.id.action_mainFragment_to_roomTypekFragment)
