@@ -1,5 +1,6 @@
-package br.com.example.appacessibilidade
+package br.com.example.maratonasamsung.service
 
+import br.com.example.appacessibilidade.InterfaceRetrofit
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

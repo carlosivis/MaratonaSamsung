@@ -3,7 +3,7 @@ package br.com.example.appacessibilidade
 
 import br.com.example.maratonasamsung.model.Requests.JogadorRequest
 import br.com.example.maratonasamsung.model.Requests.JogadorUpdate
-import br.com.example.maratonasamsung.model.Requests.SalaResquest
+import br.com.example.maratonasamsung.model.Requests.SalaRequest
 import br.com.example.maratonasamsung.model.Responses.*
 import retrofit2.Call
 import retrofit2.http.*
@@ -15,10 +15,10 @@ interface InterfaceRetrofit {
     fun sessao(): Call<SessaoResponse>
 
     @POST("/sala")
-    fun criarSala(sala: SalaResquest): Call<SalaResponse>
+    fun criarSala(sala: SalaRequest): Call<SalaResponse>
 
     @GET("/sala/{sala}")
-    fun listaSala(sala: SalaResquest): Call<SalaResponse>
+    fun listaSala(sala: SalaRequest): Call<SalaResponse>
 
     @GET("/doenca")
     fun doencas(): Call<DoencasResponse>
