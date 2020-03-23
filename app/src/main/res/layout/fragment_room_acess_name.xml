@@ -2,70 +2,50 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/roomAcessFragment"
+    android:id="@+id/roomAcessNameFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.main.MainActivity">
 
     <TextView
-        android:id="@+id/acessTxtNomeSala"
+        android:id="@+id/acessnameTxtUsuario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/txt_nome_da_sala"
+        android:text="@string/txt_usuario"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintHorizontal_bias="0.101"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.4" />
+        app:layout_constraintVertical_bias="0.5" />
 
     <EditText
-        android:id="@+id/acessEditNomeSala"
+        android:id="@+id/acessnameEditUsuario"
         android:layout_width="336dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="@id/acessTxtNomeSala"
-        app:layout_constraintTop_toBottomOf="@id/acessTxtNomeSala" />
+        app:layout_constraintStart_toStartOf="@id/acessnameTxtUsuario"
+        app:layout_constraintTop_toBottomOf="@id/acessnameTxtUsuario" />
 
     <Button
-        android:id="@+id/acessBtnContinuar"
+        android:id="@+id/acessnameBtnAcessarSala"
         android:layout_width="112dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="40dp"
         android:layout_marginBottom="24dp"
-        android:text="@string/btn_continuar"
+        android:text="@string/btn_acessar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/acessEditSenha"
+        app:layout_constraintTop_toBottomOf="@id/acessnameEditUsuario"
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/acessTxtSenha"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/txt_senha"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@id/acessTxtNomeSala"
-        app:layout_constraintTop_toBottomOf="@+id/acessEditNomeSala" />
-
-    <EditText
-        android:id="@+id/acessEditSenha"
-        android:layout_width="336dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="@id/acessTxtNomeSala"
-        app:layout_constraintTop_toBottomOf="@+id/acessTxtSenha" />
-
-    <TextView
-        android:id="@+id/acessModoInterativo"
+        android:id="@+id/acessnameModoInterativo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/txt_modo_interativo"
@@ -77,14 +57,13 @@
         app:layout_constraintVertical_bias="0.05" />
 
     <TextView
-        android:id="@+id/acessTxtAcessarSala"
+        android:id="@+id/acessnameTxtAcessarSala"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/txt_acessar_sala"
         android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="@id/acessModoInterativo"
-        app:layout_constraintStart_toStartOf="@id/acessModoInterativo"
-        app:layout_constraintTop_toBottomOf="@+id/acessModoInterativo" />
-
+        app:layout_constraintEnd_toEndOf="@id/acessnameModoInterativo"
+        app:layout_constraintStart_toStartOf="@id/acessnameModoInterativo"
+        app:layout_constraintTop_toBottomOf="@+id/acessnameModoInterativo" />
 </androidx.constraintlayout.widget.ConstraintLayout>

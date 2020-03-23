@@ -2,65 +2,108 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/roomCreateFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    tools:context=".ui.main.MainActivity">
 
     <TextView
-        android:id="@+id/txtSenha"
+        android:id="@+id/createTxtSenha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:text="Senha:"
-        android:textSize="20dp"
-        app:layout_constraintStart_toStartOf="@+id/editNomeSala"
-        app:layout_constraintTop_toBottomOf="@+id/editNomeSala" />
+        android:layout_marginTop="16dp"
+        android:text="@string/txt_senha"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@id/createTxtUsuario"
+        app:layout_constraintTop_toBottomOf="@id/createEditNomeSala" />
 
     <TextView
-        android:id="@+id/txtNomeSala"
+        android:id="@+id/createTxtNomeSala"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nome da Sala:"
-        android:textSize="20dp"
-        app:layout_constraintHorizontal_bias="0.3"
-        app:layout_constraintVertical_bias="0.2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        android:layout_marginTop="16dp"
+        android:text="@string/txt_nome_da_sala"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@id/createTxtUsuario"
+        app:layout_constraintTop_toBottomOf="@id/createEditUsuario" />
 
     <EditText
-        android:id="@+id/editNomeSala"
+        android:id="@+id/createEditNomeSala"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
+        android:layout_marginTop="16dp"
+        android:ems="17"
         android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="@+id/txtNomeSala"
-        app:layout_constraintTop_toBottomOf="@+id/txtNomeSala" />
-
-    <EditText
-        android:id="@+id/txtSenhaSala"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPassword"
-        app:layout_constraintStart_toStartOf="@+id/txtSenha"
-        app:layout_constraintTop_toBottomOf="@+id/txtSenha" />
-
-    <RadioButton
-        android:id="@+id/btnPrivado"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Privada"
-        app:layout_constraintTop_toBottomOf="@id/txtSenhaSala"
-        app:layout_constraintStart_toStartOf="@id/txtSenhaSala"/>
+        app:layout_constraintStart_toStartOf="@id/createTxtUsuario"
+        app:layout_constraintTop_toBottomOf="@id/createTxtNomeSala" />
 
     <Button
-        android:id="@+id/btnCriarSala"
+        android:id="@+id/createBtnCriarSala"
+        android:layout_width="112dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="24dp"
+        android:text="@string/btn_criar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/createEditSenha"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <EditText
+        android:id="@+id/createEditSenha"
+        android:layout_width="336dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        app:layout_constraintStart_toStartOf="@id/createTxtUsuario"
+        app:layout_constraintTop_toBottomOf="@id/createTxtSenha" />
+
+    <TextView
+        android:id="@+id/createModoInterativo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Criar"
-        android:layout_margin="20dp"
+        android:text="@string/txt_modo_interativo"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.05" />
+
+    <TextView
+        android:id="@+id/createTxtCriarSala"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/txt_criar_sala"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="@id/createModoInterativo"
+        app:layout_constraintStart_toStartOf="@id/createModoInterativo"
+        app:layout_constraintTop_toBottomOf="@+id/createModoInterativo" />
+
+    <TextView
+        android:id="@+id/createTxtUsuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_usuario"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.35" />
+
+    <EditText
+        android:id="@+id/createEditUsuario"
+        android:layout_width="336dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@id/createTxtUsuario"
+        app:layout_constraintTop_toBottomOf="@id/createTxtUsuario" />
 </androidx.constraintlayout.widget.ConstraintLayout>

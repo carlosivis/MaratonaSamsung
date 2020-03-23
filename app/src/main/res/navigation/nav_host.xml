@@ -18,13 +18,16 @@
             app:destination="@id/chooseFragment" />
     </fragment>
     <fragment
-        android:id="@+id/roomAcessFragment"
-        android:name="br.com.example.maratonasamsung.modoInterativo.RoomAcessFragment"
-        android:label="fragment_room_acess"
-        tools:layout="@layout/fragment_room_acess" >
+        android:id="@+id/roomTypekFragment"
+        android:name="br.com.example.maratonasamsung.modoInterativo.RoomTypekFragment"
+        android:label="fragment_room_typek"
+        tools:layout="@layout/fragment_room_typek" >
         <action
-            android:id="@+id/action_roomAcessFragment_to_roomFragment"
-            app:destination="@id/roomFragment" />
+            android:id="@+id/action_roomTypekFragment_to_roomCreateFragment"
+            app:destination="@id/roomCreateFragment" />
+        <action
+            android:id="@+id/action_roomTypekFragment_to_roomAcessFragment"
+            app:destination="@id/roomAcessFragment" />
     </fragment>
     <fragment
         android:id="@+id/roomCreateFragment"
@@ -36,16 +39,22 @@
             app:destination="@id/roomFragment" />
     </fragment>
     <fragment
-        android:id="@+id/roomTypekFragment"
-        android:name="br.com.example.maratonasamsung.modoInterativo.RoomTypekFragment"
-        android:label="fragment_room_typek"
-        tools:layout="@layout/fragment_room_typek" >
+        android:id="@+id/roomAcessFragment"
+        android:name="br.com.example.maratonasamsung.modoInterativo.RoomAcessFragment"
+        android:label="fragment_room_acess"
+        tools:layout="@layout/fragment_room_acess" >
         <action
-            android:id="@+id/action_roomTypekFragment_to_roomAcessFragment"
-            app:destination="@id/roomAcessFragment" />
+            android:id="@+id/action_roomAcessFragment_to_roomAcessNameFragment"
+            app:destination="@id/roomAcessNameFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/roomAcessNameFragment"
+        android:name="br.com.example.maratonasamsung.modoInterativo.RoomAcessNameFragment"
+        android:label="fragment_room_acess_name"
+        tools:layout="@layout/fragment_room_acess_name" >
         <action
-            android:id="@+id/action_roomTypekFragment_to_roomCreateFragment"
-            app:destination="@id/roomCreateFragment" />
+            android:id="@+id/action_roomAcessNameFragment_to_roomFragment"
+            app:destination="@id/roomFragment" />
     </fragment>
     <fragment
         android:id="@+id/chooseFragment"

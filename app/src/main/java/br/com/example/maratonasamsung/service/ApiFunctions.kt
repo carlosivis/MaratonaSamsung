@@ -1,8 +1,6 @@
 package br.com.example.maratonasamsung.service
 
 import android.util.Log
-import br.com.example.appacessibilidade.Service
-import br.com.example.maratonasamsung.model.Requests.JogadorUpdate
 import br.com.example.maratonasamsung.model.Responses.JogadorResponse
 import br.com.example.maratonasamsung.model.Responses.Sintoma
 import retrofit2.Call
