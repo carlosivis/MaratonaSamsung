@@ -15,9 +15,7 @@ import kotlinx.android.synthetic.main.fragment_room.*
 /**
  * A simple [Fragment] subclass.
  */
-class RoomFragment :  Fragment() {
-
-    var resposta: String = "nenhuma"
+class RoomFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

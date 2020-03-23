@@ -85,17 +85,5 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
             }
         })
     }
-
-    fun jogador(){
-        Service.retrofit.jogador().enqueue(object : Callback<JogadorResponse>{
-            override fun onFailure(call: Call<JogadorResponse>, t: Throwable) {
-                Log.d("Deu ruim", t.toString())
-            }
-
-            override fun onResponse(call: Call<JogadorResponse>, response: Response<JogadorResponse>) {
-                Log.d("Nice", response.toString())
-            }
-        })
-    }
 }
 
