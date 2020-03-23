@@ -19,9 +19,9 @@ interface InterfaceRetrofit {
 
     @GET("/sala/{nome}")
     fun pegarSala(nome: String): Call<SalaResponse>
-//
-//    @GET("/doenca")
-//    fun doencas(): Call<DoencasResponse>
+
+    @GET("/doenca")
+    fun doencas(): Call<DoencasResponse>
 //
 //    @GET("/sintoma")
 //    fun sintomas(): Call<Sintoma>

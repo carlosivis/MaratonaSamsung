@@ -15,15 +15,7 @@ import kotlinx.android.synthetic.main.fragment_room.*
 /**
  * A simple [Fragment] subclass.
  */
-<<<<<<< HEAD
-<<<<<<< HEAD
 class RoomFragment :  Fragment() {
-=======
-class RoomFragment : Fragment() {
->>>>>>> 298d3c798d780ee8f3321c1330aeec04d6d77e62
-=======
-class RoomFragment : Fragment() {
->>>>>>> a6d5895123c7f077be4622bddb3c4ca209a809d6
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,7 +40,7 @@ class RoomFragment : Fragment() {
             }
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                resposta = parent!!.getItemAtPosition(position).toString()
+//                resposta = parent!!.getItemAtPosition(position).toString()
             }
         }
     }

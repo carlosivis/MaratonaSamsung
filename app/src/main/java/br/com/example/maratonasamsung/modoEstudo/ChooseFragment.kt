@@ -2,33 +2,21 @@ package br.com.example.maratonasamsung.modoEstudo
 
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-<<<<<<< HEAD
-<<<<<<< HEAD
 import br.com.example.maratonasamsung.R
-//import br.com.example.maratonasamsung.service.doencas
-=======
-=======
->>>>>>> a6d5895123c7f077be4622bddb3c4ca209a809d6
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import br.com.example.appacessibilidade.Service
-import br.com.example.maratonasamsung.R
 import br.com.example.maratonasamsung.model.Responses.DoencasResponse
 import br.com.example.maratonasamsung.model.Responses.Prevencao
 import br.com.example.maratonasamsung.model.Responses.Sintoma
+import br.com.example.maratonasamsung.service.Service
 import kotlinx.android.synthetic.main.fragment_choose.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-<<<<<<< HEAD
->>>>>>> 298d3c798d780ee8f3321c1330aeec04d6d77e62
-
-=======
->>>>>>> a6d5895123c7f077be4622bddb3c4ca209a809d6
 
 class ChooseFragment : Fragment() {
 
@@ -49,12 +37,7 @@ class ChooseFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-<<<<<<< HEAD
-        //doencas()
-=======
-
         doencas()
->>>>>>> 298d3c798d780ee8f3321c1330aeec04d6d77e62
     }
 
 
@@ -77,7 +60,7 @@ class ChooseFragment : Fragment() {
                 ))
                 recyclerDoencas.apply{
                     layoutManager = LinearLayoutManager(activity)
-                    adapter = DoencaAdapter(list)
+//                    adapter = DoencaAdapter(list)
                 }
 
             }

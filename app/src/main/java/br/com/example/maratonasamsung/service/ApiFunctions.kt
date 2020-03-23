@@ -6,7 +6,6 @@ import br.com.example.maratonasamsung.model.Responses.Sintoma
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-<<<<<<< HEAD
 //
 //fun doencas() {
 //    Service.retrofit.jogador().enqueue(object : Callback<JogadorResponse> {
@@ -32,18 +31,3 @@ import retrofit2.Response
 //        }
 //    })
 //}
-=======
-
-
-fun sintomas() {
-    Service.retrofit.sintomas().enqueue(object : Callback<Sintoma> {
-        override fun onFailure(call: Call<Sintoma>, t: Throwable) {
-            Log.d("Deu ruim!!!", t.toString())
-        }
-
-        override fun onResponse(call: Call<Sintoma>, response: Response<Sintoma>) {
-            TODO("Not yet implemented")
-        }
-    })
-}
->>>>>>> 298d3c798d780ee8f3321c1330aeec04d6d77e62
