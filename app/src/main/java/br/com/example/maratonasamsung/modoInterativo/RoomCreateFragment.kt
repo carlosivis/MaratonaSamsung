@@ -44,7 +44,6 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
         when(v!!.id){
             R.id.createBtnCriarSala -> {
                criarSala()
-//                jogador()
             }
         }
     }
@@ -52,28 +51,27 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
     fun criarSala(){
         Service.retrofit.criarSala(
             sala = SalaRequest(
-                "aaa",
-                "sss"
-                    )
+                nome = createEditNomeSala.text.toString(),
+                senha = createEditSenha.text.toString()
+            )
         ).enqueue(object : Callback<SalaResponse>{
                 override fun onFailure(call: Call<SalaResponse>, t: Throwable) {
                     Log.d("Deu ruim", t.toString())
                 }
 
                 override fun onResponse(call: Call<SalaResponse>, response: Response<SalaResponse>) {
-                    Log.d("Nice", response.toString())
-                    navController!!.navigate(R.id.action_roomCreateFragment_to_roomFragment)
+                    Log.d("Nice", response.body().toString())
                     val sala = response.body()
-//                    jogadorNovo(sala!!.id)
+                    jogadorNovo(sala!!.id)
                 }
         })
     }
 
     fun jogadorNovo(id: Int){
         Service.retrofit.jogadorNovo(
-            JogadorRequest(
+            jogadorRequest = JogadorRequest(
                 id_sessao = id,
-                nome = createEditNomeSala.text.toString()
+                nome = createEditUsuario.text.toString()
             )
         ).enqueue(object : Callback<JogadorResponse>{
             override fun onFailure(call: Call<JogadorResponse>, t: Throwable) {
@@ -82,18 +80,7 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
 
             override fun onResponse(call: Call<JogadorResponse>, response: Response<JogadorResponse>) {
                 Log.d("Nice", response.toString())
-            }
-        })
-    }
-
-    fun jogador(){
-        Service.retrofit.jogador().enqueue(object : Callback<JogadorResponse>{
-            override fun onFailure(call: Call<JogadorResponse>, t: Throwable) {
-                Log.d("Deu ruim", t.toString())
-            }
-
-            override fun onResponse(call: Call<JogadorResponse>, response: Response<JogadorResponse>) {
-                Log.d("Nice", response.toString())
+                navController!!.navigate(R.id.action_roomCreateFragment_to_roomFragment)
             }
         })
     }

@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import br.com.example.maratonasamsung.R
-import br.com.example.maratonasamsung.service.doencas
+//import br.com.example.maratonasamsung.service.doencas
 
 
 class ChooseFragment : Fragment() {
@@ -24,7 +24,7 @@ class ChooseFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        doencas()
+        //doencas()
     }
 
 }
