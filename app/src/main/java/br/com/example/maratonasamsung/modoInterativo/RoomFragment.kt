@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.Spinner
 import androidx.fragment.app.Fragment
+import br.com.example.maratonasamsung.R
 import kotlinx.android.synthetic.main.fragment_room.*
 
 
@@ -23,14 +24,13 @@ class RoomFragment :  Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_room, container, false)
     }
 
     override fun onStart() {
         super<Fragment>.onStart()
-        textOla.text = "Olá, jogador@ $nomeJogador! Tente adivinhar a doença..."
+        //textOla.text = "Olá, jogador@ $nomeJogador! Tente adivinhar a doença..."
     }
 
     fun selecionaDoenca(){
