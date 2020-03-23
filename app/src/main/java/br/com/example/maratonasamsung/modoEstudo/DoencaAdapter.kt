@@ -1,28 +1,47 @@
 package br.com.example.maratonasamsung.modoEstudo
-//
-//override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-//    DoencaViewHolder {
-//        LayoutInflater.from(parent.context)
-//            .inflate(R.layout.recycler_view_doencas, parent,false)
-//    }
-//
-//
-//
-//override fun getItemCount() = doencas.size
-//
-//override fun onBindViewHolder(holder: DoencaViewHolder, position: Int) {
-//    val doenca = doencas[position]
-//    holder.bind(doenca)
-//}
-//
-//
-//class DoencaViewHolder(itemView: () -> View): RecyclerView.ViewHolder(itemView) {
-//
-//    fun bind(doencas: DoencasResponse) {
-//        itemView.txtDoencaNome.text = doencas.nome
-//        itemView.txtArraySintoma.text = doencas.sintomas.toString()
-//        itemView.txtPrevencao.text = doencas.prevencao.toString()
-//
-//    }
-//
-//}
+
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
+import br.com.example.maratonasamsung.R
+import br.com.example.maratonasamsung.model.Responses.DoencasResponse
+import kotlinx.android.synthetic.main.recycler_view_doencas.view.*
+
+
+
+
+
+class DoencaAdapter(private val list: DoencasResponse?)
+    : RecyclerView.Adapter<DoencaAdapter.DoencaViewHolder>() {
+
+    class  DoencaViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
+        RecyclerView.ViewHolder(inflater.inflate(R.layout.recycler_view_doencas, parent, false)) {
+        private var txtDoencaNome: TextView? = null
+        private var txtArraySintoma: TextView? = null
+        private var txtPrevencao: TextView? = null
+        init {
+            txtDoencaNome = itemView.findViewById(R.id.txtDoencaNome)
+            txtArraySintoma = itemView.findViewById(R.id.txtArraySintoma)
+            txtPrevencao = itemView.findViewById(R.id.txtPrevencao)
+        }
+        fun bind(doencas: DoencasResponse) {
+            itemView.txtDoencaNome?.text = doencas.nome
+            itemView.txtArraySintoma?.text = doencas.sintomas.toString()
+            itemView.txtPrevencao?.text = doencas.prevencao.toString()
+        }
+    }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DoencaViewHolder {
+        val inflater = LayoutInflater.from(parent.context)
+        return DoencaViewHolder(inflater, parent)
+    }
+    override fun onBindViewHolder(holder: DoencaViewHolder, position: Int) {
+        val doenca: DoencasResponse = list[position]
+        holder.bind(doenca)
+    }
+
+    override fun getItemCount(): Int = list.size
+
+}
+
+

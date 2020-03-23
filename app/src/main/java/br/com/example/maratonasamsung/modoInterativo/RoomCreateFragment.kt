@@ -59,6 +59,7 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
                     Log.d("Deu ruim", t.toString())
                 }
 
+<<<<<<< HEAD
                 override fun onResponse(call: Call<SalaResponse>, response: Response<SalaResponse>) {
                     Log.d("Nice", response.body().toString())
                     val sala = response.body()
@@ -75,6 +76,13 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
             )
         ).enqueue(object : Callback<JogadorResponse>{
             override fun onFailure(call: Call<JogadorResponse>, t: Throwable) {
+=======
+                nome = editNomeSala.text.toString(),
+                publica = btnPrivado.isChecked,
+                senha = txtSenhaSala.text.toString()
+            )).enqueue(object : Callback<SalaResponse>{
+            override fun onFailure(call: Call<SalaResponse>, t: Throwable) {
+>>>>>>> 298d3c798d780ee8f3321c1330aeec04d6d77e62
                 Log.d("Deu ruim", t.toString())
             }
 

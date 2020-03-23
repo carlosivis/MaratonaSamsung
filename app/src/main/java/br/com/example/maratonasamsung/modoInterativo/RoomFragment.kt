@@ -14,7 +14,11 @@ import kotlinx.android.synthetic.main.fragment_room.*
 /**
  * A simple [Fragment] subclass.
  */
+<<<<<<< HEAD
 class RoomFragment :  Fragment() {
+=======
+class RoomFragment : Fragment() {
+>>>>>>> 298d3c798d780ee8f3321c1330aeec04d6d77e62
 
     var opcoes: ArrayList<Int> = arrayListOf(1, 2, 3, 4, 5, 6, 7)
     override fun onCreateView(
