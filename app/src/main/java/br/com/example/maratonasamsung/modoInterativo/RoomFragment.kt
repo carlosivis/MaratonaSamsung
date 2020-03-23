@@ -2,44 +2,54 @@ package br.com.example.maratonasamsung.modoInterativo
 
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
+import android.widget.AdapterView
+import android.widget.Spinner
+import androidx.fragment.app.Fragment
 import br.com.example.maratonasamsung.R
 import kotlinx.android.synthetic.main.fragment_room.*
+
 
 /**
  * A simple [Fragment] subclass.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 class RoomFragment :  Fragment() {
 =======
 class RoomFragment : Fragment() {
 >>>>>>> 298d3c798d780ee8f3321c1330aeec04d6d77e62
+=======
+class RoomFragment : Fragment() {
+>>>>>>> a6d5895123c7f077be4622bddb3c4ca209a809d6
 
-    var opcoes: ArrayList<Int> = arrayListOf(1, 2, 3, 4, 5, 6, 7)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_room, container, false)
-        //var intent = intent
-        //val nomeJogador = intent.getStringExtra("Nome")
-
-        //textOla.text = "Olá, $nomeJogador, tente adivinhar a doença..."
     }
 
     override fun onStart() {
         super<Fragment>.onStart()
-
-//        val adapter= ArrayAdapter(this,android.R.layout.simple_spinner_item, opcoes)
+        //textOla.text = "Olá, jogador@ $nomeJogador! Tente adivinhar a doença..."
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return super<Fragment>.onOptionsItemSelected(item)
+    fun selecionaDoenca(){
+        var spinner = view?.findViewById<Spinner>(R.id.spinnerResposta)
+
+        spinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                //Toast.makeText(this@RoomFragment,"Selecione uma doença",Toast.LENGTH_LONG).show()
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                resposta = parent!!.getItemAtPosition(position).toString()
+            }
+        }
     }
 }

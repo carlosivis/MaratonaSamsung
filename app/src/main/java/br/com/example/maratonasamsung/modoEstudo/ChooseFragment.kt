@@ -7,9 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 <<<<<<< HEAD
+<<<<<<< HEAD
 import br.com.example.maratonasamsung.R
 //import br.com.example.maratonasamsung.service.doencas
 =======
+=======
+>>>>>>> a6d5895123c7f077be4622bddb3c4ca209a809d6
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.com.example.appacessibilidade.Service
@@ -21,8 +24,11 @@ import kotlinx.android.synthetic.main.fragment_choose.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+<<<<<<< HEAD
 >>>>>>> 298d3c798d780ee8f3321c1330aeec04d6d77e62
 
+=======
+>>>>>>> a6d5895123c7f077be4622bddb3c4ca209a809d6
 
 class ChooseFragment : Fragment() {
 
