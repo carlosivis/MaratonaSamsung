@@ -17,10 +17,7 @@ import br.com.example.maratonasamsung.R
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_room_acess.*
 
-/**
- * A simple [Fragment] subclass.
- */
-class RoomAcessFragment : Fragment(), AppCompatActivity, View.OnClickListener {
+class RoomAcessFragment : Fragment(), View.OnClickListener {
 
     var navController: NavController? = null
 

@@ -53,8 +53,6 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
                 nome = editNomeSala.text.toString(),
                 publica = btnPrivado.isChecked,
                 senha = txtSenhaSala.text.toString()
-                publica = true
-
             )).enqueue(object : Callback<SalaResponse>{
             override fun onFailure(call: Call<SalaResponse>, t: Throwable) {
                 Log.d("Deu ruim", t.toString())
