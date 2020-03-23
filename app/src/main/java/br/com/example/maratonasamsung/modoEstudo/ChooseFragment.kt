@@ -63,7 +63,7 @@ class ChooseFragment : Fragment() {
                 ))
                 recyclerDoencas.apply{
                     layoutManager = LinearLayoutManager(activity)
-                    //adapter = DoencaAdapter(arr)
+                    adapter = DoencaAdapter(list)
                 }
 
             }
