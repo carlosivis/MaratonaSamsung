@@ -22,14 +22,14 @@
 
     <TextView
         android:id="@+id/textOla"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="28dp"
+        android:layout_width="345dp"
+        android:layout_height="14dp"
+        android:layout_marginTop="10dp"
         android:textColor="@color/colorText"
-        android:textSize="25sp"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerResposta" />
 
     <TextView
         android:id="@+id/textDicas"
@@ -55,7 +55,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textDicas" />
 
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/spinnerResposta"
         android:layout_width="250dp"
         android:layout_height="35dp"
         android:layout_marginBottom="88dp"
@@ -77,8 +77,9 @@
         android:background="@color/colorDark"
         android:text="@string/txt_adivinhar"
         android:textColor="@color/colorText"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.961"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner" />
 
