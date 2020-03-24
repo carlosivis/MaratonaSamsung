@@ -32,15 +32,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:ems="17"
+        android:ems="16"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="@id/createTxtUsuario"
         app:layout_constraintTop_toBottomOf="@id/createTxtNomeSala" />
 
     <Button
         android:id="@+id/createBtnCriarSala"
-        android:layout_width="112dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:ems="7"
         android:layout_marginRight="40dp"
         android:layout_marginBottom="24dp"
         android:text="@string/btn_criar"
@@ -53,10 +54,10 @@
 
     <EditText
         android:id="@+id/createEditSenha"
-        android:layout_width="336dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:ems="10"
+        android:ems="16"
         android:inputType="textPassword"
         app:layout_constraintStart_toStartOf="@id/createTxtUsuario"
         app:layout_constraintTop_toBottomOf="@id/createTxtSenha" />
@@ -99,10 +100,10 @@
 
     <EditText
         android:id="@+id/createEditUsuario"
-        android:layout_width="336dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:ems="10"
+        android:ems="16"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="@id/createTxtUsuario"
         app:layout_constraintTop_toBottomOf="@id/createTxtUsuario" />

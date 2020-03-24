@@ -1,15 +1,23 @@
 package br.com.example.maratonasamsung.modoInterativo
 
-
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import br.com.example.maratonasamsung.R
+import br.com.example.maratonasamsung.model.Responses.SalaResponse
+import br.com.example.maratonasamsung.service.Service
+import kotlinx.android.synthetic.main.fragment_room_acess.*
+import kotlinx.android.synthetic.main.fragment_room_create.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class RoomAcessFragment : Fragment(), View.OnClickListener {
 
@@ -33,35 +41,36 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         when(v!!.id){
             R.id.acessBtnContinuar -> {
-//                listaSala()
-                navController!!.navigate(R.id.action_roomAcessFragment_to_roomAcessNameFragment)
+                acessarSala()
             }
         }
     }
 
-//    fun listaSala(){
-//        Service.retrofit.listaSala(
-//            SalaResquest(
-//
-//                nome = acessEditNomeSala.text.toString(),
-//                senha = acessEditSenha.text.toString()
-//
-//            )).enqueue(object : Callback<SalaResponse>{
-//            override fun onFailure(call: Call<SalaResponse>, t: Throwable) {
-//                Log.d("Deu ruim", t.toString())
-//            }
-//
-//            override fun onResponse(call: Call<SalaResponse>, response: Response<SalaResponse>) {
-//                Log.d("Nice", response.toString())
-//                val sala = response.body()
-//                val parametro = Bundle()
-//                parametro.putInt("id", sala!!.id)
-////                val intent = Intent(RoomAcessNameFragmentX)
-////                intent.putExtras(parametro)
-////
-////                startActivity(intent)
-//            }
-//        })
-//    }
+    fun acessarSala(){
+        Service.retrofit.acessarSala(nome = acessEditNomeSala.text.toString()).enqueue(object : Callback<SalaResponse>{
+            override fun onFailure(call: Call<SalaResponse>, t: Throwable) {
+                Log.d("Deu ruim", t.toString())
+            }
+
+            override fun onResponse(call: Call<SalaResponse>, response: Response<SalaResponse>) {
+                Log.d("Nice", response.toString())
+
+                val sala = response.body()
+
+                if(sala!!.senha == acessEditSenha.text.toString()){
+                    val parametro = Bundle()
+                    parametro.putInt("id", sala!!.id)
+                    navController!!.navigate(R.id.action_roomAcessFragment_to_roomAcessNameFragment, parametro)
+                }
+                else {
+                    var texto = "Senha inválida"
+                    val duracao = Toast.LENGTH_SHORT
+                    val toast = Toast.makeText(context, texto, duracao)
+                    toast.show()
+                    acessEditSenha.setText("")
+                }
+            }
+        })
+    }
 }
 

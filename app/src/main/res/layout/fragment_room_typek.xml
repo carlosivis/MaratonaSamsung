@@ -9,8 +9,9 @@
 
     <Button
         android:id="@+id/typeBtnCriarSala"
-        android:layout_width="144dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:ems="9"
         android:text="@string/btn_criar_sala"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -20,8 +21,9 @@
 
     <Button
         android:id="@+id/typeBtnAcessarSala"
-        android:layout_width="144dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:ems="9"
         android:text="@string/btn_acessar_sala"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="@id/typeBtnCriarSala"
