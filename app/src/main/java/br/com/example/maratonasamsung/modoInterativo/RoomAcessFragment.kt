@@ -7,12 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import br.com.example.maratonasamsung.R
 import br.com.example.maratonasamsung.model.Responses.SalaResponse
 import br.com.example.maratonasamsung.service.Service
 import kotlinx.android.synthetic.main.fragment_room_acess.*
+import kotlinx.android.synthetic.main.fragment_room_create.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -45,7 +47,7 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
     }
 
     fun acessarSala(){
-        Service.retrofit.acessarSala(nome = acessEditNomeSala!!.text.toString()).enqueue(object : Callback<SalaResponse>{
+        Service.retrofit.acessarSala(nome = acessEditNomeSala.text.toString()).enqueue(object : Callback<SalaResponse>{
             override fun onFailure(call: Call<SalaResponse>, t: Throwable) {
                 Log.d("Deu ruim", t.toString())
             }
@@ -53,12 +55,12 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
             override fun onResponse(call: Call<SalaResponse>, response: Response<SalaResponse>) {
                 Log.d("Nice", response.toString())
 
-//                val sala = response.body()
-//
-//                val parametro = Bundle()
-//                parametro.putInt("id", sala!!.id)
-//
-//                navController!!.navigate(R.id.action_roomAcessFragment_to_roomAcessNameFragment, parametro)
+                val sala = response.body()
+
+                val parametro = Bundle()
+                parametro.putInt("id", sala!!.id)
+
+                navController!!.navigate(R.id.action_roomAcessFragment_to_roomAcessNameFragment, parametro)
             }
         })
     }

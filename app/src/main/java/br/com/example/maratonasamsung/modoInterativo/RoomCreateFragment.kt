@@ -61,18 +61,19 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
                 }
                 override fun onResponse(call: Call<SalaResponse>, response: Response<SalaResponse>) {
                     Log.d("Nice", response.body().toString())
+
                     val sala = response.body()
+
                     if(!sala!!.status) {
-                        val text = "Nome da sala já existente!"
-                        val duration = Toast.LENGTH_SHORT
-                        val toast = Toast.makeText(context, text, duration)
+                        var texto = "Nome da sala já existente, digite outro"
+                        val duracao = Toast.LENGTH_SHORT
+                        val toast = Toast.makeText(context, texto, duracao)
                         toast.show()
                         createEditNomeSala.setText("")
                         createEditSenha.setText("")
                     }
                     else
-                        jogadorNovo(sala!!.id)
-                }
+                        jogadorNovo(sala!!.id)}
         })
     }
 
@@ -89,6 +90,16 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
 
             override fun onResponse(call: Call<JogadorResponse>, response: Response<JogadorResponse>) {
                 Log.d("Nice", response.toString())
+
+                val jogador = response.body()
+
+                if(!jogador!!.status) {
+                    var texto = "Nome de usuário já existente nesta sala, digite outro"
+                    val duracao = Toast.LENGTH_SHORT
+                    val toast = Toast.makeText(context, texto, duracao)
+                    toast.show()
+                    createEditUsuario.setText("")
+                }
                 navController!!.navigate(R.id.action_roomCreateFragment_to_roomFragment)
             }
         })
