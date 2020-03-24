@@ -3,24 +3,25 @@ package br.com.example.maratonasamsung.modoInterativo
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import br.com.example.maratonasamsung.service.Service
 import br.com.example.maratonasamsung.R
 import br.com.example.maratonasamsung.model.Requests.JogadorRequest
 import br.com.example.maratonasamsung.model.Requests.SalaRequest
 import br.com.example.maratonasamsung.model.Responses.JogadorResponse
 import br.com.example.maratonasamsung.model.Responses.SalaResponse
-import kotlinx.android.synthetic.main.fragment_room_acess.*
+import br.com.example.maratonasamsung.service.Service
 import kotlinx.android.synthetic.main.fragment_room_create.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+
 
 class RoomCreateFragment : Fragment(), View.OnClickListener {
 
@@ -61,7 +62,16 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
                 override fun onResponse(call: Call<SalaResponse>, response: Response<SalaResponse>) {
                     Log.d("Nice", response.body().toString())
                     val sala = response.body()
-                    jogadorNovo(sala!!.id)
+                    if(!sala!!.status) {
+                        val text = "Nome da sala já existente!"
+                        val duration = Toast.LENGTH_SHORT
+                        val toast = Toast.makeText(context, text, duration)
+                        toast.show()
+                        createEditNomeSala.setText("")
+                        createEditSenha.setText("")
+                    }
+                    else
+                        jogadorNovo(sala!!.id)
                 }
         })
     }

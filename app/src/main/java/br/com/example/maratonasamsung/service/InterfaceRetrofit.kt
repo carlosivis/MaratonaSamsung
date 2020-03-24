@@ -17,8 +17,8 @@ interface InterfaceRetrofit {
     @POST("/sala")
     fun criarSala(@Body sala: SalaRequest): Call<SalaResponse>
 
-    @GET("/sala/{nome}")
-    fun pegarSala(nome: String): Call<SalaResponse>
+    @GET("/{nome}")
+    fun acessarSala(@QueryName nome: String): Call<SalaResponse>
 
     @GET("/doenca")
     fun doencas(): Call<DoencasResponse>
