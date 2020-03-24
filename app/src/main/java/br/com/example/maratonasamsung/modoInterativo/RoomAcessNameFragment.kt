@@ -14,6 +14,7 @@ import br.com.example.maratonasamsung.R
 import br.com.example.maratonasamsung.model.Requests.JogadorRequest
 import br.com.example.maratonasamsung.model.Responses.JogadorResponse
 import br.com.example.maratonasamsung.service.Service
+import kotlinx.android.synthetic.main.fragment_room_acess_name.*
 import kotlinx.android.synthetic.main.fragment_room_create.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -39,7 +40,8 @@ class RoomAcessNameFragment : Fragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         when(v!!.id){
             R.id.acessnameBtnAcessarSala -> {
-//                jogadorNovo(arguments)
+                val id = arguments!!.getInt("id");
+                jogadorNovo(id)
             }
         }
     }
@@ -48,7 +50,7 @@ class RoomAcessNameFragment : Fragment(), View.OnClickListener {
         Service.retrofit.jogadorNovo(
             jogadorRequest = JogadorRequest(
                 id_sessao = id,
-                nome = createEditUsuario.text.toString()
+                nome = acessnameEditUsuario.text.toString()
             )
         ).enqueue(object : Callback<JogadorResponse> {
             override fun onFailure(call: Call<JogadorResponse>, t: Throwable) {
@@ -67,7 +69,7 @@ class RoomAcessNameFragment : Fragment(), View.OnClickListener {
                     toast.show()
                     createEditUsuario.setText("")
                 }
-                navController!!.navigate(R.id.action_roomCreateFragment_to_roomFragment)
+                navController!!.navigate(R.id.action_roomAcessNameFragment_to_roomFragment)
             }
         })
     }
