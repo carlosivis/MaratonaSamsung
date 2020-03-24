@@ -67,9 +67,10 @@ class RoomAcessNameFragment : Fragment(), View.OnClickListener {
                     val duracao = Toast.LENGTH_SHORT
                     val toast = Toast.makeText(context, texto, duracao)
                     toast.show()
-                    createEditUsuario.setText("")
+                    acessnameEditUsuario.setText("")
                 }
-                navController!!.navigate(R.id.action_roomAcessNameFragment_to_roomFragment)
+                else
+                    navController!!.navigate(R.id.action_roomAcessNameFragment_to_roomFragment)
             }
         })
     }

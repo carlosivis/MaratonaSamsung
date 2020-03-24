@@ -91,15 +91,6 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
             override fun onResponse(call: Call<JogadorResponse>, response: Response<JogadorResponse>) {
                 Log.d("Nice", response.toString())
 
-                val jogador = response.body()
-
-                if(!jogador!!.status) {
-                    var texto = "Nome de usuário já existente nesta sala, digite outro"
-                    val duracao = Toast.LENGTH_SHORT
-                    val toast = Toast.makeText(context, texto, duracao)
-                    toast.show()
-                    createEditUsuario.setText("")
-                }
                 navController!!.navigate(R.id.action_roomCreateFragment_to_roomFragment)
             }
         })

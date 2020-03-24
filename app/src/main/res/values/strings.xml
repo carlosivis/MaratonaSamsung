@@ -29,9 +29,7 @@
     <string name="txt_pontos">Rodada valendo: xx pontos</string>
     <string name="txt_resposta">Resposta</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="config">Configurações</string>
+    <string name="txt_configuracao">Configurações</string>
 
     <string-array name="doencaResposta">
         <item>"AIDS"</item>

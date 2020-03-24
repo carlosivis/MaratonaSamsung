@@ -37,7 +37,7 @@ class RoomFragment :  Fragment() {
 
     override fun onStart() {
         super<Fragment>.onStart()
-        doencas()
+//        doencas()
         //textOla.text = arr.toString()
     }
 
@@ -55,20 +55,20 @@ class RoomFragment :  Fragment() {
         }
     }
 
-    fun doencas() {
-        Service.retrofit.doencas().enqueue(object : Callback<DoencasResponse> {
-            override fun onFailure(call: Call<DoencasResponse>, t: Throwable) {
-                Log.d("Deu ruim!!!",t.toString())
-            }
-
-            override fun onResponse(call: Call<DoencasResponse>, response: Response<DoencasResponse>) {
-                Log.d("Sucesso", response.body().toString())
-                //var list /*: DoencasResponse*/ = response.body()!!
-                val arr : ArrayList<String> = arrayListOf(response.body()!!.nome)
-                //recyclerDoencas.apply{
-                //layoutManager = LinearLayoutManager(activity)
-                //adapter = DoencaAdapter(list)
-            }
-        })
-    }
+//    fun doencas() {
+//        Service.retrofit.doencas().enqueue(Object : Callback<DoencasResponse> {
+//            override fun onFailure(call: Call<DoencasResponse>, t: Throwable) {
+//                Log.d("Deu ruim!!!",t.toString())
+//            }
+//
+//            override fun onResponse(call: Call<DoencasResponse>, response: Response<DoencasResponse>) {
+//                Log.d("Sucesso", response.body().toString())
+//                //var list /*: DoencasResponse*/ = response.body()!!
+//                val arr : ArrayList<String> = arrayListOf(response.body()!!.nome)
+//                //recyclerDoencas.apply{
+//                //layoutManager = LinearLayoutManager(activity)
+//                //adapter = DoencaAdapter(list)
+//            }
+//        })
+//    }
 }

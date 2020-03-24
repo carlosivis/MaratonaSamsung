@@ -57,10 +57,18 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
 
                 val sala = response.body()
 
-                val parametro = Bundle()
-                parametro.putInt("id", sala!!.id)
-
-                navController!!.navigate(R.id.action_roomAcessFragment_to_roomAcessNameFragment, parametro)
+                if(sala!!.senha == acessEditSenha.text.toString()){
+                    val parametro = Bundle()
+                    parametro.putInt("id", sala!!.id)
+                    navController!!.navigate(R.id.action_roomAcessFragment_to_roomAcessNameFragment, parametro)
+                }
+                else {
+                    var texto = "Senha inválida"
+                    val duracao = Toast.LENGTH_SHORT
+                    val toast = Toast.makeText(context, texto, duracao)
+                    toast.show()
+                    acessEditSenha.setText("")
+                }
             }
         })
     }
