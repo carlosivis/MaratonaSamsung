@@ -9,7 +9,7 @@ import br.com.example.maratonasamsung.R
 class SplashScreen : AppCompatActivity() {
 
     // This is the loading time of the splash screen
-    private val SPLASH_TIME_OUT: Long = 3000 // 1 sec
+    private val SPLASH_TIME_OUT: Long = 2500 // 1 sec
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -11,22 +11,30 @@
         android:id="@+id/btnModoInterativo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/btnModoInterativo"
+        android:background="@drawable/roundbutton"
         android:ems="10"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:fontFamily="@font/delius"
+        android:shadowColor="#FFFFFF"
+        android:text="@string/interativo"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintVertical_bias="0.443" />
+
     <Button
         android:id="@+id/btnModoEstudo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/btnModoEstudo"
+        android:layout_marginTop="44dp"
+        android:background="@drawable/roundbutton"
         android:ems="10"
-        app:layout_constraintStart_toStartOf="parent"
+        android:fontFamily="@font/delius"
+        android:text="@string/estudo"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnModoInterativo"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnModoInterativo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
