@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.TutorialActivity2">
+    tools:context=".ui.main.TutorialActivity4">
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -18,7 +18,7 @@
             android:layout_marginTop="77dp"
             android:layout_marginBottom="40dp"
             android:fontFamily="@font/letters"
-            android:text="@string/estudo"
+            android:text="@string/config"
             android:textSize="50sp"
             app:layout_constraintBottom_toTopOf="@+id/imageView"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -32,7 +32,7 @@
             android:layout_marginTop="20dp"
             android:fontFamily="@font/delius"
             android:justificationMode="inter_word"
-            android:text="@string/estudoText"
+            android:text="@string/configText"
             android:textSize="23sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.495"
@@ -52,7 +52,7 @@
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/fragment_title"
-            app:srcCompat="@drawable/books"
+            app:srcCompat="@drawable/gear"
             tools:layout_below="" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -88,7 +88,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="15sp"
-                android:text="2/4" />
+                android:text="4/4" />
         </LinearLayout>
         <Button
             android:id="@+id/btn_next"
@@ -96,9 +96,8 @@
             android:layout_height="wrap_content"
             android:onClick="onClick"
             android:layout_alignParentEnd="true"
-            android:text="PRÓXIMO"
+            android:text="@string/fim"
             android:background="@null"
             />
     </RelativeLayout>
-
 </RelativeLayout>

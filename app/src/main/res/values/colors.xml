@@ -2,7 +2,7 @@
 <resources>
     <color name="colorAccent">#dddddd</color>
     <color name="colorDark">#222222</color>
-    <color name="colorFullDark">#000000</color>
-    <color name="colorBackground">#111111</color>
-    <color name="colorText">#EEEEEE</color>
+    <color name="Black">#000000</color>
+    <color name="colorBackground">#ffcc00</color>
+    <color name="colorText">#000000</color>
 </resources>

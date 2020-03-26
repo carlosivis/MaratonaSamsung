@@ -7,17 +7,17 @@ import androidx.appcompat.app.AppCompatActivity
 import br.com.example.maratonasamsung.R
 
 
-class TutorialActivity2 : AppCompatActivity(), View.OnClickListener {
+class TutorialActivity3 : AppCompatActivity(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_tutorial2)
+        setContentView(R.layout.activity_tutorial3)
     }
 
     override fun onClick(v: View?) {
         when (v!!.id) {
-            R.id.btn_next -> startActivity(Intent(this@TutorialActivity2, TutorialActivity3::class.java))
-            R.id.btn_skip -> startActivity(Intent(this@TutorialActivity2, TutorialActivity::class.java))
+            R.id.btn_next -> startActivity(Intent(this@TutorialActivity3, TutorialActivity4::class.java))
+            R.id.btn_skip -> startActivity(Intent(this@TutorialActivity3, TutorialActivity2::class.java))
         }
     }
 

@@ -4,9 +4,8 @@ import android.app.Activity
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentManager
-import br.com.example.maratonasamsung.R
 
 
 class MainActivity : AppCompatActivity() {
@@ -14,29 +13,44 @@ class MainActivity : AppCompatActivity() {
     lateinit var sharedPreferences: SharedPreferences
     lateinit var editor: SharedPreferences.Editor
     lateinit var activity: Activity
+    var name = "whatever"
     val firstRun = "whoknows"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.main_activity)
-
         sharedPreferences = getSharedPreferences("com.MaratonaSamsung", MODE_PRIVATE)
-
+        var i:Intent = getIntent()
+        //name = i.getStringExtra("name")
+        beenHere(name)
     }
 
     override fun onResume() {
         super.onResume();
-
-        activity = this
+        val intent = Intent(this, TutorialActivity::class.java)
+        startActivityForResult(intent, TUTORIAL_ACTIVITY_REQUEST_CODE)
         if (sharedPreferences.getBoolean(firstRun, true)) {
-            startActivity(Intent(activity, TutorialActivity::class.java))
-
-            editor = sharedPreferences.edit()
-            editor.putBoolean(firstRun, false).commit()
-        }else{
-            //startActivity(Intent(activity, MainFragment::class.java))
+            startActivity(Intent(this, TutorialActivity::class.java))
         }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+        if (requestCode == request_code) {
+            if (resultCode == Activity.RESULT_OK) {
+                val value = data.getStringExtra("value")
+                val cost = data.getStringExtra("cost")
+                //handle value and cost.
+            }
+        }
+    }
+
+    fun beenHere(name: String){
+        Log.d("euaqui","seupaunocu")
+        //if (name.equals("kenny")) {
+         //   Log.d("euaqui","seupaunocu2")
+         //   editor = sharedPreferences.edit()
+         //   editor.putBoolean(firstRun, false).commit()
+        //}
     }
 }
 

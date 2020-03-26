@@ -40,4 +40,17 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="pular">PULAR</string>
+    <string name="hifen">-</string>
+    <string name="welcome">Bem-vind@ ao Morbus</string>
+    <string name="welcomeText">Prepare-se para aprender sobre as principais doenças causadas por microorganismos, enquanto se diverte com seus colegas. Clique em PRÓXIMO para saber mais.</string>
+    <string name="estudo">Modo Estudo</string>
+    <string name="estudoText">Neste modo você tem acesso à informações importantes sobre as doenças, de forma interativa e simplificada. Fundamental para um bom desempenho no Modo Interativo.</string>
+    <string name="interativo">Modo Interativo</string>
+    <string name="interativoText">Neste aqui você irá interagir com seus amigos e colegas em um jogo de adivinhação de doenças e praticará os conhecimentos adquiridos no Modo Estudo.</string>
+    <string name="config">Mais informações</string>
+    <string name="configText">Nas configurações você encontrará outras informações legais sobre o app, como as regras do jogo e sistema de pontuações. Vamos lá!</string>
+    <string name="voltar">VOLTAR</string>
+    <string name="proximo">PRÓXIMO</string>
+    <string name="fim">FIM</string>
 </resources>

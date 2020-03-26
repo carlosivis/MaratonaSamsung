@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.TutorialActivity2">
+    tools:context=".ui.main.TutorialActivity3">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -18,7 +18,7 @@
             android:layout_marginTop="77dp"
             android:layout_marginBottom="40dp"
             android:fontFamily="@font/letters"
-            android:text="@string/estudo"
+            android:text="@string/interativo"
             android:textSize="50sp"
             app:layout_constraintBottom_toTopOf="@+id/imageView"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -32,7 +32,7 @@
             android:layout_marginTop="20dp"
             android:fontFamily="@font/delius"
             android:justificationMode="inter_word"
-            android:text="@string/estudoText"
+            android:text="@string/interativoText"
             android:textSize="23sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.495"
@@ -52,7 +52,7 @@
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/fragment_title"
-            app:srcCompat="@drawable/books"
+            app:srcCompat="@drawable/game"
             tools:layout_below="" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -88,7 +88,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="15sp"
-                android:text="2/4" />
+                android:text="3/4" />
         </LinearLayout>
         <Button
             android:id="@+id/btn_next"
