@@ -6,8 +6,9 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import br.com.example.maratonasamsung.R
 
-
 class TutorialActivity4 : AppCompatActivity(), View.OnClickListener {
+
+    val name:String = "whatever"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,12 +17,7 @@ class TutorialActivity4 : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when (v!!.id) {
-            R.id.btn_next -> {
-                val intent = Intent(this@TutorialActivity4, MainActivity::class.java)
-                intent.putExtra("name", "kenny")
-                startActivity(intent)
-                //startActivity(Intent(this@TutorialActivity4, MainActivity::class.java))
-            }
+            R.id.btn_next -> startActivity(Intent(this@TutorialActivity4, MainActivity::class.java))
             R.id.btn_skip -> startActivity(Intent(this@TutorialActivity4, TutorialActivity3::class.java))
         }
     }

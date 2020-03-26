@@ -1,14 +1,10 @@
 package br.com.example.maratonasamsung.ui.main
 
-import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import br.com.example.maratonasamsung.R
-import br.com.example.maratonasamsung.modoInterativo.RoomFragment
-import kotlinx.android.synthetic.main.activity_tutorial.*
 
 class TutorialActivity : AppCompatActivity(), View.OnClickListener {
 
