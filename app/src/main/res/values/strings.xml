@@ -53,5 +53,7 @@
     <string name="voltar">VOLTAR</string>
     <string name="proximo">PRÓXIMO</string>
     <string name="fim">FIM</string>
-    <string name="design">By Dissecadores do Conhecimento</string>
+    <string name="design">Dissecadores do Conhecimento</string>
+    <string name="tutorial">Tutorial</string>
+    <string name="todo">TODO</string>
 </resources>
