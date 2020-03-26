@@ -66,4 +66,18 @@
         android:name="br.com.example.maratonasamsung.modoInterativo.RoomFragment"
         android:label="fragment_room"
         tools:layout="@layout/fragment_room" />
+    <fragment
+        android:id="@+id/tutorialFragment"
+        android:name="br.com.example.maratonasamsung.ui.main.TutorialFragment"
+        android:label="fragment_tutorial"
+        tools:layout="@layout/fragment_tutorial" />
+    <fragment
+        android:id="@+id/tutorialFragment2"
+        android:name="br.com.example.maratonasamsung.ui.main.TutorialFragment2"
+        android:label="fragment_tutorial2"
+        tools:layout="@layout/fragment_tutorial2" >
+        <action
+            android:id="@+id/action_tutorialFragment2_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
 </navigation>

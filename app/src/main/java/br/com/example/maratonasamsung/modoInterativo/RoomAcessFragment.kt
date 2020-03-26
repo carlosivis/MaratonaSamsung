@@ -1,5 +1,6 @@
 package br.com.example.maratonasamsung.modoInterativo
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -41,7 +42,14 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         when(v!!.id){
             R.id.acessBtnContinuar -> {
-                acessarSala()
+                if(acessEditNomeSala.text.toString() == "" || acessEditSenha.text.toString() == "") {
+                    var texto = "Preencha todos os campos obrigatórios"
+                    val duracao = Toast.LENGTH_SHORT
+                    val toast = Toast.makeText(context, texto, duracao)
+                    toast.show()
+                }
+                else if(acessEditNomeSala.text.toString() != "" && acessEditSenha.text.toString() != "")
+                    acessarSala()
             }
         }
     }

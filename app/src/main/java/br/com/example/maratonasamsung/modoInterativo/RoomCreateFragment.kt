@@ -44,7 +44,14 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         when(v!!.id){
             R.id.createBtnCriarSala -> {
-               criarSala()
+                if(createEditUsuario.text.toString() == "" || createEditNomeSala.text.toString() == "" || createEditSenha.text.toString() == "") {
+                    var texto = "Preencha todos os campos obrigatórios"
+                    val duracao = Toast.LENGTH_SHORT
+                    val toast = Toast.makeText(context, texto, duracao)
+                    toast.show()
+                }
+                else if(createEditUsuario.text.toString() == "" && createEditNomeSala.text.toString() != "" && createEditSenha.text.toString() != "")
+                        criarSala()
             }
         }
     }
