@@ -1,17 +1,12 @@
 <resources>
     <string name="app_name">Morbus</string>
 
-    <string name="btnModoInterativo">Modo Interativo</string>
-    <string name="btnModoEstudo">Modo Estudo</string>
     <string name="btn_criar_sala">Criar sala</string>
     <string name="btn_acessar_sala">Acessar sala</string>
 
     <string name="btn_criar">Criar</string>
     <string name="btn_acessar">Acessar</string>
     <string name="btn_continuar">Continuar</string>
-
-    <string name="txt_modo_interativo">Modo Interativo</string>
-    <string name="txt_modo_estudo">Modo Estudo</string>
 
     <string name="txt_criar_sala">Criar sala</string>
     <string name="txt_acessar_sala">Acessar sala</string>
@@ -45,7 +40,7 @@
     <string name="welcome">Bem-vind@ ao Morbus</string>
     <string name="welcomeText">Prepare-se para aprender sobre as principais doenças causadas por microorganismos, enquanto se diverte com seus colegas. Clique em PRÓXIMO para saber mais.</string>
     <string name="estudo">Modo Estudo</string>
-    <string name="estudoText">Neste modo você tem acesso à informações importantes sobre as doenças, de forma interativa e simplificada. Fundamental para um bom desempenho no Modo Interativo.</string>
+    <string name="estudoText">Neste modo você tem acesso a informações importantes sobre as doenças, de forma interativa e simplificada. Fundamental para um bom desempenho no Modo Interativo.</string>
     <string name="interativo">Modo Interativo</string>
     <string name="interativoText">Neste aqui você irá interagir com seus amigos e colegas em um jogo de adivinhação de doenças e praticará os conhecimentos adquiridos no Modo Estudo.</string>
     <string name="config">Mais informações</string>

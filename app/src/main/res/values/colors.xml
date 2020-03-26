@@ -2,8 +2,8 @@
 <resources>
     <color name="colorAccent">#dddddd</color>
     <color name="colorDark">#222222</color>
-    <color name="Black">#ffffff</color>
+    <color name="Black">#000000</color>
     <color name="colorBackground">#581845</color>
-    <color name="colorText">#000000</color>
-    <color name="colorButton">#FFC300</color>
+    <color name="colorText">#ffffff</color>
+    <color name="colorButton">#b8860b</color>
 </resources>
