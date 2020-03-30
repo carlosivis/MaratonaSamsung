@@ -10,8 +10,6 @@ import android.view.ViewGroup
 import br.com.example.maratonasamsung.R
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.example.maratonasamsung.model.Responses.DoencasResponse
-import br.com.example.maratonasamsung.model.Responses.Prevencao
-import br.com.example.maratonasamsung.model.Responses.Sintoma
 import br.com.example.maratonasamsung.service.Service
 import kotlinx.android.synthetic.main.fragment_choose.*
 import retrofit2.Call
@@ -49,18 +47,10 @@ class ChooseFragment : Fragment() {
 
             override fun onResponse(call: Call<DoencasResponse>, response: Response<DoencasResponse>) {
                 Log.d("Sucesso", response.body().toString())
-                var list: DoencasResponse = response.body()!!
-                val arr: ArrayList<DoencasResponse> = arrayListOf(DoencasResponse(
-                    agente = "a",
-                    id = 1,
-                    nome = "aa",
-                    prevencao = listOf(Prevencao("null"),Prevencao("null"),Prevencao("null")),
-                    sintomas = listOf(Sintoma("null")),
-                    tipo = "www"
-                ))
+                var list: Array<DoencasResponse> = arrayOf(response.body()!!)
                 recyclerDoencas.apply{
                     layoutManager = LinearLayoutManager(activity)
-//                    adapter = DoencaAdapter(list)
+                    adapter = DoencaAdapter(list)
                 }
 
             }
