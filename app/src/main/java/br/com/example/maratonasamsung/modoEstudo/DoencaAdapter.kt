@@ -20,11 +20,7 @@ class DoencaAdapter(private val list: Array<DoencasResponse>)
         private var txtDoencaNome: TextView? = null
         private var txtArraySintoma: TextView? = null
         private var txtPrevencao: TextView? = null
-//        init {
-//            txtDoencaNome = itemView.findViewById(R.id.txtDoencaNome)
-//            txtArraySintoma = itemView.findViewById(R.id.txtArraySintoma)
-//            txtPrevencao = itemView.findViewById(R.id.txtPrevencao)
-//        }
+
         fun bind(doencas: DoencasResponse) {
             itemView.txtDoencaNome?.text = doencas.nome
             itemView.txtArraySintoma?.text = doencas.sintomas.toString()
