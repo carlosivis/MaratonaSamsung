@@ -8,33 +8,64 @@
     tools:context=".ui.main.MainFragment">
 
     <Button
-        android:id="@+id/btnModoInterativo"
+        android:id="@+id/btnModoEstudo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/roundbutton"
         android:ems="10"
-        android:fontFamily="@font/delius"
         android:shadowColor="#FFFFFF"
-        android:text="@string/interativo"
+        android:text="@string/estudo"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.443" />
+        app:layout_constraintVertical_bias="0.273" />
 
     <Button
-        android:id="@+id/btnModoEstudo"
+        android:id="@+id/btnModoInterativo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
         android:background="@drawable/roundbutton"
         android:ems="10"
-        android:fontFamily="@font/delius"
-        android:text="@string/estudo"
+        android:text="@string/interativo"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnModoInterativo" />
+        app:layout_constraintTop_toBottomOf="@id/btnModoEstudo" />
+
+
+    <Button
+        android:id="@+id/btnTutorial"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:background="@drawable/roundbutton"
+        android:ems="10"
+        android:text="@string/tutorial"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnModoInterativo" />
+
+    <Button
+        android:id="@+id/btnRegras"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:background="@drawable/roundbutton"
+        android:ems="10"
+        android:shadowColor="#FFFFFF"
+        android:text="@string/regras"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnTutorial"
+        app:layout_constraintVertical_bias="0.0" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

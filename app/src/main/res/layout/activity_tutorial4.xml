@@ -17,9 +17,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="77dp"
             android:layout_marginBottom="40dp"
-            android:fontFamily="@font/letters"
             android:text="@string/config"
-            android:textSize="50sp"
+            android:textSize="30sp"
             app:layout_constraintBottom_toTopOf="@+id/imageView"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -30,10 +29,9 @@
             android:layout_width="326dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:fontFamily="@font/delius"
             android:justificationMode="inter_word"
             android:text="@string/configText"
-            android:textSize="23sp"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -52,17 +50,8 @@
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/fragment_title"
-            app:srcCompat="@drawable/gear"
-            tools:layout_below="" />
+            app:srcCompat="@drawable/gear" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <View
-        android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/black"
-        android:layout_above="@+id/button_layout"
-        />
 
     <RelativeLayout
         android:id="@+id/button_layout"
@@ -70,30 +59,20 @@
         android:layout_height="50dp"
         android:layout_alignParentBottom="true">
 
-        <Button
-            android:id="@+id/btn_skip"
+        <TextView
+            android:id="@+id/indicator1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="onClick"
-            android:background="@null"
-            android:text="@string/voltar"/>
+            android:layout_alignBaseline="@+id/btn_next"
+            android:layout_centerInParent="true"
+            android:text="4/4"
+            android:textSize="15sp" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_centerInParent="true">
-            <TextView
-                android:id="@+id/indicator1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="15sp"
-                android:text="4/4" />
-        </LinearLayout>
         <Button
-            android:id="@+id/btn_next"
+            android:id="@+id/btn_end"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:ems="3"
             android:onClick="onClick"
             android:layout_alignParentEnd="true"
             android:text="@string/fim"

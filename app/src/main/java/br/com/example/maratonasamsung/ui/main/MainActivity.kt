@@ -14,12 +14,11 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var sharedPreferences: SharedPreferences
     lateinit var editor: SharedPreferences.Editor
-    private val firstRun = "Não entendo"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
-        sharedPreferences = getSharedPreferences("com.MaratonaSamsung", MODE_PRIVATE)
+        sharedPreferences = getSharedPreferences("faz diferenca", MODE_PRIVATE)
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         toolbar.title = ""
@@ -28,10 +27,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        if (sharedPreferences.getBoolean(firstRun, true)) {
-            editor = sharedPreferences.edit()
-            editor.putBoolean(firstRun, false).commit()
+        if (sharedPreferences.getBoolean("firstRun", true)) {
             startActivity(Intent(this, TutorialActivity::class.java))
+            editor = sharedPreferences.edit()
+            editor.putBoolean("firstRun", false).commit()
         }
     }
 

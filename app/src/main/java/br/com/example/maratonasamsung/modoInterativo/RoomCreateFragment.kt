@@ -80,7 +80,8 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
                         createEditSenha.setText("")
                     }
                     else
-                        jogadorNovo(sala!!.id)}
+                        jogadorNovo(sala.id)
+                }
         })
     }
 

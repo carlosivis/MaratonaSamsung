@@ -2,7 +2,6 @@ package br.com.example.maratonasamsung.modoInterativo
 
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,12 +9,6 @@ import android.widget.AdapterView
 import android.widget.Spinner
 import androidx.fragment.app.Fragment
 import br.com.example.maratonasamsung.R
-import br.com.example.maratonasamsung.model.Responses.DoencasResponse
-import br.com.example.maratonasamsung.service.Service
-import kotlinx.android.synthetic.main.fragment_room.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 
 /**
@@ -33,12 +26,6 @@ class RoomFragment :  Fragment() {
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_room, container, false)
-    }
-
-    override fun onStart() {
-        super<Fragment>.onStart()
-//        doencas()
-        //textOla.text = arr.toString()
     }
 
     fun selecionaDoenca(){
@@ -63,11 +50,11 @@ class RoomFragment :  Fragment() {
 //
 //            override fun onResponse(call: Call<DoencasResponse>, response: Response<DoencasResponse>) {
 //                Log.d("Sucesso", response.body().toString())
-//                //var list /*: DoencasResponse*/ = response.body()!!
+//                var list : DoencasResponse = response.body()!!
 //                val arr : ArrayList<String> = arrayListOf(response.body()!!.nome)
-//                //recyclerDoencas.apply{
-//                //layoutManager = LinearLayoutManager(activity)
-//                //adapter = DoencaAdapter(list)
+//                recyclerDoencas.apply{
+//                layoutManager = LinearLayoutManager(activity)
+//                adapter = DoencaAdapter(list)
 //            }
 //        })
 //    }

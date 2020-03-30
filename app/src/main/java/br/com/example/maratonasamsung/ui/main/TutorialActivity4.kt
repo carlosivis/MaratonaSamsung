@@ -17,8 +17,7 @@ class TutorialActivity4 : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when (v!!.id) {
-            R.id.btn_next -> startActivity(Intent(this@TutorialActivity4, MainActivity::class.java))
-            R.id.btn_skip -> startActivity(Intent(this@TutorialActivity4, TutorialActivity3::class.java))
+            R.id.btn_end -> startActivity(Intent(this@TutorialActivity4, MainActivity::class.java))
         }
     }
 
