@@ -19,13 +19,14 @@
         app:defaultNavHost="true"
         app:navGraph="@navigation/nav_host"/>
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/menu_settings"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:menu="@menu/top_menu_configuration"
-            />
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:theme="@style/ToolbarTheme"
+        app:menu="@menu/menu" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

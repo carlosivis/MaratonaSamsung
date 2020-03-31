@@ -13,7 +13,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="20dp"
-        android:text="@string/txt_modo_interativo"
+        android:text="@string/interativo"
         android:textColor="@color/colorText"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,50 +21,40 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textOla"
-        android:layout_width="345dp"
-        android:layout_height="14dp"
-        android:layout_marginTop="10dp"
+        android:id="@+id/textJogadores"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="68dp"
+        android:text="@string/txt_jogadores"
         android:textColor="@color/colorText"
-        android:textSize="10sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="25sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerResposta" />
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
     <TextView
         android:id="@+id/textDicas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
-        android:layout_marginEnd="150dp"
+        android:layout_marginTop="68dp"
+        android:layout_marginEnd="128dp"
         android:text="@string/txt_dicas"
         android:textColor="@color/colorText"
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
-    <TextView
-        android:id="@+id/textSintomas"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="120dp"
-        android:text="@string/txt_sintomas"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textDicas" />
-
     <Spinner
         android:id="@+id/spinnerResposta"
-        android:layout_width="250dp"
-        android:layout_height="35dp"
-        android:layout_marginBottom="88dp"
+        android:layout_width="241dp"
+        android:layout_height="47dp"
+        android:layout_marginBottom="24dp"
         android:backgroundTint="@color/colorText"
         android:entries="@array/doencaResposta"
         android:scrollbarSize="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.198"
+        app:layout_constraintHorizontal_bias="0.094"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -72,23 +62,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        android:background="@color/colorDark"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/roundbutton"
+        android:ems="4"
         android:text="@string/txt_adivinhar"
         android:textColor="@color/colorText"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.961"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textResposta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginBottom="124dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="72dp"
         android:shadowColor="@color/colorAccent"
         android:text="@string/txt_resposta"
         android:textColor="@color/colorText"
@@ -97,12 +87,27 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView2"
-        android:layout_width="190dp"
-        android:layout_height="250dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
+        android:id="@+id/recyclerViewDicas"
+        android:layout_width="165dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="117dp"
+        android:layout_marginEnd="28dp"
+        app:layout_constraintBottom_toBottomOf="@+id/recyclerViewJogadores"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textSintomas" />
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewJogadores"
+        android:layout_width="165dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="49dp"
+        android:layout_marginEnd="19dp"
+        android:layout_marginBottom="46dp"
+        app:layout_constraintBottom_toTopOf="@+id/textResposta"
+        app:layout_constraintEnd_toStartOf="@+id/recyclerViewDicas"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textJogadores"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

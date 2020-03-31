@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_mainFragment_to_chooseFragment"
             app:destination="@id/chooseFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_rulesFragment"
+            app:destination="@id/rulesFragment" />
     </fragment>
     <fragment
         android:id="@+id/roomTypekFragment"
@@ -66,4 +69,21 @@
         android:name="br.com.example.maratonasamsung.modoInterativo.RoomFragment"
         android:label="fragment_room"
         tools:layout="@layout/fragment_room" />
+    <fragment
+        android:id="@+id/rulesFragment"
+        android:name="br.com.example.maratonasamsung.ui.main.RulesFragment"
+        android:label="fragment_rules"
+        tools:layout="@layout/fragment_rules">
+        <action
+            android:id="@+id/action_rulesFragment_to_rulesFragment2"
+            app:destination="@id/rulesFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/rulesFragment2"
+        android:name="br.com.example.maratonasamsung.ui.main.RulesFragment2"
+        android:label="RulesFragment2">
+        <action
+            android:id="@+id/action_rulesFragment2_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
 </navigation>
