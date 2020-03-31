@@ -67,8 +67,8 @@
 
     <Spinner
         android:id="@+id/spinnerDoenca"
-        android:layout_width="370dp"
-        android:layout_height="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
@@ -81,8 +81,8 @@
 
     <Spinner
         android:id="@+id/spinnerSintomas"
-        android:layout_width="370dp"
-        android:layout_height="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
@@ -94,8 +94,9 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="5"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
