@@ -10,8 +10,6 @@ import android.view.ViewGroup
 import br.com.example.maratonasamsung.R
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.example.maratonasamsung.model.Responses.DoencasResponse
-import br.com.example.maratonasamsung.model.Responses.Prevencao
-import br.com.example.maratonasamsung.model.Responses.Sintoma
 import br.com.example.maratonasamsung.service.Service
 import kotlinx.android.synthetic.main.fragment_choose.*
 import retrofit2.Call
@@ -40,32 +38,23 @@ class ChooseFragment : Fragment() {
         doencas()
     }
 
-
-    fun doencas() {
-        Service.retrofit.doencas().enqueue(object :Callback<DoencasResponse>{
-            override fun onFailure(call: Call<DoencasResponse>, t: Throwable) {
+    fun doencas(){
+        Service.retrofit.doencas().enqueue(object : Callback<List<DoencasResponse>>{
+            override fun onFailure(call: Call<List<DoencasResponse>>, t: Throwable) {
                 Log.d("Deu ruim!!!",t.toString())
             }
 
-            override fun onResponse(call: Call<DoencasResponse>, response: Response<DoencasResponse>) {
+            override fun onResponse(call: Call<List<DoencasResponse>>, response: Response<List<DoencasResponse>>) {
                 Log.d("Sucesso", response.body().toString())
-                var list: DoencasResponse = response.body()!!
-                val arr: ArrayList<DoencasResponse> = arrayListOf(DoencasResponse(
-                    agente = "a",
-                    id = 1,
-                    nome = "aa",
-                    prevencao = listOf(Prevencao("null"),Prevencao("null"),Prevencao("null")),
-                    sintomas = listOf(Sintoma("null")),
-                    tipo = "www"
-                ))
+                var list = response.body()
                 recyclerDoencas.apply{
                     layoutManager = LinearLayoutManager(activity)
-//                    adapter = DoencaAdapter(list)
+                    adapter = DoencaAdapter(list)
                 }
-
             }
         })
     }
+
 }
 
 

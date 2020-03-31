@@ -79,4 +79,10 @@
         android:name="br.com.example.maratonasamsung.modoEstudo.ChooseFragment"
         android:label="fragment_choose"
         tools:layout="@layout/fragment_choose" />
+
+    <fragment
+        android:id="@+id/roomFragment"
+        android:name="br.com.example.maratonasamsung.modoInterativo.RoomFragment"
+        android:label="fragment_room"
+        tools:layout="@layout/fragment_room" />
 </navigation>
