@@ -1,6 +1,8 @@
 package br.com.example.maratonasamsung.model.Requests
 
+//Request
 data class SalaRequest(
-    var nome: String,
-    var senha: String
+    val nome: String,
+    val senha: String
 )
+
