@@ -12,24 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.main.SplashScreen"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:name=".ui.main.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.main.TutorialActivity4" />
-        <activity android:name=".ui.main.TutorialActivity3" />
-        <activity android:name=".ui.main.TutorialActivity2" />
-        <activity android:name=".ui.main.TutorialActivity" />
-        <activity
-            android:name=".ui.main.MainActivity"
-            android:screenOrientation="portrait"></activity>
-
-        <meta-data
-            android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

@@ -41,10 +41,9 @@
         android:id="@+id/createBtnCriarSala"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/roundbutton"
+        android:ems="7"
         android:layout_marginRight="40dp"
         android:layout_marginBottom="24dp"
-        android:ems="4"
         android:text="@string/btn_criar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -67,7 +66,7 @@
         android:id="@+id/createModoInterativo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/interativo"
+        android:text="@string/txt_modo_interativo"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -108,5 +107,4 @@
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="@id/createTxtUsuario"
         app:layout_constraintTop_toBottomOf="@id/createTxtUsuario" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

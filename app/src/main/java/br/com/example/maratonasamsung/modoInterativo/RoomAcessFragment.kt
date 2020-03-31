@@ -2,18 +2,19 @@ package br.com.example.maratonasamsung.modoInterativo
 
 import android.os.Bundle
 import android.util.Log
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import br.com.example.maratonasamsung.R
 import br.com.example.maratonasamsung.model.Responses.SalaResponse
 import br.com.example.maratonasamsung.service.Service
 import kotlinx.android.synthetic.main.fragment_room_acess.*
+import kotlinx.android.synthetic.main.fragment_room_create.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -40,14 +41,7 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         when(v!!.id){
             R.id.acessBtnContinuar -> {
-                if(acessEditNomeSala.text.toString() == "" || acessEditSenha.text.toString() == "") {
-                    var texto = "Preencha todos os campos obrigatórios"
-                    val duracao = Toast.LENGTH_SHORT
-                    val toast = Toast.makeText(context, texto, duracao)
-                    toast.show()
-                }
-                else if(acessEditNomeSala.text.toString() != "" && acessEditSenha.text.toString() != "")
-                    acessarSala()
+                acessarSala()
             }
         }
     }
@@ -65,7 +59,7 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
 
                 if(sala!!.senha == acessEditSenha.text.toString()){
                     val parametro = Bundle()
-                    parametro.putInt("id", sala.id)
+                    parametro.putInt("id", sala!!.id)
                     navController!!.navigate(R.id.action_roomAcessFragment_to_roomAcessNameFragment, parametro)
                 }
                 else {
