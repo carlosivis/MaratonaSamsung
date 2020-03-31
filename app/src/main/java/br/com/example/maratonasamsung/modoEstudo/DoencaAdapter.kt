@@ -21,8 +21,8 @@ class DoencaAdapter(private val list: List<DoencasResponse>?)
 
         fun bind(doencas: DoencasResponse) {
             itemView.txtDoencaNome?.text = doencas.nome
-            itemView.txtArraySintoma?.text = doencas.sintomas.joinToString { it.nome + "\n" }
-            itemView.txtPrevencao?.text = doencas.prevencao.joinToString { it.nome + "\n" }
+            itemView.txtArraySintoma?.text = doencas.sintomas.joinToString("\n"){ it.nome }
+            itemView.txtPrevencao?.text = doencas.prevencao.joinToString("\n") { it.nome }
         }
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DoencaViewHolder {

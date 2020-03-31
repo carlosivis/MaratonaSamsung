@@ -47,8 +47,6 @@ class ChooseFragment : Fragment() {
 
             override fun onResponse(call: Call<List<DoencasResponse>>, response: Response<List<DoencasResponse>>) {
                 Log.d("Sucesso", response.body().toString())
-
-
                 recyclerDoencas.apply{
                     layoutManager = LinearLayoutManager(activity)
                     adapter = DoencaAdapter(response.body()!!)
