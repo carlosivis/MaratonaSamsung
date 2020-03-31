@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.recycler_view_doencas.view.*
 
 
 
-class DoencaAdapter(private val list: Array<DoencasResponse>)
+class DoencaAdapter(private val list: List<DoencasResponse>?)
     : RecyclerView.Adapter<DoencaAdapter.DoencaViewHolder>() {
 
     class  DoencaViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
@@ -32,11 +32,11 @@ class DoencaAdapter(private val list: Array<DoencasResponse>)
         return DoencaViewHolder(inflater, parent)
     }
     override fun onBindViewHolder(holder: DoencaViewHolder, position: Int) {
-        val doenca: DoencasResponse = list[position]
+        val doenca: DoencasResponse = list!![position]
         holder.bind(doenca)
     }
 
-    override fun getItemCount(): Int = list.size
+    override fun getItemCount(): Int = list!!.size
 
 }
 

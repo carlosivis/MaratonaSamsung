@@ -38,24 +38,23 @@ class ChooseFragment : Fragment() {
         doencas()
     }
 
-
-    fun doencas() {
-        Service.retrofit.doencas().enqueue(object :Callback<DoencasResponse>{
-            override fun onFailure(call: Call<DoencasResponse>, t: Throwable) {
+    fun doencas(){
+        Service.retrofit.doencas().enqueue(object : Callback<List<DoencasResponse>>{
+            override fun onFailure(call: Call<List<DoencasResponse>>, t: Throwable) {
                 Log.d("Deu ruim!!!",t.toString())
             }
 
-            override fun onResponse(call: Call<DoencasResponse>, response: Response<DoencasResponse>) {
+            override fun onResponse(call: Call<List<DoencasResponse>>, response: Response<List<DoencasResponse>>) {
                 Log.d("Sucesso", response.body().toString())
-                var list: Array<DoencasResponse> = arrayOf(response.body()!!)
+                var list = response.body()
                 recyclerDoencas.apply{
                     layoutManager = LinearLayoutManager(activity)
                     adapter = DoencaAdapter(list)
                 }
-
             }
         })
     }
+
 }
 
 
