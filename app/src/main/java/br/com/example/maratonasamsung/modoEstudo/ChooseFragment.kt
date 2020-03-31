@@ -16,8 +16,9 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ChooseFragment : Fragment() {
 
+
+class ChooseFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         retainInstance =true
@@ -46,10 +47,11 @@ class ChooseFragment : Fragment() {
 
             override fun onResponse(call: Call<List<DoencasResponse>>, response: Response<List<DoencasResponse>>) {
                 Log.d("Sucesso", response.body().toString())
-                var list = response.body()
+
+
                 recyclerDoencas.apply{
                     layoutManager = LinearLayoutManager(activity)
-                    adapter = DoencaAdapter(list)
+                    adapter = DoencaAdapter(response.body()!!)
                 }
             }
         })
