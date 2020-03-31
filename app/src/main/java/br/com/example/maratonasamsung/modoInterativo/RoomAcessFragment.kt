@@ -61,7 +61,7 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
                 val sala = response.body()
 
                 if(sala!!.senha == acessEditSenha.text.toString())
-                    criarSessao(sala!!.nome, sala!!.senha)
+                    sessao(sala!!.nome, sala!!.senha)
                 else {
                     var texto = "Senha inválida"
                     val duracao = Toast.LENGTH_SHORT
@@ -73,8 +73,8 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
         })
     }
 
-    fun criarSessao(nome: String, senha: String) {
-        Service.retrofit.criarSessao(
+    fun sessao(nome: String, senha: String) {
+        Service.retrofit.sessao(
             sessao = SessaoRequest(
                 nome_sala = nome,
                 senha_sala = senha

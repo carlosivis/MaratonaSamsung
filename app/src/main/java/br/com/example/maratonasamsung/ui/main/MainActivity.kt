@@ -13,9 +13,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val sharedPreferences = getSharedPreferences("com.MaratonaSamsung", MODE_PRIVATE)
 
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
-        toolbar.title = ""
-        setSupportActionBar(toolbar)
+//        val toolbar: Toolbar = findViewById(R.id.toolbar)
+//        toolbar.title = ""
+//        setSupportActionBar(toolbar)
     }
 
 }

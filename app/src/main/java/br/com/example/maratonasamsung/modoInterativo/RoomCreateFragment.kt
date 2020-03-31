@@ -81,13 +81,13 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
                         createEditSenha.setText("")
                     }
                     else
-                        criarSessao(sala!!.nome, sala!!.senha)
+                        sessao(sala!!.nome, sala!!.senha)
                 }
         })
     }
 
-    fun criarSessao(nome: String, senha: String) {
-        Service.retrofit.criarSessao(
+    fun sessao(nome: String, senha: String) {
+        Service.retrofit.sessao(
             sessao = SessaoRequest(
                 nome_sala = nome,
                 senha_sala = senha

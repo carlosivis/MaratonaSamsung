@@ -19,7 +19,7 @@ interface InterfaceRetrofit {
     fun doencas(): Call<DoencasResponse>
 
     @GET("/sessao")
-    fun criarSessao(@Query("sessao") sessao: SessaoRequest): Call<SessaoResponse>
+    fun sessao(@Query("sessao") sessao: SessaoRequest): Call<SessaoResponse>
 
     @POST("/sala")
     fun criarSala(@Body sala: SalaRequest): Call<SalaResponse>

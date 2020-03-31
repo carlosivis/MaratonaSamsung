@@ -4,14 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import br.com.example.maratonasamsung.R
 
+
 class RoomAdivinhadorFragment :  Fragment() {
 
     var navController: NavController? = null
+    private val spinner: Spinner? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -20,13 +24,20 @@ class RoomAdivinhadorFragment :  Fragment() {
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_room_adivinhador, container, false)
+//        spinner = view?.findViewById<Spinner>(R.id.spinnerResposta)
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
-//        view.findViewById<Button>(R.id.acessBtnContinuar).setOnClickListener(this)
     }
+
+//    fun populaSpinner(estados: List<String>?) {
+//        val adapterOpcoes =
+//            ArrayAdapter(context!!, android.R.layout.simple_spinner_item, estados)
+//        spinner!!.adapter = adapterOpcoes
+//    }
 
 //    fun selecionaDoenca(){
 //        var spinner = view?.findViewById<Spinner>(R.id.spinnerResposta)
