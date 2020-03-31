@@ -2,11 +2,19 @@ package br.com.example.maratonasamsung.modoEstudo
 
 
 import android.os.Bundle
+import android.util.Log
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import br.com.example.maratonasamsung.R
+import androidx.recyclerview.widget.LinearLayoutManager
+import br.com.example.maratonasamsung.model.Responses.DoencasResponse
+import br.com.example.maratonasamsung.service.Service
+import kotlinx.android.synthetic.main.fragment_choose.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class ChooseFragment : Fragment() {
 
@@ -25,32 +33,28 @@ class ChooseFragment : Fragment() {
     }
 
 
-    /*    fun doencas() {
-        Service.retrofit.doencas().enqueue(object :Callback<DoencasResponse>{
-            override fun onFailure(call: Call<DoencasResponse>, t: Throwable) {
-                Log.d("Deu ruim!!!",t.toString())
-            }
-
-            override fun onResponse(call: Call<DoencasResponse>, response: Response<DoencasResponse>) {
-                Log.d("Sucesso", response.body().toString())
-                var list: DoencasResponse = response.body()!!
-                val arr: ArrayList<DoencasResponse> = arrayListOf(DoencasResponse(
-                    agente = "a",
-                    id = 1,ic
-                    nome = "aa",
-                    prevencao = listOf(Prevencao("null"),Prevencao("null"),Prevencao("null")),
-                    sintomas = listOf(Sintoma("null")),
-                    tipo = "www"
-                ))
-                recyclerDoencas.apply{
-                    layoutManager = LinearLayoutManager(activity)
-                    adapter = DoencaAdapter(list)
-                }
-
-            }
-        })
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+//        doencas()
     }
- */
+
+//    fun doencas(){
+//        Service.retrofit.doencas().enqueue(object : Callback<List<DoencasResponse>>{
+//            override fun onFailure(call: Call<List<DoencasResponse>>, t: Throwable) {
+//                Log.d("Deu ruim!!!",t.toString())
+//            }
+//
+//            override fun onResponse(call: Call<List<DoencasResponse>>, response: Response<List<DoencasResponse>>) {
+//                Log.d("Sucesso", response.body().toString())
+//                var list = response.body()
+//                recyclerDoencas.apply{
+//                    layoutManager = LinearLayoutManager(activity)
+//                    adapter = DoencaAdapter(list)
+//                }
+//            }
+//        })
+//    }
+
 }
 
 

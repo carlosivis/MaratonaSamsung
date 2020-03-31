@@ -40,23 +40,15 @@ class RoomAcessNameFragment : Fragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         when(v!!.id){
             R.id.acessnameBtnAcessarSala -> {
-                if(acessnameEditUsuario.text.toString() == "") {
-                    var texto = "Preencha campo obrigatório"
-                    val duracao = Toast.LENGTH_SHORT
-                    val toast = Toast.makeText(context, texto, duracao)
-                    toast.show()
-                }
-                else {
-                    val id = arguments!!.getInt("id");
-                    jogadorNovo(id)
-                }
+                val id = arguments!!.getInt("id");
+                jogadorNovo(id)
             }
         }
     }
 
     fun jogadorNovo(id: Int){
         Service.retrofit.jogadorNovo(
-            jogadorRequest = JogadorRequest(
+            jogador = JogadorRequest(
                 id_sessao = id,
                 nome = acessnameEditUsuario.text.toString()
             )
@@ -71,14 +63,14 @@ class RoomAcessNameFragment : Fragment(), View.OnClickListener {
                 val jogador = response.body()
 
                 if(!jogador!!.status) {
-                    var texto = "Nome de usuário já existente nesta sala, digite outro"
+                    var texto = "Nome de usuário já existente nesta sala"
                     val duracao = Toast.LENGTH_SHORT
                     val toast = Toast.makeText(context, texto, duracao)
                     toast.show()
                     acessnameEditUsuario.setText("")
                 }
                 else
-                    navController!!.navigate(R.id.action_roomAcessNameFragment_to_roomFragment)
+                    navController!!.navigate(R.id.action_roomAcessNameFragment_to_roomAdivinhadorFragment)
             }
         })
     }

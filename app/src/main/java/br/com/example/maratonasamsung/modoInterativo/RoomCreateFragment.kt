@@ -1,6 +1,5 @@
 package br.com.example.maratonasamsung.modoInterativo
 
-
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,8 +13,10 @@ import androidx.navigation.Navigation
 import br.com.example.maratonasamsung.R
 import br.com.example.maratonasamsung.model.Requests.JogadorRequest
 import br.com.example.maratonasamsung.model.Requests.SalaRequest
+import br.com.example.maratonasamsung.model.Requests.SessaoRequest
 import br.com.example.maratonasamsung.model.Responses.JogadorResponse
 import br.com.example.maratonasamsung.model.Responses.SalaResponse
+import br.com.example.maratonasamsung.model.Responses.SessaoResponse
 import br.com.example.maratonasamsung.service.Service
 import kotlinx.android.synthetic.main.fragment_room_create.*
 import retrofit2.Call
@@ -50,7 +51,7 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
                     val toast = Toast.makeText(context, texto, duracao)
                     toast.show()
                 }
-                else if(createEditUsuario.text.toString() == "" && createEditNomeSala.text.toString() != "" && createEditSenha.text.toString() != "")
+                else if(createEditUsuario.text.toString() != "" && createEditNomeSala.text.toString() != "" && createEditSenha.text.toString() != "")
                         criarSala()
             }
         }
@@ -72,7 +73,7 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
                     val sala = response.body()
 
                     if(!sala!!.status) {
-                        var texto = "Nome da sala já existente, digite outro"
+                        var texto = "Nome da sala já existente"
                         val duracao = Toast.LENGTH_SHORT
                         val toast = Toast.makeText(context, texto, duracao)
                         toast.show()
@@ -80,14 +81,33 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
                         createEditSenha.setText("")
                     }
                     else
-                        jogadorNovo(sala.id)
+                        sessao(sala!!.nome, sala!!.senha)
                 }
+        })
+    }
+
+    fun sessao(nome: String, senha: String) {
+        Service.retrofit.sessao(
+            sessao = SessaoRequest(
+                nome_sala = nome,
+                senha_sala = senha
+            )
+        ).enqueue(object : Callback<SessaoResponse>{
+            override fun onFailure(call: Call<SessaoResponse>, t: Throwable) {
+                Log.d("Deu ruim", t.toString())
+            }
+            override fun onResponse(call: Call<SessaoResponse>, response: Response<SessaoResponse>) {
+                Log.d("Nice", response.toString())
+
+                val sessao = response.body()
+                jogadorNovo(sessao!!.id_sessao)
+            }
         })
     }
 
     fun jogadorNovo(id: Int){
         Service.retrofit.jogadorNovo(
-            jogadorRequest = JogadorRequest(
+            jogador = JogadorRequest(
                 id_sessao = id,
                 nome = createEditUsuario.text.toString()
             )
@@ -99,9 +119,11 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
             override fun onResponse(call: Call<JogadorResponse>, response: Response<JogadorResponse>) {
                 Log.d("Nice", response.toString())
 
-                navController!!.navigate(R.id.action_roomCreateFragment_to_roomFragment)
+                navController!!.navigate(R.id.action_roomCreateFragment_to_roomDiqueiroFragment)
             }
         })
     }
 }
+
+
 
