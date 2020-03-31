@@ -1,12 +1,17 @@
 <resources>
-    <string name="app_name">Morbus</string>
+    <string name="app_name">GeoCorpus</string>
 
+    <string name="btnModoInterativo">Modo Interativo</string>
+    <string name="btnModoEstudo">Modo Estudo</string>
     <string name="btn_criar_sala">Criar sala</string>
     <string name="btn_acessar_sala">Acessar sala</string>
 
     <string name="btn_criar">Criar</string>
     <string name="btn_acessar">Acessar</string>
     <string name="btn_continuar">Continuar</string>
+
+    <string name="txt_modo_interativo">Modo Interativo</string>
+    <string name="txt_modo_estudo">Modo Estudo</string>
 
     <string name="txt_criar_sala">Criar sala</string>
     <string name="txt_acessar_sala">Acessar sala</string>
@@ -18,7 +23,7 @@
     <string name="txt_jogadores">Jogadores</string>
     <string name="txt_escolha_doenca">Escolha a doença:</string>
     <string name="txt_adivinhar">Adivinhar</string>
-    <string name="txt_dicas">Dicas</string>
+    <string name="txt_dicas">Dicas:</string>
     <string name="txt_sintomas">Sintomas</string>
     <string name="txt_enviar_dica">Enviar dica</string>
     <string name="txt_pontos">Rodada valendo: xx pontos</string>

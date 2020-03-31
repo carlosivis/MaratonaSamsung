@@ -2,16 +2,18 @@ package br.com.example.maratonasamsung.modoInterativo
 
 import android.os.Bundle
 import android.util.Log
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import br.com.example.maratonasamsung.R
+import br.com.example.maratonasamsung.model.Requests.SalaRequest
 import br.com.example.maratonasamsung.model.Responses.SalaResponse
+import br.com.example.maratonasamsung.model.Responses.SessaoResponse
 import br.com.example.maratonasamsung.service.Service
 import kotlinx.android.synthetic.main.fragment_room_acess.*
 import retrofit2.Call
@@ -53,30 +55,57 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
     }
 
     fun acessarSala(){
-        Service.retrofit.acessarSala(nome = acessEditNomeSala.text.toString()).enqueue(object : Callback<SalaResponse>{
+        Service.retrofit.acessarSala(
+            nome = acessEditNomeSala.text.toString()
+        ).enqueue(object : Callback<SalaResponse>{
             override fun onFailure(call: Call<SalaResponse>, t: Throwable) {
                 Log.d("Deu ruim", t.toString())
             }
-
             override fun onResponse(call: Call<SalaResponse>, response: Response<SalaResponse>) {
                 Log.d("Nice", response.toString())
 
                 val sala = response.body()
-
-                if(sala!!.senha == acessEditSenha.text.toString()){
-                    val parametro = Bundle()
-                    parametro.putInt("id", sala.id)
-                    navController!!.navigate(R.id.action_roomAcessFragment_to_roomAcessNameFragment, parametro)
+                if(sala!!.status) {
+                    if (sala!!.senha == acessEditSenha.text.toString())
+                        sessao(sala!!.nome, sala!!.senha)
+                    else {
+                        var texto = "Senha inválida"
+                        val duracao = Toast.LENGTH_SHORT
+                        val toast = Toast.makeText(context, texto, duracao)
+                        toast.show()
+                        acessEditSenha.setText("")
+                    }
                 }
                 else {
-                    var texto = "Senha inválida"
+                    var texto = "Sala não encontrada"
                     val duracao = Toast.LENGTH_SHORT
                     val toast = Toast.makeText(context, texto, duracao)
                     toast.show()
+                    acessEditNomeSala.setText("")
                     acessEditSenha.setText("")
                 }
             }
         })
     }
-}
 
+    fun sessao(nome: String, senha: String) {
+        Service.retrofit.sessao(
+            sala = SalaRequest(
+                nome = nome,
+                senha = senha
+            )
+        ).enqueue(object : Callback<SessaoResponse>{
+            override fun onFailure(call: Call<SessaoResponse>, t: Throwable) {
+                Log.d("Deu ruim", t.toString())
+            }
+            override fun onResponse(call: Call<SessaoResponse>, response: Response<SessaoResponse>) {
+                Log.d("Nice", response.toString())
+
+                val sessao = response.body()
+                val parametro = Bundle()
+                parametro.putInt("id", sessao!!.id_sessao)
+                navController!!.navigate(R.id.action_roomAcessFragment_to_roomAcessNameFragment, parametro)
+            }
+        })
+    }
+}

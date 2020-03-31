@@ -2,9 +2,7 @@ package br.com.example.appacessibilidade
 
 
 import br.com.example.maratonasamsung.model.Requests.JogadorRequest
-import br.com.example.maratonasamsung.model.Requests.JogadorUpdate
 import br.com.example.maratonasamsung.model.Requests.SalaRequest
-import br.com.example.maratonasamsung.model.Requests.SessaoRequest
 import br.com.example.maratonasamsung.model.Responses.*
 import retrofit2.Call
 import retrofit2.http.*
@@ -18,8 +16,8 @@ interface InterfaceRetrofit {
     @GET("/doenca")
     fun doencas(): Call<DoencasResponse>
 
-    @GET("/sessao")
-    fun sessao(@Query("sessao") sessao: SessaoRequest): Call<SessaoResponse>
+    @POST("/sessao")
+    fun sessao(@Body sala: SalaRequest): Call<SessaoResponse>
 
     @POST("/sala")
     fun criarSala(@Body sala: SalaRequest): Call<SalaResponse>
