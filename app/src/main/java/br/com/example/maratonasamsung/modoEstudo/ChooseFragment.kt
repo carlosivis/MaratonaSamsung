@@ -35,25 +35,25 @@ class ChooseFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        doencas()
+//        doencas()
     }
 
-    fun doencas(){
-        Service.retrofit.doencas().enqueue(object : Callback<List<DoencasResponse>>{
-            override fun onFailure(call: Call<List<DoencasResponse>>, t: Throwable) {
-                Log.d("Deu ruim!!!",t.toString())
-            }
-
-            override fun onResponse(call: Call<List<DoencasResponse>>, response: Response<List<DoencasResponse>>) {
-                Log.d("Sucesso", response.body().toString())
-                var list = response.body()
-                recyclerDoencas.apply{
-                    layoutManager = LinearLayoutManager(activity)
-                    adapter = DoencaAdapter(list)
-                }
-            }
-        })
-    }
+//    fun doencas(){
+//        Service.retrofit.doencas().enqueue(object : Callback<List<DoencasResponse>>{
+//            override fun onFailure(call: Call<List<DoencasResponse>>, t: Throwable) {
+//                Log.d("Deu ruim!!!",t.toString())
+//            }
+//
+//            override fun onResponse(call: Call<List<DoencasResponse>>, response: Response<List<DoencasResponse>>) {
+//                Log.d("Sucesso", response.body().toString())
+//                var list = response.body()
+//                recyclerDoencas.apply{
+//                    layoutManager = LinearLayoutManager(activity)
+//                    adapter = DoencaAdapter(list)
+//                }
+//            }
+//        })
+//    }
 
 }
 

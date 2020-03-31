@@ -4,5 +4,6 @@ data class SalaResponse(
     val status: Boolean,
     val id: Int,
     val nome: String,
-    val senha: String
+    val senha: String,
+    val doencas: Array<String>
 )
