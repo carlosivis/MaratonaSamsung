@@ -6,6 +6,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import br.com.example.maratonasamsung.R
 import br.com.example.maratonasamsung.model.Responses.DoencasResponse
+import br.com.example.maratonasamsung.model.Responses.Sintoma
 import kotlinx.android.synthetic.main.recycler_view_doencas.view.*
 
 
@@ -17,14 +18,11 @@ class DoencaAdapter(private val list: List<DoencasResponse>?)
 
     class  DoencaViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
         RecyclerView.ViewHolder(inflater.inflate(R.layout.recycler_view_doencas, parent, false)) {
-        private var txtDoencaNome: TextView? = null
-        private var txtArraySintoma: TextView? = null
-        private var txtPrevencao: TextView? = null
 
         fun bind(doencas: DoencasResponse) {
             itemView.txtDoencaNome?.text = doencas.nome
-            itemView.txtArraySintoma?.text = doencas.sintomas.toString()
-            itemView.txtPrevencao?.text = doencas.prevencao.toString()
+            itemView.txtArraySintoma?.text = doencas.sintomas.joinToString("\n"){ it.nome }
+            itemView.txtPrevencao?.text = doencas.prevencao.joinToString("\n") { it.nome }
         }
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DoencaViewHolder {
@@ -37,5 +35,4 @@ class DoencaAdapter(private val list: List<DoencasResponse>?)
     }
 
     override fun getItemCount(): Int = list!!.size
-
-}
+    }

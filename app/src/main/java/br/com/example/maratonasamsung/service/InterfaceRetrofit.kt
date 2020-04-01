@@ -14,10 +14,11 @@ interface InterfaceRetrofit {
     fun acessarSala(@Path("nome") nome: String): Call<SalaResponse>
 
     @GET("/doenca")
-    fun doencas(): Call<DoencasResponse>
+    fun doencas(): Call<List<DoencasResponse>>
 
     @POST("/sessao")
     fun sessao(@Body sala: SalaRequest): Call<SessaoResponse>
+
 
     @POST("/sala")
     fun criarSala(@Body sala: SalaRequest): Call<SalaResponse>

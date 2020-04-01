@@ -5,7 +5,7 @@ import java.io.Serializable
 data class DoencasResponse(
     val agente: String,
     val id: Int,
-    val nome: String,
+    var nome: String,
     val prevencao: List<Prevencao>,
     val sintomas: List<Sintoma>,
     val tipo: String

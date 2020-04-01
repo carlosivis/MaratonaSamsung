@@ -16,8 +16,9 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ChooseFragment : Fragment() {
 
+
+class ChooseFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         retainInstance = true
@@ -35,23 +36,24 @@ class ChooseFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        doencas()
+        doencas()
+    }
+  
+    fun doencas(){
+        Service.retrofit.doencas().enqueue(object : Callback<List<DoencasResponse>>{
+            override fun onFailure(call: Call<List<DoencasResponse>>, t: Throwable) {
+                Log.d("Deu ruim!!!",t.toString())
+            }
+
+            override fun onResponse(call: Call<List<DoencasResponse>>, response: Response<List<DoencasResponse>>) {
+                Log.d("Sucesso", response.body().toString())
+                recyclerDoencas.apply{
+                    layoutManager = LinearLayoutManager(activity)
+                    adapter = DoencaAdapter(response.body()!!)
+                }
+            }
+        })
     }
 
-//    fun doencas(){
-//        Service.retrofit.doencas().enqueue(object : Callback<List<DoencasResponse>>{
-//            override fun onFailure(call: Call<List<DoencasResponse>>, t: Throwable) {
-//                Log.d("Deu ruim!!!",t.toString())
-//            }
-//
-//            override fun onResponse(call: Call<List<DoencasResponse>>, response: Response<List<DoencasResponse>>) {
-//                Log.d("Sucesso", response.body().toString())
-//                var list = response.body()
-//                recyclerDoencas.apply{
-//                    layoutManager = LinearLayoutManager(activity)
-//                    adapter = DoencaAdapter(list)
-//                }
-//            }
-//        })
-//    }
 }
+

@@ -78,6 +78,7 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
                     toast.show()
                     createEditNomeSala.setText("")
                     createEditSenha.setText("")
+
                 }
                 else
                     sessao(sala!!.nome, sala!!.senha)
@@ -90,6 +91,7 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
             sala = SalaRequest(
                 nome = nome,
                 senha = senha
+
             )
         ).enqueue(object : Callback<SessaoResponse>{
             override fun onFailure(call: Call<SessaoResponse>, t: Throwable) {

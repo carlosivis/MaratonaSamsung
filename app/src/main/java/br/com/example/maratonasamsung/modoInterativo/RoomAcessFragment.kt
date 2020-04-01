@@ -12,6 +12,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import br.com.example.maratonasamsung.R
 import br.com.example.maratonasamsung.model.Requests.SalaRequest
+
 import br.com.example.maratonasamsung.model.Responses.SalaResponse
 import br.com.example.maratonasamsung.model.Responses.SessaoResponse
 import br.com.example.maratonasamsung.service.Service
@@ -65,6 +66,7 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
                 Log.d("Nice", response.toString())
 
                 val sala = response.body()
+
                 if(sala!!.status) {
                     if (sala!!.senha == acessEditSenha.text.toString())
                         sessao(sala!!.nome, sala!!.senha)
@@ -76,23 +78,14 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
                         acessEditSenha.setText("")
                     }
                 }
-                else {
-                    var texto = "Sala não encontrada"
-                    val duracao = Toast.LENGTH_SHORT
-                    val toast = Toast.makeText(context, texto, duracao)
-                    toast.show()
-                    acessEditNomeSala.setText("")
-                    acessEditSenha.setText("")
-                }
-            }
-        })
-    }
+
+
 
     fun sessao(nome: String, senha: String) {
         Service.retrofit.sessao(
-            sala = SalaRequest(
-                nome = nome,
-                senha = senha
+            sessao = SessaoRequest(
+                nome_sala = nome,
+                senha_sala = senha
             )
         ).enqueue(object : Callback<SessaoResponse>{
             override fun onFailure(call: Call<SessaoResponse>, t: Throwable) {
