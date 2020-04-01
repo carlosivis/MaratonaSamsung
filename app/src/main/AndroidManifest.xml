@@ -19,10 +19,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.main.TutorialActivity4" />
-        <activity android:name=".ui.main.TutorialActivity3" />
-        <activity android:name=".ui.main.TutorialActivity2" />
-        <activity android:name=".ui.main.TutorialActivity" />
+        <activity android:name=".tutoriaisRegras.TutorialActivity4" />
+        <activity android:name=".tutoriaisRegras.TutorialActivity3" />
+        <activity android:name=".tutoriaisRegras.TutorialActivity2" />
+        <activity android:name=".tutoriaisRegras.TutorialActivity" />
         <activity
             android:name=".ui.main.MainActivity"
             android:screenOrientation="portrait"></activity>
