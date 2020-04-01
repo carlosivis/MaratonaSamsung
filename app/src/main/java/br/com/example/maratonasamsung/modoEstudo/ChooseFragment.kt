@@ -21,7 +21,7 @@ import retrofit2.Response
 class ChooseFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        retainInstance =true
+        retainInstance = true
     }
 
     override fun onCreateView(
@@ -38,7 +38,7 @@ class ChooseFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         doencas()
     }
-
+  
     fun doencas(){
         Service.retrofit.doencas().enqueue(object : Callback<List<DoencasResponse>>{
             override fun onFailure(call: Call<List<DoencasResponse>>, t: Throwable) {
@@ -56,5 +56,4 @@ class ChooseFragment : Fragment() {
     }
 
 }
-
 

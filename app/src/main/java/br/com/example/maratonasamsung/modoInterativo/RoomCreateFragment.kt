@@ -13,7 +13,6 @@ import androidx.navigation.Navigation
 import br.com.example.maratonasamsung.R
 import br.com.example.maratonasamsung.model.Requests.JogadorRequest
 import br.com.example.maratonasamsung.model.Requests.SalaRequest
-import br.com.example.maratonasamsung.model.Requests.SessaoRequest
 import br.com.example.maratonasamsung.model.Responses.JogadorResponse
 import br.com.example.maratonasamsung.model.Responses.SalaResponse
 import br.com.example.maratonasamsung.model.Responses.SessaoResponse
@@ -52,7 +51,7 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
                     toast.show()
                 }
                 else if(createEditUsuario.text.toString() != "" && createEditNomeSala.text.toString() != "" && createEditSenha.text.toString() != "")
-                        criarSala()
+                    criarSala()
             }
         }
     }
@@ -64,33 +63,35 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
                 senha = createEditSenha.text.toString()
             )
         ).enqueue(object : Callback<SalaResponse>{
-                override fun onFailure(call: Call<SalaResponse>, t: Throwable) {
-                    Log.d("Deu ruim", t.toString())
-                }
-                override fun onResponse(call: Call<SalaResponse>, response: Response<SalaResponse>) {
-                    Log.d("Nice", response.body().toString())
+            override fun onFailure(call: Call<SalaResponse>, t: Throwable) {
+                Log.d("Deu ruim", t.toString())
+            }
+            override fun onResponse(call: Call<SalaResponse>, response: Response<SalaResponse>) {
+                Log.d("Nice", response.body().toString())
 
-                    val sala = response.body()
+                val sala = response.body()
 
-                    if(!sala!!.status) {
-                        var texto = "Nome da sala já existente"
-                        val duracao = Toast.LENGTH_SHORT
-                        val toast = Toast.makeText(context, texto, duracao)
-                        toast.show()
-                        createEditNomeSala.setText("")
-                        createEditSenha.setText("")
-                    }
-                    else
-                        sessao(sala!!.nome, sala!!.senha)
+                if(!sala!!.status) {
+                    var texto = "Nome da sala já existente"
+                    val duracao = Toast.LENGTH_SHORT
+                    val toast = Toast.makeText(context, texto, duracao)
+                    toast.show()
+                    createEditNomeSala.setText("")
+                    createEditSenha.setText("")
+
                 }
+                else
+                    sessao(sala!!.nome, sala!!.senha)
+            }
         })
     }
 
     fun sessao(nome: String, senha: String) {
         Service.retrofit.sessao(
-            sessao = SessaoRequest(
-                nome_sala = nome,
-                senha_sala = senha
+            sala = SalaRequest(
+                nome = nome,
+                senha = senha
+
             )
         ).enqueue(object : Callback<SessaoResponse>{
             override fun onFailure(call: Call<SessaoResponse>, t: Throwable) {
@@ -124,6 +125,3 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
         })
     }
 }
-
-
-

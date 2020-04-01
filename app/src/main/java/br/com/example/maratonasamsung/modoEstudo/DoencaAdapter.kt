@@ -35,9 +35,4 @@ class DoencaAdapter(private val list: List<DoencasResponse>?)
     }
 
     override fun getItemCount(): Int = list!!.size
-
-}
-
-
-
-
+    }

@@ -11,21 +11,26 @@
         android:id="@+id/typeBtnCriarSala"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/roundbutton"
         android:ems="9"
         android:text="@string/btn_criar_sala"
-        android:textSize="14sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.432" />
 
     <Button
         android:id="@+id/typeBtnAcessarSala"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:background="@drawable/roundbutton"
         android:ems="9"
         android:text="@string/btn_acessar_sala"
-        android:textSize="14sp"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@id/typeBtnCriarSala"
         app:layout_constraintTop_toBottomOf="@id/typeBtnCriarSala" />
 
@@ -33,7 +38,7 @@
         android:id="@+id/typeModoInterativo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/txt_modo_interativo"
+        android:text="@string/interativo"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

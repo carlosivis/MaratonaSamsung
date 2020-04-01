@@ -11,12 +11,12 @@ import android.widget.Toast
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import br.com.example.maratonasamsung.R
-import br.com.example.maratonasamsung.model.Requests.SessaoRequest
+import br.com.example.maratonasamsung.model.Requests.SalaRequest
+
 import br.com.example.maratonasamsung.model.Responses.SalaResponse
 import br.com.example.maratonasamsung.model.Responses.SessaoResponse
 import br.com.example.maratonasamsung.service.Service
 import kotlinx.android.synthetic.main.fragment_room_acess.*
-import kotlinx.android.synthetic.main.fragment_room_create.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -43,7 +43,14 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         when(v!!.id){
             R.id.acessBtnContinuar -> {
-                acessarSala()
+                if(acessEditNomeSala.text.toString() == "" || acessEditSenha.text.toString() == "") {
+                    var texto = "Preencha todos os campos obrigatórios"
+                    val duracao = Toast.LENGTH_SHORT
+                    val toast = Toast.makeText(context, texto, duracao)
+                    toast.show()
+                }
+                else if(acessEditNomeSala.text.toString() != "" && acessEditSenha.text.toString() != "")
+                    acessarSala()
             }
         }
     }
@@ -60,18 +67,19 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
 
                 val sala = response.body()
 
-                if(sala!!.senha == acessEditSenha.text.toString())
-                    sessao(sala!!.nome, sala!!.senha)
-                else {
-                    var texto = "Senha inválida"
-                    val duracao = Toast.LENGTH_SHORT
-                    val toast = Toast.makeText(context, texto, duracao)
-                    toast.show()
-                    acessEditSenha.setText("")
+                if(sala!!.status) {
+                    if (sala!!.senha == acessEditSenha.text.toString())
+                        sessao(sala!!.nome, sala!!.senha)
+                    else {
+                        var texto = "Senha inválida"
+                        val duracao = Toast.LENGTH_SHORT
+                        val toast = Toast.makeText(context, texto, duracao)
+                        toast.show()
+                        acessEditSenha.setText("")
+                    }
                 }
-            }
-        })
-    }
+
+
 
     fun sessao(nome: String, senha: String) {
         Service.retrofit.sessao(
@@ -94,4 +102,3 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
         })
     }
 }
-

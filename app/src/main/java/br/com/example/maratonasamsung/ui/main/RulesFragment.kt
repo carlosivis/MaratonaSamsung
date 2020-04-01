@@ -1,18 +1,16 @@
-package br.com.example.maratonasamsung.modoInterativo
-
+package br.com.example.maratonasamsung.ui.main
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
+import android.widget.ImageButton
+import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import br.com.example.maratonasamsung.R
 
-
-class RoomTypekFragment : Fragment(), View.OnClickListener {
+class RulesFragment : Fragment(), View.OnClickListener {
 
     var navController: NavController? = null
 
@@ -21,21 +19,18 @@ class RoomTypekFragment : Fragment(), View.OnClickListener {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_room_typek, container, false)
+        return inflater.inflate(R.layout.fragment_rules, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
-        view.findViewById<Button>(R.id.typeBtnCriarSala).setOnClickListener(this)
-        view.findViewById<Button>(R.id.typeBtnAcessarSala).setOnClickListener(this)
+        view.findViewById<ImageButton>(R.id.btn_next).setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
-        when(v!!.id){
-            R.id.typeBtnCriarSala -> navController!!.navigate(R.id.action_roomTypekFragment_to_roomCreateFragment)
-            R.id.typeBtnAcessarSala -> navController!!.navigate(R.id.action_roomTypekFragment_to_roomAcessFragment)
+        when (v!!.id) {
+            R.id.btn_next -> navController!!.navigate(R.id.action_rulesFragment_to_rulesFragment2)
         }
     }
-
 }
