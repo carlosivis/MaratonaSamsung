@@ -39,6 +39,9 @@ interface InterfaceRetrofit {
 
     @POST("/jogador")
     fun jogadorNovo(@Body jogador: JogadorRequest): Call<JogadorResponse>
+  
+    @GET("/jogador")
+    fun ranking(id_sessao: Int): Call<List<JogadorResponse>>
 
 //    @PUT("/jogador")
 //    fun jogadorUpdate(jogadorUpdate: JogadorUpdate): Call<JogadorResponse>
