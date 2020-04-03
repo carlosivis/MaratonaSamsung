@@ -13,14 +13,17 @@ interface InterfaceRetrofit {
     @GET("/sala/{nome}")
     fun acessarSala(@Path("nome") nome: String): Call<SalaResponse>
 
-    @GET("/doenca")
-    fun doencas(): Call<DoencasResponse>
+    @POST("/sala")
+    fun criarSala(@Body sala: SalaRequest): Call<SalaResponse>
 
     @POST("/sessao")
     fun sessao(@Body sala: SalaRequest): Call<SessaoResponse>
 
-    @POST("/sala")
-    fun criarSala(@Body sala: SalaRequest): Call<SalaResponse>
+//    @GET("/sessao")
+//    fun listarsessao(@Body id_sessao: Int): Call<SessaoResponse>
+
+    @GET("/doenca")
+    fun doencas(): Call<DoencasResponse>
 //
 //    @GET("/sintoma")
 //    fun sintomas(): Call<Sintoma>
