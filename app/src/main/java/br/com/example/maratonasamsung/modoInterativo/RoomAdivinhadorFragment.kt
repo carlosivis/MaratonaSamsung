@@ -1,6 +1,7 @@
 package br.com.example.maratonasamsung.modoInterativo
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +10,14 @@ import android.widget.Spinner
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.example.maratonasamsung.R
+import br.com.example.maratonasamsung.model.Responses.JogadorResponse
+import br.com.example.maratonasamsung.service.Service
+import kotlinx.android.synthetic.main.fragment_room_adivinhador.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class RoomAdivinhadorFragment :  Fragment() {
@@ -31,6 +39,7 @@ class RoomAdivinhadorFragment :  Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
+        ranking()
     }
 
 //    fun populaSpinner(estados: List<String>?) {
@@ -53,20 +62,19 @@ class RoomAdivinhadorFragment :  Fragment() {
 //        }
 //    }
 
-//    fun doencas() {
-//        Service.retrofit.doencas().enqueue(Object : Callback<DoencasResponse> {
-//            override fun onFailure(call: Call<DoencasResponse>, t: Throwable) {
-//                Log.d("Deu ruim!!!",t.toString())
-//            }
-//
-//            override fun onResponse(call: Call<DoencasResponse>, response: Response<DoencasResponse>) {
-//                Log.d("Sucesso", response.body().toString())
-//                //var list /*: DoencasResponse*/ = response.body()!!
-//                val arr : ArrayList<String> = arrayListOf(response.body()!!.nome)
-//                //recyclerDoencas.apply{
-//                //layoutManager = LinearLayoutManager(activity)
-//                //adapter = DoencaAdapter(list)
-//            }
-//        })
-//    }
+    fun ranking(){
+        Service.retrofit.ranking(6).enqueue(object :Callback<List<JogadorResponse>>{
+            override fun onFailure(call: Call<List<JogadorResponse>>, t: Throwable) {
+                Log.d("Falha ao gerar ranking", t.toString())
+            }
+
+            override fun onResponse(call: Call<List<JogadorResponse>>, response: Response<List<JogadorResponse>>) {
+                Log.d("Ranking com Sucesso", response.body().toString())
+                recyclerRanking.apply {
+                    layoutManager = LinearLayoutManager(activity)
+                    adapter = RankingAdapter(response.body()!!)
+                }
+            }
+        })
+    }
 }
