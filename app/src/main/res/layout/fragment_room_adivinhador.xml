@@ -61,7 +61,7 @@
         android:layout_height="35dp"
         android:layout_marginBottom="88dp"
         android:backgroundTint="@color/colorText"
-        android:entries="@array/doencaResposta"
+        android:dropDownWidth="wrap_content"
         android:scrollbarSize="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
