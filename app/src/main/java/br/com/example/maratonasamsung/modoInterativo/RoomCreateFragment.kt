@@ -100,6 +100,8 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
 
                 val sessao = response.body()
                 jogadorNovo(sessao!!.id_sessao)
+                lateinit var doencas: ArrayList<String>
+                sessao.doencas.forEach { doencas.add(it.nome) }
             }
         })
     }
