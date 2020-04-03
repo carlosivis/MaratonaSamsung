@@ -2,11 +2,11 @@ package br.com.example.maratonasamsung.modoInterativo
 
 import android.os.Bundle
 import android.util.Log
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.Spinner
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -23,7 +23,7 @@ import retrofit2.Response
 class RoomAdivinhadorFragment :  Fragment() {
 
     var navController: NavController? = null
-    private val spinner: Spinner? = null
+    lateinit var spinnerAdapter: ArrayAdapter<String>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,34 +32,32 @@ class RoomAdivinhadorFragment :  Fragment() {
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_room_adivinhador, container, false)
-//        spinner = view?.findViewById<Spinner>(R.id.spinnerResposta)
-
+//        preencheSpinner()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
+
         ranking()
+
+        val array = arrayOf("A", "B", "C")
+        context?.let {
+            spinnerAdapter = ArrayAdapter(it, android.R.layout.simple_spinner_item, array)
+        }
+
+        spinnerResposta.adapter = spinnerAdapter
     }
 
-//    fun populaSpinner(estados: List<String>?) {
-//        val adapterOpcoes =
-//            ArrayAdapter(context!!, android.R.layout.simple_spinner_item, estados)
-//        spinner!!.adapter = adapterOpcoes
-//    }
-
-//    fun selecionaDoenca(){
-//        var spinner = view?.findViewById<Spinner>(R.id.spinnerResposta)
-//
-//        spinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-//            override fun onNothingSelected(parent: AdapterView<*>?) {
-//                //Toast.makeText(this@RoomFragment,"Selecione uma doença",Toast.LENGTH_LONG).show()
-//            }
-//
-//            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-//                resposta = parent!!.getItemAtPosition(position).toString()
-//            }
+//    override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
+//        if (keyCode == KeyEvent.KEYCODE_0) {
+////             this tells the framework to start tracking for
+////             a long press and eventual key up.  it will only
+////             do so if this is the first down (not a repeat).
+//            event.startTracking()
+//            return true
 //        }
+//        return super.onKeyDown(keyCode, event)
 //    }
 
     fun ranking(){

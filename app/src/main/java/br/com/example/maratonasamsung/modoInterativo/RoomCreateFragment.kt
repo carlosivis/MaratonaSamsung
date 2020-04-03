@@ -21,6 +21,8 @@ import kotlinx.android.synthetic.main.fragment_room_create.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class RoomCreateFragment : Fragment(), View.OnClickListener {
@@ -101,12 +103,24 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
                 Log.d("Nice", response.toString())
 
                 val sessao = response.body()
-                jogadorNovo(sessao!!.id_sessao)
+
+                lateinit var doencas: ArrayList<String>
+//                for (objeto in sessao!!.doencas) {
+//                    doencas!!.add(objeto!!.nome)
+//                }
+
+                sessao!!.doencas.forEach { doencas.add(it.nome)}
+
+                val parametros = Bundle()
+                parametros.putStringArrayList("doencas", doencas)
+                parametros.putInt("id", sessao!!.id_sessao)
+
+                jogadorNovo(sessao!!.id_sessao, parametros)
             }
         })
     }
 
-    fun jogadorNovo(id: Int){
+    fun jogadorNovo(id: Int, parametros: Bundle){
         Service.retrofit.jogadorNovo(
             jogador = JogadorRequest(
                 id_sessao = id,
@@ -120,7 +134,7 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
             override fun onResponse(call: Call<JogadorResponse>, response: Response<JogadorResponse>) {
                 Log.d("Nice", response.toString())
 
-                navController!!.navigate(R.id.action_roomCreateFragment_to_roomDiqueiroFragment)
+                navController!!.navigate(R.id.action_roomCreateFragment_to_roomDiqueiroFragment, parametros)
             }
         })
     }

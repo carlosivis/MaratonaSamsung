@@ -13,19 +13,17 @@ interface InterfaceRetrofit {
     @GET("/sala/{nome}")
     fun acessarSala(@Path("nome") nome: String): Call<SalaResponse>
 
-    @GET("/doenca")
-    fun doencas(): Call<List<DoencasResponse>>
-
-    @GET("/jogador")
-    fun ranking(id_sessao: Int): Call<List<JogadorResponse>>
-
+    @POST("/sala")
+    fun criarSala(@Body sala: SalaRequest): Call<SalaResponse>
 
     @POST("/sessao")
     fun sessao(@Body sala: SalaRequest): Call<SessaoResponse>
 
+//    @GET("/sessao")
+//    fun listarsessao(@Body id_sessao: Int): Call<SessaoResponse>
 
-    @POST("/sala")
-    fun criarSala(@Body sala: SalaRequest): Call<SalaResponse>
+    @GET("/doenca")
+    fun doencas(): Call<DoencasResponse>
 //
 //    @GET("/sintoma")
 //    fun sintomas(): Call<Sintoma>
@@ -41,6 +39,9 @@ interface InterfaceRetrofit {
 
     @POST("/jogador")
     fun jogadorNovo(@Body jogador: JogadorRequest): Call<JogadorResponse>
+  
+    @GET("/jogador")
+    fun ranking(id_sessao: Int): Call<List<JogadorResponse>>
 
 //    @PUT("/jogador")
 //    fun jogadorUpdate(jogadorUpdate: JogadorUpdate): Call<JogadorResponse>
