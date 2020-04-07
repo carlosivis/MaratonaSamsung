@@ -23,7 +23,7 @@ interface InterfaceRetrofit {
 //    fun listarsessao(@Body id_sessao: Int): Call<SessaoResponse>
 
     @GET("/doenca")
-    fun doencas(): Call<DoencasResponse>
+    fun doencas(): Call<List<DoencasResponse>>
 //
 //    @GET("/sintoma")
 //    fun sintomas(): Call<Sintoma>

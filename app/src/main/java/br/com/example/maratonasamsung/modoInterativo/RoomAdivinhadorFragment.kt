@@ -2,7 +2,6 @@ package br.com.example.maratonasamsung.modoInterativo
 
 import android.os.Bundle
 import android.util.Log
-import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,7 +31,6 @@ class RoomAdivinhadorFragment :  Fragment() {
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_room_adivinhador, container, false)
-//        preencheSpinner()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
