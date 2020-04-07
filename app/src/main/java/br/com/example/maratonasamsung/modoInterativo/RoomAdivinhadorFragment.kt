@@ -5,14 +5,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.example.maratonasamsung.R
-import br.com.example.maratonasamsung.model.Responses.JogadorResponse
+import br.com.example.maratonasamsung.model.Responses.RankingResponse
 import br.com.example.maratonasamsung.service.Service
 import kotlinx.android.synthetic.main.fragment_room_adivinhador.*
 import retrofit2.Call
@@ -36,11 +35,13 @@ class RoomAdivinhadorFragment :  Fragment() {
 
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
-        ranking()
+       // ranking()
     }
+
 
 //    fun populaSpinner(estados: List<String>?) {
 //        val adapterOpcoes =
@@ -62,19 +63,4 @@ class RoomAdivinhadorFragment :  Fragment() {
 //        }
 //    }
 
-    fun ranking(){
-        Service.retrofit.ranking(6).enqueue(object :Callback<List<JogadorResponse>>{
-            override fun onFailure(call: Call<List<JogadorResponse>>, t: Throwable) {
-                Log.d("Falha ao gerar ranking", t.toString())
-            }
-
-            override fun onResponse(call: Call<List<JogadorResponse>>, response: Response<List<JogadorResponse>>) {
-                Log.d("Ranking com Sucesso", response.body().toString())
-                recyclerRanking.apply {
-                    layoutManager = LinearLayoutManager(activity)
-                    adapter = RankingAdapter(response.body()!!)
-                }
-            }
-        })
-    }
 }
