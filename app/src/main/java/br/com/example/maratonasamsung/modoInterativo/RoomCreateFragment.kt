@@ -103,6 +103,11 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
                 Log.d("Nice", response.toString())
 
                 val sessao = response.body()
+<<<<<<< HEAD
+                jogadorNovo(sessao!!.id_sessao)
+                lateinit var doencas: ArrayList<String>
+                sessao.doencas.forEach { doencas.add(it.nome) }
+=======
 
                 lateinit var doencas: ArrayList<String>
 
@@ -118,6 +123,7 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
                 parametros.putInt("id", sessao!!.id_sessao)
 
                 jogadorNovo(sessao!!.id_sessao, parametros)
+>>>>>>> d991933f01f29febc93b90b887cd83c129a741ba
             }
         })
     }
