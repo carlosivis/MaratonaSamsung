@@ -80,6 +80,7 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
                     toast.show()
                     createEditNomeSala.setText("")
                     createEditSenha.setText("")
+
                 }
                 else
                     sessao(sala!!.nome, sala!!.senha)
@@ -92,6 +93,7 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
             sala = SalaRequest(
                 nome = nome,
                 senha = senha
+
             )
         ).enqueue(object : Callback<SessaoResponse>{
             override fun onFailure(call: Call<SessaoResponse>, t: Throwable) {
@@ -101,25 +103,21 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
                 Log.d("Nice", response.toString())
 
                 val sessao = response.body()
-<<<<<<< HEAD
-                jogadorNovo(sessao!!.id_sessao)
-                lateinit var doencas: ArrayList<String>
-                sessao.doencas.forEach { doencas.add(it.nome) }
-=======
 
                 lateinit var doencas: ArrayList<String>
+
 //                for (objeto in sessao!!.doencas) {
-//                    doencas!!.add(objeto!!.nome)
+//                    doencas!!.add(objeto!!.["[  "])
 //                }
 
-                sessao!!.doencas.forEach { doencas.add(it.nome)}
+//                sessao!!.doencas.forEach { doencas.add(it.nome)}
+                sessao!!.doencas.forEach{ elemento -> doencas.add(elemento.toString()) }
 
                 val parametros = Bundle()
                 parametros.putStringArrayList("doencas", doencas)
                 parametros.putInt("id", sessao!!.id_sessao)
 
                 jogadorNovo(sessao!!.id_sessao, parametros)
->>>>>>> d991933f01f29febc93b90b887cd83c129a741ba
             }
         })
     }

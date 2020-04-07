@@ -84,7 +84,7 @@
         tools:layout="@layout/fragment_choose" />
     <fragment
         android:id="@+id/rulesFragment"
-        android:name="br.com.example.maratonasamsung.ui.main.RulesFragment"
+        android:name="br.com.example.maratonasamsung.tutoriaisRegras.RulesFragment"
         android:label="fragment_rules"
         tools:layout="@layout/fragment_rules">
         <action
@@ -93,7 +93,7 @@
     </fragment>
     <fragment
         android:id="@+id/rulesFragment2"
-        android:name="br.com.example.maratonasamsung.ui.main.RulesFragment2"
+        android:name="br.com.example.maratonasamsung.tutoriaisRegras.RulesFragment2"
         android:label="RulesFragment2">
         <action
             android:id="@+id/action_rulesFragment2_to_mainFragment"

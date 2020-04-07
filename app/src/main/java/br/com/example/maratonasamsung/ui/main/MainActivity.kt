@@ -7,8 +7,8 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import br.com.example.maratonasamsung.R
+import br.com.example.maratonasamsung.tutoriaisRegras.TutorialActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,9 +20,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.main_activity)
         sharedPreferences = getSharedPreferences("faz diferenca", MODE_PRIVATE)
 
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
-        toolbar.title = ""
-        setSupportActionBar(toolbar)
+//        val toolbar: Toolbar = findViewById(R.id.toolbar)
+//        toolbar.title = ""
+//        setSupportActionBar(toolbar)
     }
 
     override fun onResume() {
