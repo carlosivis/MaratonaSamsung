@@ -9,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import br.com.example.maratonasamsung.R
 import androidx.recyclerview.widget.LinearLayoutManager
-import br.com.example.maratonasamsung.model.Requests.RankingRequest
 import br.com.example.maratonasamsung.model.Responses.DoencasResponse
 import br.com.example.maratonasamsung.model.Responses.RankingResponse
 import br.com.example.maratonasamsung.service.Service
@@ -39,7 +38,6 @@ class ChooseFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         doencas()
-        ranking()
     }
   
     fun doencas(){
@@ -57,18 +55,5 @@ class ChooseFragment : Fragment() {
             }
         })
     }
-
-    fun ranking(){
-        Service.retrofit.ranking(RankingRequest(6)).enqueue(object :Callback<RankingResponse>{
-            override fun onFailure(call: Call<RankingResponse>, t: Throwable) {
-                Log.d("Falha ao gerar ranking", t.toString())
-            }
-
-            override fun onResponse(call: Call<RankingResponse>, response: Response<RankingResponse>) {
-                Log.d("Ranking com Sucesso", response.body().toString())
-            }
-        })
-    }
-
 }
 

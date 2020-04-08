@@ -37,7 +37,7 @@ class RoomAdivinhadorFragment :  Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
-       // ranking()
+        ranking()
     }
 
 
@@ -46,5 +46,19 @@ class RoomAdivinhadorFragment :  Fragment() {
 //            ArrayAdapter(context!!, android.R.layout.simple_spinner_item, estados)
 //        spinner!!.adapter = adapterOpcoes
 //    }
+    fun ranking(){
+        Service.retrofit.ranking(6).enqueue(object :Callback<RankingResponse>{
+            override fun onFailure(call: Call<RankingResponse>, t: Throwable) {
+                Log.d("Falha ao gerar ranking", t.toString())
+            }
 
+            override fun onResponse(call: Call<RankingResponse>, response: Response<RankingResponse>) {
+                Log.d("Ranking com Sucesso", response.body().toString())
+                recyclerRanking.apply {
+                    layoutManager = LinearLayoutManager(activity)
+                    adapter = RankingAdapter(response.body()!!)
+                }
+            }
+        })
+    }
 }

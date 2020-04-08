@@ -2,10 +2,8 @@ package br.com.example.appacessibilidade
 
 
 import br.com.example.maratonasamsung.model.Requests.JogadorRequest
-import br.com.example.maratonasamsung.model.Requests.RankingRequest
 import br.com.example.maratonasamsung.model.Requests.SalaRequest
 import br.com.example.maratonasamsung.model.Responses.*
-import kotlinx.android.parcel.RawValue
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -18,15 +16,15 @@ interface InterfaceRetrofit {
     @GET("/doenca")
     fun doencas(): Call<List<DoencasResponse>>
 
-    @GET("/jogador{id_sessao}")
-    fun ranking(@Path("id_sessao") id_sessao:RankingRequest): Call<RankingResponse>
+    @GET("/jogador/{id_sessao}")
+    fun ranking(@Path ("id_sessao") id_sessao: Int): Call<RankingResponse>
 
     @POST("/sala")
     fun criarSala(@Body sala: SalaRequest): Call<SalaResponse>
 
 
     @POST("/sessao")
-    fun sessao(@Path ("w")sala: SalaRequest): Call<SessaoResponse>
+    fun sessao(@Body sala: SalaRequest): Call<SessaoResponse>
 
 //
 //    @GET("/sintoma")
@@ -43,9 +41,6 @@ interface InterfaceRetrofit {
 
     @POST("/jogador")
     fun jogadorNovo(@Body jogador: JogadorRequest): Call<JogadorResponse>
-  
-    @GET("/jogador")
-    fun ranking(id_sessao: Int): Call<List<JogadorResponse>>
 
 //    @PUT("/jogador")
 //    fun jogadorUpdate(jogadorUpdate: JogadorUpdate): Call<JogadorResponse>
