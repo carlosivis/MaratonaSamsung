@@ -106,10 +106,6 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
 
                 lateinit var doencas: ArrayList<String>
 
-//                for (objeto in sessao!!.doencas) {
-//                    doencas!!.add(objeto!!.["[  "])
-//                }
-
 //                sessao!!.doencas.forEach { doencas.add(it.nome)}
                 sessao!!.doencas.forEach{ elemento -> doencas.add(elemento.toString()) }
 
