@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">GeoCorpus</string>
+    <string name="app_name">Morbus</string>
 
     <string name="btnModoInterativo">Modo Interativo</string>
     <string name="btnModoEstudo">Modo Estudo</string>
