@@ -5,5 +5,5 @@ data class SalaResponse(
     val id: Int,
     val nome: String,
     val senha: String,
-    val doencas: Array<String>
+    val doencas: List<Doenca>
 )
