@@ -15,7 +15,7 @@ class RankingAdapter(private val rank: RankingResponse)
         RecyclerView.ViewHolder(inflater.inflate(R.layout.recycler_view_ranking, parent, false)){
         fun bind(jogador: Jogadores){
             itemView.txtNomeJogador?.text = jogador.nome
-            itemView.txtPontuacaoJogador?.text = jogador.pontuacao.toString()
+            itemView.txtPontuacaoJogador?.text = jogador.pontuacao.toInt().toString()
         }
     }
 
