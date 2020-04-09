@@ -107,12 +107,9 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
 
 
 
-//                for (objeto in sessao!!.doencas) {
-//                    doencas!!.add(objeto!!.["[  "])
-//                }
+
                 lateinit var doencas: ArrayList<String>
                 doencas = arrayListOf("")
-
 
                 sessao?.doencas!!.forEach { doencas.add((it.nome)) }
                 val parametros = Bundle()

@@ -9,10 +9,6 @@ import br.com.example.maratonasamsung.model.Responses.DoencasResponse
 import br.com.example.maratonasamsung.model.Responses.Sintoma
 import kotlinx.android.synthetic.main.recycler_view_doencas.view.*
 
-
-
-
-
 class DoencaAdapter(private val list: List<DoencasResponse>?)
     : RecyclerView.Adapter<DoencaAdapter.DoencaViewHolder>() {
 
