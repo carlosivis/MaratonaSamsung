@@ -7,5 +7,5 @@ data class SessaoResponse(
     val id_sessao: Int,
     val nome_sala: String,
     val senha_sala: String,
-    val doencas: List<Objects>
+    val doencas: List<Doenca>
 )

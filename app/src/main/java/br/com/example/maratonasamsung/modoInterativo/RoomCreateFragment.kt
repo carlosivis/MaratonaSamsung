@@ -13,6 +13,7 @@ import androidx.navigation.Navigation
 import br.com.example.maratonasamsung.R
 import br.com.example.maratonasamsung.model.Requests.JogadorRequest
 import br.com.example.maratonasamsung.model.Requests.SalaRequest
+import br.com.example.maratonasamsung.model.Responses.Doenca
 import br.com.example.maratonasamsung.model.Responses.JogadorResponse
 import br.com.example.maratonasamsung.model.Responses.SalaResponse
 import br.com.example.maratonasamsung.model.Responses.SessaoResponse
@@ -104,15 +105,16 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
 
                 val sessao = response.body()
 
-                lateinit var doencas: ArrayList<String>
+
 
 //                for (objeto in sessao!!.doencas) {
 //                    doencas!!.add(objeto!!.["[  "])
 //                }
+                lateinit var doencas: ArrayList<String>
+                doencas = arrayListOf("")
 
-//                sessao!!.doencas.forEach { doencas.add(it.nome)}
-                sessao!!.doencas.forEach{ elemento -> doencas.add(elemento.toString()) }
 
+                sessao?.doencas!!.forEach { doencas.add((it.nome)) }
                 val parametros = Bundle()
                 parametros.putStringArrayList("doencas", doencas)
                 parametros.putInt("id", sessao!!.id_sessao)
