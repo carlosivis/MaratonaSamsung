@@ -10,7 +10,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import br.com.example.maratonasamsung.R
 
-class RulesFragment : Fragment(), View.OnClickListener {
+class RulesFragment : Fragment()/*, View.OnClickListener*/ {
 
     var navController: NavController? = null
 
@@ -21,7 +21,7 @@ class RulesFragment : Fragment(), View.OnClickListener {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_rules, container, false)
     }
-
+ /*
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
@@ -33,4 +33,6 @@ class RulesFragment : Fragment(), View.OnClickListener {
             R.id.btn_next -> navController!!.navigate(R.id.action_rulesFragment_to_rulesFragment2)
         }
     }
+
+ */
 }

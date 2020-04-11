@@ -43,11 +43,11 @@
     <string name="pular">PULAR</string>
     <string name="hifen">-</string>
     <string name="welcome">Bem-vind@ ao Morbus</string>
-    <string name="welcomeText">Prepare-se para aprender sobre as principais doenças causadas por micro-organismos, enquanto se diverte com seus colegas. Temos dois modos: o Estudo e o Interativo. Clique em PRÓXIMO para saber mais.</string>
+    <string name="welcomeText">Prepare-se para aprender sobre as principais doenças causadas por micro-organismos, enquanto se diverte com seus colegas. Temos dois modos: o Estudo e o Interativo. Avance para saber mais.</string>
     <string name="estudo">Modo Estudo</string>
     <string name="estudoText">Neste modo você tem acesso a informações importantes sobre as doenças, de forma interativa e simplificada. Fundamental para um bom desempenho no Modo Interativo.</string>
     <string name="interativo">Modo Interativo</string>
-    <string name="interativoText">Neste aqui você irá interagir com seus amigos e colegas em um jogo de adivinhação de doenças e praticará os conhecimentos adquiridos no Modo Estudo.</string>
+    <string name="interativoText">Aqui você praticará os conhecimentos adquiridos no Modo Estudo e também irá interagir com amigos e colegas em um jogo de adivinhação de doenças.</string>
     <string name="config">Mais informações</string>
     <string name="configText">Nas configurações você encontrará outras informações legais sobre o app, como as regras do jogo e sistema de pontuações. Vamos lá!</string>
     <string name="voltar">VOLTAR</string>
@@ -56,6 +56,6 @@
     <string name="design">Dissecadores do Conhecimento</string>
     <string name="tutorial">Tutorial</string>
     <string name="regras">Funcionamento</string>
-    <string name="regrasText">O jogador a dar dicas tem 10 segundos para escolher sua dica inicial, ou passará a vez a outro jogador. Os demais, então, terão 1 minuto para adivinhar a doença, enquanto poderão ser dadas mais dicas a critério do jogador da vez.\n\nAo acertar a doença, tanto os adivinhos que fizeram o acerto quanto o jogador que está dando as dicas ganham pontos. Cada adivinho ganha uma quantidade de pontos diferente de acordo com o valor da rodada no momento do seu acerto. A rodada começa valendo 10 pontos, mas tem seu valor alterado com os seguintes acontecimentos:</string>
-    <string name="regrasText2">\u2022 A cada nova dica dada pelo jogador da vez, a rodada passa a valer menos 1 ponto para todos os adivinhos.\n\u2022 Quando um adivinho acerta a doença, a rodada também passa a valer menos 1 ponto para os adivinhos que ainda não a acertaram.\n\u2022 Quando um adivinho faz uma tentativa errada, a rodada passa a valer ainda menos 1 ponto somente para aquele adivinho em questão.\n\nO jogador a dar dicas ganha a mesma quantidade de pontos que o primeiro adivinho a acertar a doença e mais 2 pontos por cada acerto seguinte dos demais adivinhos.</string>
+    <string name="regrasText">O jogador a dar dicas tem 10 (dez) segundos para escolher sua dica inicial, ou passará a vez a outro jogador. Os demais, então, terão 1 (um) minuto para adivinhar a doença, enquanto poderão ser dadas mais dicas a critério do jogador da vez.\n\nAo acertar a doença, tanto os adivinhadores que fizeram o acerto quanto o jogador que está dando as dicas ganham pontos. Cada adivinhador ganha uma quantidade de pontos diferente de acordo com o valor da rodada no momento do seu acerto. A rodada começa valendo 10 (dez) pontos, mas tem seu valor alterado com os seguintes acontecimentos:\n\n\u2022 A cada nova dica dada pelo jogador da vez, a rodada passa a valer menos 1 (um) ponto para todos os adivinhadores.\n\u2022 Quando um adivinhador acerta a doença, a rodada também passa a valer menos 1 (um) ponto para os adivinhadores que ainda não a acertaram.\n\u2022 Quando um adivinhador faz uma tentativa errada, a rodada passa a valer ainda menos 1 (um) ponto somente para aquele adivinhador em questão.\n\nO jogador a dar dicas ganha a mesma quantidade de pontos do primeiro adivinhador e mais 2 (dois) pontos por cada acerto seguinte dos demais adivinhadores.</string>
+    <string name="chooseFragmentTitle">Escolha uma classe de vetor:</string>
 </resources>
