@@ -58,4 +58,8 @@
     <string name="regras">Funcionamento</string>
     <string name="regrasText">O jogador a dar dicas tem 10 (dez) segundos para escolher sua dica inicial, ou passará a vez a outro jogador. Os demais, então, terão 1 (um) minuto para adivinhar a doença, enquanto poderão ser dadas mais dicas a critério do jogador da vez.\n\nAo acertar a doença, tanto os adivinhadores que fizeram o acerto quanto o jogador que está dando as dicas ganham pontos. Cada adivinhador ganha uma quantidade de pontos diferente de acordo com o valor da rodada no momento do seu acerto. A rodada começa valendo 10 (dez) pontos, mas tem seu valor alterado com os seguintes acontecimentos:\n\n\u2022 A cada nova dica dada pelo jogador da vez, a rodada passa a valer menos 1 (um) ponto para todos os adivinhadores.\n\u2022 Quando um adivinhador acerta a doença, a rodada também passa a valer menos 1 (um) ponto para os adivinhadores que ainda não a acertaram.\n\u2022 Quando um adivinhador faz uma tentativa errada, a rodada passa a valer ainda menos 1 (um) ponto somente para aquele adivinhador em questão.\n\nO jogador a dar dicas ganha a mesma quantidade de pontos do primeiro adivinhador e mais 2 (dois) pontos por cada acerto seguinte dos demais adivinhadores.</string>
     <string name="chooseFragmentTitle">Escolha uma classe de agente infectante:</string>
+    <string name="bacteria">Bactéria</string>
+    <string name="platelminto">Platelminto</string>
+    <string name="protozoario">Protozoário</string>
+    <string name="virus">Vírus</string>
 </resources>

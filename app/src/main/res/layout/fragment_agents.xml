@@ -53,7 +53,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:visibility="visible"
-                    android:src="@drawable/bacteria" />
+                    android:src="@drawable/bacteria3" />
 
                 <ImageView
                     android:id="@+id/imagePlatelminto"
@@ -72,11 +72,11 @@
                 android:layout_marginBottom="30dp">
 
                 <TextView
-                    android:text="Bactéria"
+                    android:text="@string/bacteria"
                     android:gravity="center"
                     />
                 <TextView
-                    android:text="Platelminto"
+                    android:text="@string/platelminto"
                     android:gravity="center"
                     />
 
@@ -95,7 +95,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:visibility="visible"
-                    android:src="@drawable/protozoario" />
+                    android:src="@drawable/protozoario2" />
 
                 <ImageView
                     android:id="@+id/imageVirus"
@@ -114,11 +114,11 @@
                 android:layout_marginBottom="30dp">
 
                 <TextView
-                    android:text="Protozoário"
+                    android:text="@string/protozoario"
                     android:gravity="center"
                     />
                 <TextView
-                    android:text="Vírus"
+                    android:text="@string/virus"
                     android:gravity="center"
                     />
 
