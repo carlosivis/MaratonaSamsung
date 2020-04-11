@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import br.com.example.maratonasamsung.R
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.example.maratonasamsung.model.Responses.DoencasResponse
-import br.com.example.maratonasamsung.model.Responses.RankingResponse
 import br.com.example.maratonasamsung.service.Service
 import kotlinx.android.synthetic.main.fragment_choose.*
 import retrofit2.Call
@@ -36,11 +35,11 @@ class ChooseFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val agenteInfectante = arguments!!.getString("agenteInfectante")
         if (agenteInfectante != null) {
-            doencas(agenteInfectante)
+            doencas()
         }
     }
   
-    fun doencas(agenteInfectante: String){
+    fun doencas(){
         Service.retrofit.doencas().enqueue(object : Callback<List<DoencasResponse>>{
             override fun onFailure(call: Call<List<DoencasResponse>>, t: Throwable) {
                 Log.d("Deu ruim!!!",t.toString())
@@ -48,10 +47,10 @@ class ChooseFragment : Fragment() {
 
             override fun onResponse(call: Call<List<DoencasResponse>>, response: Response<List<DoencasResponse>>) {
                 Log.d("Sucesso", response.body().toString())
+                var doenca: List<DoencasResponse> = response!!.body()!!
                 recyclerDoencas.apply{
                     layoutManager = LinearLayoutManager(activity)
-                    var doencas =  response.body()!!
-                    adapter = DoencaAdapter(doencas.filter{it.tipo = agenteInfectante})
+                    adapter = DoencaAdapter(doenca.filter { it.tipo == arguments!!.getString("agenteInfectante") })
                 }
             }
         })
