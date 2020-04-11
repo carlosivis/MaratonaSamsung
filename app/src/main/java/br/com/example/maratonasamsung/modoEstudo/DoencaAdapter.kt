@@ -34,9 +34,9 @@ class DoencaAdapter (private val list: List<DoencasResponse>?, val agenteInfecta
     override fun onBindViewHolder(holder: DoencaViewHolder, position: Int) {
 
         val doenca: DoencasResponse = list!![position]
-            if (doenca.tipo.equals(agenteInfectante)) {
+        //    if (doenca.tipo.equals(agenteInfectante)) {
                 holder.bind(doenca)
-            }
+        //  }
     }
 
     override fun getItemCount(): Int = list!!.size

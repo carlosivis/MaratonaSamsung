@@ -50,7 +50,8 @@ class ChooseFragment : Fragment() {
                 Log.d("Sucesso", response.body().toString())
                 recyclerDoencas.apply{
                     layoutManager = LinearLayoutManager(activity)
-                    adapter = DoencaAdapter(response.body()!!, agenteInfectante)
+                    var doencas =  response.body()!!
+                    adapter = DoencaAdapter(doencas.filter{it.tipo = agenteInfectante})
                 }
             }
         })
