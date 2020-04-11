@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".modoInterativo.RulesFragment2">
+    tools:context=".tutoriaisRegras.RulesFragment2">
 
     <RelativeLayout
         android:id="@+id/text_layout"
