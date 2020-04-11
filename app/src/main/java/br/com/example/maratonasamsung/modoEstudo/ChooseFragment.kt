@@ -33,11 +33,8 @@ class ChooseFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val agenteInfectante = arguments!!.getString("agenteInfectante")
-        if (agenteInfectante != null) {
             doencas()
         }
-    }
   
     fun doencas(){
         Service.retrofit.doencas().enqueue(object : Callback<List<DoencasResponse>>{
