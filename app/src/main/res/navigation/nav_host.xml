@@ -81,7 +81,11 @@
         android:id="@+id/chooseFragment"
         android:name="br.com.example.maratonasamsung.modoEstudo.ChooseFragment"
         android:label="fragment_choose"
-        tools:layout="@layout/fragment_choose" />
+        tools:layout="@layout/fragment_choose" >
+        <action
+            android:id="@+id/action_chooseFragment_to_itemChooseFragment"
+            app:destination="@id/itemChooseFragment" />
+    </fragment>
     <fragment
         android:id="@+id/rulesFragment"
         android:name="br.com.example.maratonasamsung.tutoriaisRegras.RulesFragment"
@@ -107,5 +111,10 @@
             android:id="@+id/action_agentsFragment_to_chooseFragment"
             app:destination="@id/chooseFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/itemChooseFragment"
+        android:name="br.com.example.maratonasamsung.modoEstudo.ItemChooseFragment"
+        android:label="fragment_item_choose"
+        tools:layout="@layout/fragment_item_choose" />
 </navigation>
 

@@ -5,14 +5,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.example.maratonasamsung.R
 import br.com.example.maratonasamsung.model.Responses.DoencasResponse
-import kotlinx.android.synthetic.main.recycler_view_doencas.view.*
+import kotlinx.android.synthetic.main.recycler_view_listadoencas.view.*
 
-class DoencaAdapter(private val list: List<DoencasResponse>?): RecyclerView.Adapter<DoencaAdapter.DoencaViewHolder>() {
+class DoencaAdapter(private val list: List<DoencasResponse>?):  RecyclerView.Adapter<DoencaAdapter.DoencaViewHolder>() {
 
     class DoencaViewHolder(inflater: LayoutInflater, parent: ViewGroup): RecyclerView.ViewHolder(inflater.inflate(R.layout.recycler_view_listadoencas, parent, false)) {
 
         fun bind(doencas: DoencasResponse) {
-                itemView.txtDoencaNome?.text = doencas.nome
+                itemView.txtDoencaNomeLista?.text = doencas.nome
                 //itemView.txtArraySintoma?.text = doencas.sintomas.joinToString("\n") { it.nome }
                 //itemView.txtPrevencao?.text = doencas.prevencao.joinToString("\n") { it.nome }
                 //itemView.txtAgente?.text = "Agente: ${doencas.agente}"

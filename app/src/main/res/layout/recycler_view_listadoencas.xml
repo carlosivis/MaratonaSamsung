@@ -9,7 +9,7 @@
     android:clickable="true">
 
         <Button
-            android:id="@+id/txtDoencaNome"
+            android:id="@+id/txtDoencaNomeLista"
             android:ems="7"
             android:background="@drawable/roundbutton"
             android:layout_width="wrap_content"
