@@ -30,10 +30,10 @@ interface InterfaceRetrofit {
     fun sintomas(@Path("doenca") doenca: String): Call<Sintomas>
 
     @GET("/prevencaos/{doenca}")
-    fun prevencaos(@Path("doenca") doenca: String): Call<Prevencoes>
+    fun prevencoes(@Path("doenca") doenca: String): Call<Prevencoes>
 
     @GET("/transmicaos/{doenca}")
-    fun transmicaos(@Path("doenca") doenca: String): Call<Transmicoes>
+    fun transmicoes(@Path("doenca") doenca: String): Call<Transmicoes>
 
 //    @GET("/jogador")
 //    fun jogador(): Call<JogadorResponse>

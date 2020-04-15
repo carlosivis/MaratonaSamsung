@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -40,8 +41,8 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
         val doenca: String = arguments!!.getString("doenca").toString()
 
         sintomas(doenca)
-        transmicaos(doenca)
-        prevencaos(doenca)
+        prevencoes(doenca)
+        transmicoes(doenca)
     }
 
     override fun onClick(v: View?) {
@@ -61,25 +62,32 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
 
                 val listaSintomas = response.body()
 
-                lateinit var sintomas: ArrayList<String>
-                sintomas = arrayListOf("")
-
-                listaSintomas?.sintomas?.forEach { sintomas.add((it.nome)) }
-
-                if (sintomas.size != 0) {
-                    sintomas!!.toMutableList()
+                if (listaSintomas?.sintomas?.size != 0) {
+                    val sintomas: ArrayList<String> = arrayListOf("")
+                    listaSintomas?.sintomas?.forEach { sintomas.add((it.nome)) }
+                    sintomas.toMutableList()
                     context?.let {
                         spinnerAdapter =
                             ArrayAdapter(it, android.R.layout.simple_spinner_item, sintomas)
                     }
                     diqueiroSpinnerSintoma.adapter = spinnerAdapter
+                    var texto = "Sintomas"
+                    val duracao = Toast.LENGTH_SHORT
+                    val toast = Toast.makeText(context, texto, duracao)
+                    toast.show()
+                }
+                else {
+                    var texto = "Sem sintomas"
+                    val duracao = Toast.LENGTH_SHORT
+                    val toast = Toast.makeText(context, texto, duracao)
+                    toast.show()
                 }
             }
         })
     }
 
-    fun transmicaos(doenca: String) {
-        Service.retrofit.transmicaos(
+    fun transmicoes(doenca: String) {
+        Service.retrofit.transmicoes(
             doenca = doenca
         ).enqueue(object : Callback<Transmicoes>{
             override fun onFailure(call: Call<Transmicoes>, t: Throwable) {
@@ -91,25 +99,32 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
 
                 val listaTransmicao = response.body()
 
-                lateinit var transmicoes: ArrayList<String>
-                transmicoes = arrayListOf("")
-
-                listaTransmicao?.transmicoes?.forEach { transmicoes.add((it.nome)) }
-
-                if (transmicoes.size != 0) {
-                    transmicoes!!.toMutableList()
+                if (listaTransmicao?.transmicao?.size != 0) {
+                    val transmicoes: ArrayList<String> = arrayListOf("")
+                    listaTransmicao?.transmicao?.forEach { transmicoes.add((it.nome)) }
+                    transmicoes.toMutableList()
                     context?.let {
                         spinnerAdapter =
                             ArrayAdapter(it, android.R.layout.simple_spinner_item, transmicoes)
                     }
                     diqueiroSpinnerTransmicao.adapter = spinnerAdapter
+                    var texto = "Transmição"
+                    val duracao = Toast.LENGTH_SHORT
+                    val toast = Toast.makeText(context, texto, duracao)
+                    toast.show()
+                }
+                else {
+                    var texto = "Sem transmissões"
+                    val duracao = Toast.LENGTH_SHORT
+                    val toast = Toast.makeText(context, texto, duracao)
+                    toast.show()
                 }
             }
         })
     }
 
-    fun prevencaos(doenca: String) {
-        Service.retrofit.prevencaos(
+    fun prevencoes(doenca: String) {
+        Service.retrofit.prevencoes(
             doenca = doenca
         ).enqueue(object : Callback<Prevencoes>{
             override fun onFailure(call: Call<Prevencoes>, t: Throwable) {
@@ -121,18 +136,25 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
 
                 val listaPrevencao = response.body()
 
-                lateinit var prevencoes: ArrayList<String>
-                prevencoes = arrayListOf("")
-
-                listaPrevencao?.prevencoes?.forEach { prevencoes.add((it.nome)) }
-
-                if (prevencoes.size != 0) {
-                    prevencoes!!.toMutableList()
+                if (listaPrevencao?.prevencoes?.size != 0) {
+                    val prevencoes: ArrayList<String> = arrayListOf("")
+                    listaPrevencao?.prevencoes?.forEach { prevencoes.add((it.nome)) }
+                    prevencoes.toMutableList()
                     context?.let {
                         spinnerAdapter =
                             ArrayAdapter(it, android.R.layout.simple_spinner_item, prevencoes)
                     }
                     diqueiroSpinnerPrevencao.adapter = spinnerAdapter
+                    var texto = "Prevenção"
+                    val duracao = Toast.LENGTH_SHORT
+                    val toast = Toast.makeText(context, texto, duracao)
+                    toast.show()
+                }
+                else {
+                    var texto = "Sem prevenção"
+                    val duracao = Toast.LENGTH_SHORT
+                    val toast = Toast.makeText(context, texto, duracao)
+                    toast.show()
                 }
             }
         })
