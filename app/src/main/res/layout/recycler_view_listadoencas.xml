@@ -10,16 +10,18 @@
 
         <Button
             android:id="@+id/txtDoencaNomeLista"
-            android:ems="7"
-            android:background="@drawable/roundbutton"
+            android:contextClickable="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="MALARIA"
             android:layout_margin="10dp"
-            app:layout_constraintVertical_bias="0"
-            app:layout_constraintStart_toStartOf="parent"
+            android:background="@drawable/roundbutton"
+            android:clickable="true"
+            android:ems="7"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintVertical_bias="0"
+            tools:text="MALARIA" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,12 +6,14 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavController
 import br.com.example.maratonasamsung.R
 import br.com.example.maratonasamsung.tutoriaisRegras.TutorialActivity
 
-class MainActivity : AppCompatActivity() {
-
+class MainActivity : AppCompatActivity(), View.OnClickListener {
+    var navController: NavController? = null
     lateinit var sharedPreferences: SharedPreferences
     lateinit var editor: SharedPreferences.Editor
 
@@ -52,4 +54,11 @@ class MainActivity : AppCompatActivity() {
             else -> return super.onOptionsItemSelected(item)
         }
     }
+
+    override fun onClick(v: View?) {
+        when(v!!.id){
+            R.id.txtDoencaNomeLista -> navController!!.navigate(R.id.action_chooseFragment_to_itemChooseFragment)
+        }
+    }
+
 }
