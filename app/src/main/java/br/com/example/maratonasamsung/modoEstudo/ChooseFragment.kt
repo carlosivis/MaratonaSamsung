@@ -31,11 +31,10 @@ class ChooseFragment : Fragment() {
 
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        doencas()
-    }
+            doencas()
+        }
   
     fun doencas(){
         Service.retrofit.doencas().enqueue(object : Callback<List<DoencasResponse>>{
@@ -45,13 +44,13 @@ class ChooseFragment : Fragment() {
 
             override fun onResponse(call: Call<List<DoencasResponse>>, response: Response<List<DoencasResponse>>) {
                 Log.d("Sucesso", response.body().toString())
+                var doenca: List<DoencasResponse> = response!!.body()!!
                 recyclerDoencas.apply{
                     layoutManager = LinearLayoutManager(activity)
-                    adapter = DoencaAdapter(response.body()!!)
+                    adapter = DoencaAdapter(doenca.filter { it.tipo == arguments!!.getString("agenteInfectante") })
                 }
             }
         })
     }
-
 }
 

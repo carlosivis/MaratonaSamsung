@@ -11,7 +11,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.example.maratonasamsung.R
-import br.com.example.maratonasamsung.model.Responses.JogadorResponse
+import br.com.example.maratonasamsung.model.Responses.RankingResponse
 import br.com.example.maratonasamsung.service.Service
 import kotlinx.android.synthetic.main.fragment_room_adivinhador.*
 import retrofit2.Call
@@ -33,6 +33,7 @@ class RoomAdivinhadorFragment :  Fragment() {
         return inflater.inflate(R.layout.fragment_room_adivinhador, container, false)
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
@@ -47,24 +48,19 @@ class RoomAdivinhadorFragment :  Fragment() {
         spinnerResposta.adapter = spinnerAdapter
     }
 
-//    override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
-//        if (keyCode == KeyEvent.KEYCODE_0) {
-////             this tells the framework to start tracking for
-////             a long press and eventual key up.  it will only
-////             do so if this is the first down (not a repeat).
-//            event.startTracking()
-//            return true
-//        }
-//        return super.onKeyDown(keyCode, event)
-//    }
 
+//    fun populaSpinner(estados: List<String>?) {
+//        val adapterOpcoes =
+//            ArrayAdapter(context!!, android.R.layout.simple_spinner_item, estados)
+//        spinner!!.adapter = adapterOpcoes
+//    }
     fun ranking(){
-        Service.retrofit.ranking(1).enqueue(object :Callback<List<JogadorResponse>>{
-            override fun onFailure(call: Call<List<JogadorResponse>>, t: Throwable) {
+        Service.retrofit.ranking(6).enqueue(object :Callback<RankingResponse>{
+            override fun onFailure(call: Call<RankingResponse>, t: Throwable) {
                 Log.d("Falha ao gerar ranking", t.toString())
             }
 
-            override fun onResponse(call: Call<List<JogadorResponse>>, response: Response<List<JogadorResponse>>) {
+            override fun onResponse(call: Call<RankingResponse>, response: Response<RankingResponse>) {
                 Log.d("Ranking com Sucesso", response.body().toString())
                 recyclerRanking.apply {
                     layoutManager = LinearLayoutManager(activity)

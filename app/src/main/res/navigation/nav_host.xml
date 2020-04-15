@@ -14,11 +14,11 @@
             android:id="@+id/action_mainFragment_to_roomTypekFragment"
             app:destination="@id/roomTypekFragment" />
         <action
-            android:id="@+id/action_mainFragment_to_chooseFragment"
-            app:destination="@id/chooseFragment" />
-        <action
             android:id="@+id/action_mainFragment_to_rulesFragment"
             app:destination="@id/rulesFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_agentsFragment"
+            app:destination="@id/agentsFragment" />
     </fragment>
     <fragment
         android:id="@+id/roomTypekFragment"
@@ -104,6 +104,14 @@
         <action
             android:id="@+id/action_rulesFragment2_to_mainFragment"
             app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/agentsFragment"
+        android:name="br.com.example.maratonasamsung.modoEstudo.AgentsFragment"
+        android:label="AgentsFragment" >
+        <action
+            android:id="@+id/action_agentsFragment_to_chooseFragment"
+            app:destination="@id/chooseFragment" />
     </fragment>
 </navigation>
 

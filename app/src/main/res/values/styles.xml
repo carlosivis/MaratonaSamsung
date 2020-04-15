@@ -10,6 +10,7 @@
         <item name="android:textAllCaps">false</item>
         <item name="android:textViewStyle">@style/textViewStyle</item>
         <item name="android:buttonStyle">@style/buttonStyle</item>
+        <item name="android:textSize">20sp</item>
     </style>
 
     <style name="textViewStyle" parent="android:Widget.TextView">
