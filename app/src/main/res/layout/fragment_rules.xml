@@ -15,7 +15,7 @@
         tools:layout_editor_absoluteY="613dp">
 
         <TextView
-            android:id="@+id/textView7"
+            android:id="@+id/txtDiqueiro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -35,7 +35,7 @@
             android:id="@+id/textView2"
             android:layout_width="315dp"
             android:layout_height="464dp"
-            android:layout_below="@+id/textView7"
+            android:layout_below="@+id/txtDiqueiro"
             android:layout_centerHorizontal="true"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
@@ -46,7 +46,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView7" />
+            app:layout_constraintTop_toBottomOf="@+id/txtDiqueiro" />
     </RelativeLayout>
 
     <RelativeLayout

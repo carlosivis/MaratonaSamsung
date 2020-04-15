@@ -105,13 +105,11 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
 
                 val sessao = response.body()
 
-
-
-
                 lateinit var doencas: ArrayList<String>
                 doencas = arrayListOf("")
 
                 sessao?.doencas!!.forEach { doencas.add((it.nome)) }
+
                 val parametros = Bundle()
                 parametros.putStringArrayList("doencas", doencas)
                 parametros.putInt("id", sessao!!.id_sessao)
@@ -135,7 +133,7 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
             override fun onResponse(call: Call<JogadorResponse>, response: Response<JogadorResponse>) {
                 Log.d("Nice", response.toString())
 
-                navController!!.navigate(R.id.action_roomCreateFragment_to_roomDiqueiroFragment, parametros)
+                navController!!.navigate(R.id.action_roomCreateFragment_to_roomDiqueiroDoencaFragment, parametros)
             }
         })
     }

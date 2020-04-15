@@ -37,7 +37,7 @@ class RoomAdivinhadorFragment :  Fragment() {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
 
-        ranking()
+//        ranking()
 
         val array = arrayOf("A", "B", "C")
         context?.let {
@@ -59,7 +59,7 @@ class RoomAdivinhadorFragment :  Fragment() {
 //    }
 
     fun ranking(){
-        Service.retrofit.ranking(6).enqueue(object :Callback<List<JogadorResponse>>{
+        Service.retrofit.ranking(1).enqueue(object :Callback<List<JogadorResponse>>{
             override fun onFailure(call: Call<List<JogadorResponse>>, t: Throwable) {
                 Log.d("Falha ao gerar ranking", t.toString())
             }

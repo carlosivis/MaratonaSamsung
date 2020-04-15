@@ -19,21 +19,18 @@ interface InterfaceRetrofit {
     @POST("/sessao")
     fun sessao(@Body sala: SalaRequest): Call<SessaoResponse>
 
-//    @GET("/sessao")
-//    fun listarsessao(@Body id_sessao: Int): Call<SessaoResponse>
-
     @GET("/doenca")
     fun doencas(): Call<List<DoencasResponse>>
-//
-//    @GET("/sintoma")
-//    fun sintomas(): Call<Sintoma>
-//
-//    @GET("/prevencao")
-//    fun prevencao(): Call<Prevencao>
-//
-//    @GET("/transmicao")
-//    fun transmicao(): Call<Transmicao>
-//
+
+    @GET("/sintomas/{doenca}")
+    fun sintomas(@Path("doenca") doenca: String): Call<Sintomas>
+
+    @GET("/prevencaos/{doenca}")
+    fun prevencaos(@Path("doenca") doenca: String): Call<Prevencoes>
+
+    @GET("/transmicaos/{doenca}")
+    fun transmicaos(@Path("doenca") doenca: String): Call<Transmicoes>
+
 //    @GET("/jogador")
 //    fun jogador(): Call<JogadorResponse>
 

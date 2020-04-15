@@ -15,7 +15,6 @@ import br.com.example.maratonasamsung.model.Requests.JogadorRequest
 import br.com.example.maratonasamsung.model.Responses.JogadorResponse
 import br.com.example.maratonasamsung.service.Service
 import kotlinx.android.synthetic.main.fragment_room_acess_name.*
-import kotlinx.android.synthetic.main.fragment_room_create.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

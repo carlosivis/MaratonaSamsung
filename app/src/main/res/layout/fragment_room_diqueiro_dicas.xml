@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/roomDiqueiroDicas"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.main.MainActivity">
+
+    <TextView
+        android:id="@+id/txtDiqueiro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_diqueiro"
+        android:textColor="@color/colorText"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.05" />
+
+    <Spinner
+        android:id="@+id/diqueiroSpinnerSintoma"
+        android:layout_width="400dp"
+        android:layout_height="40dp"
+        android:backgroundTint="@color/colorText"
+        android:dropDownWidth="wrap_content"
+        android:scrollbarSize="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/diqueiroSpinnerTransmicao"
+        android:layout_width="400dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="@color/colorText"
+        android:dropDownWidth="wrap_content"
+        android:scrollbarSize="4dp"
+        app:layout_constraintStart_toStartOf="@id/diqueiroSpinnerSintoma"
+        app:layout_constraintTop_toBottomOf="@+id/diqueiroSpinnerSintoma" />
+
+    <Spinner
+        android:id="@+id/diqueiroSpinnerPrevencao"
+        android:layout_width="400dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="@color/colorText"
+        android:dropDownWidth="wrap_content"
+        android:scrollbarSize="4dp"
+        app:layout_constraintStart_toStartOf="@id/diqueiroSpinnerTransmicao"
+        app:layout_constraintTop_toBottomOf="@+id/diqueiroSpinnerTransmicao" />
+
+    <Button
+        android:id="@+id/diqueiroBtnDicas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:text="Enviar Dica"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
