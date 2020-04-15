@@ -43,7 +43,7 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
         when(v!!.id){
             R.id.acessBtnContinuar -> {
                 if(acessEditNomeSala.text.toString() == "" || acessEditSenha.text.toString() == "") {
-                    var texto = "Preencha todos os campos obrigatórios"
+                    val texto = "Preencha todos os campos obrigatórios"
                     val duracao = Toast.LENGTH_SHORT
                     val toast = Toast.makeText(context, texto, duracao)
                     toast.show()
@@ -69,7 +69,7 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
                     if (sala!!.senha == acessEditSenha.text.toString())
                         sessao(sala!!.nome, sala!!.senha)
                     else {
-                        var texto = "Senha inválida"
+                        val texto = "Senha inválida"
                         val duracao = Toast.LENGTH_SHORT
                         val toast = Toast.makeText(context, texto, duracao)
                         toast.show()
@@ -77,7 +77,7 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
                     }
                 }
                 else {
-                    var texto = "Sala não encontrada"
+                    val texto = "Sala não encontrada"
                     val duracao = Toast.LENGTH_SHORT
                     val toast = Toast.makeText(context, texto, duracao)
                     toast.show()
@@ -102,9 +102,14 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
                 Log.d("Nice", response.toString())
 
                 val sessao = response.body()
-                val parametro = Bundle()
-                parametro.putInt("id", sessao!!.id_sessao)
-                navController!!.navigate(R.id.action_roomAcessFragment_to_roomAcessNameFragment, parametro)
+
+                val doencas: ArrayList<String> = arrayListOf("")
+                sessao?.doencas!!.forEach { doencas.add((it.nome)) }
+
+                val parametros = Bundle()
+                parametros.putInt("id", sessao!!.id_sessao)
+                parametros.putStringArrayList("doencas", doencas)
+                navController!!.navigate(R.id.action_roomAcessFragment_to_roomAcessNameFragment, parametros)
             }
         })
     }

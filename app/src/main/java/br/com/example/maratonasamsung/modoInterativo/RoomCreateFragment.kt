@@ -48,7 +48,7 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
         when(v!!.id){
             R.id.createBtnCriarSala -> {
                 if(createEditUsuario.text.toString() == "" || createEditNomeSala.text.toString() == "" || createEditSenha.text.toString() == "") {
-                    var texto = "Preencha todos os campos obrigatórios"
+                    val texto = "Preencha todos os campos obrigatórios"
                     val duracao = Toast.LENGTH_SHORT
                     val toast = Toast.makeText(context, texto, duracao)
                     toast.show()
@@ -75,7 +75,7 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
                 val sala = response.body()
 
                 if(!sala!!.status) {
-                    var texto = "Nome da sala já existente"
+                    val texto = "Nome da sala já existente"
                     val duracao = Toast.LENGTH_SHORT
                     val toast = Toast.makeText(context, texto, duracao)
                     toast.show()
@@ -105,9 +105,7 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
 
                 val sessao = response.body()
 
-                lateinit var doencas: ArrayList<String>
-                doencas = arrayListOf("")
-
+                val doencas: ArrayList<String> = arrayListOf("")
                 sessao?.doencas!!.forEach { doencas.add((it.nome)) }
 
                 val parametros = Bundle()

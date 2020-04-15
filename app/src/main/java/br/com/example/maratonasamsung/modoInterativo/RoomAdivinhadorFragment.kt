@@ -38,24 +38,22 @@ class RoomAdivinhadorFragment :  Fragment() {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
 
-//        ranking()
+        val id_sessao = arguments!!.getInt("id")
+        val doencas = arguments!!.getStringArrayList("doencas")
 
-        val array = arrayOf("A", "B", "C")
+        doencas!!.toMutableList()
         context?.let {
-            spinnerAdapter = ArrayAdapter(it, android.R.layout.simple_spinner_item, array)
+            spinnerAdapter = ArrayAdapter(it, android.R.layout.simple_spinner_item, doencas)
         }
-
         spinnerResposta.adapter = spinnerAdapter
+
+//        ranking(id_sessao)
     }
 
-
-//    fun populaSpinner(estados: List<String>?) {
-//        val adapterOpcoes =
-//            ArrayAdapter(context!!, android.R.layout.simple_spinner_item, estados)
-//        spinner!!.adapter = adapterOpcoes
-//    }
-    fun ranking(){
-        Service.retrofit.ranking(6).enqueue(object :Callback<RankingResponse>{
+    fun ranking(id_sessao: Int){
+        Service.retrofit.ranking(
+            id_sessao = id_sessao
+        ).enqueue(object :Callback<RankingResponse>{
             override fun onFailure(call: Call<RankingResponse>, t: Throwable) {
                 Log.d("Falha ao gerar ranking", t.toString())
             }

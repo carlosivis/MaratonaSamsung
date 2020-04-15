@@ -34,7 +34,7 @@ class RoomDiqueiroDoencaFragment : Fragment(), View.OnClickListener {
 
 //        val array = arrayOf("A", "B", "C")
 
-        var doencas = arguments!!.getStringArrayList("doencas")
+        val doencas = arguments!!.getStringArrayList("doencas")
         doencas!!.toMutableList()
         context?.let {
             spinnerAdapter = ArrayAdapter(it, android.R.layout.simple_spinner_item, doencas)
