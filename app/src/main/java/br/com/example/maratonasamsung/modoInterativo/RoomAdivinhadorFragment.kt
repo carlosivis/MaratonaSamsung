@@ -47,7 +47,7 @@ class RoomAdivinhadorFragment :  Fragment() {
         }
         spinnerResposta.adapter = spinnerAdapter
 
-//        ranking(id_sessao)
+        ranking(id_sessao)
     }
 
     fun ranking(id_sessao: Int){

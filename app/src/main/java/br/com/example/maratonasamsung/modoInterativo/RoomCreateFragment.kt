@@ -84,13 +84,13 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
 
                 }
                 else
-                    sessao(sala!!.nome, sala!!.senha)
+                    cadastrarSessao(sala!!.nome, sala!!.senha)
             }
         })
     }
 
-    fun sessao(nome: String, senha: String) {
-        Service.retrofit.sessao(
+    fun cadastrarSessao(nome: String, senha: String) {
+        Service.retrofit.cadastrarSessao(
             sala = SalaRequest(
                 nome = nome,
                 senha = senha
@@ -109,10 +109,10 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
                 sessao?.doencas!!.forEach { doencas.add((it.nome)) }
 
                 val parametros = Bundle()
+                parametros.putInt("id", sessao.id_sessao)
                 parametros.putStringArrayList("doencas", doencas)
-                parametros.putInt("id", sessao!!.id_sessao)
 
-                jogadorNovo(sessao!!.id_sessao, parametros)
+                jogadorNovo(sessao.id_sessao, parametros)
             }
         })
     }

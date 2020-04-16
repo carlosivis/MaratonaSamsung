@@ -11,10 +11,13 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.example.maratonasamsung.R
 import br.com.example.maratonasamsung.model.Responses.*
 import br.com.example.maratonasamsung.service.Service
+import kotlinx.android.synthetic.main.fragment_room_adivinhador.*
 import kotlinx.android.synthetic.main.fragment_room_diqueiro_dicas.*
+import kotlinx.android.synthetic.main.fragment_room_diqueiro_dicas.recyclerRanking
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -38,7 +41,10 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
         navController = Navigation.findNavController(view)
         view.findViewById<Button>(R.id.diqueiroBtnDicas).setOnClickListener(this)
 
+        val id_sessao = arguments!!.getInt("id")
         val doenca: String = arguments!!.getString("doenca").toString()
+
+        ranking(id_sessao)
 
         sintomas(doenca)
         prevencoes(doenca)
@@ -47,6 +53,24 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         TODO("Not yet implemented")
+    }
+
+    fun ranking(id_sessao: Int){
+        Service.retrofit.ranking(
+            id_sessao = id_sessao
+        ).enqueue(object :Callback<RankingResponse>{
+            override fun onFailure(call: Call<RankingResponse>, t: Throwable) {
+                Log.d("Falha ao gerar ranking", t.toString())
+            }
+
+            override fun onResponse(call: Call<RankingResponse>, response: Response<RankingResponse>) {
+                Log.d("Ranking com Sucesso", response.body().toString())
+                recyclerRanking.apply {
+                    layoutManager = LinearLayoutManager(activity)
+                    adapter = RankingAdapter(response.body()!!)
+                }
+            }
+        })
     }
 
     fun sintomas(doenca: String) {

@@ -32,9 +32,8 @@ class RoomDiqueiroDoencaFragment : Fragment(), View.OnClickListener {
         navController = Navigation.findNavController(view)
         view.findViewById<Button>(R.id.diqueiroBtnDoenca).setOnClickListener(this)
 
-//        val array = arrayOf("A", "B", "C")
-
         val doencas = arguments!!.getStringArrayList("doencas")
+
         doencas!!.toMutableList()
         context?.let {
             spinnerAdapter = ArrayAdapter(it, android.R.layout.simple_spinner_item, doencas)
@@ -54,9 +53,12 @@ class RoomDiqueiroDoencaFragment : Fragment(), View.OnClickListener {
                     toast.show()
                 }
                 else {
-                    val parametro = Bundle()
-                    parametro.putString("doenca", doenca)
-                    navController!!.navigate(R.id.action_roomDiqueiroDoencaFragment_to_roomDiqueiroDicasFragment, parametro)
+                    val id_sessao = arguments!!.getInt("id")
+
+                    val parametros = Bundle()
+                    parametros.putInt("id", id_sessao)
+                    parametros.putString("doenca", doenca)
+                    navController!!.navigate(R.id.action_roomDiqueiroDoencaFragment_to_roomDiqueiroDicasFragment, parametros)
                 }
             }
         }
