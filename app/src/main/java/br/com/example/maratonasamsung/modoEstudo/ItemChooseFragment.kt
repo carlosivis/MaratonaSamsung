@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.fragment_item_choose.*
 
 
 class ItemChooseFragment : Fragment() {
-    var param = arguments?.get("selfDoenca") as DoencasResponse
+    var param =  arguments?.getString("selfDoenca")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -23,10 +23,10 @@ class ItemChooseFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        txtDoencaNome.text = param.nome
-        txtAgente.text = "Agente: ${param.agente}"
-        txtArraySintoma.text = param.sintomas.joinToString("\n"){ it.nome }
-        txtPrevencao.text = param.prevencao.joinToString("\n") { it.nome }
-        txtTipo.text = "Tipo: ${param.tipo}"
+        txtDoencaNome.text = param
+//        txtAgente.text = "Agente: ${param.agente}"
+//        txtArraySintoma.text = param.sintomas.joinToString("\n"){ it.nome }
+//        txtPrevencao.text = param.prevencao.joinToString("\n") { it.nome }
+//        txtTipo.text = "Tipo: ${param.tipo}"
     }
 }

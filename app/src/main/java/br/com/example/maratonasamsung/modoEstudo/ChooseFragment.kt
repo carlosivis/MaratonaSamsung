@@ -20,7 +20,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ChooseFragment : Fragment() , View.OnClickListener, DoencaAdapter.OnItemClickListener{
+class ChooseFragment : Fragment() {
 
     var navController: NavController? = null
     lateinit var doenca: List<DoencasResponse>
@@ -58,23 +58,10 @@ class ChooseFragment : Fragment() , View.OnClickListener, DoencaAdapter.OnItemCl
                 doenca =  response!!.body()!!
                 recyclerDoencas.apply{
                     layoutManager = LinearLayoutManager(activity)
-                    adapter = DoencaAdapter(doenca.filter { it.tipo == arguments!!.getString("agenteInfectante") }, this@ChooseFragment)
+                    adapter = DoencaAdapter(doenca.filter { it.tipo == arguments!!.getString("agenteInfectante") })
                 }
             }
         })
-    }
-
-    override fun onItemClicked(doencas: DoencasResponse) {
-        val parametros = Bundle()
-        selfDoencaResponse= doencas
-        parametros.putSerializable("selfDoenca", selfDoencaResponse)
-        onClick(view)
-    }
-
-    override fun onClick(v: View?) {
-        when(v!!.id) {
-            R.id.txtDoencaNomeLista ->navController!!.navigate(R.id.action_chooseFragment_to_itemChooseFragment)
-        }
     }
 }
 
