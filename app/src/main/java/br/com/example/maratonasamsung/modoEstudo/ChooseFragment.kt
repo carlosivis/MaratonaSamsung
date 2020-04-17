@@ -7,8 +7,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import br.com.example.maratonasamsung.R
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import br.com.example.maratonasamsung.model.Responses.DoencasResponse
 import br.com.example.maratonasamsung.service.Service
 import kotlinx.android.synthetic.main.fragment_choose.*
@@ -17,6 +21,11 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class ChooseFragment : Fragment() {
+
+    var navController: NavController? = null
+    lateinit var doenca: List<DoencasResponse>
+    lateinit var selfDoencaResponse: DoencasResponse
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         retainInstance = true
@@ -31,9 +40,11 @@ class ChooseFragment : Fragment() {
 
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
             doencas()
+        navController = Navigation.findNavController(view)
         }
   
     fun doencas(){
@@ -44,7 +55,7 @@ class ChooseFragment : Fragment() {
 
             override fun onResponse(call: Call<List<DoencasResponse>>, response: Response<List<DoencasResponse>>) {
                 Log.d("Sucesso", response.body().toString())
-                var doenca: List<DoencasResponse> = response!!.body()!!
+                doenca =  response!!.body()!!
                 recyclerDoencas.apply{
                     layoutManager = LinearLayoutManager(activity)
                     adapter = DoencaAdapter(doenca.filter { it.tipo == arguments!!.getString("agenteInfectante") })
@@ -53,4 +64,5 @@ class ChooseFragment : Fragment() {
         })
     }
 }
+
 

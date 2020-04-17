@@ -20,8 +20,9 @@
     <string name="txt_nome_da_sala">Nome da sala:</string>
     <string name="txt_senha">Senha:</string>
 
-    <string name="txt_jogadores">Jogadores</string>
+    <string name="txt_jogadores">Jogadores:</string>
     <string name="txt_escolha_doenca">Escolha uma doença:</string>
+    <string name="txt_escolha_doenca_dicas">Escolher dicas</string>
     <string name="txt_adivinhar">Adivinhar</string>
     <string name="txt_dicas">Dicas:</string>
     <string name="txt_sintomas">Sintomas</string>
