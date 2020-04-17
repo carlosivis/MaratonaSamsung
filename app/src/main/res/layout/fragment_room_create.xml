@@ -29,10 +29,11 @@
 
     <EditText
         android:id="@+id/createEditNomeSala"
-        android:layout_width="wrap_content"
+        style="@style/textViewStyle"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:ems="16"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="@id/createTxtUsuario"
         app:layout_constraintTop_toBottomOf="@id/createTxtNomeSala" />
@@ -55,10 +56,11 @@
 
     <EditText
         android:id="@+id/createEditSenha"
-        android:layout_width="wrap_content"
+        style="@style/textViewStyle"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:ems="16"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         android:inputType="textPassword"
         app:layout_constraintStart_toStartOf="@id/createTxtUsuario"
         app:layout_constraintTop_toBottomOf="@id/createTxtSenha" />
@@ -101,10 +103,11 @@
 
     <EditText
         android:id="@+id/createEditUsuario"
-        android:layout_width="wrap_content"
+        style="@style/textViewStyle"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:ems="16"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="@id/createTxtUsuario"
         app:layout_constraintTop_toBottomOf="@id/createTxtUsuario" />
