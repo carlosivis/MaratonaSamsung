@@ -7,8 +7,8 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import br.com.example.maratonasamsung.R
+import br.com.example.maratonasamsung.tutoriaisRegras.TutorialActivity
 
 class MainActivity : AppCompatActivity() {
 

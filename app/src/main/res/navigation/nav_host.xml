@@ -14,11 +14,11 @@
             android:id="@+id/action_mainFragment_to_roomTypekFragment"
             app:destination="@id/roomTypekFragment" />
         <action
-            android:id="@+id/action_mainFragment_to_chooseFragment"
-            app:destination="@id/chooseFragment" />
-        <action
             android:id="@+id/action_mainFragment_to_rulesFragment"
             app:destination="@id/rulesFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_agentsFragment"
+            app:destination="@id/agentsFragment" />
     </fragment>
     <fragment
         android:id="@+id/roomTypekFragment"
@@ -38,8 +38,8 @@
         android:label="fragment_room_create"
         tools:layout="@layout/fragment_room_create" >
         <action
-            android:id="@+id/action_roomCreateFragment_to_roomDiqueiroFragment"
-            app:destination="@id/roomDiqueiroFragment" />
+            android:id="@+id/action_roomCreateFragment_to_roomDiqueiroDoencaFragment"
+            app:destination="@id/roomDiqueiroDoencaFragment" />
     </fragment>
     <fragment
         android:id="@+id/roomAcessFragment"
@@ -60,22 +60,28 @@
             app:destination="@id/roomAdivinhadorFragment" />
     </fragment>
     <fragment
-        android:id="@+id/roomAdivinhadorFragment"
-        android:name="br.com.example.maratonasamsung.modoInterativo.RoomAdivinhadorFragment"
-        android:label="RoomAdivinhadorFragment"
-        tools:layout="@layout/fragment_room_adivinhador" >
+        android:id="@+id/roomDiqueiroDoencaFragment"
+        android:name="br.com.example.maratonasamsung.modoInterativo.RoomDiqueiroDoencaFragment"
+        android:label="RoomDiqueiroDoencaFragment" >
         <action
-            android:id="@+id/action_roomAdivinhadorFragment_to_roomDiqueiroFragment"
-            app:destination="@id/roomDiqueiroFragment" />
+            android:id="@+id/action_roomDiqueiroDoencaFragment_to_roomDiqueiroDicasFragment"
+            app:destination="@id/roomDiqueiroDicasFragment" />
     </fragment>
     <fragment
-        android:id="@+id/roomDiqueiroFragment"
-        android:name="br.com.example.maratonasamsung.modoInterativo.RoomDiqueiroFragment"
-        android:label="RoomDiqueiroFragment"
-        tools:layout="@layout/fragment_room_diqueiro" >
+        android:id="@+id/roomDiqueiroDicasFragment"
+        android:name="br.com.example.maratonasamsung.modoInterativo.RoomDiqueiroDicasFragment"
+        android:label="RoomDiqueiroDicasFragment" >
         <action
-            android:id="@+id/action_roomDiqueiroFragment_to_roomAdivinhadorFragment"
+            android:id="@+id/action_roomDiqueiroDicasFragment2_to_roomAdivinhadorFragment"
             app:destination="@id/roomAdivinhadorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/roomAdivinhadorFragment"
+        android:name="br.com.example.maratonasamsung.modoInterativo.RoomAdivinhadorFragment"
+        android:label="RoomAdivinhadorFragment" >
+        <action
+            android:id="@+id/action_roomAdivinhadorFragment_to_roomDiqueiroDoencaFragment"
+            app:destination="@id/roomDiqueiroDoencaFragment" />
     </fragment>
     <fragment
         android:id="@+id/chooseFragment"
@@ -84,7 +90,7 @@
         tools:layout="@layout/fragment_choose" />
     <fragment
         android:id="@+id/rulesFragment"
-        android:name="br.com.example.maratonasamsung.ui.main.RulesFragment"
+        android:name="br.com.example.maratonasamsung.tutoriaisRegras.RulesFragment"
         android:label="fragment_rules"
         tools:layout="@layout/fragment_rules">
         <action
@@ -93,11 +99,19 @@
     </fragment>
     <fragment
         android:id="@+id/rulesFragment2"
-        android:name="br.com.example.maratonasamsung.ui.main.RulesFragment2"
+        android:name="br.com.example.maratonasamsung.tutoriaisRegras.RulesFragment2"
         android:label="RulesFragment2">
         <action
             android:id="@+id/action_rulesFragment2_to_mainFragment"
             app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/agentsFragment"
+        android:name="br.com.example.maratonasamsung.modoEstudo.AgentsFragment"
+        android:label="AgentsFragment" >
+        <action
+            android:id="@+id/action_agentsFragment_to_chooseFragment"
+            app:destination="@id/chooseFragment" />
     </fragment>
 </navigation>
 

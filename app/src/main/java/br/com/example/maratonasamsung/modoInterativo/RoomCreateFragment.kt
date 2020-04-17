@@ -13,6 +13,7 @@ import androidx.navigation.Navigation
 import br.com.example.maratonasamsung.R
 import br.com.example.maratonasamsung.model.Requests.JogadorRequest
 import br.com.example.maratonasamsung.model.Requests.SalaRequest
+import br.com.example.maratonasamsung.model.Responses.Doenca
 import br.com.example.maratonasamsung.model.Responses.JogadorResponse
 import br.com.example.maratonasamsung.model.Responses.SalaResponse
 import br.com.example.maratonasamsung.model.Responses.SessaoResponse
@@ -21,6 +22,8 @@ import kotlinx.android.synthetic.main.fragment_room_create.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class RoomCreateFragment : Fragment(), View.OnClickListener {
@@ -45,7 +48,7 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
         when(v!!.id){
             R.id.createBtnCriarSala -> {
                 if(createEditUsuario.text.toString() == "" || createEditNomeSala.text.toString() == "" || createEditSenha.text.toString() == "") {
-                    var texto = "Preencha todos os campos obrigatórios"
+                    val texto = "Preencha todos os campos obrigatórios"
                     val duracao = Toast.LENGTH_SHORT
                     val toast = Toast.makeText(context, texto, duracao)
                     toast.show()
@@ -72,7 +75,7 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
                 val sala = response.body()
 
                 if(!sala!!.status) {
-                    var texto = "Nome da sala já existente"
+                    val texto = "Nome da sala já existente"
                     val duracao = Toast.LENGTH_SHORT
                     val toast = Toast.makeText(context, texto, duracao)
                     toast.show()
@@ -81,13 +84,13 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
 
                 }
                 else
-                    sessao(sala!!.nome, sala!!.senha)
+                    cadastrarSessao(sala!!.nome, sala!!.senha)
             }
         })
     }
 
-    fun sessao(nome: String, senha: String) {
-        Service.retrofit.sessao(
+    fun cadastrarSessao(nome: String, senha: String) {
+        Service.retrofit.cadastrarSessao(
             sala = SalaRequest(
                 nome = nome,
                 senha = senha
@@ -101,12 +104,20 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
                 Log.d("Nice", response.toString())
 
                 val sessao = response.body()
-                jogadorNovo(sessao!!.id_sessao)
+
+                val doencas: ArrayList<String> = arrayListOf("")
+                sessao?.doencas!!.forEach { doencas.add((it.nome)) }
+
+                val parametros = Bundle()
+                parametros.putInt("id", sessao.id_sessao)
+                parametros.putStringArrayList("doencas", doencas)
+
+                jogadorNovo(sessao.id_sessao, parametros)
             }
         })
     }
 
-    fun jogadorNovo(id: Int){
+    fun jogadorNovo(id: Int, parametros: Bundle){
         Service.retrofit.jogadorNovo(
             jogador = JogadorRequest(
                 id_sessao = id,
@@ -120,7 +131,7 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
             override fun onResponse(call: Call<JogadorResponse>, response: Response<JogadorResponse>) {
                 Log.d("Nice", response.toString())
 
-                navController!!.navigate(R.id.action_roomCreateFragment_to_roomDiqueiroFragment)
+                navController!!.navigate(R.id.action_roomCreateFragment_to_roomDiqueiroDoencaFragment, parametros)
             }
         })
     }

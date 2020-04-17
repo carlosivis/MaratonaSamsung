@@ -2,6 +2,7 @@
 <resources>
     <array name="preloaded_fonts" translatable="false">
         <item>@font/anaheim</item>
+        <item>@font/anaheim</item>
         <item>@font/delius</item>
         <item>@font/yantramanav_thin</item>
     </array>

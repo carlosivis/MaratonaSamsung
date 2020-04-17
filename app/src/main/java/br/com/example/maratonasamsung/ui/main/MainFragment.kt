@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import br.com.example.maratonasamsung.R
+import br.com.example.maratonasamsung.tutoriaisRegras.TutorialActivity
 
 class MainFragment : Fragment(), View.OnClickListener {
 
@@ -36,7 +37,7 @@ class MainFragment : Fragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         when(v!!.id){
             R.id.btnModoInterativo -> navController!!.navigate(R.id.action_mainFragment_to_roomTypekFragment)
-            R.id.btnModoEstudo -> navController!!.navigate(R.id.action_mainFragment_to_chooseFragment)
+            R.id.btnModoEstudo -> navController!!.navigate(R.id.action_mainFragment_to_agentsFragment)
             R.id.btnTutorial -> startActivity(Intent(activity, TutorialActivity::class.java))
             R.id.btnRegras -> {
                 navController!!.navigate(R.id.action_mainFragment_to_rulesFragment)

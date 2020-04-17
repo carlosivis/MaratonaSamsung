@@ -13,25 +13,30 @@ interface InterfaceRetrofit {
     @GET("/sala/{nome}")
     fun acessarSala(@Path("nome") nome: String): Call<SalaResponse>
 
-    @GET("/doenca")
-    fun doencas(): Call<List<DoencasResponse>>
-
-    @POST("/sessao")
-    fun sessao(@Body sala: SalaRequest): Call<SessaoResponse>
-
+    @GET("/ranking/{id_sessao}")
+    fun ranking(@Path ("id_sessao") id_sessao: Int): Call<RankingResponse>
 
     @POST("/sala")
     fun criarSala(@Body sala: SalaRequest): Call<SalaResponse>
-//
-//    @GET("/sintoma")
-//    fun sintomas(): Call<Sintoma>
-//
-//    @GET("/prevencao")
-//    fun prevencao(): Call<Prevencao>
-//
-//    @GET("/transmicao")
-//    fun transmicao(): Call<Transmicao>
-//
+
+    @POST("/sessao")
+    fun cadastrarSessao(@Body sala: SalaRequest): Call<SessaoResponse>
+
+    @GET("/sessao/{id_sessao}")
+    fun listarSessao(@Body sala: SalaRequest): Call<SessaoResponse>
+
+    @GET("/doenca")
+    fun doencas(): Call<List<DoencasResponse>>
+
+    @GET("/sintomas/{doenca}")
+    fun sintomas(@Path("doenca") doenca: String): Call<Sintomas>
+
+    @GET("/prevencaos/{doenca}")
+    fun prevencoes(@Path("doenca") doenca: String): Call<Prevencoes>
+
+    @GET("/transmicaos/{doenca}")
+    fun transmicoes(@Path("doenca") doenca: String): Call<Transmicoes>
+
 //    @GET("/jogador")
 //    fun jogador(): Call<JogadorResponse>
 

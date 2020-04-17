@@ -15,7 +15,6 @@ import br.com.example.maratonasamsung.model.Requests.JogadorRequest
 import br.com.example.maratonasamsung.model.Responses.JogadorResponse
 import br.com.example.maratonasamsung.service.Service
 import kotlinx.android.synthetic.main.fragment_room_acess_name.*
-import kotlinx.android.synthetic.main.fragment_room_create.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -40,23 +39,23 @@ class RoomAcessNameFragment : Fragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         when(v!!.id){
             R.id.acessnameBtnAcessarSala -> {
-                val id = arguments!!.getInt("id")
+                val id_sessao = arguments!!.getInt("id")
                 if(acessnameEditUsuario.text.toString() == "") {
-                    var texto = "Preencha todos os campos obrigatórios"
+                    val texto = "Preencha todos os campos obrigatórios"
                     val duracao = Toast.LENGTH_SHORT
                     val toast = Toast.makeText(context, texto, duracao)
                     toast.show()
                 }
                 else
-                    jogadorNovo(id)
+                    jogadorNovo(id_sessao)
             }
         }
     }
 
-    fun jogadorNovo(id: Int){
+    fun jogadorNovo(id_sessao: Int){
         Service.retrofit.jogadorNovo(
             jogador = JogadorRequest(
-                id_sessao = id,
+                id_sessao = id_sessao,
                 nome = acessnameEditUsuario.text.toString()
             )
         ).enqueue(object : Callback<JogadorResponse> {
@@ -70,14 +69,20 @@ class RoomAcessNameFragment : Fragment(), View.OnClickListener {
                 val jogador = response.body()
 
                 if(!jogador!!.status) {
-                    var texto = "Nome de usuário já existente nesta sala"
+                    val texto = "Nome de usuário já existente nesta sala"
                     val duracao = Toast.LENGTH_SHORT
                     val toast = Toast.makeText(context, texto, duracao)
                     toast.show()
                     acessnameEditUsuario.setText("")
                 }
-                else
-                    navController!!.navigate(R.id.action_roomAcessNameFragment_to_roomAdivinhadorFragment)
+                else {
+                    val doencas = arguments!!.getStringArrayList("doencas")
+
+                    val parametros = Bundle()
+                    parametros.putInt("id", id_sessao)
+                    parametros.putStringArrayList("doencas", doencas)
+                    navController!!.navigate(R.id.action_roomAcessNameFragment_to_roomAdivinhadorFragment, parametros)
+                }
             }
         })
     }
