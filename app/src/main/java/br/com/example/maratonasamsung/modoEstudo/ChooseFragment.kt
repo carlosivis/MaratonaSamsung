@@ -1,13 +1,16 @@
 package br.com.example.maratonasamsung.modoEstudo
 
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.system.Os.bind
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewAnimationUtils
 import android.view.ViewGroup
+import androidx.activity.addCallback
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
@@ -31,6 +34,7 @@ class ChooseFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         retainInstance = true
+
     }
 
     override fun onCreateView(

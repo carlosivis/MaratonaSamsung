@@ -17,6 +17,7 @@ import androidx.navigation.Navigation
 import br.com.example.maratonasamsung.R
 import br.com.example.maratonasamsung.modoInterativo.RoomAdivinhadorFragment
 import br.com.example.maratonasamsung.tutoriaisRegras.TutorialActivity
+import kotlinx.android.synthetic.main.fragment_room_adivinhador.*
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     var navController: NavController? = null
