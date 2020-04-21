@@ -12,4 +12,4 @@ data class DoencasResponse(
     val prevencao: List<Prevencao>,
     val sintomas: List<Sintoma>,
     var tipo: String
-)
+):Serializable

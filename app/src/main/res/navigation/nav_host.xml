@@ -82,6 +82,9 @@
         <action
             android:id="@+id/action_roomAdivinhadorFragment_to_roomDiqueiroDoencaFragment"
             app:destination="@id/roomDiqueiroDoencaFragment" />
+        <action
+            android:id="@+id/action_roomAdivinhadorFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
     </fragment>
     <fragment
         android:id="@+id/chooseFragment"
@@ -91,6 +94,9 @@
         <action
             android:id="@+id/action_chooseFragment_to_itemChooseFragment"
             app:destination="@id/itemChooseFragment" />
+        <argument
+            android:name="self"
+            app:argType="br.com.example.maratonasamsung.model.Responses.DoencasResponse" />
     </fragment>
     <fragment
         android:id="@+id/rulesFragment"
