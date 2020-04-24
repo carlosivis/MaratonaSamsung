@@ -1,6 +1,5 @@
 package br.com.example.maratonasamsung.ui.main
 
-import android.app.Activity
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -8,16 +7,13 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import br.com.example.maratonasamsung.R
 import br.com.example.maratonasamsung.modoInterativo.RoomAdivinhadorFragment
 import br.com.example.maratonasamsung.tutoriaisRegras.TutorialActivity
-import kotlinx.android.synthetic.main.fragment_room_adivinhador.*
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     var navController: NavController? = null
@@ -32,6 +28,18 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 //        val toolbar: Toolbar = findViewById(R.id.toolbar)
 //        toolbar.title = ""
 //        setSupportActionBar(toolbar)
+
+        /*Caso precise colocar a toolbar de novo (colocar no xml):
+        <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:theme="@style/ToolbarTheme"
+        app:menu="@menu/menu" />
+         */
     }
 
     override fun onResume() {
