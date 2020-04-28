@@ -40,7 +40,7 @@ class RoomAdivinhadorFragment :  Fragment() {
             activity?.let {
                 AlertDialog.Builder(it)
                     .setTitle("Quer mesmo sair?")
-                    .setMessage("Ao aceitar você ira sair da sala\n Tem certeza?")
+                    .setMessage("Ao aceitar você sairá da sala!\n Tem certeza?")
                     .setPositiveButton(android.R.string.ok) { dialog, which ->
                         navController!!.navigate(R.id.mainFragment)
                     }

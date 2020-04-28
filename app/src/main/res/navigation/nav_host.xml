@@ -14,11 +14,11 @@
             android:id="@+id/action_mainFragment_to_roomTypekFragment"
             app:destination="@id/roomTypekFragment" />
         <action
-            android:id="@+id/action_mainFragment_to_rulesFragment"
-            app:destination="@id/rulesFragment" />
-        <action
             android:id="@+id/action_mainFragment_to_agentsFragment"
             app:destination="@id/agentsFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_moreFragment"
+            app:destination="@id/moreFragment" />
     </fragment>
     <fragment
         android:id="@+id/roomTypekFragment"
@@ -102,19 +102,7 @@
         android:id="@+id/rulesFragment"
         android:name="br.com.example.maratonasamsung.tutoriaisRegras.RulesFragment"
         android:label="fragment_rules"
-        tools:layout="@layout/fragment_rules">
-        <action
-            android:id="@+id/action_rulesFragment_to_rulesFragment2"
-            app:destination="@id/rulesFragment2" />
-    </fragment>
-    <fragment
-        android:id="@+id/rulesFragment2"
-        android:name="br.com.example.maratonasamsung.tutoriaisRegras.RulesFragment2"
-        android:label="RulesFragment2">
-        <action
-            android:id="@+id/action_rulesFragment2_to_mainFragment"
-            app:destination="@id/mainFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_rules" />
     <fragment
         android:id="@+id/agentsFragment"
         android:name="br.com.example.maratonasamsung.modoEstudo.AgentsFragment"
@@ -128,5 +116,13 @@
         android:name="br.com.example.maratonasamsung.modoEstudo.ItemChooseFragment"
         android:label="fragment_item_choose"
         tools:layout="@layout/fragment_item_choose" />
+    <fragment
+        android:id="@+id/moreFragment"
+        android:name="br.com.example.maratonasamsung.ui.main.MoreFragment"
+        android:label="MoreFragment">
+        <action
+            android:id="@+id/action_moreFragment_to_rulesFragment"
+            app:destination="@id/rulesFragment" />
+    </fragment>
 </navigation>
 

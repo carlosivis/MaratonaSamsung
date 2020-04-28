@@ -2,12 +2,10 @@ package br.com.example.maratonasamsung.modoEstudo
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.NavArgs
-import androidx.navigation.NavController
+import androidx.fragment.app.Fragment
 import br.com.example.maratonasamsung.R
 import br.com.example.maratonasamsung.model.Responses.DoencasResponse
 import kotlinx.android.synthetic.main.fragment_item_choose.*
@@ -30,7 +28,7 @@ class ItemChooseFragment : Fragment() {
         txtAgente.text = "Agente: ${param.agente}"
         txtArraySintoma.text = param.sintomas.joinToString("\n"){ it.nome }
         txtPrevencao.text = param.prevencao.joinToString("\n") { it.nome }
-        txtTipo.text = "Tipo: ${param.tipo}"
+        //txtTipo.text = "Tipo: ${param.tipo}"
     }
 }
 
