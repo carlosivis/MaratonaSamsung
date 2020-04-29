@@ -55,8 +55,8 @@ class RoomAdivinhadorFragment :  Fragment() {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
 
-        val id_sessao = arguments!!.getInt("id")
-        val doencas = arguments!!.getStringArrayList("doencas")
+        val id_sessao = requireArguments().getInt("id")
+        val doencas = requireArguments().getStringArrayList("doencas")
 
         doencas!!.toMutableList()
         context?.let {

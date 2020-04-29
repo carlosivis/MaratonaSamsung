@@ -2,12 +2,12 @@ package br.com.example.maratonasamsung.modoInterativo
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import br.com.example.maratonasamsung.R
@@ -66,8 +66,8 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
 
                 val sala = response.body()
                 if(sala!!.status) {
-                    if (sala!!.senha == acessEditSenha.text.toString())
-                        cadastrarSessao(sala!!.nome, sala!!.senha)
+                    if (sala.senha == acessEditSenha.text.toString())
+                        cadastrarSessao(sala.nome, sala.senha)
                     else {
                         val texto = "Senha inválida"
                         val duracao = Toast.LENGTH_SHORT
@@ -107,7 +107,7 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
                 sessao?.doencas!!.forEach { doencas.add((it.nome)) }
 
                 val parametros = Bundle()
-                parametros.putInt("id", sessao!!.id_sessao)
+                parametros.putInt("id", sessao.id_sessao)
                 parametros.putStringArrayList("doencas", doencas)
                 navController!!.navigate(R.id.action_roomAcessFragment_to_roomAcessNameFragment, parametros)
             }

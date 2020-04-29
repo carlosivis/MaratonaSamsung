@@ -1,11 +1,5 @@
 package br.com.example.maratonasamsung.service
 
-import android.util.Log
-import br.com.example.maratonasamsung.model.Responses.JogadorResponse
-import br.com.example.maratonasamsung.model.Responses.Sintoma
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 //
 //fun doencas() {
 //    Service.retrofit.jogador().enqueue(object : Callback<JogadorResponse> {

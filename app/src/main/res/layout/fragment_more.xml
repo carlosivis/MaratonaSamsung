@@ -21,10 +21,9 @@
                 android:id="@+id/btnTutorial"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
                 android:background="@drawable/roundbutton"
                 android:ems="9"
-                android:text="Rever introdução"
+                android:text="@string/reverInt"
                 android:textSize="18sp" />
 
             <Button
@@ -34,10 +33,8 @@
                 android:layout_marginTop="30dp"
                 android:background="@drawable/roundbutton"
                 android:ems="9"
-                android:text="Regras e pontuação"
+                android:text="@string/regrasPont"
                 android:textSize="18sp" />
-
-
         </LinearLayout>
     </RelativeLayout>
 
@@ -47,13 +44,14 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginRight="30dp"
+        android:layout_marginEnd="30dp"
         android:layout_marginBottom="30dp"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
         android:src="@drawable/logo"
         android:visibility="visible"
         tools:layout_editor_absoluteX="233dp"
+        android:contentDescription="@string/imgLupa"
         tools:layout_editor_absoluteY="496dp" />
 
 

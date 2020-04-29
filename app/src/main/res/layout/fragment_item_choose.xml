@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:clickable="true"
     android:orientation="horizontal"
+    android:focusable="true"
     android:padding="8dp">
 
     <TextView
@@ -16,7 +17,7 @@
         android:layout_centerHorizontal="true"
         android:layout_margin="30dp"
         android:layout_marginBottom="50dp"
-        android:textSize="25dp"
+        android:textSize="25sp"
         tools:text="MALARIA" />
 
     <ScrollView
@@ -37,45 +38,41 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:text="Agente"
-                android:textSize="18dp" />
+                android:text="@string/agente"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/txtStaticSintomas"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/txtAgente"
                 android:layout_marginBottom="10dp"
                 android:gravity="center"
-                android:text="Sintomas"
-                android:textSize="23dp" />
+                android:text="@string/sintomas"
+                android:textSize="23sp" />
 
             <TextView
                 android:id="@+id/txtArraySintoma"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/txtStaticSintomas"
                 android:layout_marginBottom="30dp"
-                android:textSize="18dp"
+                android:textSize="18sp"
                 tools:text="Sintoma X" />
 
             <TextView
                 android:id="@+id/txtStaticPrevencao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/txtArraySintoma"
                 android:layout_marginBottom="10dp"
                 android:gravity="center"
-                android:text="Prevenção"
-                android:textSize="23dp" />
+                android:text="@string/prevencao"
+                android:textSize="23sp" />
 
             <TextView
                 android:id="@+id/txtPrevencao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/txtStaticPrevencao"
                 android:layout_marginTop="15dp"
-                android:textSize="18dp"
+                android:textSize="18sp"
                 tools:text="Item de prevencao" />
 
         </TableLayout>

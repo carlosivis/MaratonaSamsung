@@ -23,6 +23,9 @@
     <EditText
         android:id="@+id/acessEditNomeSala"
         style="@style/textViewStyle"
+        android:autofillHints="@string/nomeSala"
+        android:contentDescription="@string/nomeSala"
+        android:labelFor="@string/nomeSala"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -80,6 +83,9 @@
 
     <EditText
         android:id="@+id/acessEditSenha"
+        android:autofillHints="@string/senha"
+        android:contentDescription="@string/senha"
+        android:labelFor="@string/senha"
         style="@style/textViewStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

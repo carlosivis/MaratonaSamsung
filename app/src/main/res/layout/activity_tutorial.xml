@@ -7,60 +7,50 @@
     android:layout_width="match_parent"
     tools:context=".tutoriaisRegras.TutorialActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/fragment_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="77dp"
-            android:layout_marginBottom="40dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
             android:text="@string/welcome"
             android:gravity="center"
-            android:textSize="30sp"
-            app:layout_constraintBottom_toTopOf="@+id/imageView"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/fragment_title2"
-            android:layout_width="326dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:justificationMode="inter_word"
-            android:text="@string/welcomeText"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.495"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView"
-            app:layout_constraintVertical_bias="0.0" />
+            android:textSize="35sp" />
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="170dp"
-            android:layout_height="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/fragment_title2"
+            android:layout_below="@id/fragment_title"
             android:layout_centerInParent="true"
-            android:layout_marginBottom="307dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_title"
+            android:layout_marginStart="70dp"
+            android:layout_marginEnd="70dp"
+            android:contentDescription="@string/abraco"
             app:srcCompat="@drawable/friendship" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/fragment_title2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/button_layout"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:justificationMode="inter_word"
+        android:text="@string/welcomeText"
+        android:textSize="20sp" />
 
     <RelativeLayout
         android:id="@+id/button_layout"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
+        android:layout_marginTop="40dp"
         android:layout_alignParentBottom="true">
 
         <TextView
@@ -77,11 +67,11 @@
             android:layout_width="60dp"
             android:layout_height="55dp"
             android:onClick="onClick"
-            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
             android:src="@drawable/ic_arrow_right"
             android:layout_alignParentEnd="true"
             android:background="@null"
-            />
+            android:contentDescription="Seta para a direita" />
     </RelativeLayout>
 
 </RelativeLayout>
