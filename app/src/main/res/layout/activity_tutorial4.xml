@@ -60,13 +60,13 @@
 
         <Button
             android:id="@+id/btn_end"
-            android:layout_width="60dp"
-            android:layout_height="55dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:onClick="onClick"
             android:layout_marginEnd="10dp"
             android:background="@drawable/border"
             android:layout_alignParentEnd="true"
-            android:text="FIM" />
+            android:text=" FIM " />
     </RelativeLayout>
 
 </RelativeLayout>
