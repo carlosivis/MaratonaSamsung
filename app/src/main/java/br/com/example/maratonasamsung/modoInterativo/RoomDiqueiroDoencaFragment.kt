@@ -32,7 +32,7 @@ class RoomDiqueiroDoencaFragment : Fragment(), View.OnClickListener {
         navController = Navigation.findNavController(view)
         view.findViewById<Button>(R.id.diqueiroBtnDoenca).setOnClickListener(this)
 
-        val doencas = arguments!!.getStringArrayList("doencas")
+        val doencas = requireArguments().getStringArrayList("doencas")
 
         doencas!!.toMutableList()
         context?.let {
@@ -53,7 +53,7 @@ class RoomDiqueiroDoencaFragment : Fragment(), View.OnClickListener {
                     toast.show()
                 }
                 else {
-                    val id_sessao = arguments!!.getInt("id")
+                    val id_sessao = requireArguments().getInt("id")
 
                     val parametros = Bundle()
                     parametros.putInt("id", id_sessao)

@@ -40,7 +40,7 @@ class RoomAdivinhadorFragment :  Fragment() {
             activity?.let {
                 AlertDialog.Builder(it)
                     .setTitle("Quer mesmo sair?")
-                    .setMessage("Ao aceitar você ira sair da sala\n Tem certeza?")
+                    .setMessage("Ao aceitar você sairá da sala!\n Tem certeza?")
                     .setPositiveButton(android.R.string.ok) { dialog, which ->
                         navController!!.navigate(R.id.mainFragment)
                     }
@@ -55,8 +55,8 @@ class RoomAdivinhadorFragment :  Fragment() {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
 
-        val id_sessao = arguments!!.getInt("id")
-        val doencas = arguments!!.getStringArrayList("doencas")
+        val id_sessao = requireArguments().getInt("id")
+        val doencas = requireArguments().getStringArrayList("doencas")
 
         doencas!!.toMutableList()
         context?.let {

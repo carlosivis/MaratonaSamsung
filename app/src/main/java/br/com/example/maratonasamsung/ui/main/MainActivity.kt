@@ -75,7 +75,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         if(gameFragment is RoomAdivinhadorFragment) {
             AlertDialog.Builder(this)
                 .setTitle("Quer mesmo sair?")
-                .setMessage("Ao aceitar você sairá da sala\n Tem certeza?")
+                .setMessage("Ao aceitar você sairá da sala!\nTem certeza?")
                 .setPositiveButton(android.R.string.ok) { dialog, which ->
                     Navigation.createNavigateOnClickListener(R.id.action_roomAdivinhadorFragment_to_mainFragment)
                     super.onBackPressed()
@@ -87,6 +87,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             super.onBackPressed()
         }
     }
+
+
     override fun onClick(v: View?) {
         when(v!!.id){
             R.id.txtDoencaNomeLista -> navController!!.navigate(R.id.action_chooseFragment_to_itemChooseFragment)

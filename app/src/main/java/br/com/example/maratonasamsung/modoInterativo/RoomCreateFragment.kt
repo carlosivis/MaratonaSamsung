@@ -13,7 +13,6 @@ import androidx.navigation.Navigation
 import br.com.example.maratonasamsung.R
 import br.com.example.maratonasamsung.model.Requests.JogadorRequest
 import br.com.example.maratonasamsung.model.Requests.SalaRequest
-import br.com.example.maratonasamsung.model.Responses.Doenca
 import br.com.example.maratonasamsung.model.Responses.JogadorResponse
 import br.com.example.maratonasamsung.model.Responses.SalaResponse
 import br.com.example.maratonasamsung.model.Responses.SessaoResponse
@@ -22,8 +21,6 @@ import kotlinx.android.synthetic.main.fragment_room_create.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.*
-import kotlin.collections.ArrayList
 
 
 class RoomCreateFragment : Fragment(), View.OnClickListener {
@@ -84,7 +81,7 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
 
                 }
                 else
-                    cadastrarSessao(sala!!.nome, sala!!.senha)
+                    cadastrarSessao(sala.nome, sala.senha)
             }
         })
     }

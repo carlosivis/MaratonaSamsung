@@ -29,6 +29,9 @@
 
     <EditText
         android:id="@+id/createEditNomeSala"
+        android:autofillHints="@string/nomeSala"
+        android:contentDescription="@string/nomeSala"
+        android:labelFor="@string/nomeSala"
         style="@style/textViewStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -56,6 +59,7 @@
 
     <EditText
         android:id="@+id/createEditSenha"
+        android:contentDescription="@string/senha"
         style="@style/textViewStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -103,6 +107,7 @@
 
     <EditText
         android:id="@+id/createEditUsuario"
+        android:contentDescription="@string/nomeUser"
         style="@style/textViewStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

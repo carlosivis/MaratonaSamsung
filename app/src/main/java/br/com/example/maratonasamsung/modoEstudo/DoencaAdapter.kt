@@ -1,18 +1,14 @@
 package br.com.example.maratonasamsung.modoEstudo
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
-import androidx.navigation.*
-import androidx.navigation.fragment.FragmentNavigatorExtras
-
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import br.com.example.maratonasamsung.R
 import br.com.example.maratonasamsung.model.Responses.DoencasResponse
-import kotlinx.android.synthetic.main.recycler_view_listadoencas.view.txtDoencaNomeLista
+import kotlinx.android.synthetic.main.recycler_view_listadoencas.view.*
 
 class DoencaAdapter(
     private val list: List<DoencasResponse>?):  RecyclerView.Adapter<DoencaAdapter.DoencaViewHolder>() {

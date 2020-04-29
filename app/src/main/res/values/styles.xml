@@ -1,8 +1,7 @@
 <resources>
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
-        <!-- Customize your theme here. -->
-
+        <item name="colorBackgroundFloating">@color/colorDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:colorBackground">@color/colorBackground</item>
         <item name="android:textColor">@color/colorText</item>
@@ -11,6 +10,10 @@
         <item name="android:textViewStyle">@style/textViewStyle</item>
         <item name="android:buttonStyle">@style/buttonStyle</item>
         <item name="android:textSize">20sp</item>
+        <item name="android:textAppearanceSmall">@style/textViewStyle</item>
+        <item name="android:textAppearanceMedium">@style/textViewStyle</item>
+        <item name="android:textAppearanceLarge">@style/textViewStyle</item>
+        <item name="dialogCornerRadius">10dp</item>
     </style>
 
     <style name="textViewStyle" parent="android:Widget.TextView">

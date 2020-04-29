@@ -18,44 +18,23 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/btnModoEstudo"
+                android:id="@+id/btnTutorial"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/roundbutton"
                 android:ems="9"
-                android:shadowColor="#FFFFFF"
-                android:text="@string/estudo"
+                android:text="@string/reverInt"
                 android:textSize="18sp" />
 
             <Button
-                android:id="@+id/btnModoInterativo"
+                android:id="@+id/btnRegras"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:background="@drawable/roundbutton"
                 android:ems="9"
-                android:text="@string/interativo"
+                android:text="@string/regrasPont"
                 android:textSize="18sp" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="30dp"
-                android:contentDescription="@string/imgMore"
-                android:src="@drawable/ic_more" />
-
-            <Button
-                android:id="@+id/btnMais"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/roundbutton"
-                android:ems="9"
-                android:text="@string/config"
-                android:textSize="18sp" />
-
-
         </LinearLayout>
     </RelativeLayout>
 
