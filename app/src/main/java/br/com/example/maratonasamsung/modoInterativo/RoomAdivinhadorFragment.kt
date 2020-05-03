@@ -39,8 +39,8 @@ class RoomAdivinhadorFragment :  Fragment() {
         val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
             activity?.let {
                 AlertDialog.Builder(it)
-                    .setTitle("Quer mesmo sair?")
-                    .setMessage("Ao aceitar você sairá da sala!\n Tem certeza?")
+                    .setTitle("Você deseja sair do jogo?")
+                    .setMessage("Ao aceitar você sairá da sala e perderá toda a sua pontuação.")
                     .setPositiveButton(android.R.string.ok) { dialog, which ->
                         navController!!.navigate(R.id.mainFragment)
                     }
