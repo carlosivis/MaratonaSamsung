@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import androidx.activity.addCallback
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -28,18 +30,33 @@ class RoomAdivinhadorFragment :  Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_room_adivinhador, container, false)
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
+            activity?.let {
+                AlertDialog.Builder(it)
+                    .setTitle("Quer mesmo sair?")
+                    .setMessage("Ao aceitar você sairá da sala!\n Tem certeza?")
+                    .setPositiveButton(android.R.string.ok) { dialog, which ->
+                        navController!!.navigate(R.id.mainFragment)
+                    }
+                    .setNegativeButton(android.R.string.cancel) { dialog, which -> }
+                    .show()
+            }
+        }
+        callback
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
 
-        val id_sessao = arguments!!.getInt("id")
-        val doencas = arguments!!.getStringArrayList("doencas")
+        val id_sessao = requireArguments().getInt("id")
+        val doencas = requireArguments().getStringArrayList("doencas")
 
         doencas!!.toMutableList()
         context?.let {
@@ -67,4 +84,5 @@ class RoomAdivinhadorFragment :  Fragment() {
             }
         })
     }
+
 }

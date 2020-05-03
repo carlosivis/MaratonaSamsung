@@ -13,11 +13,12 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.example.maratonasamsung.R
-import br.com.example.maratonasamsung.model.Responses.*
+import br.com.example.maratonasamsung.model.Responses.Prevencoes
+import br.com.example.maratonasamsung.model.Responses.RankingResponse
+import br.com.example.maratonasamsung.model.Responses.Sintomas
+import br.com.example.maratonasamsung.model.Responses.Transmicoes
 import br.com.example.maratonasamsung.service.Service
-import kotlinx.android.synthetic.main.fragment_room_adivinhador.*
 import kotlinx.android.synthetic.main.fragment_room_diqueiro_dicas.*
-import kotlinx.android.synthetic.main.fragment_room_diqueiro_dicas.recyclerRanking
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -41,8 +42,8 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
         navController = Navigation.findNavController(view)
         view.findViewById<Button>(R.id.diqueiroBtnDicas).setOnClickListener(this)
 
-        val id_sessao = arguments!!.getInt("id")
-        val doenca: String = arguments!!.getString("doenca").toString()
+        val id_sessao = requireArguments().getInt("id")
+        val doenca: String = requireArguments().getString("doenca").toString()
 
         ranking(id_sessao)
 

@@ -1,5 +1,6 @@
-package br.com.example.maratonasamsung.tutoriaisRegras
+package br.com.example.maratonasamsung.ui.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,11 +10,12 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import br.com.example.maratonasamsung.R
+import br.com.example.maratonasamsung.tutoriaisRegras.TutorialActivity
 
 /**
  * A simple [Fragment] subclass.
  */
-class RulesFragment2 : Fragment(), View.OnClickListener {
+class MoreFragment : Fragment(), View.OnClickListener {
 
     var navController: NavController? = null
 
@@ -22,18 +24,22 @@ class RulesFragment2 : Fragment(), View.OnClickListener {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_rules2, container, false)
+        return inflater.inflate(R.layout.fragment_more, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
-        view.findViewById<Button>(R.id.btn_end).setOnClickListener(this)
+        view.findViewById<Button>(R.id.btnTutorial).setOnClickListener(this)
+        view.findViewById<Button>(R.id.btnRegras).setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
         when (v!!.id) {
-            R.id.btn_end -> navController!!.navigate(R.id.action_rulesFragment2_to_mainFragment)
+            R.id.btnTutorial -> startActivity(Intent(activity, TutorialActivity::class.java))
+            R.id.btnRegras -> {
+                navController!!.navigate(R.id.action_moreFragment_to_rulesFragment)
+            }
         }
     }
 }

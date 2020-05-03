@@ -1,8 +1,7 @@
 <resources>
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
-        <!-- Customize your theme here. -->
-
+        <item name="colorBackgroundFloating">@color/colorDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:colorBackground">@color/colorBackground</item>
         <item name="android:textColor">@color/colorText</item>
@@ -11,15 +10,21 @@
         <item name="android:textViewStyle">@style/textViewStyle</item>
         <item name="android:buttonStyle">@style/buttonStyle</item>
         <item name="android:textSize">20sp</item>
+        <item name="android:textAppearanceSmall">@style/textViewStyle</item>
+        <item name="android:textAppearanceMedium">@style/textViewStyle</item>
+        <item name="android:textAppearanceLarge">@style/textViewStyle</item>
+        <item name="dialogCornerRadius">10dp</item>
     </style>
 
     <style name="textViewStyle" parent="android:Widget.TextView">
         <item name="android:fontFamily">@font/lanehum</item>
+        <item name="android:letterSpacing">0.1</item>
     </style>
 
     <style name="buttonStyle" parent="android:Widget.Holo.Button">
         <item name="android:fontFamily">@font/lanehum</item>
         <item name="android:textAllCaps">false</item>
+        <item name="android:letterSpacing">0.1</item>
     </style>
 
 
@@ -29,12 +34,14 @@
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/colorText</item>
         <item name="android:textAllCaps">false</item>
+        <item name="android:letterSpacing">0.1</item>
     </style>
 
     <style name="spinnerTheme">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:popupBackground">@color/colorDark</item>
+        <item name="android:letterSpacing">0.1</item>
     </style>
 
 

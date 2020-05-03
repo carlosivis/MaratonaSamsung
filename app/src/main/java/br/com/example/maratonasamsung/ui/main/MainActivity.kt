@@ -7,9 +7,12 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import br.com.example.maratonasamsung.R
+import br.com.example.maratonasamsung.modoInterativo.RoomAdivinhadorFragment
 import br.com.example.maratonasamsung.tutoriaisRegras.TutorialActivity
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
@@ -25,6 +28,18 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 //        val toolbar: Toolbar = findViewById(R.id.toolbar)
 //        toolbar.title = ""
 //        setSupportActionBar(toolbar)
+
+        /*Caso precise colocar a toolbar de novo (colocar no xml):
+        <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:theme="@style/ToolbarTheme"
+        app:menu="@menu/menu" />
+         */
     }
 
     override fun onResume() {
@@ -54,6 +69,25 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             else -> return super.onOptionsItemSelected(item)
         }
     }
+
+    override fun onBackPressed() {
+        val gameFragment = supportFragmentManager.findFragmentById(R.id.roomAdivinhadorFragment)
+        if(gameFragment is RoomAdivinhadorFragment) {
+            AlertDialog.Builder(this)
+                .setTitle("Quer mesmo sair?")
+                .setMessage("Ao aceitar você sairá da sala!\nTem certeza?")
+                .setPositiveButton(android.R.string.ok) { dialog, which ->
+                    Navigation.createNavigateOnClickListener(R.id.action_roomAdivinhadorFragment_to_mainFragment)
+                    super.onBackPressed()
+                }
+                .setNegativeButton(android.R.string.cancel) { dialog, which -> }
+                .show()
+        }
+        else{
+            super.onBackPressed()
+        }
+    }
+
 
     override fun onClick(v: View?) {
         when(v!!.id){

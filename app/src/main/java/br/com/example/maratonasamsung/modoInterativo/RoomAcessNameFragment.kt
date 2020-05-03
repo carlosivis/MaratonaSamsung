@@ -39,7 +39,7 @@ class RoomAcessNameFragment : Fragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         when(v!!.id){
             R.id.acessnameBtnAcessarSala -> {
-                val id_sessao = arguments!!.getInt("id")
+                val id_sessao = requireArguments().getInt("id")
                 if(acessnameEditUsuario.text.toString() == "") {
                     val texto = "Preencha todos os campos obrigatórios"
                     val duracao = Toast.LENGTH_SHORT

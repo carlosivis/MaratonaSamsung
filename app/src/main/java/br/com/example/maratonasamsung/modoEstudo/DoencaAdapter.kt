@@ -1,20 +1,18 @@
 package br.com.example.maratonasamsung.modoEstudo
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
-import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import br.com.example.maratonasamsung.R
 import br.com.example.maratonasamsung.model.Responses.DoencasResponse
-import kotlinx.android.synthetic.main.recycler_view_listadoencas.view.txtDoencaNomeLista
-import kotlinx.coroutines.joinAll
+import kotlinx.android.synthetic.main.recycler_view_listadoencas.view.*
 
 class DoencaAdapter(
     private val list: List<DoencasResponse>?):  RecyclerView.Adapter<DoencaAdapter.DoencaViewHolder>() {
+
 
     class DoencaViewHolder(inflater: LayoutInflater, parent: ViewGroup) : RecyclerView.ViewHolder(
         inflater.inflate(
@@ -22,16 +20,14 @@ class DoencaAdapter(
             parent,
             false)
     ) {
-
         fun bind(doencas: DoencasResponse) {
-            Log.d("Self Doenca :", doencas.toString())
             itemView.txtDoencaNomeLista?.text = doencas.nome
-                itemView.txtDoencaNomeLista.setOnClickListener{
-                    val parametros =  Bundle()
-                    parametros.putString("selfDoenca", doencas.nome)
-                    Navigation.createNavigateOnClickListener(R.id.action_chooseFragment_to_itemChooseFragment
-                    , parametros)
-                    .onClick(itemView)}
+            itemView.txtDoencaNomeLista.setOnClickListener{
+                var bundle = Bundle()
+                bundle.putSerializable("self", doencas)
+                Log.d("Bundle", bundle.toString())
+                itemView.findNavController().navigate(R.id.itemChooseFragment, bundle)
+            }
         }
     }
 

@@ -3,16 +3,14 @@ package br.com.example.maratonasamsung.modoEstudo
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import br.com.example.maratonasamsung.R
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import br.com.example.maratonasamsung.R
 import br.com.example.maratonasamsung.model.Responses.DoencasResponse
 import br.com.example.maratonasamsung.service.Service
 import kotlinx.android.synthetic.main.fragment_choose.*
@@ -24,11 +22,12 @@ class ChooseFragment : Fragment() {
 
     var navController: NavController? = null
     lateinit var doenca: List<DoencasResponse>
-    lateinit var selfDoencaResponse: DoencasResponse
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         retainInstance = true
+
     }
 
     override fun onCreateView(
@@ -55,7 +54,7 @@ class ChooseFragment : Fragment() {
 
             override fun onResponse(call: Call<List<DoencasResponse>>, response: Response<List<DoencasResponse>>) {
                 Log.d("Sucesso", response.body().toString())
-                doenca =  response!!.body()!!
+                doenca = response.body()!!
                 recyclerDoencas.apply{
                     layoutManager = LinearLayoutManager(activity)
                     adapter = DoencaAdapter(doenca.filter { it.tipo == arguments!!.getString("agenteInfectante") })

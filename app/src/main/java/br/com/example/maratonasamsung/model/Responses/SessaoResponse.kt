@@ -1,7 +1,5 @@
 package br.com.example.maratonasamsung.model.Responses
 
-import java.util.*
-
 data class SessaoResponse(
     val status: Boolean,
     val id_sessao: Int,
