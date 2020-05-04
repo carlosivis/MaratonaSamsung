@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Toast
+import androidx.activity.addCallback
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -25,6 +27,23 @@ class RoomDiqueiroDoencaFragment : Fragment(), View.OnClickListener {
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_room_diqueiro_doenca, container, false)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
+            activity?.let {
+                AlertDialog.Builder(it)
+                    .setTitle("Você deseja sair do jogo?")
+                    .setMessage("Ao aceitar você sairá da sala.")
+                    .setPositiveButton(android.R.string.ok) { dialog, which ->
+                        navController!!.navigate(R.id.mainFragment)
+                    }
+                    .setNegativeButton(android.R.string.cancel) { dialog, which -> }
+                    .show()
+            }
+        }
+        callback
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

@@ -25,62 +25,102 @@
         style="@style/spinnerTheme"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="8dp"
         android:dropDownWidth="wrap_content"
         android:scrollbarSize="4dp"
-        android:layout_marginBottom="90dp"
-        app:layout_constraintTop_toBottomOf="@id/recyclerRanking" />
+        app:layout_constraintStart_toStartOf="@id/diqueiroTxtSintomas"
+        app:layout_constraintTop_toBottomOf="@id/diqueiroTxtSintomas" />
 
     <Spinner
         android:id="@+id/diqueiroSpinnerTransmicao"
         style="@style/spinnerTheme"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="8dp"
         android:dropDownWidth="wrap_content"
         android:scrollbarSize="4dp"
-        android:layout_marginBottom="90dp"
-        app:layout_constraintTop_toBottomOf="@+id/diqueiroSpinnerSintoma" />
+        app:layout_constraintStart_toStartOf="@id/diqueiroTxtSintomas"
+        app:layout_constraintTop_toBottomOf="@id/diqueiroTxtTransmissoes" />
 
     <Spinner
         android:id="@+id/diqueiroSpinnerPrevencao"
         style="@style/spinnerTheme"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="90dp"
-        android:dropDownWidth="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="8dp"
         android:backgroundTint="@color/colorText"
+        android:dropDownWidth="wrap_content"
         android:scrollbarSize="4dp"
-        app:layout_constraintTop_toBottomOf="@id/diqueiroSpinnerTransmicao" />
+        app:layout_constraintStart_toStartOf="@id/diqueiroTxtSintomas"
+        app:layout_constraintTop_toBottomOf="@id/diqueiroTxtPrevencoes" />
 
     <Button
         android:id="@+id/diqueiroBtnDicas"
-        android:background="@drawable/roundbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/roundbutton"
         android:ems="5"
-        android:text="@string/txt_enviar_dica"
+        android:text="@string/btn_enviar_dica"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        tools:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerRanking"
         android:layout_width="324dp"
         android:layout_height="221dp"
-        android:layout_marginTop="200dp"
+        android:background="@drawable/border"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.436"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginBottom="40dp"
-        android:background="@drawable/border"
+        app:layout_constraintVertical_bias="0.22000003"
         tools:listitem="@layout/recycler_view_ranking" />
+
+    <TextView
+        android:id="@+id/diqueiroTxtSintomas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:text="@string/txt_sintomas"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.55" />
+
+    <TextView
+        android:id="@+id/diqueiroTxtPrevencoes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/txt_prevencoes"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@id/diqueiroTxtSintomas"
+        app:layout_constraintTop_toBottomOf="@id/diqueiroSpinnerSintoma" />
+
+    <TextView
+        android:id="@+id/diqueiroTxtTransmissoes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/txt_tranmissoes"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@id/diqueiroTxtSintomas"
+        app:layout_constraintTop_toBottomOf="@id/diqueiroSpinnerPrevencao" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

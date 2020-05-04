@@ -10,6 +10,10 @@
     <string name="btn_acessar">Acessar</string>
     <string name="btn_continuar">Continuar</string>
 
+    <string name="btn_enviar_dica">Enviar dica</string>
+    <string name="btn_enviar_doenca">Continuar</string>
+    <string name="btn_adivinhar">Adivinhar</string>
+
     <string name="txt_modo_interativo">Modo Interativo</string>
     <string name="txt_modo_estudo">Modo Estudo</string>
 
@@ -22,13 +26,12 @@
 
     <string name="txt_jogadores">Jogadores:</string>
     <string name="txt_escolha_doenca">Escolha uma doença:</string>
-    <string name="txt_escolha_doenca_dicas">Escolher dicas</string>
-    <string name="txt_adivinhar">Adivinhar</string>
-    <string name="txt_dicas">Dicas:</string>
-    <string name="txt_sintomas">Sintomas</string>
-    <string name="txt_enviar_dica">Enviar dica</string>
-    <string name="txt_pontos">Rodada valendo: xx pontos</string>
     <string name="txt_resposta">Resposta</string>
+
+    <string name="txt_sintomas">Sintoma(s)</string>
+    <string name="txt_prevencoes">Prevenção(ões)</string>
+    <string name="txt_tranmissoes">Transmissão(ões)</string>
+
 
     <string name="txt_diqueiro">Diqueiro</string>
     <string name="txt_adivinhador">Adivinhador</string>

@@ -29,14 +29,13 @@
 
     <EditText
         android:id="@+id/createEditNomeSala"
-        android:autofillHints="@string/nomeSala"
-        android:contentDescription="@string/nomeSala"
-        android:labelFor="@string/nomeSala"
         style="@style/textViewStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
+        android:autofillHints="@string/nomeSala"
+        android:contentDescription="@string/nomeSala"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="@id/createTxtUsuario"
         app:layout_constraintTop_toBottomOf="@id/createTxtNomeSala" />
@@ -96,23 +95,24 @@
         android:id="@+id/createTxtUsuario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
         android:text="@string/txt_usuario"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.35" />
 
     <EditText
         android:id="@+id/createEditUsuario"
-        android:contentDescription="@string/nomeUser"
         style="@style/textViewStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
+        android:contentDescription="@string/nomeUser"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="@id/createTxtUsuario"
         app:layout_constraintTop_toBottomOf="@id/createTxtUsuario" />
