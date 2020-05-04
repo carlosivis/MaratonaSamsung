@@ -24,6 +24,9 @@ import kotlinx.android.synthetic.main.fragment_room_diqueiro_dicas.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.concurrent.schedule
 
 class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
 
@@ -65,7 +68,6 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
         val doenca: String = requireArguments().getString("doenca").toString()
 
         ranking(id_sessao)
-
         sintomas(doenca)
         prevencoes(doenca)
         transmicoes(doenca)
@@ -74,11 +76,10 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         TODO("Not yet implemented")
     }
-
     fun ranking(id_sessao: Int){
         Service.retrofit.ranking(
             id_sessao = id_sessao
-        ).enqueue(object :Callback<RankingResponse>{
+        ).enqueue(object : Callback<RankingResponse> {
             override fun onFailure(call: Call<RankingResponse>, t: Throwable) {
                 Log.d("Falha ao gerar ranking", t.toString())
             }
@@ -91,8 +92,10 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                 }
             }
         })
+        Timer().schedule(2000) {
+            ranking(id_sessao)
+        }
     }
-
     fun sintomas(doenca: String) {
         Service.retrofit.sintomas(
             doenca = doenca

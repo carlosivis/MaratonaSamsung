@@ -27,21 +27,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(R.layout.main_activity)
         sharedPreferences = getSharedPreferences("faz diferenca", MODE_PRIVATE)
 
-//        val toolbar: Toolbar = findViewById(R.id.toolbar)
-//        toolbar.title = ""
-//        setSupportActionBar(toolbar)
-
-        /*Caso precise colocar a toolbar de novo (colocar no xml):
-        <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:theme="@style/ToolbarTheme"
-        app:menu="@menu/menu" />
-         */
     }
 
     override fun onResume() {
@@ -50,25 +35,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             startActivity(Intent(this, TutorialActivity::class.java))
             editor = sharedPreferences.edit()
             editor.putBoolean("firstRun", false).commit()
-        }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        val inflater: MenuInflater = menuInflater
-        inflater.inflate(R.menu.menu, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.menuTutorial -> {
-                startActivity(Intent(this, TutorialActivity::class.java))
-                return true
-            }
-            R.id.menuConfiguracao -> {
-                return true
-            }
-            else -> return super.onOptionsItemSelected(item)
         }
     }
 
