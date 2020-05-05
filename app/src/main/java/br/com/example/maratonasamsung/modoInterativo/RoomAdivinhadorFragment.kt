@@ -14,7 +14,9 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.example.maratonasamsung.R
+import br.com.example.maratonasamsung.model.Requests.SalaRequest
 import br.com.example.maratonasamsung.model.Responses.RankingResponse
+import br.com.example.maratonasamsung.model.Responses.SessaoResponse
 import br.com.example.maratonasamsung.service.Service
 import kotlinx.android.synthetic.main.fragment_room_adivinhador.*
 import kotlinx.coroutines.delay
@@ -43,12 +45,12 @@ class RoomAdivinhadorFragment :  Fragment() {
         val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
             activity?.let {
                 AlertDialog.Builder(it)
-                    .setTitle("Você deseja sair do jogo?")
-                    .setMessage("Ao aceitar você sairá da sala e perderá toda a sua pontuação.")
-                    .setPositiveButton(android.R.string.ok) { dialog, which ->
+                    .setTitle(R.string.sairJogo)
+                    .setMessage("Ao sair da sala você perderá toda a sua pontuação.")
+                    .setPositiveButton(R.string.sair) { dialog, which ->
                         navController!!.navigate(R.id.mainFragment)
                     }
-                    .setNegativeButton(android.R.string.cancel) { dialog, which -> }
+                    .setNegativeButton(R.string.voltar) { dialog, which -> }
                     .show()
             }
         }

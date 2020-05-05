@@ -1,6 +1,7 @@
 package br.com.example.appacessibilidade
 
 
+import br.com.example.maratonasamsung.model.Requests.EditSessaoRequest
 import br.com.example.maratonasamsung.model.Requests.JogadorRequest
 import br.com.example.maratonasamsung.model.Requests.SalaRequest
 import br.com.example.maratonasamsung.model.Responses.*
@@ -23,7 +24,10 @@ interface InterfaceRetrofit {
     fun cadastrarSessao(@Body sala: SalaRequest): Call<SessaoResponse>
 
     @GET("/sessao/{id_sessao}")
-    fun listarSessao(@Body sala: SalaRequest): Call<SessaoResponse>
+    fun listarSessao(@Path ("id_sessao") id_sessao: Int): Call<SessaoResponseListing>
+
+    @PUT("/sessao/{id_sessao}")
+    fun editarSessao(@Body sessao: EditSessaoRequest): Call<SessaoResponseEditing>
 
     @GET("/doenca")
     fun doencas(): Call<List<DoencasResponse>>
