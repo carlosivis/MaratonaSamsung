@@ -22,21 +22,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(R.layout.main_activity)
         sharedPreferences = getSharedPreferences("faz diferenca", MODE_PRIVATE)
 
-//        val toolbar: Toolbar = findViewById(R.id.toolbar)
-//        toolbar.title = ""
-//        setSupportActionBar(toolbar)
-
-        /*Caso precise colocar a toolbar de novo (colocar no xml):
-        <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:theme="@style/ToolbarTheme"
-        app:menu="@menu/menu" />
-         */
     }
 
     override fun onResume() {
@@ -45,6 +30,46 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             startActivity(Intent(this, TutorialActivity::class.java))
             editor = sharedPreferences.edit()
             editor.putBoolean("firstRun", false).commit()
+        }
+    }
+
+    override fun onBackPressed() {
+        val gameFragment = supportFragmentManager.findFragmentById(R.id.roomAdivinhadorFragment)
+        if(gameFragment is RoomAdivinhadorFragment) {
+            AlertDialog.Builder(this)
+                .setTitle("Você deseja sair do jogo?")
+                .setMessage("Ao aceitar você sairá da sala e perderá toda a sua pontuação.")
+                .setPositiveButton(android.R.string.ok) { dialog, which ->
+                    Navigation.createNavigateOnClickListener(R.id.action_roomAdivinhadorFragment_to_mainFragment)
+                    super.onBackPressed()
+                }
+                .setNegativeButton(android.R.string.cancel) { dialog, which -> }
+                .show()
+        }
+        else if(gameFragment is RoomDiqueiroDoencaFragment) {
+            AlertDialog.Builder(this)
+                .setTitle("Você deseja sair do jogo?")
+                .setMessage("Ao aceitar você sairá da sala.")
+                .setPositiveButton(android.R.string.ok) { dialog, which ->
+                    Navigation.createNavigateOnClickListener(R.id.action_roomAdivinhadorFragment_to_mainFragment)
+                    super.onBackPressed()
+                }
+                .setNegativeButton(android.R.string.cancel) { dialog, which -> }
+                .show()
+        }
+        else if(gameFragment is RoomDiqueiroDicasFragment) {
+            AlertDialog.Builder(this)
+                .setTitle("Você deseja sair do jogo?")
+                .setMessage("Ao aceitar você sairá da sala e perderá toda a sua pontuação.")
+                .setPositiveButton(android.R.string.ok) { dialog, which ->
+                    Navigation.createNavigateOnClickListener(R.id.action_roomAdivinhadorFragment_to_mainFragment)
+                    super.onBackPressed()
+                }
+                .setNegativeButton(android.R.string.cancel) { dialog, which -> }
+                .show()
+        }
+        else {
+            super.onBackPressed()
         }
     }
 
