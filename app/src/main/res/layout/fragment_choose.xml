@@ -3,19 +3,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:layout_marginBottom="20dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".modoEstudo.ChooseFragment">
+
+    <TextView
+        android:id="@+id/txtEstudo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="30dp"
+        android:text="@string/estudo"
+        android:textColor="@color/colorText"
+        android:textSize="30sp" />
 
     <TextView
         android:id="@+id/textViewTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginRight="40dp"
         android:text="@string/escolhaDoenca"
         android:textSize="25sp"
-        app:layout_constraintTop_toTopOf="parent"/>
+        android:layout_below="@+id/txtEstudo"
+        android:layout_marginBottom="20dp" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -28,10 +40,24 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_marginTop="30dp"
-            android:layout_marginBottom="30dp"
+            android:layout_above="@id/imageLogo"
             android:scrollbars="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/recycler_view_listadoencas" />
+
+        <ImageView
+            android:id="@+id/imageLogo"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="20dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/imgLupa"
+            android:scaleType="fitCenter"
+            android:scaleX="-1"
+            android:src="@drawable/logo"
+            android:visibility="visible" />
     </RelativeLayout>
 
 </RelativeLayout>

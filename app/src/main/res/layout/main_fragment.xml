@@ -65,15 +65,14 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
+        android:contentDescription="@string/imgLupa"
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="30dp"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
         android:src="@drawable/logo"
         android:visibility="visible"
-        tools:layout_editor_absoluteX="233dp"
-        android:contentDescription="@string/imgLupa"
-        tools:layout_editor_absoluteY="496dp" />
+        android:scaleX="-1" />
 
 
 </RelativeLayout>

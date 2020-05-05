@@ -123,6 +123,14 @@
         <action
             android:id="@+id/action_moreFragment_to_rulesFragment"
             app:destination="@id/rulesFragment" />
+        <action
+            android:id="@+id/action_moreFragment_to_creditsFragment"
+            app:destination="@id/creditsFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/creditsFragment"
+        android:name="br.com.example.maratonasamsung.ui.main.CreditsFragment"
+        android:label="fragment_credits"
+        tools:layout="@layout/fragment_credits" />
 </navigation>
 

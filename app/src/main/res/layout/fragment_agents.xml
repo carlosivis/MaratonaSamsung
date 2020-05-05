@@ -1,49 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:layout_marginBottom="20dp"
     tools:context=".modoEstudo.ChooseFragment">
 
     <TextView
-        android:id="@+id/textViewTitle"
-        android:layout_width="match_parent"
+        android:id="@+id/txtEstudo"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
-        android:layout_marginRight="40dp"
+        android:layout_marginBottom="30dp"
+        android:text="@string/estudo"
+        android:textColor="@color/colorText"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="@string/chooseFragmentTitle"
         android:textSize="25sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_below="@+id/txtEstudo"
+        android:layout_marginBottom="30dp" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTitle">
+        android:layout_below="@+id/textViewTitle">
 
         <TableLayout
             android:id="@+id/tableVetores"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
             android:shrinkColumns="*"
             android:stretchColumns="*">
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
                 android:layout_marginBottom="10dp">
 
                 <ImageButton
@@ -52,7 +57,7 @@
                     android:layout_marginEnd="10dp"
                     android:adjustViewBounds="true"
                     android:scaleType="fitCenter"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:visibility="visible"
                     android:contentDescription="Ilustração de uma bactéria"
@@ -64,7 +69,7 @@
                     android:layout_marginStart="10dp"
                     android:adjustViewBounds="true"
                     android:scaleType="fitCenter"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:visibility="visible"
                     android:contentDescription="Ilustração de um platelminto"
@@ -88,8 +93,8 @@
             </TableRow>
 
             <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
                 android:layout_marginBottom="10dp">
 
                 <ImageButton
@@ -98,7 +103,7 @@
                     android:layout_marginEnd="10dp"
                     android:adjustViewBounds="true"
                     android:scaleType="fitCenter"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:visibility="visible"
                     android:contentDescription="Ilustração de um protozoário"
@@ -110,7 +115,7 @@
                     android:layout_marginStart="10dp"
                     android:adjustViewBounds="true"
                     android:scaleType="fitCenter"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:visibility="visible"
                     android:contentDescription="@string/imgVirus"
@@ -136,4 +141,4 @@
 
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

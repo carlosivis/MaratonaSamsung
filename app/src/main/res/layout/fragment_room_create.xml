@@ -1,120 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/roomCreateFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginStart="20dp"
+    android:layout_marginEnd="20dp"
+    android:layout_marginBottom="20dp"
     tools:context=".ui.main.MainActivity">
-
-    <TextView
-        android:id="@+id/createTxtSenha"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/txt_senha"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@id/createTxtUsuario"
-        app:layout_constraintTop_toBottomOf="@id/createEditNomeSala" />
-
-    <TextView
-        android:id="@+id/createTxtNomeSala"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/txt_nome_da_sala"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@id/createTxtUsuario"
-        app:layout_constraintTop_toBottomOf="@id/createEditUsuario" />
-
-    <EditText
-        android:id="@+id/createEditNomeSala"
-        style="@style/textViewStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:autofillHints="@string/nomeSala"
-        android:contentDescription="@string/nomeSala"
-        android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="@id/createTxtUsuario"
-        app:layout_constraintTop_toBottomOf="@id/createTxtNomeSala" />
-
-    <Button
-        android:id="@+id/createBtnCriarSala"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/roundbutton"
-        android:layout_marginRight="40dp"
-        android:layout_marginBottom="24dp"
-        android:ems="4"
-        android:text="@string/btn_criar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/createEditSenha"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <EditText
-        android:id="@+id/createEditSenha"
-        android:contentDescription="@string/senha"
-        style="@style/textViewStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:inputType="textPassword"
-        app:layout_constraintStart_toStartOf="@id/createTxtUsuario"
-        app:layout_constraintTop_toBottomOf="@id/createTxtSenha" />
 
     <TextView
         android:id="@+id/createModoInterativo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="30dp"
         android:text="@string/interativo"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.05" />
+        android:textSize="30sp" />
 
     <TextView
         android:id="@+id/createTxtCriarSala"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_below="@+id/createModoInterativo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
         android:text="@string/txt_criar_sala"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="@id/createModoInterativo"
-        app:layout_constraintStart_toStartOf="@id/createModoInterativo"
-        app:layout_constraintTop_toBottomOf="@+id/createModoInterativo" />
+        android:textSize="24sp" />
 
-    <TextView
-        android:id="@+id/createTxtUsuario"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:text="@string/txt_usuario"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.35" />
-
-    <EditText
-        android:id="@+id/createEditUsuario"
-        style="@style/textViewStyle"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:contentDescription="@string/nomeUser"
-        android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="@id/createTxtUsuario"
-        app:layout_constraintTop_toBottomOf="@id/createTxtUsuario" />
+        android:layout_above="@+id/createBtnCriarSala"
+        android:layout_below="@+id/createTxtCriarSala"
+        android:layout_centerInParent="true">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true">
+
+            <TextView
+                android:id="@+id/createTxtUsuario"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_usuario"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/createEditUsuario"
+                style="@style/textViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/createTxtUsuario"
+                android:layout_marginBottom="20dp"
+                android:hint="@string/nomeUser"
+                android:inputType="textPersonName"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/createTxtNomeSala"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/createEditUsuario"
+                android:text="@string/txt_nome_da_sala"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/createEditNomeSala"
+                style="@style/textViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/createTxtNomeSala"
+                android:layout_marginBottom="20dp"
+                android:autofillHints="@string/nomeSala"
+                android:hint="@string/nomeSala"
+                android:inputType="textPersonName"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/createTxtSenha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/createEditNomeSala"
+                android:text="@string/txt_senha"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/createEditSenha"
+                style="@style/textViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/createTxtSenha"
+                android:autofillHints="@string/senha"
+                android:hint="@string/senha"
+                android:inputType="textPassword"
+                android:textSize="18sp" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/createBtnCriarSala"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/roundbutton"
+        android:ems="4"
+        android:text="@string/btn_criar" />
+
+    <ImageView
+        android:id="@+id/imageLogo"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="30dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/imgLupa"
+        android:scaleType="fitCenter"
+        android:src="@drawable/logo"
+        android:visibility="visible" />
+
+</RelativeLayout>
