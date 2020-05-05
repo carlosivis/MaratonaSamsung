@@ -70,6 +70,7 @@ class RoomAdivinhadorFragment :  Fragment() {
         }
         spinnerResposta.adapter = spinnerAdapter
         ranking(id_sessao)
+        dicas(id_sessao)
 
     }
 
@@ -91,6 +92,31 @@ class RoomAdivinhadorFragment :  Fragment() {
         })
         Timer().schedule(2000) {
             ranking(id_sessao)
+        }
+    }
+    fun dicas(id_sessao: Int){
+        Service.retrofit.dicas(id_sessao)
+            .enqueue(object :Callback<SessaoResponse>{
+                override fun onFailure(call: Call<SessaoResponse>, t: Throwable) {
+                    Log.d("Falha ao pegar dicas", t.toString())
+                }
+
+                override fun onResponse(call: Call<SessaoResponse>, response: Response<SessaoResponse>) {
+                    Log.d("Sucesso: dicas e sessao", response.body().toString())
+                    var dicas: ArrayList<String> = arrayListOf("")
+                    response.body()?.dicas?.forEach {
+                        it.prevencoes.forEach { dicas.add(it.toString()) }
+                        it.sintomas.forEach { dicas.add(it.toString()) }
+                        it.transmicoes.forEach { dicas.add(it.toString()) }
+                    }
+                    recyclerDicas.apply {
+                        layoutManager = LinearLayoutManager(activity)
+                        adapter = DicasAdapter(dicas)
+                    }
+                }
+            })
+        Timer().schedule(2000){
+            dicas(id_sessao)
         }
     }
 

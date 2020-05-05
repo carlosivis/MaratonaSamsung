@@ -1,4 +1,4 @@
-package br.com.example.maratonasamsung.data.model.Responses
+package br.com.example.maratonasamsung.model.Responses
 
 import br.com.example.maratonasamsung.model.Responses.Prevencao
 import br.com.example.maratonasamsung.model.Responses.Sintoma

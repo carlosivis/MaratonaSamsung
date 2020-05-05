@@ -161,19 +161,19 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
     fun sintomas(doenca: String) {
         Service.retrofit.sintomas(
             doenca = doenca
-        ).enqueue(object : Callback<Sintomas>{
-            override fun onFailure(call: Call<Sintomas>, t: Throwable) {
+        ).enqueue(object : Callback<List<Sintoma>>{
+            override fun onFailure(call: Call<List<Sintoma>>, t: Throwable) {
                 Log.d("Deu ruim", t.toString())
             }
 
-            override fun onResponse(call: Call<Sintomas>, response: Response<Sintomas>) {
+            override fun onResponse(call: Call<List<Sintoma>>, response: Response<List<Sintoma>>) {
                 Log.d("Nice", response.toString())
 
                 val listaSintomas = response.body()
 
-                if (listaSintomas?.sintomas?.size != 0) {
+                if (listaSintomas?.size != 0) {
                     val sintomas: ArrayList<String> = arrayListOf("")
-                    listaSintomas?.sintomas?.forEach { sintomas.add((it.nome)) }
+                    listaSintomas?.forEach { sintomas.add((it.nome)) }
                     sintomas.toMutableList()
                     context?.let {
                         spinnerAdapter =
@@ -192,19 +192,19 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
     fun prevencoes(doenca: String) {
         Service.retrofit.prevencoes(
             doenca = doenca
-        ).enqueue(object : Callback<Prevencoes>{
-            override fun onFailure(call: Call<Prevencoes>, t: Throwable) {
+        ).enqueue(object : Callback<List<Prevencao>>{
+            override fun onFailure(call: Call<List<Prevencao>>, t: Throwable) {
                 Log.d("Deu ruim", t.toString())
             }
 
-            override fun onResponse(call: Call<Prevencoes>, response: Response<Prevencoes>) {
+            override fun onResponse(call: Call<List<Prevencao>>, response: Response<List<Prevencao>>) {
                 Log.d("Nice", response.toString())
 
                 val listaPrevencao = response.body()
 
-                if (listaPrevencao?.prevencoes?.size != 0) {
+                if (listaPrevencao?.size != 0) {
                     val prevencoes: ArrayList<String> = arrayListOf("")
-                    listaPrevencao?.prevencoes?.forEach { prevencoes.add((it.nome)) }
+                    listaPrevencao?.forEach { prevencoes.add((it.nome)) }
                     prevencoes.toMutableList()
                     context?.let {
                         spinnerAdapter =
@@ -223,19 +223,19 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
     fun transmicoes(doenca: String) {
         Service.retrofit.transmicoes(
             doenca = doenca
-        ).enqueue(object : Callback<Transmicoes>{
-            override fun onFailure(call: Call<Transmicoes>, t: Throwable) {
+        ).enqueue(object : Callback<List<Transmicao>>{
+            override fun onFailure(call: Call<List<Transmicao>>, t: Throwable) {
                 Log.d("Deu ruim", t.toString())
             }
 
-            override fun onResponse(call: Call<Transmicoes>, response: Response<Transmicoes>) {
+            override fun onResponse(call: Call<List<Transmicao>>, response: Response<List<Transmicao>>) {
                 Log.d("Nice", response.toString())
 
                 val listaTransmicao = response.body()
 
-                if (listaTransmicao?.transmicao?.size != 0) {
+                if (listaTransmicao?.size != 0) {
                     val transmicoes: ArrayList<String> = arrayListOf("")
-                    listaTransmicao?.transmicao?.forEach { transmicoes.add((it.nome)) }
+                    listaTransmicao?.forEach { transmicoes.add((it.nome)) }
                     transmicoes.toMutableList()
                     context?.let {
                         spinnerAdapter =
