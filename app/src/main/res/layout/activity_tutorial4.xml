@@ -65,7 +65,7 @@
             android:onClick="onClick"
             android:background="@null"
             android:layout_alignParentEnd="true"
-            android:contentDescription="Sinal de check"
+            android:contentDescription="@string/labelCheck"
             android:src="@drawable/ic_end" />
     </RelativeLayout>
 

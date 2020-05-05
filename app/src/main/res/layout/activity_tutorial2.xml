@@ -67,7 +67,7 @@
             android:src="@drawable/ic_arrow_right"
             android:layout_alignParentEnd="true"
             android:background="@null"
-            android:contentDescription="Seta para a direita" />
+            android:contentDescription="@string/labelSetaDir" />
     </RelativeLayout>
 
 </RelativeLayout>

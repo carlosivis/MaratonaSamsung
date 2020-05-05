@@ -34,12 +34,11 @@ class RoomDiqueiroDoencaFragment : Fragment(), View.OnClickListener {
         val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
             activity?.let {
                 AlertDialog.Builder(it)
-                    .setTitle("Você deseja sair do jogo?")
-                    .setMessage("Ao aceitar você sairá da sala.")
-                    .setPositiveButton(android.R.string.ok) { dialog, which ->
+                    .setTitle(R.string.sairJogo)
+                    .setPositiveButton(R.string.sair) { dialog, which ->
                         navController!!.navigate(R.id.mainFragment)
                     }
-                    .setNegativeButton(android.R.string.cancel) { dialog, which -> }
+                    .setNegativeButton(R.string.voltar) { dialog, which -> }
                     .show()
             }
         }

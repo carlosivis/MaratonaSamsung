@@ -55,6 +55,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/createTxtUsuario"
                 android:layout_marginBottom="20dp"
+                android:autofillHints="@string/nomeUser"
                 android:hint="@string/nomeUser"
                 android:inputType="textPersonName"
                 android:textSize="18sp" />
