@@ -1,8 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Morbus</string>
-
-    <string name="btnModoInterativo">Modo Interativo</string>
-    <string name="btnModoEstudo">Modo Estudo</string>
     <string name="btn_criar_sala">Criar sala</string>
     <string name="btn_acessar_sala">Acessar sala</string>
 
@@ -10,8 +7,10 @@
     <string name="btn_acessar">Acessar</string>
     <string name="btn_continuar">Continuar</string>
 
+    <string name="btn_enviar_dica">Enviar dica</string>
+    <string name="btn_adivinhar">Adivinhar</string>
+
     <string name="txt_modo_interativo">Modo Interativo</string>
-    <string name="txt_modo_estudo">Modo Estudo</string>
 
     <string name="txt_criar_sala">Criar sala</string>
     <string name="txt_acessar_sala">Acessar sala</string>
@@ -20,39 +19,31 @@
     <string name="txt_nome_da_sala">Nome da sala:</string>
     <string name="txt_senha">Senha:</string>
 
-    <string name="txt_jogadores">Jogadores:</string>
     <string name="txt_escolha_doenca">Escolha uma doença:</string>
-    <string name="txt_escolha_doenca_dicas">Escolher dicas</string>
-    <string name="txt_adivinhar">Adivinhar</string>
-    <string name="txt_dicas">Dicas:</string>
-    <string name="txt_sintomas">Sintomas</string>
-    <string name="txt_enviar_dica">Enviar dica</string>
-    <string name="txt_pontos">Rodada valendo: xx pontos</string>
     <string name="txt_resposta">Resposta</string>
 
+    <string name="txt_sintomas">Sintoma(s)</string>
+    <string name="txt_prevencoes">Prevenção(ões)</string>
+    <string name="txt_tranmissoes">Transmissão(ões)</string>
+
+
     <string name="txt_diqueiro">Diqueiro</string>
-    <string name="txt_adivinhador">Adivinhador</string>
 
     <string name="txt_configuracao">Configurações</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="pular">PULAR</string>
-    <string name="hifen">-</string>
-    <string name="welcome">Bem-vind@ ao Morbus!</string>
+    <string name="welcome">Bem-vindo(a) ao Morbus!</string>
     <string name="welcomeText">Prepare-se para aprender sobre as principais doenças causadas por micro-organismos, enquanto se diverte com seus colegas. Temos dois modos: o Estudo e o Interativo. Avance para saber mais.</string>
     <string name="estudo">Modo Estudo</string>
     <string name="estudoText">Neste modo você tem acesso a informações importantes sobre as doenças, de forma interativa e simplificada. Fundamental para um bom desempenho no Modo Interativo.</string>
     <string name="interativo">Modo Interativo</string>
     <string name="interativoText">Aqui você praticará os conhecimentos adquiridos no Modo Estudo e também irá interagir com amigos e colegas em um jogo de adivinhação de doenças.</string>
-    <string name="config">Mais informações</string>
-    <string name="configText">Nas configurações você encontrará outras informações legais sobre o app, como as regras do jogo e sistema de pontuações. Vamos lá!</string>
-    <string name="voltar">VOLTAR</string>
-    <string name="proximo">PRÓXIMO</string>
-    <string name="fim">FIM</string>
+    <string name="config">Sobre o APP</string>
+    <string name="configText">Aqui você encontrará todas as informações sobre o aplicativo, incluindo mais detalhes sobre o funcionamento do jogo, além de poder rever essa introdução quando quiser. Vamos lá!</string>
+    <string name="voltar">Voltar</string>
     <string name="design">Dissecadores do Conhecimento</string>
     <string name="tutorial">Tutorial</string>
-    <string name="regrasPont">Regras e pontuação</string>
+    <string name="regrasPont">Funcionamento</string>
     <string name="regrasText2" tools:ignore="Typos">O jogador a dar dicas tem 10 (dez) segundos para escolher sua dica inicial, ou passará a vez a outro jogador. Os demais, então, terão 1 (um) minuto para adivinhar a doença, enquanto poderão ser dadas mais dicas a critério do jogador da vez.\n\nAo acertar a doença, tanto os adivinhadores que fizeram o acerto quanto o jogador que está dando as dicas ganham pontos. Cada adivinhador ganha uma quantidade de pontos diferente de acordo com o valor da rodada no momento do seu acerto. A rodada começa valendo 10 (dez) pontos, mas tem seu valor alterado com os seguintes acontecimentos:\n\n\u2022 A cada nova dica dada pelo jogador da vez, a rodada passa a valer menos 1 (um) ponto para todos os adivinhadores.\n\u2022 Quando um adivinhador acerta a doença, a rodada também passa a valer menos 1 (um) ponto para os adivinhadores que ainda não a acertaram.\n\u2022 Quando um adivinhador faz uma tentativa errada, a rodada passa a valer ainda menos 1 (um) ponto somente para aquele adivinhador em questão.\n\nO jogador a dar dicas ganha a mesma quantidade de pontos do primeiro adivinhador e mais 2 (dois) pontos por cada acerto seguinte dos demais adivinhadores.</string>
     <string name="regrasText">O jogador a dar dicas tem 10 (dez) segundos para escolher sua dica inicial, ou passará a vez a outro jogador. Os demais, então, terão 1 (um) minuto para adivinhar a doença, enquanto poderão ser dadas mais dicas a critério do jogador da vez.\n\nAo acertar a doença, tanto os adivinhadores que fizeram o acerto quanto o jogador que está dando as dicas ganham pontos. Cada adivinhador ganha uma quantidade de pontos diferente, sendo esse valor de 10 (dez) dividido pela ordem de acerto do adivinhador (1 (um) se for o primeiro a adivinhar a doença, 2 (dois) se for o segundo e assim por diante). \n\nO jogador a dar dicas ganha 75% dos pontos adquiridos por cada adivinhador.</string>
     <string name="chooseFragmentTitle">Escolha uma classe de agente infectante:</string>
@@ -60,22 +51,38 @@
     <string name="platelminto">Platelminto</string>
     <string name="protozoario">Protozoário</string>
     <string name="virus">Vírus</string>
-    <string name="setaDir">Seta para a direita</string>
-    <string name="imgLupa">Vários microorganismos sendo vistos em uma lupa</string>
+    <string name="labelLupa">Vários microorganismos sendo vistos em uma lupa</string>
     <string name="escolhaDoenca">Escolha uma doença:</string>
     <string name="agente">Agente</string>
     <string name="sintomas">Sintomas</string>
     <string name="prevencao">Prevenção</string>
     <string name="reverInt">Rever introdução</string>
-    <string name="regras">Regras e pontuação</string>
     <string name="nomeSala">Inserir nome da sala</string>
     <string name="senha">Inserir senha</string>
     <string name="nomeUser">Inserir o nome do usuário</string>
     <string name="ranking">Ranking</string>
     <string name="dicas">Dicas</string>
-    <string name="imgMore">Três pontos</string>
-    <string name="informacao">Ponto de interrogação</string>
-    <string name="livros">Livros</string>
-    <string name="videogame">Manopla de videogame</string>
-    <string name="abraco">Uma pessoa com o braço por trás da outra</string>
+    <string name="labelGear">Ilustração de um ponto de interrogação</string>
+    <string name="labelBooks">Ilustração de um livro e, acima, um cérebro</string>
+    <string name="labelGame">Ilustração de um controle de videogame</string>
+    <string name="labelFriendship">Ilustração de uma pessoa com o braço por trás de outra</string>
+    <string name="labelVirus">Ilustração de um vírus</string>
+    <string name="labelBacteria">Ilustração de uma bactéria</string>
+    <string name="labelPlatelminto">Ilustração de um platelminto</string>
+    <string name="labelProtozoario">Ilustração de um protozoário</string>
+    <string name="creditos">Créditos</string>
+    <string name="creditsLogo">Ícone feito por \n<a href="https://www.flaticon.com/authors/freepik">Freepik</a> em \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
+    <string name="creditsFriendship">Ícone feito por \n<a href="https://www.flaticon.com/authors/freepik">Freepik</a> em \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
+    <string name="creditsBooks">Ícone feito por \n<a href="https://www.flaticon.com/authors/smashicons">Smashicons</a> em \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
+    <string name="creditsGame">Ícone feito por \n<a href="https://www.flaticon.com/authors/mynamepong">mynamepong</a> em \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
+    <string name="creditsGear">Ícone feito por \n<a href="https://www.flaticon.com/br/autores/pixel-perfect">Pixel perfect</a> em \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
+    <string name="creditsBacteria">Ícone feito por \n<a href="https://www.flaticon.com/authors/smashicons">Smashicons</a> em \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
+    <string name="creditsPlatelminto">Ícone feito por \n<a href="https://www.flaticon.com/authors/freepik">Freepik</a> em \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
+    <string name="creditsProtozoario">Ícone feito por \n<a href="https://www.flaticon.com/authors/freepik">Freepik</a> em \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
+    <string name="creditsVirus">Ícone feito por \n<a href="https://www.flaticon.com/authors/freepik">Freepik</a> em \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
+    <string name="sair">Sair</string>
+    <string name="sairJogo">Você deseja sair do jogo?</string>
+    <string name="sairJogoPont">Ao sair da sala você perderá toda a sua pontuação.</string>
+    <string name="labelSetaDir">Seta para a direita</string>
+    <string name="labelCheck">Sinal de check</string>
 </resources>

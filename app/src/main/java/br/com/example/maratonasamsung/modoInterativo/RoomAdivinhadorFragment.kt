@@ -1,6 +1,7 @@
 package br.com.example.maratonasamsung.modoInterativo
 
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -13,12 +14,17 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.example.maratonasamsung.R
+import br.com.example.maratonasamsung.model.Requests.SalaRequest
 import br.com.example.maratonasamsung.model.Responses.RankingResponse
+import br.com.example.maratonasamsung.model.Responses.SessaoResponse
 import br.com.example.maratonasamsung.service.Service
 import kotlinx.android.synthetic.main.fragment_room_adivinhador.*
+import kotlinx.coroutines.delay
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.*
+import kotlin.concurrent.schedule
 
 
 class RoomAdivinhadorFragment :  Fragment() {
@@ -39,12 +45,12 @@ class RoomAdivinhadorFragment :  Fragment() {
         val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
             activity?.let {
                 AlertDialog.Builder(it)
-                    .setTitle("Quer mesmo sair?")
-                    .setMessage("Ao aceitar você sairá da sala!\n Tem certeza?")
-                    .setPositiveButton(android.R.string.ok) { dialog, which ->
+                    .setTitle(R.string.sairJogo)
+                    .setMessage("Ao sair da sala você perderá toda a sua pontuação.")
+                    .setPositiveButton(R.string.sair) { dialog, which ->
                         navController!!.navigate(R.id.mainFragment)
                     }
-                    .setNegativeButton(android.R.string.cancel) { dialog, which -> }
+                    .setNegativeButton(R.string.voltar) { dialog, which -> }
                     .show()
             }
         }
@@ -63,14 +69,14 @@ class RoomAdivinhadorFragment :  Fragment() {
             spinnerAdapter = ArrayAdapter(it, android.R.layout.simple_spinner_item, doencas)
         }
         spinnerResposta.adapter = spinnerAdapter
-
         ranking(id_sessao)
+
     }
 
     fun ranking(id_sessao: Int){
         Service.retrofit.ranking(
             id_sessao = id_sessao
-        ).enqueue(object :Callback<RankingResponse>{
+        ).enqueue(object : Callback<RankingResponse> {
             override fun onFailure(call: Call<RankingResponse>, t: Throwable) {
                 Log.d("Falha ao gerar ranking", t.toString())
             }
@@ -83,6 +89,13 @@ class RoomAdivinhadorFragment :  Fragment() {
                 }
             }
         })
+        Timer().schedule(2000) {
+            ranking(id_sessao)
+        }
     }
 
 }
+
+
+
+
