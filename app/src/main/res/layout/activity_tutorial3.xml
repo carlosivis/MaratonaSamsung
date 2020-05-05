@@ -5,6 +5,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
+    android:layout_marginStart="20dp"
+    android:layout_marginEnd="20dp"
+    android:layout_marginBottom="20dp"
     tools:context=".tutoriaisRegras.TutorialActivity">
 
 
@@ -13,7 +16,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         android:layout_marginBottom="20dp"
         android:text="@string/interativo"
         android:textSize="35sp" />
@@ -27,7 +30,7 @@
         android:layout_centerInParent="true"
         android:layout_marginStart="70dp"
         android:layout_marginEnd="70dp"
-        android:contentDescription="@string/videogame"
+        android:contentDescription="@string/labelGame"
         app:srcCompat="@drawable/game" />
 
     <TextView
@@ -35,9 +38,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@id/button_layout"
-        android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
         android:justificationMode="inter_word"
         android:text="@string/interativoText"
         android:textSize="20sp" />
@@ -46,7 +47,6 @@
         android:id="@+id/button_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
         android:layout_marginTop="40dp"
         android:layout_alignParentBottom="true">
 
@@ -56,19 +56,18 @@
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@+id/btn_next"
             android:layout_centerInParent="true"
-            android:text="1/4"
-            android:textSize="15sp" />
+            android:text="3/4"
+            android:textSize="18sp" />
 
         <ImageButton
             android:id="@+id/btn_next"
-            android:layout_width="60dp"
-            android:layout_height="55dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:onClick="onClick"
-            android:layout_marginEnd="10dp"
             android:src="@drawable/ic_arrow_right"
             android:layout_alignParentEnd="true"
             android:background="@null"
-            android:contentDescription="Seta para a direita" />
+            android:contentDescription="@string/labelSetaDir" />
     </RelativeLayout>
 
 </RelativeLayout>

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginLeft="20dp"
     android:layout_marginRight="20dp"
+    android:layout_marginBottom="20dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clickable="true"
@@ -17,7 +18,7 @@
         android:layout_centerHorizontal="true"
         android:layout_margin="30dp"
         android:layout_marginBottom="50dp"
-        android:textSize="25sp"
+        android:textSize="30sp"
         tools:text="MALARIA" />
 
     <ScrollView
@@ -25,6 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/txtDoencaNome"
+        android:layout_above="@id/imageLogo"
         android:layout_margin="5dp">
 
         <TableLayout
@@ -76,7 +78,21 @@
                 tools:text="Item de prevencao" />
 
         </TableLayout>
+
     </ScrollView>
 
+    <ImageView
+        android:id="@+id/imageLogo"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="20dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/labelLupa"
+        android:scaleType="fitCenter"
+        android:scaleX="-1"
+        android:src="@drawable/logo"
+        android:visibility="visible" />
 
 </RelativeLayout>

@@ -32,6 +32,8 @@ class MoreFragment : Fragment(), View.OnClickListener {
         navController = Navigation.findNavController(view)
         view.findViewById<Button>(R.id.btnTutorial).setOnClickListener(this)
         view.findViewById<Button>(R.id.btnRegras).setOnClickListener(this)
+        view.findViewById<Button>(R.id.btnCreditos).setOnClickListener(this)
+
     }
 
     override fun onClick(v: View?) {
@@ -39,6 +41,9 @@ class MoreFragment : Fragment(), View.OnClickListener {
             R.id.btnTutorial -> startActivity(Intent(activity, TutorialActivity::class.java))
             R.id.btnRegras -> {
                 navController!!.navigate(R.id.action_moreFragment_to_rulesFragment)
+            }
+            R.id.btnCreditos -> {
+                navController!!.navigate(R.id.action_moreFragment_to_creditsFragment)
             }
         }
     }

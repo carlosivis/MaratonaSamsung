@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.activity.addCallback
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -38,6 +40,22 @@ class MainFragment : Fragment(), View.OnClickListener {
                 navController!!.navigate(R.id.action_mainFragment_to_moreFragment)
             }
         }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
+            activity?.let {
+                AlertDialog.Builder(it)
+                    .setTitle("Tem certeza que deseja sair do app?")
+                    .setPositiveButton(R.string.sair) { dialog, which ->
+                        activity?.finishAffinity()
+                    }
+                    .setNegativeButton(R.string.voltar) { dialog, which -> }
+                    .show()
+            }
+        }
+        callback
     }
 }
 
