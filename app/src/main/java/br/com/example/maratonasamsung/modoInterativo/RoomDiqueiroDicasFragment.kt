@@ -15,10 +15,8 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.example.maratonasamsung.R
-import br.com.example.maratonasamsung.model.Responses.Prevencoes
-import br.com.example.maratonasamsung.model.Responses.RankingResponse
-import br.com.example.maratonasamsung.model.Responses.Sintomas
-import br.com.example.maratonasamsung.model.Responses.Transmicoes
+import br.com.example.maratonasamsung.model.Requests.EditSessaoRequest
+import br.com.example.maratonasamsung.model.Responses.*
 import br.com.example.maratonasamsung.service.Service
 import kotlinx.android.synthetic.main.fragment_room_diqueiro_dicas.*
 import retrofit2.Call
@@ -29,6 +27,9 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
 
     var navController: NavController? = null
     lateinit var spinnerAdapter: ArrayAdapter<String>
+    var rodada: Int = 1
+    val id_sessao = requireArguments().getInt("id")
+    val doenca: String = requireArguments().getString("doenca").toString()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -61,9 +62,6 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
         navController = Navigation.findNavController(view)
         view.findViewById<Button>(R.id.diqueiroBtnDicas).setOnClickListener(this)
 
-        val id_sessao = requireArguments().getInt("id")
-        val doenca: String = requireArguments().getString("doenca").toString()
-
         ranking(id_sessao)
 
         sintomas(doenca)
@@ -72,8 +70,71 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
-        TODO("Not yet implemented")
+        when(v!!.id){
+            R.id.diqueiroBtnDicas -> {
+                val sintoma = diqueiroSpinnerSintoma.selectedItem.toString()
+                val prevencao = diqueiroSpinnerPrevencao.selectedItem.toString()
+                val transmicao = diqueiroSpinnerTransmicao.selectedItem.toString()
+
+//                if(sintoma.isEmpty() && prevencao.isEmpty() && transmicao.isEmpty()) {
+//                    val texto = "Selecione uma dica"
+//                    val duracao = Toast.LENGTH_SHORT
+//                    val toast = Toast.makeText(context, texto, duracao)
+//                    toast.show()
+//                }
+//                if(!sintoma.isEmpty() && prevencao.isEmpty() && transmicao.isEmpty())
+//                    editarSessao(sintoma)
+//                else if(sintoma.isEmpty() && !prevencao.isEmpty() && transmicao.isEmpty())
+//                    editarSessao(prevencao)
+//                else if(sintoma.isEmpty() && prevencao.isEmpty() && !transmicao.isEmpty())
+//                    editarSessao(transmicao)
+//                else {
+//                    val texto = "Você pode enviar apenas uma dica por vez"
+//                    val duracao = Toast.LENGTH_SHORT
+//                    val toast = Toast.makeText(context, texto, duracao)
+//                    toast.show()
+//                }
+
+
+
+//                if( (!sintoma.isEmpty() && !transmicao.isEmpty() && !prevencao.isEmpty()) || (!sintoma.isEmpty() && !transmicao.isEmpty())
+//                    || (!sintoma.isEmpty() && !prevencao.isEmpty()) || (!transmicao.isEmpty() && !prevencao.isEmpty()) ) {
+//                    val texto = "Você pode enviar somente uma dica por vez"
+//                    val duracao = Toast.LENGTH_SHORT
+//                    val toast = Toast.makeText(context, texto, duracao)
+//                    toast.show()
+//                }
+//                else if(!sintoma.isEmpty())
+//                    editarSessao(sintoma)
+//                else if(!prevencao.isEmpty())
+//                    editarSessao(prevencao)
+//                else if(!transmicao.isEmpty())
+//                    editarSessao(transmicao)
+            }
+        }
     }
+
+//    fun editarSessao(dica: String){
+//        Service.retrofit.editarSessao(
+//            sessao = EditSessaoRequest(
+//                id_sessao = id_sessao,
+//                rodada = rodada,
+//                doenca = doenca
+////                dicas = dica
+//            )
+//        ).enqueue(object : Callback<SessaoResponseEditing>{
+//            override fun onFailure(call: Call<SessaoResponseEditing>, t: Throwable) {
+//                Log.d("Deu ruim", t.toString())
+//            }
+//            override fun onResponse(call: Call<SessaoResponseEditing>, response: Response<SessaoResponseEditing>) {
+//                Log.d("Nice", response.body().toString())
+//
+//                val sessao = response.body()
+//
+//                //AQUI EU RECEBO, ENTRE OUTRAS COISAS, TODAS AS DICAS QUE JÁ FORAM E EU PRECISO RETIRÁ-LAS DOS SPINNERS
+//            }
+//        })
+//    }
 
     fun ranking(id_sessao: Int){
         Service.retrofit.ranking(
@@ -115,53 +176,10 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                             ArrayAdapter(it, android.R.layout.simple_spinner_item, sintomas)
                     }
                     diqueiroSpinnerSintoma.adapter = spinnerAdapter
-                    var texto = "Sintomas"
-                    val duracao = Toast.LENGTH_SHORT
-                    val toast = Toast.makeText(context, texto, duracao)
-                    toast.show()
                 }
                 else {
-                    var texto = "Sem sintomas"
-                    val duracao = Toast.LENGTH_SHORT
-                    val toast = Toast.makeText(context, texto, duracao)
-                    toast.show()
-                }
-            }
-        })
-    }
-
-    fun transmicoes(doenca: String) {
-        Service.retrofit.transmicoes(
-            doenca = doenca
-        ).enqueue(object : Callback<Transmicoes>{
-            override fun onFailure(call: Call<Transmicoes>, t: Throwable) {
-                Log.d("Deu ruim", t.toString())
-            }
-
-            override fun onResponse(call: Call<Transmicoes>, response: Response<Transmicoes>) {
-                Log.d("Nice", response.toString())
-
-                val listaTransmicao = response.body()
-
-                if (listaTransmicao?.transmicao?.size != 0) {
-                    val transmicoes: ArrayList<String> = arrayListOf("")
-                    listaTransmicao?.transmicao?.forEach { transmicoes.add((it.nome)) }
-                    transmicoes.toMutableList()
-                    context?.let {
-                        spinnerAdapter =
-                            ArrayAdapter(it, android.R.layout.simple_spinner_item, transmicoes)
-                    }
-                    diqueiroSpinnerTransmicao.adapter = spinnerAdapter
-                    var texto = "Transmição"
-                    val duracao = Toast.LENGTH_SHORT
-                    val toast = Toast.makeText(context, texto, duracao)
-                    toast.show()
-                }
-                else {
-                    var texto = "Sem transmissões"
-                    val duracao = Toast.LENGTH_SHORT
-                    val toast = Toast.makeText(context, texto, duracao)
-                    toast.show()
+                    diqueiroSpinnerSintoma.visibility = View.INVISIBLE
+                    diqueiroTxtSintomas.visibility = View.INVISIBLE
                 }
             }
         })
@@ -189,16 +207,41 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                             ArrayAdapter(it, android.R.layout.simple_spinner_item, prevencoes)
                     }
                     diqueiroSpinnerPrevencao.adapter = spinnerAdapter
-                    var texto = "Prevenção"
-                    val duracao = Toast.LENGTH_SHORT
-                    val toast = Toast.makeText(context, texto, duracao)
-                    toast.show()
                 }
                 else {
-                    var texto = "Sem prevenção"
-                    val duracao = Toast.LENGTH_SHORT
-                    val toast = Toast.makeText(context, texto, duracao)
-                    toast.show()
+                    diqueiroSpinnerPrevencao.visibility = View.INVISIBLE
+                    diqueiroTxtPrevencoes.visibility = View.INVISIBLE
+                }
+            }
+        })
+    }
+
+    fun transmicoes(doenca: String) {
+        Service.retrofit.transmicoes(
+            doenca = doenca
+        ).enqueue(object : Callback<Transmicoes>{
+            override fun onFailure(call: Call<Transmicoes>, t: Throwable) {
+                Log.d("Deu ruim", t.toString())
+            }
+
+            override fun onResponse(call: Call<Transmicoes>, response: Response<Transmicoes>) {
+                Log.d("Nice", response.toString())
+
+                val listaTransmicao = response.body()
+
+                if (listaTransmicao?.transmicao?.size != 0) {
+                    val transmicoes: ArrayList<String> = arrayListOf("")
+                    listaTransmicao?.transmicao?.forEach { transmicoes.add((it.nome)) }
+                    transmicoes.toMutableList()
+                    context?.let {
+                        spinnerAdapter =
+                            ArrayAdapter(it, android.R.layout.simple_spinner_item, transmicoes)
+                    }
+                    diqueiroSpinnerTransmicao.adapter = spinnerAdapter
+                }
+                else {
+                    diqueiroSpinnerTransmicao.visibility = View.INVISIBLE
+                    diqueiroTxtTransmissoes.visibility = View.INVISIBLE
                 }
             }
         })
