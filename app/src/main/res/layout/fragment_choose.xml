@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="40dp"
         android:text="@string/estudo"
         android:textColor="@color/colorText"
         android:textSize="30sp" />
@@ -25,9 +25,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/escolhaDoenca"
-        android:textSize="25sp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="40dp"
         android:layout_below="@+id/txtEstudo"
-        android:layout_marginBottom="20dp" />
+        android:textSize="20sp" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -53,7 +54,7 @@
             android:layout_alignParentBottom="true"
             android:layout_marginTop="20dp"
             android:adjustViewBounds="true"
-            android:contentDescription="@string/imgLupa"
+            android:contentDescription="@string/labelLupa"
             android:scaleType="fitCenter"
             android:scaleX="-1"
             android:src="@drawable/logo"

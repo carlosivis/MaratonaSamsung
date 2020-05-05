@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="20dp"
-    android:layout_marginRight="20dp"
+    android:layout_marginLeft="40dp"
+    android:layout_marginRight="40dp"
     android:layout_marginBottom="20dp"
     tools:context=".modoEstudo.ChooseFragment">
 
@@ -17,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="40dp"
         android:text="@string/estudo"
         android:textColor="@color/colorText"
         android:textSize="30sp" />
@@ -27,15 +25,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/chooseFragmentTitle"
-        android:textSize="25sp"
+        android:layout_marginBottom="40dp"
         android:layout_below="@+id/txtEstudo"
-        android:layout_marginBottom="30dp" />
+        android:textSize="20sp" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_alignParentBottom="true"
         android:layout_below="@+id/textViewTitle">
 
         <TableLayout
@@ -49,7 +47,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:layout_marginBottom="10dp">
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp">
 
                 <ImageButton
                     android:id="@+id/imageBacteria"
@@ -60,8 +59,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:visibility="visible"
-                    android:contentDescription="Ilustração de uma bactéria"
-                    android:src="@drawable/bacteria3" />
+                    android:contentDescription="@string/labelBacteria"
+                    android:src="@drawable/bacteria" />
 
                 <ImageButton
                     android:id="@+id/imagePlatelminto"
@@ -72,14 +71,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:visibility="visible"
-                    android:contentDescription="Ilustração de um platelminto"
+                    android:contentDescription="@string/labelPlatelminto"
                     android:src="@drawable/platelminto" />
             </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="30dp">
+                android:layout_marginBottom="40dp">
 
                 <TextView
                     android:text="@string/bacteria"
@@ -95,7 +94,7 @@
             <TableRow
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:layout_marginBottom="10dp">
+                android:layout_marginBottom="20dp">
 
                 <ImageButton
                     android:id="@+id/imageProtozoario"
@@ -106,8 +105,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:visibility="visible"
-                    android:contentDescription="Ilustração de um protozoário"
-                    android:src="@drawable/protozoario2" />
+                    android:contentDescription="@string/labelProtozoario"
+                    android:src="@drawable/protozoario" />
 
                 <ImageButton
                     android:id="@+id/imageVirus"
@@ -118,14 +117,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:visibility="visible"
-                    android:contentDescription="@string/imgVirus"
+                    android:contentDescription="@string/labelVirus"
                     android:src="@drawable/virus" />
             </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="30dp">
+                android:layout_marginBottom="20dp">
 
                 <TextView
                     android:text="@string/protozoario"

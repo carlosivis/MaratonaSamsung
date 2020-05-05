@@ -74,6 +74,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onBackPressed() {
         val gameFragment = supportFragmentManager.findFragmentById(R.id.roomAdivinhadorFragment)
+
         if(gameFragment is RoomAdivinhadorFragment) {
             AlertDialog.Builder(this)
                 .setTitle("Você deseja sair do jogo?")
@@ -106,8 +107,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 }
                 .setNegativeButton(android.R.string.cancel) { dialog, which -> }
                 .show()
-        }
-        else {
+        } else if (gameFragment is MainFragment) {
+            finish()
+        } else {
             super.onBackPressed()
         }
     }

@@ -100,7 +100,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="30dp"
         android:adjustViewBounds="true"
-        android:contentDescription="@string/imgLupa"
+        android:contentDescription="@string/labelLupa"
         android:scaleType="fitCenter"
         android:src="@drawable/logo"
         android:visibility="visible" />

@@ -89,7 +89,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginTop="20dp"
         android:adjustViewBounds="true"
-        android:contentDescription="@string/imgLupa"
+        android:contentDescription="@string/labelLupa"
         android:scaleType="fitCenter"
         android:scaleX="-1"
         android:src="@drawable/logo"

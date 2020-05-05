@@ -30,7 +30,7 @@
         android:layout_centerInParent="true"
         android:layout_marginStart="70dp"
         android:layout_marginEnd="70dp"
-        android:contentDescription="@string/videogame"
+        android:contentDescription="@string/labelGame"
         app:srcCompat="@drawable/game" />
 
     <TextView

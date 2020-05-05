@@ -29,7 +29,7 @@
         android:layout_centerInParent="true"
         android:layout_marginStart="70dp"
         android:layout_marginEnd="70dp"
-        android:contentDescription="@string/informacao"
+        android:contentDescription="@string/labelGear"
         app:srcCompat="@drawable/gear" />
 
     <TextView
