@@ -36,13 +36,13 @@ interface InterfaceRetrofit {
     fun doencas(): Call<List<DoencasResponse>>
 
     @GET("/sintomas/{doenca}")
-    fun sintomas(@Path("doenca") doenca: String): Call<Sintomas>
+    fun sintomas(@Path("doenca") doenca: String): Call<List<Sintoma>>
 
     @GET("/prevencaos/{doenca}")
-    fun prevencoes(@Path("doenca") doenca: String): Call<Prevencoes>
+    fun prevencoes(@Path("doenca") doenca: String): Call<List<Prevencao>>
 
     @GET("/transmicaos/{doenca}")
-    fun transmicoes(@Path("doenca") doenca: String): Call<Transmicoes>
+    fun transmicoes(@Path("doenca") doenca: String): Call<List<Transmicao>>
 
 //    @GET("/jogador")
 //    fun jogador(): Call<JogadorResponse>
