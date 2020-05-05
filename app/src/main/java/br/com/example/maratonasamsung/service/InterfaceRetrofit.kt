@@ -4,6 +4,7 @@ package br.com.example.appacessibilidade
 import br.com.example.maratonasamsung.model.Requests.EditSessaoRequest
 import br.com.example.maratonasamsung.model.Requests.JogadorRequest
 import br.com.example.maratonasamsung.model.Requests.SalaRequest
+import br.com.example.maratonasamsung.model.Requests.SessaoRequest
 import br.com.example.maratonasamsung.model.Responses.*
 import retrofit2.Call
 import retrofit2.http.*
@@ -21,11 +22,13 @@ interface InterfaceRetrofit {
     fun criarSala(@Body sala: SalaRequest): Call<SalaResponse>
 
     @POST("/sessao")
-    fun cadastrarSessao(@Body sala: SalaRequest): Call<SessaoResponse>
+    fun cadastrarSessao(@Body sala: SalaRequest): Call<SessaoRequest>
 
     @GET("/sessao/{id_sessao}")
     fun listarSessao(@Path ("id_sessao") id_sessao: Int): Call<SessaoResponseListing>
 
+    @GET("/sessao/{id_sessao}")
+    fun dicas(@Path ("id_sessao") id_sessao: Int): Call<SessaoResponse>
     @PUT("/sessao/{id_sessao}")
     fun editarSessao(@Body sessao: EditSessaoRequest): Call<SessaoResponseEditing>
 
