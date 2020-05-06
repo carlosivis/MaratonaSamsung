@@ -46,11 +46,11 @@ class RoomAdivinhadorFragment :  Fragment() {
             activity?.let {
                 AlertDialog.Builder(it)
                     .setTitle(R.string.sairJogo)
-                    .setMessage("Ao sair da sala você perderá toda a sua pontuação.")
+                    .setMessage(R.string.sairJogoPont)
                     .setPositiveButton(R.string.sair) { dialog, which ->
                         navController!!.navigate(R.id.mainFragment)
                     }
-                    .setNegativeButton(R.string.voltar) { dialog, which -> }
+                    .setNegativeButton(R.string.cancelar) { dialog, which -> }
                     .show()
             }
         }
