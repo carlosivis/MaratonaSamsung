@@ -47,11 +47,11 @@ class MainFragment : Fragment(), View.OnClickListener {
         val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
             activity?.let {
                 AlertDialog.Builder(it)
-                    .setTitle("Tem certeza que deseja sair do app?")
+                    .setTitle(R.string.sairApp)
                     .setPositiveButton(R.string.sair) { dialog, which ->
                         activity?.finishAffinity()
                     }
-                    .setNegativeButton(R.string.voltar) { dialog, which -> }
+                    .setNegativeButton(R.string.cancelar) { dialog, which -> }
                     .show()
             }
         }

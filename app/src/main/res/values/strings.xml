@@ -82,6 +82,7 @@
     <string name="creditsVirus">Ícone feito por \n<a href="https://www.flaticon.com/authors/freepik">Freepik</a> em \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
     <string name="sair">Sair</string>
     <string name="cancelar">Cancelar</string>
+    <string name="sairApp">Você deseja sair do app?</string>
     <string name="sairJogo">Você deseja sair do jogo?</string>
     <string name="sairJogoPont">Ao sair da sala você perderá toda a sua pontuação.</string>
     <string name="labelSetaDir">Seta para a direita</string>
