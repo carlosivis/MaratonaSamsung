@@ -78,6 +78,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                 lateinit var sintoma: String
                 lateinit var prevencao: String
                 lateinit var transmicao: String
+                var dica:String
 
                 sintoma =
                     if (diqueiroSpinnerSintoma.visibility == View.VISIBLE) diqueiroSpinnerSintoma.selectedItem.toString()
@@ -98,19 +99,16 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                     toast.show()
                 }
                 if(!sintoma.isEmpty() && prevencao.isEmpty() && transmicao.isEmpty()) {
-                    lateinit var dica: DicaUnica
-                    dica.nome = sintoma
-                    editarSessao(dica)
+                    dica = sintoma
+                    editarSessao(dica as DicaUnica)
                 }
                 else if(sintoma.isEmpty() && !prevencao.isEmpty() && transmicao.isEmpty()) {
-                    var dica: DicaUnica = ""
-                    dica.nome = prevencao
-                    editarSessao(dica)
+                    dica = prevencao
+                    editarSessao(dica as DicaUnica)
                 }
                 else if(sintoma.isEmpty() && prevencao.isEmpty() && !transmicao.isEmpty()) {
-                    lateinit var dica: DicaUnica
-                    dica.nome = transmicao
-                    editarSessao(dica)
+                    dica = transmicao
+                    editarSessao(dica as DicaUnica)
                 }
                 else {
                     val texto = "Você pode enviar apenas uma dica por vez"
