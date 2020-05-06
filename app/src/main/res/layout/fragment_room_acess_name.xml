@@ -57,6 +57,8 @@
                 android:autofillHints="@string/nomeUser"
                 android:hint="@string/nomeUser"
                 android:inputType="textPersonName"
+                android:backgroundTint="@color/colorLight"
+                android:textCursorDrawable="@null"
                 android:textSize="18sp" />
         </RelativeLayout>
     </RelativeLayout>
@@ -71,18 +73,5 @@
         android:text="@string/btn_acessar"
         android:layout_alignParentBottom="true"
         android:layout_marginTop="30dp" />
-
-    <ImageView
-        android:id="@+id/imageLogo"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="30dp"
-        android:adjustViewBounds="true"
-        android:contentDescription="@string/labelLupa"
-        android:scaleType="fitCenter"
-        android:src="@drawable/logo"
-        android:visibility="visible" />
 
 </RelativeLayout>

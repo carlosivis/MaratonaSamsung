@@ -71,15 +71,15 @@
     <string name="labelPlatelminto">Ilustração de um platelminto</string>
     <string name="labelProtozoario">Ilustração de um protozoário</string>
     <string name="creditos">Créditos</string>
-    <string name="creditsLogo">Ícone feito por \n<a href="https://www.flaticon.com/authors/freepik">Freepik</a> em \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
-    <string name="creditsFriendship">Ícone feito por \n<a href="https://www.flaticon.com/authors/freepik">Freepik</a> em \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
-    <string name="creditsBooks">Ícone feito por \n<a href="https://www.flaticon.com/authors/smashicons">Smashicons</a> em \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
-    <string name="creditsGame">Ícone feito por \n<a href="https://www.flaticon.com/authors/mynamepong">mynamepong</a> em \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
-    <string name="creditsGear">Ícone feito por \n<a href="https://www.flaticon.com/br/autores/pixel-perfect">Pixel perfect</a> em \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
-    <string name="creditsBacteria">Ícone feito por \n<a href="https://www.flaticon.com/authors/smashicons">Smashicons</a> em \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
-    <string name="creditsPlatelminto">Ícone feito por \n<a href="https://www.flaticon.com/authors/freepik">Freepik</a> em \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
-    <string name="creditsProtozoario">Ícone feito por \n<a href="https://www.flaticon.com/authors/freepik">Freepik</a> em \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
-    <string name="creditsVirus">Ícone feito por \n<a href="https://www.flaticon.com/authors/freepik">Freepik</a> em \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
+    <string name="creditsLogo">Ícone feito por \n<a href="https://www.flaticon.com/authors/freepik">Freepik</a> de \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
+    <string name="creditsFriendship">Ícone feito por \n<a href="https://www.flaticon.com/authors/freepik">Freepik</a> de \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
+    <string name="creditsBooks">Ícone feito por \n<a href="https://www.flaticon.com/authors/smashicons">Smashicons</a> de \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
+    <string name="creditsGame">Ícone feito por \n<a href="https://www.flaticon.com/authors/mynamepong">mynamepong</a> de \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
+    <string name="creditsGear">Ícone feito por \n<a href="https://www.flaticon.com/br/autores/pixel-perfect">Pixel perfect</a> de \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
+    <string name="creditsBacteria">Ícone feito por \n<a href="https://www.flaticon.com/authors/smashicons">Smashicons</a> de \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
+    <string name="creditsPlatelminto">Ícone feito por \n<a href="https://www.flaticon.com/authors/freepik">Freepik</a> de \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
+    <string name="creditsProtozoario">Ícone feito por \n<a href="https://www.flaticon.com/authors/freepik">Freepik</a> de \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
+    <string name="creditsVirus">Ícone feito por \n<a href="https://www.flaticon.com/authors/freepik">Freepik</a> de \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
     <string name="sair">Sair</string>
     <string name="sairJogo">Você deseja sair do jogo?</string>
     <string name="sairJogoPont">Ao sair da sala você perderá toda a sua pontuação.</string>
