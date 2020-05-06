@@ -43,4 +43,18 @@
             android:text="@string/btn_acessar_sala"
             android:textSize="18sp" />
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageLogo"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="20dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/labelGame"
+        android:scaleType="fitCenter"
+        android:scaleX="-1"
+        android:src="@drawable/game"
+        android:visibility="visible" />
 </RelativeLayout>
