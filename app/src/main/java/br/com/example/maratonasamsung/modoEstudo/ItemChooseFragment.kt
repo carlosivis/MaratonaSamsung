@@ -35,8 +35,8 @@ class ItemChooseFragment : Fragment() {
         txtAgente.text = "Agente: ${param.agente}"
         txtArraySintoma.text = "\u25CF " + param.sintomas.joinToString(" \n\u25CF ") { it.nome }
         txtPrevencao.text = "\u25CF " + param.prevencao.joinToString(" \n\u25CF ") { it.nome }
-        //txtTransmissao.text = "\u25CF " + param.transmissao.joinToString(" \n\u25CF ") { it.nome }
-        //txtTipo.text = "Tipo: ${param.tipo}"
+        txtTransmissao.text = "\u25CF " + param.transmicao.joinToString(" \n\u25CF ") { it.nome }
+
     }
 }
 
