@@ -60,13 +60,13 @@ class RoomDiqueiroDoencaFragment : Fragment(), View.OnClickListener {
         val id_sessao = requireArguments().getInt("id")
         val doencas = requireArguments().getStringArrayList("doencas")
 
-//        listarSessao(id_sessao)
+        listarSessao(id_sessao)
 
-        doencas!!.toMutableList()
-        context?.let {
-            spinnerAdapter = ArrayAdapter(it, android.R.layout.simple_spinner_item, doencas)
-        }
-        diqueiroSpinnerDoenca.adapter = spinnerAdapter
+//        doencas!!.toMutableList()
+//        context?.let {
+//            spinnerAdapter = ArrayAdapter(it, android.R.layout.simple_spinner_item, doencas)
+//        }
+//        diqueiroSpinnerDoenca.adapter = spinnerAdapter
     }
 
     override fun onClick(v: View?) {
@@ -110,12 +110,26 @@ class RoomDiqueiroDoencaFragment : Fragment(), View.OnClickListener {
                 val doencasSelecionadas: ArrayList<String> = arrayListOf("")
                 sessao.doencasSelecionadas.forEach { doencasSelecionadas.add((it.nome)) }
 
-                for(doenca in doencas) {
+                if(doencasSelecionadas.isNotEmpty()) {
                     doencasSelecionadas.forEach {
-                        if (it.equals(doenca)) doencas.remove(doenca)
+                        doencas.filter { doenca -> doencas.remove(doenca) }
+//                        if (it == doenca) doencas.remove(doenca)
                     }
                 }
 
+//                val i: MutableIterator<String> = doencas.iterator()
+//                while (i.hasNext()) {
+//                    val doenca = i.next()
+//                    doencasSelecionadas.forEach {
+//                        if (it == doenca) doencas.remove(doenca)
+//                    }
+//                }
+
+                doencas.toMutableList()
+                context?.let {
+                    spinnerAdapter = ArrayAdapter(it, android.R.layout.simple_spinner_item, doencas)
+                }
+                diqueiroSpinnerDoenca.adapter = spinnerAdapter
                 //AQUI EU JÁ TENHO TODAS AS DOENÇAS QUE AINDA JÁ FORAM USADAS NO JOGO E EU PRECISO COLOCÁ-LAS NO SPINNER, PARA FICAR ATUALIZADO
             }
         })

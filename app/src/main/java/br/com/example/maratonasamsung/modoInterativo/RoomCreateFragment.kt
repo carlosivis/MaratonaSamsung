@@ -79,7 +79,6 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
                     toast.show()
                     createEditNomeSala.setText("")
                     createEditSenha.setText("")
-
                 }
                 else
                     cadastrarSessao(sala.nome, sala.senha)
