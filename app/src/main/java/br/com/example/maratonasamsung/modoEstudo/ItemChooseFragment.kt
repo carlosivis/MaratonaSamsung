@@ -26,18 +26,16 @@ class ItemChooseFragment : Fragment() {
         Log.d("Teste nome", param.toString())
         txtDoencaNome.text = param.nome
         Log.d(param.tipo, "euaqui")
-        if ("bacterias" == param.tipo) {
-            imageDoenca.setImageResource(R.drawable.bacteria)
-        } else if ("virus" == param.tipo) {
-            imageDoenca.setImageResource(R.drawable.virus)
-        } else if ("platelmintos ou nemaltelmintos" == param.tipo) {
-            imageDoenca.setImageResource(R.drawable.platelminto)
-        } else if ("protozoarios" == param.tipo) {
-            imageDoenca.setImageResource(R.drawable.protozoario)
+        when (param.tipo) {
+            "bacterias" -> imageDoenca.setImageResource(R.drawable.bacteria)
+            "virus" -> imageDoenca.setImageResource(R.drawable.virus)
+            "platelmintos ou nemaltelmintos" -> imageDoenca.setImageResource(R.drawable.platelminto)
+            "protozoarios" -> imageDoenca.setImageResource(R.drawable.protozoario)
         }
         txtAgente.text = "Agente: ${param.agente}"
         txtArraySintoma.text = "\u25CF " + param.sintomas.joinToString(" \n\u25CF ") { it.nome }
         txtPrevencao.text = "\u25CF " + param.prevencao.joinToString(" \n\u25CF ") { it.nome }
+        //txtTransmissao.text = "\u25CF " + param.transmissao.joinToString(" \n\u25CF ") { it.nome }
         //txtTipo.text = "Tipo: ${param.tipo}"
     }
 }

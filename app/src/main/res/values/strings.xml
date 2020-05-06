@@ -85,4 +85,5 @@
     <string name="sairJogoPont">Ao sair da sala você perderá toda a sua pontuação.</string>
     <string name="labelSetaDir">Seta para a direita</string>
     <string name="labelCheck">Sinal de check</string>
+    <string name="transmissao">Transmissão</string>
 </resources>

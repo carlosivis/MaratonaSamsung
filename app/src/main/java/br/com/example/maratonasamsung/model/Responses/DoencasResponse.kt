@@ -8,5 +8,5 @@ data class DoencasResponse(
     var nome: String,
     val prevencao: List<Prevencao>,
     val sintomas: List<Sintoma>,
-    var tipo: String
+    var tipo: String,
 ):Serializable

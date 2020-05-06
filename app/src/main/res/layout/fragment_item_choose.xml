@@ -26,8 +26,7 @@
         android:id="@+id/scrView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/txtDoencaNome"
-        android:layout_above="@id/imageLogo">
+        android:layout_below="@id/txtDoencaNome">
 
         <TableLayout
             android:id="@+id/main_table"
@@ -96,9 +95,25 @@
                 android:id="@+id/txtPrevencao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginBottom="30dp"
                 android:textSize="18sp"
                 tools:text="Item de prevencao" />
+
+            <TextView
+                android:id="@+id/txtStaticTransmissao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:text="@string/transmissao"
+                android:textSize="23sp" />
+
+            <TextView
+                android:id="@+id/txtTransmissao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                tools:text="Item de transmissao" />
 
         </TableLayout>
 
