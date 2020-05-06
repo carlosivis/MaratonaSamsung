@@ -31,8 +31,6 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
     var navController: NavController? = null
     lateinit var spinnerAdapter: ArrayAdapter<String>
     var rodada: Int = 1
-    val id_sessao = requireArguments().getInt("id")
-    val doenca: String = requireArguments().getString("doenca").toString()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,7 +51,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                     .setPositiveButton(R.string.sair) { dialog, which ->
                         navController!!.navigate(R.id.mainFragment)
                     }
-                    .setNegativeButton(R.string.voltar) { dialog, which -> }
+                    .setNegativeButton(R.string.cancelar) { dialog, which -> }
                     .show()
             }
         }
@@ -65,6 +63,9 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
         navController = Navigation.findNavController(view)
         view.findViewById<Button>(R.id.diqueiroBtnDicas).setOnClickListener(this)
 
+        val id_sessao = requireArguments().getInt("id")
+        val doenca: String = requireArguments().getString("doenca").toString()
+
         ranking(id_sessao)
         sintomas(doenca)
         prevencoes(doenca)
@@ -74,28 +75,49 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         when(v!!.id){
             R.id.diqueiroBtnDicas -> {
-                val sintoma = diqueiroSpinnerSintoma.selectedItem.toString()
-                val prevencao = diqueiroSpinnerPrevencao.selectedItem.toString()
-                val transmicao = diqueiroSpinnerTransmicao.selectedItem.toString()
+                lateinit var sintoma: String
+                lateinit var prevencao: String
+                lateinit var transmicao: String
 
-//                if(sintoma.isEmpty() && prevencao.isEmpty() && transmicao.isEmpty()) {
-//                    val texto = "Selecione uma dica"
-//                    val duracao = Toast.LENGTH_SHORT
-//                    val toast = Toast.makeText(context, texto, duracao)
-//                    toast.show()
-//                }
-//                if(!sintoma.isEmpty() && prevencao.isEmpty() && transmicao.isEmpty())
-//                    editarSessao(sintoma)
-//                else if(sintoma.isEmpty() && !prevencao.isEmpty() && transmicao.isEmpty())
-//                    editarSessao(prevencao)
-//                else if(sintoma.isEmpty() && prevencao.isEmpty() && !transmicao.isEmpty())
-//                    editarSessao(transmicao)
-//                else {
-//                    val texto = "Você pode enviar apenas uma dica por vez"
-//                    val duracao = Toast.LENGTH_SHORT
-//                    val toast = Toast.makeText(context, texto, duracao)
-//                    toast.show()
-//                }
+                sintoma =
+                    if (diqueiroSpinnerSintoma.visibility == View.VISIBLE) diqueiroSpinnerSintoma.selectedItem.toString()
+                    else ""
+
+                prevencao =
+                    if (diqueiroSpinnerPrevencao.visibility == View.VISIBLE) diqueiroSpinnerPrevencao.selectedItem.toString()
+                    else ""
+
+                transmicao =
+                    if (diqueiroSpinnerTransmicao.visibility == View.VISIBLE) diqueiroSpinnerTransmicao.selectedItem.toString()
+                    else ""
+
+                if(sintoma.isEmpty() && prevencao.isEmpty() && transmicao.isEmpty()) {
+                    val texto = "Selecione uma dica"
+                    val duracao = Toast.LENGTH_SHORT
+                    val toast = Toast.makeText(context, texto, duracao)
+                    toast.show()
+                }
+                if(!sintoma.isEmpty() && prevencao.isEmpty() && transmicao.isEmpty()) {
+                    lateinit var dica: DicaUnica
+                    dica.nome = sintoma
+                    editarSessao(dica)
+                }
+                else if(sintoma.isEmpty() && !prevencao.isEmpty() && transmicao.isEmpty()) {
+                    var dica: DicaUnica = ""
+                    dica.nome = prevencao
+                    editarSessao(dica)
+                }
+                else if(sintoma.isEmpty() && prevencao.isEmpty() && !transmicao.isEmpty()) {
+                    lateinit var dica: DicaUnica
+                    dica.nome = transmicao
+                    editarSessao(dica)
+                }
+                else {
+                    val texto = "Você pode enviar apenas uma dica por vez"
+                    val duracao = Toast.LENGTH_SHORT
+                    val toast = Toast.makeText(context, texto, duracao)
+                    toast.show()
+                }
 
 
 
@@ -116,27 +138,29 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
         }
     }
 
-//    fun editarSessao(dica: String){
-//        Service.retrofit.editarSessao(
-//            sessao = EditSessaoRequest(
-//                id_sessao = id_sessao,
-//                rodada = rodada,
-//                doenca = doenca
-////                dicas = dica
-//            )
-//        ).enqueue(object : Callback<SessaoResponseEditing>{
-//            override fun onFailure(call: Call<SessaoResponseEditing>, t: Throwable) {
-//                Log.d("Deu ruim", t.toString())
-//            }
-//            override fun onResponse(call: Call<SessaoResponseEditing>, response: Response<SessaoResponseEditing>) {
-//                Log.d("Nice", response.body().toString())
-//
-//                val sessao = response.body()
-//
-//                //AQUI EU RECEBO, ENTRE OUTRAS COISAS, TODAS AS DICAS QUE JÁ FORAM E EU PRECISO RETIRÁ-LAS DOS SPINNERS
-//            }
-//        })
-//    }
+    fun editarSessao(dica: DicaUnica){
+        val id_sessao = requireArguments().getInt("id")
+        val doenca: String = requireArguments().getString("doenca").toString()
+        Service.retrofit.editarSessao(
+            sessao = EditSessaoRequest(
+                id_sessao = id_sessao,
+                rodada = rodada,
+                doenca = doenca,
+                dicas = dica
+            )
+        ).enqueue(object : Callback<SessaoResponseEditing>{
+            override fun onFailure(call: Call<SessaoResponseEditing>, t: Throwable) {
+                Log.d("Deu ruim", t.toString())
+            }
+            override fun onResponse(call: Call<SessaoResponseEditing>, response: Response<SessaoResponseEditing>) {
+                Log.d("Nice", response.body().toString())
+
+                val sessao = response.body()
+
+                //AQUI EU RECEBO, ENTRE OUTRAS COISAS, TODAS AS DICAS QUE JÁ FORAM E EU PRECISO RETIRÁ-LAS DOS SPINNERS
+            }
+        })
+    }
 
     fun ranking(id_sessao: Int){
         Service.retrofit.ranking(

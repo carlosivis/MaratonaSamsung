@@ -116,7 +116,7 @@ class RoomDiqueiroDoencaFragment : Fragment(), View.OnClickListener {
                     }
                 }
 
-                //AQUI EU JÁ TENHO TODAS AS DOENÇAS QUE AINDA NÃO FORAM USADAS NO JOGO E EU PRECISO RETIRÁ-LAS DO SPINNER
+                //AQUI EU JÁ TENHO TODAS AS DOENÇAS QUE AINDA JÁ FORAM USADAS NO JOGO E EU PRECISO COLOCÁ-LAS NO SPINNER, PARA FICAR ATUALIZADO
             }
         })
     }
