@@ -7,9 +7,14 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import br.com.example.maratonasamsung.R
+import br.com.example.maratonasamsung.modoInterativo.RoomAdivinhadorFragment
+import br.com.example.maratonasamsung.modoInterativo.RoomDiqueiroDicasFragment
+import br.com.example.maratonasamsung.modoInterativo.RoomDiqueiroDoencaFragment
 import br.com.example.maratonasamsung.tutoriaisRegras.TutorialActivity
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
@@ -22,21 +27,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(R.layout.main_activity)
         sharedPreferences = getSharedPreferences("faz diferenca", MODE_PRIVATE)
 
-//        val toolbar: Toolbar = findViewById(R.id.toolbar)
-//        toolbar.title = ""
-//        setSupportActionBar(toolbar)
-
-        /*Caso precise colocar a toolbar de novo (colocar no xml):
-        <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:theme="@style/ToolbarTheme"
-        app:menu="@menu/menu" />
-         */
     }
 
     override fun onResume() {
@@ -45,6 +35,42 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             startActivity(Intent(this, TutorialActivity::class.java))
             editor = sharedPreferences.edit()
             editor.putBoolean("firstRun", false).commit()
+        }
+    }
+
+    override fun onBackPressed() {
+        val gameFragment = supportFragmentManager.findFragmentById(R.id.roomAdivinhadorFragment)
+        if(gameFragment is RoomAdivinhadorFragment) {
+            AlertDialog.Builder(this)
+                .setTitle(R.string.sairJogo)
+                .setMessage(R.string.sairJogoPont)
+                .setPositiveButton(R.string.sair) { dialog, which ->
+                    navController!!.navigate(R.id.mainFragment)
+                }
+                .setNegativeButton(R.string.cancelar) { dialog, which -> }
+                .show()
+        }
+        else if(gameFragment is RoomDiqueiroDoencaFragment) {
+            AlertDialog.Builder(this)
+                .setTitle(R.string.sairJogo)
+                .setPositiveButton(R.string.sair) { dialog, which ->
+                    navController!!.navigate(R.id.mainFragment)
+                }
+                .setNegativeButton(R.string.cancelar) { dialog, which -> }
+                .show()
+        }
+        else if(gameFragment is RoomDiqueiroDicasFragment) {
+            AlertDialog.Builder(this)
+                .setTitle(R.string.sairJogo)
+                .setMessage(R.string.sairJogoPont)
+                .setPositiveButton(R.string.sair) { dialog, which ->
+                    navController!!.navigate(R.id.mainFragment)
+                }
+                .setNegativeButton(R.string.cancelar) { dialog, which -> }
+                .show()
+        }
+        else {
+            super.onBackPressed()
         }
     }
 
@@ -66,7 +92,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             else -> return super.onOptionsItemSelected(item)
         }
     }
-
 
     override fun onClick(v: View?) {
         when(v!!.id){

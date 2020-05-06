@@ -1,8 +1,7 @@
 package br.com.example.appacessibilidade
 
 
-import br.com.example.maratonasamsung.model.Requests.JogadorRequest
-import br.com.example.maratonasamsung.model.Requests.SalaRequest
+import br.com.example.maratonasamsung.model.Requests.*
 import br.com.example.maratonasamsung.model.Responses.*
 import retrofit2.Call
 import retrofit2.http.*
@@ -20,10 +19,22 @@ interface InterfaceRetrofit {
     fun criarSala(@Body sala: SalaRequest): Call<SalaResponse>
 
     @POST("/sessao")
-    fun cadastrarSessao(@Body sala: SalaRequest): Call<SessaoResponse>
+    fun cadastrarSessao(@Body sala: SalaRequest): Call<SessaoRequest>
 
     @GET("/sessao/{id_sessao}")
-    fun listarSessao(@Body sala: SalaRequest): Call<SessaoResponse>
+    fun listarSessao(@Path ("id_sessao") id_sessao: Int): Call<SessaoResponseListing>
+
+    @GET("/sessao/{id_sessao}")
+    fun dicas(@Path ("id_sessao") id_sessao: Int): Call<SessaoResponse>
+
+    @PUT("/sessao")
+    fun editarSessaoSintoma(@Body sessao: EditSessaoSintomaRequest): Call<SessaoResponseEditing>
+
+    @PUT("/sessao")
+    fun editarSessaoPrevencao(@Body sessao: EditSessaoPrevencaoRequest): Call<SessaoResponseEditing>
+
+    @PUT("/sessao")
+    fun editarSessaoTransmicao(@Body sessao: EditSessaoTransmicaoRequest): Call<SessaoResponseEditing>
 
     @GET("/doenca")
     fun doencas(): Call<List<DoencasResponse>>
@@ -35,7 +46,7 @@ interface InterfaceRetrofit {
     fun prevencoes(@Path("doenca") doenca: String): Call<Prevencoes>
 
     @GET("/transmicaos/{doenca}")
-    fun transmicoes(@Path("doenca") doenca: String): Call<Transmicoes>
+    fun transmicoes(@Path("doenca") doenca: String): Call<Transmissoes>
 
 //    @GET("/jogador")
 //    fun jogador(): Call<JogadorResponse>

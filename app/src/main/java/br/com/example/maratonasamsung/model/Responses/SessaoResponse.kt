@@ -2,8 +2,8 @@ package br.com.example.maratonasamsung.model.Responses
 
 data class SessaoResponse(
     val status: Boolean,
-    val id_sessao: Int,
-    val nome_sala: String,
-    val senha_sala: String,
-    val doencas: List<Doenca>
+    val sessao: Sessao,
+    val doencas: List<Doenca>,
+    val doencasSelecionadas: List<Doenca>,
+    val dicas: List<DicaResponse>
 )
