@@ -111,10 +111,7 @@ class RoomDiqueiroDoencaFragment : Fragment(), View.OnClickListener {
                 sessao.doencasSelecionadas.forEach { doencasSelecionadas.add((it.nome)) }
 
                 if(doencasSelecionadas.isNotEmpty()) {
-                    doencasSelecionadas.forEach {
-                        doencas.filter { doenca -> doencas.remove(doenca) }
-//                        if (it == doenca) doencas.remove(doenca)
-                    }
+                    doencas.removeAll(doencasSelecionadas)
                 }
 
 //                val i: MutableIterator<String> = doencas.iterator()
@@ -133,5 +130,9 @@ class RoomDiqueiroDoencaFragment : Fragment(), View.OnClickListener {
                 //AQUI EU JÁ TENHO TODAS AS DOENÇAS QUE AINDA JÁ FORAM USADAS NO JOGO E EU PRECISO COLOCÁ-LAS NO SPINNER, PARA FICAR ATUALIZADO
             }
         })
+    }
+
+    fun removeDoenca(){
+
     }
 }
