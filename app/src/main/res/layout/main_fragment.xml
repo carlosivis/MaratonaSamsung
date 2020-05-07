@@ -55,6 +55,12 @@
                 android:text="@string/config"
                 android:textSize="18sp" />
 
+            <Chronometer
+                android:id="@+id/testetempo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
 
         </LinearLayout>
     </RelativeLayout>

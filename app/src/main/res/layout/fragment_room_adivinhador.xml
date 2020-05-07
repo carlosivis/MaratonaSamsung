@@ -30,6 +30,12 @@
         android:layout_marginBottom="10dp"
         android:orientation="vertical">
 
+        <Chronometer
+            android:id="@+id/tempoCronometro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            />
         <TextView
             android:id="@+id/adivinhadorTxtRanking"
             android:layout_width="wrap_content"
@@ -110,5 +116,6 @@
         android:ems="4"
         android:text="@string/btn_adivinhar"
         android:textColor="@color/colorText" />
+
 
 </RelativeLayout>
