@@ -68,27 +68,29 @@ class RoomAcessNameFragment : Fragment(), View.OnClickListener {
 
                 val jogador = response.body()
 
-                if(jogador!!.status == "Não") {
+                if(!jogador!!.status) {
+                    if(jogador.message == "Esse nome já existe") {
+                        val texto = "Nome de usuário já existente nesta sala"
+                        val duracao = Toast.LENGTH_SHORT
+                        val toast = Toast.makeText(context, texto, duracao)
+                        toast.show()
+                        acessnameEditUsuario.setText("")
+                    }
+                    else if(jogador.message == "Sessao já foi iniciada") {
+                        val texto = "Rodada já iniciada, entrada não mais permitida"
+                        val duracao = Toast.LENGTH_SHORT
+                        val toast = Toast.makeText(context, texto, duracao)
+                        toast.show()
+                        acessnameEditUsuario.setText("")
+                    }
+                }
+                else {
                     val doencas = arguments!!.getStringArrayList("doencas")
 
                     val parametros = Bundle()
                     parametros.putInt("id", id_sessao)
                     parametros.putStringArrayList("doencas", doencas)
                     navController!!.navigate(R.id.action_roomAcessNameFragment_to_roomAdivinhadorFragment, parametros)
-                }
-                else if(jogador.status == "Sim") {
-                    val texto = "Nome de usuário já existente nesta sala"
-                    val duracao = Toast.LENGTH_SHORT
-                    val toast = Toast.makeText(context, texto, duracao)
-                    toast.show()
-                    acessnameEditUsuario.setText("")
-                }
-                else {
-                    val texto = "Rodada já iniciada, entrada não mais permitida"
-                    val duracao = Toast.LENGTH_SHORT
-                    val toast = Toast.makeText(context, texto, duracao)
-                    toast.show()
-                    acessnameEditUsuario.setText("")
                 }
             }
         })
