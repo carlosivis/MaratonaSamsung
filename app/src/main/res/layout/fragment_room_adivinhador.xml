@@ -101,12 +101,12 @@
         android:scrollbarSize="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_above="@+id/btnAdv"
+        android:layout_above="@+id/adivinhadorBtnAdivinhar"
         android:popupBackground="@color/colorButton"
         android:layout_marginBottom="10dp" />
 
     <Button
-        android:id="@+id/btnAdv"
+        android:id="@+id/adivinhadorBtnAdivinhar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"

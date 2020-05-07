@@ -42,7 +42,7 @@ class MainFragment : Fragment(), View.OnClickListener,Chronometer.OnChronometerT
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
         view.findViewById<Button>(R.id.btnModoEstudo).setOnClickListener(this)
-        view.findViewById<Button>(R.id.btnModoInterativo).setOnClickListener(this)
+        view.findViewById<Button>(R.id.btnModoInterativo    ).setOnClickListener(this)
         view.findViewById<Button>(R.id.btnMais).setOnClickListener(this)
         teste()
 
@@ -74,14 +74,14 @@ class MainFragment : Fragment(), View.OnClickListener,Chronometer.OnChronometerT
         }
         callback
     }
+
     @RequiresApi(Build.VERSION_CODES.N)
     fun teste(){
         testetempo.isCountDown= true
-        testetempo.base = SystemClock.uptimeMillis()+10000
+        testetempo.base = SystemClock.elapsedRealtime()+10000
         testetempo.setOnChronometerTickListener(this)
         testetempo.start()
     }
-
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onChronometerTick(chronometer: Chronometer?) {

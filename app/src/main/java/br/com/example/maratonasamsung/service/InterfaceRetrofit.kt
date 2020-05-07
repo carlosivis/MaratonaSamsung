@@ -54,6 +54,6 @@ interface InterfaceRetrofit {
     @POST("/jogador")
     fun jogadorNovo(@Body jogador: JogadorRequest): Call<JogadorResponse>
 
-//    @PUT("/jogador")
-//    fun jogadorUpdate(jogadorUpdate: JogadorUpdate): Call<JogadorResponse>
+    @PUT("/jogador")
+    fun jogadorUpdate(@Body jogadorUpdate: JogadorUpdate): Call<JogadorResponse>
 }
