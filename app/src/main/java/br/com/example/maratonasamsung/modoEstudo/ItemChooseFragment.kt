@@ -25,10 +25,18 @@ class ItemChooseFragment : Fragment() {
         var param = arguments?.get("self") as DoencasResponse
         Log.d("Teste nome", param.toString())
         txtDoencaNome.text = param.nome
+        Log.d(param.tipo, "euaqui")
+        when (param.tipo) {
+            "bacterias" -> imageDoenca.setImageResource(R.drawable.bacteria)
+            "virus" -> imageDoenca.setImageResource(R.drawable.virus)
+            "platelmintos ou nemaltelmintos" -> imageDoenca.setImageResource(R.drawable.platelminto)
+            "protozoarios" -> imageDoenca.setImageResource(R.drawable.protozoario)
+        }
         txtAgente.text = "Agente: ${param.agente}"
-        txtArraySintoma.text = param.sintomas.joinToString("\n"){ it.nome }
-        txtPrevencao.text = param.prevencao.joinToString("\n") { it.nome }
-        //txtTipo.text = "Tipo: ${param.tipo}"
+        txtArraySintoma.text = "\u25CF " + param.sintomas.joinToString(" \n\u25CF ") { it.nome }
+        txtPrevencao.text = "\u25CF " + param.prevencao.joinToString(" \n\u25CF ") { it.nome }
+        txtTransmissao.text = "\u25CF " + param.transmicao.joinToString(" \n\u25CF ") { it.nome }
+
     }
 }
 

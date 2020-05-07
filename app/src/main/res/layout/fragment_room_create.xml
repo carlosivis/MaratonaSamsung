@@ -54,10 +54,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/createTxtUsuario"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="40dp"
                 android:autofillHints="@string/nomeUser"
                 android:hint="@string/nomeUser"
                 android:inputType="textPersonName"
+                android:backgroundTint="@color/colorLight"
+                android:textCursorDrawable="@null"
                 android:textSize="18sp" />
 
             <TextView
@@ -74,10 +76,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/createTxtNomeSala"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="40dp"
                 android:autofillHints="@string/nomeSala"
                 android:hint="@string/nomeSala"
                 android:inputType="textPersonName"
+                android:backgroundTint="@color/colorLight"
+                android:textCursorDrawable="@null"
                 android:textSize="18sp" />
 
             <TextView
@@ -97,6 +101,8 @@
                 android:autofillHints="@string/senha"
                 android:hint="@string/senha"
                 android:inputType="textPassword"
+                android:backgroundTint="@color/colorLight"
+                android:textCursorDrawable="@null"
                 android:textSize="18sp" />
         </RelativeLayout>
     </RelativeLayout>
@@ -111,18 +117,5 @@
         android:background="@drawable/roundbutton"
         android:ems="4"
         android:text="@string/btn_criar" />
-
-    <ImageView
-        android:id="@+id/imageLogo"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="30dp"
-        android:adjustViewBounds="true"
-        android:contentDescription="@string/labelLupa"
-        android:scaleType="fitCenter"
-        android:src="@drawable/logo"
-        android:visibility="visible" />
 
 </RelativeLayout>
