@@ -32,7 +32,9 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
 
     var navController: NavController? = null
     lateinit var spinnerAdapter: ArrayAdapter<String>
-//    lateinit var sintomasGlobal: ArrayList<String>
+    lateinit var sintomasGlobal: ArrayList<String>
+    lateinit var prevencoesGlobal: ArrayList<String>
+    lateinit var transmicoesGlobal: ArrayList<String>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -69,10 +71,9 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
         val doenca: String = requireArguments().getString("doenca").toString()
 
         ranking(id_sessao)
-//        sintomasGlobal =
-            sintomas(doenca)
-        prevencoes(doenca)
-        transmicoes(doenca)
+        sintomasGlobal = sintomas(doenca)
+        prevencoesGlobal = prevencoes(doenca)
+        transmicoesGlobal = transmicoes(doenca)
     }
 
     override fun onClick(v: View?) {
@@ -191,7 +192,9 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
         diqueiroSpinnerPrevencao.adapter = spinnerAdapter
     }
 
-    fun prevencoes(doenca: String) {
+    fun prevencoes(doenca: String): ArrayList<String> {
+        val prevencoes: ArrayList<String> = arrayListOf("")
+
         Service.retrofit.prevencoes(
             doenca = doenca
         ).enqueue(object : Callback<Prevencoes>{
@@ -205,7 +208,6 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                 val listaPrevencao = response.body()
 
                 if (listaPrevencao?.prevencoes!!.isNotEmpty()) {
-                    val prevencoes: ArrayList<String> = arrayListOf("")
                     listaPrevencao.prevencoes.forEach { prevencoes.add((it.nome)) }
 
                     populaSpinnerPrevencoes(prevencoes)
@@ -216,6 +218,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                 }
             }
         })
+        return prevencoes
     }
 
     fun populaSpinnerTransmicoes(transmicoes: ArrayList<String>) {
@@ -227,7 +230,9 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
         diqueiroSpinnerTransmicao.adapter = spinnerAdapter
     }
 
-    fun transmicoes(doenca: String) {
+    fun transmicoes(doenca: String): ArrayList<String> {
+        val transmicoes: ArrayList<String> = arrayListOf("")
+
         Service.retrofit.transmicoes(
             doenca = doenca
         ).enqueue(object : Callback<Transmissoes>{
@@ -241,7 +246,6 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                 val listaTransmicao = response.body()
 
                 if (listaTransmicao?.transmicao!!.isNotEmpty()) {
-                    val transmicoes: ArrayList<String> = arrayListOf("")
                     listaTransmicao.transmicao.forEach { transmicoes.add((it.nome)) }
 
                     populaSpinnerTransmicoes(transmicoes)
@@ -252,6 +256,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                 }
             }
         })
+        return transmicoes
     }
 
     fun editarSessaoSintoma(dica: DicaUnicaSintoma, rodada: Int){
@@ -273,15 +278,15 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
 
                 val sessao = response.body()
 
-//                val sintomasSelecionados: ArrayList<String> = arrayListOf("")
-//                sessao?.dicas!!.sintomas.forEach { sintomasSelecionados.add((it.nome)) }
-//
-//                if(sintomasSelecionados.isNotEmpty()) {
-//                    sintomasGlobal.removeAll(sintomasSelecionados)
-//                }
-//
-//                sintomasGlobal.add(0, "")
-//                populaSpinnerSintoma(sintomasGlobal)
+                val sintomasSelecionados: ArrayList<String> = arrayListOf("")
+                sessao?.dicas!!.sintomas.forEach { sintomasSelecionados.add((it.nome)) }
+
+                if(sintomasSelecionados.isNotEmpty()) {
+                    sintomasGlobal.removeAll(sintomasSelecionados)
+                }
+
+                sintomasGlobal.add(0, "")
+                populaSpinnerSintoma(sintomasGlobal)
             }
         })
     }
@@ -305,7 +310,15 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
 
                 val sessao = response.body()
 
-                //AQUI EU RECEBO, ENTRE OUTRAS COISAS, TODAS AS DICAS QUE JÁ FORAM E EU PRECISO RETIRÁ-LAS DOS SPINNERS
+                val prevecoesSelecionados: ArrayList<String> = arrayListOf("")
+                sessao?.dicas!!.sintomas.forEach { prevecoesSelecionados.add((it.nome)) }
+
+                if(prevecoesSelecionados.isNotEmpty()) {
+                    prevencoesGlobal.removeAll(prevecoesSelecionados)
+                }
+
+                prevencoesGlobal.add(0, "")
+                populaSpinnerSintoma(prevencoesGlobal)
             }
         })
     }
@@ -329,7 +342,15 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
 
                 val sessao = response.body()
 
-                //AQUI EU RECEBO, ENTRE OUTRAS COISAS, TODAS AS DICAS QUE JÁ FORAM E EU PRECISO RETIRÁ-LAS DOS SPINNERS
+                val transmicoesSelecionados: ArrayList<String> = arrayListOf("")
+                sessao?.dicas!!.sintomas.forEach { transmicoesSelecionados.add((it.nome)) }
+
+                if(transmicoesSelecionados.isNotEmpty()) {
+                    transmicoesGlobal.removeAll(transmicoesSelecionados)
+                }
+
+                transmicoesGlobal.add(0, "")
+                populaSpinnerSintoma(transmicoesGlobal)
             }
         })
     }
