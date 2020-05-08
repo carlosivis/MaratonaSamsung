@@ -1,13 +1,17 @@
 package br.com.example.maratonasamsung.modoInterativo
 
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
+import android.os.SystemClock
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Chronometer
 import androidx.activity.addCallback
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
@@ -19,6 +23,7 @@ import br.com.example.maratonasamsung.model.Responses.RankingResponse
 import br.com.example.maratonasamsung.model.Responses.SessaoResponse
 import br.com.example.maratonasamsung.service.Service
 import kotlinx.android.synthetic.main.fragment_room_adivinhador.*
+import kotlinx.android.synthetic.main.main_fragment.*
 import kotlinx.coroutines.delay
 import retrofit2.Call
 import retrofit2.Callback
@@ -57,6 +62,7 @@ class RoomAdivinhadorFragment :  Fragment() {
         callback
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
@@ -71,7 +77,10 @@ class RoomAdivinhadorFragment :  Fragment() {
         spinnerResposta.adapter = spinnerAdapter
         ranking(id_sessao)
         dicas(id_sessao)
-
+        chronometro()
+        Timer().schedule(60000){
+            Navigation.findNavController(view).navigate(R.id.action_roomAdivinhadorFragment_to_placeholderRodadaFragment)
+        }
     }
 
     fun ranking(id_sessao: Int){
@@ -120,6 +129,13 @@ class RoomAdivinhadorFragment :  Fragment() {
         }
     }
 
+
+    @RequiresApi(Build.VERSION_CODES.N)
+    fun chronometro(){
+        tempoCronometro.isCountDown= true
+        tempoCronometro.base = SystemClock.elapsedRealtime()+60500
+        tempoCronometro.start()
+    }
 }
 
 
