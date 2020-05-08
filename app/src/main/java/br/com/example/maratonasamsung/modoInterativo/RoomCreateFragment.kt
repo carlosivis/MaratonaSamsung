@@ -115,10 +115,10 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
         })
     }
 
-    fun jogadorNovo(id: Int, parametros: Bundle){
+    fun jogadorNovo(id_sessao: Int, parametros: Bundle){
         Service.retrofit.jogadorNovo(
             jogador = JogadorRequest(
-                id_sessao = id,
+                id_sessao = id_sessao,
                 nome = createEditUsuario.text.toString()
             )
         ).enqueue(object : Callback<JogadorResponse>{
