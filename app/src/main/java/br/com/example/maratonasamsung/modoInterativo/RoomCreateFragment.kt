@@ -106,7 +106,7 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
                 sessao?.doencas!!.forEach { doencas.add((it.nome)) }
 
                 val parametros = Bundle()
-                parametros.putInt("id_sessap", sessao.id_sessao)
+                parametros.putInt("id_sessao", sessao.id_sessao)
                 parametros.putString("jogador_nome", createEditUsuario.text.toString())
                 parametros.putStringArrayList("doencas", doencas)
 
@@ -129,7 +129,7 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
             override fun onResponse(call: Call<JogadorResponse>, response: Response<JogadorResponse>) {
                 Log.d("Nice", response.toString())
 
-                navController!!.navigate(R.id.action_roomCreateFragment_to_roomDiqueiroDoencaFragment, parametros)
+                navController!!.navigate(R.id.action_roomCreateFragment_to_aguardandoJogadoresFragment, parametros)
             }
         })
     }

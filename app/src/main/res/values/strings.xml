@@ -90,7 +90,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="JustATime">Só um momento...</string>
+    <string name="aguardando_jogadores">Aguardando pelo menos mais um jogador para iniciar a rodada</string>
   
     <string name="transmissao">Transmissão</string>
 </resources>

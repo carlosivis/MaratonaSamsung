@@ -30,7 +30,8 @@
         tools:layout="@layout/fragment_room_typek" >
         <action
             android:id="@+id/action_roomTypekFragment_to_roomCreateFragment"
-            app:destination="@id/roomCreateFragment" />
+            app:destination="@id/roomCreateFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
         <action
             android:id="@+id/action_roomTypekFragment_to_roomAcessFragment"
             app:destination="@id/roomAcessFragment"
@@ -42,9 +43,13 @@
         android:label="fragment_room_create"
         tools:layout="@layout/fragment_room_create" >
         <action
-            android:id="@+id/action_roomCreateFragment_to_roomDiqueiroDoencaFragment"
-            app:destination="@id/roomDiqueiroDoencaFragment"
+            android:id="@+id/action_roomCreateFragment_to_aguardandoJogadoresFragment"
+            app:destination="@id/aguardandoJogadoresFragment"
             app:enterAnim="@anim/nav_default_enter_anim" />
+<!--        <action-->
+<!--            android:id="@+id/action_roomCreateFragment_to_roomDiqueiroDoencaFragment"-->
+<!--            app:destination="@id/roomDiqueiroDoencaFragment"-->
+<!--            app:enterAnim="@anim/nav_default_enter_anim" />-->
     </fragment>
     <fragment
         android:id="@+id/roomAcessFragment"
@@ -147,5 +152,15 @@
         android:name="br.com.example.maratonasamsung.ui.main.CreditsFragment"
         android:label="fragment_credits"
         tools:layout="@layout/fragment_credits" />
+    <fragment
+        android:id="@+id/aguardandoJogadoresFragment"
+        android:name="br.com.example.maratonasamsung.ui.main.AguardandoJogadoresFragment"
+        android:label="fragment_aguardando_jogadores"
+        tools:layout="@layout/fragment_aguardando_jogadores" >
+        <action
+            android:id="@+id/action_aguardandoJogadoresFragment_to_roomDiqueiroDoencaFragment"
+            app:destination="@id/roomDiqueiroDoencaFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+    </fragment>
 </navigation>
 

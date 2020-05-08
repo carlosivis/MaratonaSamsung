@@ -40,7 +40,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
 
     var navController: NavController? = null
     lateinit var spinnerAdapter: ArrayAdapter<String>
-    val timer = Timer()
+    val timerCronometro = Timer()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -64,8 +64,8 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
                     .setPositiveButton(R.string.sair) { dialog, which ->
                         navController!!.navigate(R.id.mainFragment)
                         tempoCronometro.stop()
-                        timer.cancel()
-                        timer.purge()
+                        timerCronometro.cancel()
+                        timerCronometro.purge()
                         jogadorEncerrar(id_sessao, jogador)
                     }
                     .setNegativeButton(R.string.cancelar) { dialog, which -> }
@@ -93,7 +93,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
         dicas(id_sessao)
         chronometro()
 
-        timer.schedule(10000) {
+        timerCronometro.schedule(10000) {
             val parametro = Bundle()
             parametro.putInt("id", id_sessao)
 
