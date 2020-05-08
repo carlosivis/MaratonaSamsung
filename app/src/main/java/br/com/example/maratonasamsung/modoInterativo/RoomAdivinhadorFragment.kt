@@ -160,8 +160,9 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
     }
 
     fun dicas(id_sessao: Int){
-        Service.retrofit.listarSessao(id_sessao)
-            .enqueue(object :Callback<SessaoResponseListing>{
+        Service.retrofit.listarSessao(
+            id_sessao = id_sessao
+        ).enqueue(object :Callback<SessaoResponseListing>{
                 override fun onFailure(call: Call<SessaoResponseListing>, t: Throwable) {
                     Log.d("Falha ao pegar dicas", t.toString())
                 }

@@ -8,12 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.example.maratonasamsung.R
 import br.com.example.maratonasamsung.model.Responses.RankingResponse
-import br.com.example.maratonasamsung.modoInterativo.RankingAdapter
 import br.com.example.maratonasamsung.service.Service
-import kotlinx.android.synthetic.main.fragment_room_adivinhador.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
