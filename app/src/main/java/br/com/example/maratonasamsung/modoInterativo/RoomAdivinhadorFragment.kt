@@ -78,7 +78,7 @@ class RoomAdivinhadorFragment :  Fragment() {
         dicas(id_sessao)
     }
 
-    override fun onClick(v: View?) {
+    fun onClick(v: View?) {
         when(v!!.id){
             R.id.adivinhadorBtnAdivinhar -> {
                 val resposta = spinnerResposta.selectedItem.toString()
@@ -119,20 +119,23 @@ class RoomAdivinhadorFragment :  Fragment() {
     }
 
     fun dicas(id_sessao: Int){
-        Service.retrofit.dicas(id_sessao)
-            .enqueue(object :Callback<SessaoResponse>{
-                override fun onFailure(call: Call<SessaoResponse>, t: Throwable) {
+        Service.retrofit.listarSessao(id_sessao)
+            .enqueue(object :Callback<SessaoResponseListing>{
+                override fun onFailure(call: Call<SessaoResponseListing>, t: Throwable) {
                     Log.d("Falha ao pegar dicas", t.toString())
                 }
 
-                override fun onResponse(call: Call<SessaoResponse>, response: Response<SessaoResponse>) {
-                    Log.d("Sucesso: dicas e sessao", response.body().toString())
-                    var dicas: ArrayList<String> = arrayListOf("")
-                    response.body()?.dicas?.forEach {
-                        it.prevencoes.forEach { dicas.add(it.toString()) }
-                        it.sintomas.forEach { dicas.add(it.toString()) }
-                        it.transmicoes.forEach { dicas.add(it.toString()) }
-                    }
+                override fun onResponse(call: Call<SessaoResponseListing>, response: Response<SessaoResponseListing>) {
+                    Log.d("Sucesso ao pegar dicas", response.body().toString())
+
+                    val sessao = response.body()
+
+                    val dicas: ArrayList<String> = arrayListOf("")
+
+                    sessao?.dicas!!.sintomas.forEach { dicas.add(it.toString()) }
+                    sessao.dicas.prevencoes.forEach { dicas.add(it.toString()) }
+                    sessao.dicas.transmicoes.forEach { dicas.add(it.toString()) }
+
                     recyclerDicas.apply {
                         layoutManager = LinearLayoutManager(activity)
                         adapter = DicasAdapter(dicas)
