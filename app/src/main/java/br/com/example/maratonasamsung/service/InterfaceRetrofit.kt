@@ -51,6 +51,6 @@ interface InterfaceRetrofit {
     @PUT("/jogador")
     fun jogadorUpdate(@Body jogadorUpdate: JogadorUpdate): Call<JogadorResponse>
 
-    @DELETE("/jogador/encerra")
-    fun jogadorEncerrar(@Query("jogador") jogador: JogadorRequest)
+    @HTTP(method = "DELETE", path = "/jogador/encerra", hasBody = true)
+    fun jogadorEncerrar(@Body jogador: JogadorRequest): Call<JogadorEncerra>
 }

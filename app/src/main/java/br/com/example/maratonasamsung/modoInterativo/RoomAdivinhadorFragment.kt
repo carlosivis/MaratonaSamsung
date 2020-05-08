@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.example.maratonasamsung.R
 import br.com.example.maratonasamsung.model.Requests.JogadorRequest
 import br.com.example.maratonasamsung.model.Requests.JogadorUpdate
+import br.com.example.maratonasamsung.model.Responses.JogadorEncerra
 import br.com.example.maratonasamsung.model.Responses.JogadorResponse
 import br.com.example.maratonasamsung.model.Responses.RankingResponse
 import br.com.example.maratonasamsung.model.Responses.SessaoResponseListing
@@ -63,7 +64,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
                         tempoCronometro.stop()
                         timer.cancel()
                         timer.purge()
-//                        jogadorEncerrar(id_sessao, jogador)
+                        jogadorEncerrar(id_sessao, jogador)
                     }
                     .setNegativeButton(R.string.cancelar) { dialog, which -> }
                     .show()
@@ -236,7 +237,15 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
                 id_sessao = id_sessao,
                 nome = jogador
             )
-        )
+        ).enqueue(object : Callback<JogadorEncerra> {
+            override fun onFailure(call: Call<JogadorEncerra>, t: Throwable) {
+                Log.d("Falha ao encerrar", t.toString())
+            }
+
+            override fun onResponse(call: Call<JogadorEncerra>, response: Response<JogadorEncerra>) {
+                Log.d("Sucesso ao encerrar", response.body().toString())
+            }
+        })
     }
 }
 
