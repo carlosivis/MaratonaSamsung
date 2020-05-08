@@ -2,14 +2,12 @@ package br.com.example.maratonasamsung.modoInterativo
 
 import android.os.Build
 import android.os.Bundle
-import android.os.Handler
 import android.os.SystemClock
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.Chronometer
 import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.annotation.RequiresApi
@@ -18,7 +16,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import br.com.example.maratonasamsung.R
 import br.com.example.maratonasamsung.model.Requests.JogadorRequest
 import br.com.example.maratonasamsung.model.Requests.JogadorUpdate
@@ -28,8 +25,6 @@ import br.com.example.maratonasamsung.model.Responses.RankingResponse
 import br.com.example.maratonasamsung.model.Responses.SessaoResponseListing
 import br.com.example.maratonasamsung.service.Service
 import kotlinx.android.synthetic.main.fragment_room_adivinhador.*
-import kotlinx.android.synthetic.main.main_fragment.*
-import kotlinx.coroutines.delay
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -258,13 +253,15 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener{
     private fun configureRecyclerViewRanking(list: RankingResponse) {
         rankingAdapter = RankingAdapter(list)
         recyclerRanking.apply {
+            layoutManager = LinearLayoutManager(context)
+            isComputingLayout
             adapter= rankingAdapter
         }
     }
     private fun configureRecyclerViewDicas(list: ArrayList<String>) {
         dicasAdapter = DicasAdapter(list)
         recyclerRanking.apply {
-         //   layoutManager = LinearLayoutManager(context)
+            layoutManager = LinearLayoutManager(context)
             adapter= rankingAdapter
         }
     }
