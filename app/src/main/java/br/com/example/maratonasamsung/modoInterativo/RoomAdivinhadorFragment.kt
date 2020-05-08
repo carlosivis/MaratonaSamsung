@@ -103,9 +103,14 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener{
 
         timerCronometro.schedule(10000) {
             val parametro = Bundle()
-            parametro.putInt("id", id_sessao)
+            parametro.putInt("id_sessao", id_sessao)
             parametro.putString("diqueiro", list.darDica.nome)
             parametro.putString("jogador_nome", jogador)
+
+            timerRanking.cancel()
+            timerRanking.purge()
+            timerDicas.cancel()
+            timerDicas.purge()
 
             Navigation.findNavController(view).navigate(R.id.action_roomAdivinhadorFragment_to_placeholderRodadaFragment, parametro)
         }
@@ -157,8 +162,9 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener{
     }
 
     fun dicas(id_sessao: Int){
-        Service.retrofit.listarSessao(id_sessao)
-            .enqueue(object :Callback<SessaoResponseListing>{
+        Service.retrofit.listarSessao(
+            id_sessao = id_sessao
+        ).enqueue(object :Callback<SessaoResponseListing>{
                 override fun onFailure(call: Call<SessaoResponseListing>, t: Throwable) {
                     Log.d("Falha ao pegar dicas", t.toString())
                 }

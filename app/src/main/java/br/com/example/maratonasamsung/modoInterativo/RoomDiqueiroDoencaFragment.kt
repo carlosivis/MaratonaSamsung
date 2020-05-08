@@ -114,15 +114,15 @@ class RoomDiqueiroDoencaFragment : Fragment(), View.OnClickListener {
                 sessao?.doencas!!.forEach { doencas.add((it.nome)) }
 
                 val doencasSelecionadas: ArrayList<String> = arrayListOf("")
-                sessao?.doencasSelecionadas!!.forEach { doencasSelecionadas.add((it.nome)) }
+                sessao.doencasSelecionadas.forEach { doencasSelecionadas.add((it.nome)) }
 
                 if(doencasSelecionadas.isNotEmpty()) {
-                    doencas!!.removeAll(doencasSelecionadas)
+                    doencas.removeAll(doencasSelecionadas)
                 }
 
-                doencas?.add(0, "")
+                doencas.add(0, "")
 
-                doencas!!.toMutableList()
+                doencas.toMutableList()
                 context?.let {
                     spinnerAdapter = ArrayAdapter(it, android.R.layout.simple_spinner_item, doencas)
                 }
