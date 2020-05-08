@@ -40,7 +40,7 @@
     <style name="spinnerTheme">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:popupBackground">@color/colorDark</item>
+        <item name="android:popupBackground">@color/colorButton</item>
         <item name="android:letterSpacing">0.1</item>
     </style>
 
@@ -48,6 +48,12 @@
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.App.Base" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorControlNormal">@android:color/white</item>
+        <item name="colorControlActivated">@android:color/white</item>
+        <item name="colorControlHighlight">@android:color/white</item>
     </style>
 
 </resources>

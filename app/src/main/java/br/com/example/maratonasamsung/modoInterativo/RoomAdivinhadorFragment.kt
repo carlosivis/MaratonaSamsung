@@ -1,24 +1,33 @@
 package br.com.example.maratonasamsung.modoInterativo
 
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
+import android.os.SystemClock
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Chronometer
+import android.widget.Toast
 import androidx.activity.addCallback
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.example.maratonasamsung.R
+import br.com.example.maratonasamsung.model.Requests.JogadorUpdate
 import br.com.example.maratonasamsung.model.Requests.SalaRequest
+import br.com.example.maratonasamsung.model.Responses.JogadorResponse
 import br.com.example.maratonasamsung.model.Responses.RankingResponse
 import br.com.example.maratonasamsung.model.Responses.SessaoResponse
+import br.com.example.maratonasamsung.model.Responses.SessaoResponseListing
 import br.com.example.maratonasamsung.service.Service
 import kotlinx.android.synthetic.main.fragment_room_adivinhador.*
+import kotlinx.android.synthetic.main.main_fragment.*
 import kotlinx.coroutines.delay
 import retrofit2.Call
 import retrofit2.Callback
@@ -57,6 +66,7 @@ class RoomAdivinhadorFragment :  Fragment() {
         callback
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
@@ -69,9 +79,33 @@ class RoomAdivinhadorFragment :  Fragment() {
             spinnerAdapter = ArrayAdapter(it, android.R.layout.simple_spinner_item, doencas)
         }
         spinnerResposta.adapter = spinnerAdapter
+
         ranking(id_sessao)
         dicas(id_sessao)
+        chronometro()
+        Timer().schedule(60000) {
+            Navigation.findNavController(view)
+                .navigate(R.id.action_roomAdivinhadorFragment_to_placeholderRodadaFragment)
+        }
+    }
 
+    fun onClick(v: View?) {
+        when(v!!.id){
+            R.id.adivinhadorBtnAdivinhar -> {
+                val resposta = spinnerResposta.selectedItem.toString()
+
+                if(resposta.isEmpty()) {
+                    val texto = "Selecione uma doença como resposta"
+                    val duracao = Toast.LENGTH_SHORT
+                    val toast = Toast.makeText(context, texto, duracao)
+                    toast.show()
+                }
+                else {
+                    val id_sessao = requireArguments().getInt("id_sessao")
+                    listarSessao(id_sessao)
+                }
+            }
+        }
     }
 
     fun ranking(id_sessao: Int){
@@ -94,21 +128,25 @@ class RoomAdivinhadorFragment :  Fragment() {
             ranking(id_sessao)
         }
     }
+
     fun dicas(id_sessao: Int){
-        Service.retrofit.dicas(id_sessao)
-            .enqueue(object :Callback<SessaoResponse>{
-                override fun onFailure(call: Call<SessaoResponse>, t: Throwable) {
+        Service.retrofit.listarSessao(id_sessao)
+            .enqueue(object :Callback<SessaoResponseListing>{
+                override fun onFailure(call: Call<SessaoResponseListing>, t: Throwable) {
                     Log.d("Falha ao pegar dicas", t.toString())
                 }
 
-                override fun onResponse(call: Call<SessaoResponse>, response: Response<SessaoResponse>) {
-                    Log.d("Sucesso: dicas e sessao", response.body().toString())
-                    var dicas: ArrayList<String> = arrayListOf("")
-                    response.body()?.dicas?.forEach {
-                        it.prevencoes.forEach { dicas.add(it.toString()) }
-                        it.sintomas.forEach { dicas.add(it.toString()) }
-                        it.transmicoes.forEach { dicas.add(it.toString()) }
-                    }
+                override fun onResponse(call: Call<SessaoResponseListing>, response: Response<SessaoResponseListing>) {
+                    Log.d("Sucesso ao pegar dicas", response.body().toString())
+
+                    val sessao = response.body()
+
+                    val dicas: ArrayList<String> = arrayListOf("")
+
+                    sessao?.dicas!!.sintomas.forEach { dicas.add(it.toString()) }
+                    sessao.dicas.prevencoes.forEach { dicas.add(it.toString()) }
+                    sessao.dicas.transmicoes.forEach { dicas.add(it.toString()) }
+
                     recyclerDicas.apply {
                         layoutManager = LinearLayoutManager(activity)
                         adapter = DicasAdapter(dicas)
@@ -120,6 +158,68 @@ class RoomAdivinhadorFragment :  Fragment() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
+    fun chronometro(){
+        tempoCronometro.isCountDown= true
+        tempoCronometro.base = SystemClock.elapsedRealtime()+60500
+        tempoCronometro.start()
+    }
+      
+    fun listarSessao(id_sessao: Int) {
+        Service.retrofit.listarSessao(
+            id_sessao = id_sessao
+        ).enqueue(object : Callback<SessaoResponseListing> {
+            override fun onFailure(call: Call<SessaoResponseListing>, t: Throwable) {
+                Log.d("Deu ruim", t.toString())
+            }
+            override fun onResponse(call: Call<SessaoResponseListing>, response: Response<SessaoResponseListing>) {
+                Log.d("Nice", response.toString())
+
+                val sessao = response.body()
+
+                val rodada = sessao?.sessao!!.rodada
+
+                val doencasSelecionadas: ArrayList<String> = arrayListOf("")
+                sessao.doencasSelecionadas.forEach { doencasSelecionadas.add((it.nome)) }
+
+                lateinit var doenca: String
+                doenca =
+                    if(doencasSelecionadas.isNotEmpty()) doencasSelecionadas.get(doencasSelecionadas.lastIndex)
+                    else ""
+
+                val resposta = spinnerResposta.selectedItem.toString()
+
+                if (resposta == doenca) {
+                    jogadorUpdate(rodada)
+                }
+                else {
+                    val texto = "Resposta incorreta"
+                    val duracao = Toast.LENGTH_SHORT
+                    val toast = Toast.makeText(context, texto, duracao)
+                    toast.show()
+                }
+            }
+        })
+    }
+
+    fun jogadorUpdate(rodada: Int) {
+        Service.retrofit.jogadorUpdate(
+            jogadorUpdate = JogadorUpdate(
+                id_sessao = requireArguments().getInt("id"),
+                nome = requireArguments().getString("nome").toString(),
+                rodada = rodada
+            )
+        ).enqueue(object : Callback<JogadorResponse> {
+            override fun onFailure(call: Call<JogadorResponse>, t: Throwable) {
+                Log.d("Deu ruim", t.toString())
+            }
+
+            override fun onResponse(call: Call<JogadorResponse>, response: Response<JogadorResponse>) {
+                Log.d("Nice", response.toString())
+                val jogador = response.body()
+            }
+        })
+    }
 }
 
 

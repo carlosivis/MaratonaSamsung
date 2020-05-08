@@ -71,19 +71,26 @@
     <string name="labelPlatelminto">Ilustração de um platelminto</string>
     <string name="labelProtozoario">Ilustração de um protozoário</string>
     <string name="creditos">Créditos</string>
-    <string name="creditsLogo">Ícone feito por \n<a href="https://www.flaticon.com/authors/freepik">Freepik</a> em \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
-    <string name="creditsFriendship">Ícone feito por \n<a href="https://www.flaticon.com/authors/freepik">Freepik</a> em \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
-    <string name="creditsBooks">Ícone feito por \n<a href="https://www.flaticon.com/authors/smashicons">Smashicons</a> em \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
-    <string name="creditsGame">Ícone feito por \n<a href="https://www.flaticon.com/authors/mynamepong">mynamepong</a> em \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
-    <string name="creditsGear">Ícone feito por \n<a href="https://www.flaticon.com/br/autores/pixel-perfect">Pixel perfect</a> em \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
-    <string name="creditsBacteria">Ícone feito por \n<a href="https://www.flaticon.com/authors/smashicons">Smashicons</a> em \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
-    <string name="creditsPlatelminto">Ícone feito por \n<a href="https://www.flaticon.com/authors/freepik">Freepik</a> em \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
-    <string name="creditsProtozoario">Ícone feito por \n<a href="https://www.flaticon.com/authors/freepik">Freepik</a> em \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
-    <string name="creditsVirus">Ícone feito por \n<a href="https://www.flaticon.com/authors/freepik">Freepik</a> em \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
+    <string name="creditsLogo">Ícone feito por \n<a href="https://www.flaticon.com/authors/freepik">Freepik</a> de \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
+    <string name="creditsFriendship">Ícone feito por \n<a href="https://www.flaticon.com/authors/freepik">Freepik</a> de \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
+    <string name="creditsBooks">Ícone feito por \n<a href="https://www.flaticon.com/authors/smashicons">Smashicons</a> de \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
+    <string name="creditsGame">Ícone feito por \n<a href="https://www.flaticon.com/authors/mynamepong">mynamepong</a> de \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
+    <string name="creditsGear">Ícone feito por \n<a href="https://www.flaticon.com/br/autores/pixel-perfect">Pixel perfect</a> de \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
+    <string name="creditsBacteria">Ícone feito por \n<a href="https://www.flaticon.com/authors/smashicons">Smashicons</a> de \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
+    <string name="creditsPlatelminto">Ícone feito por \n<a href="https://www.flaticon.com/authors/freepik">Freepik</a> de \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
+    <string name="creditsProtozoario">Ícone feito por \n<a href="https://www.flaticon.com/authors/freepik">Freepik</a> de \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
+    <string name="creditsVirus">Ícone feito por \n<a href="https://www.flaticon.com/authors/freepik">Freepik</a> de \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
     <string name="sair">Sair</string>
     <string name="cancelar">Cancelar</string>
+    <string name="sairApp">Você deseja sair do app?</string>
     <string name="sairJogo">Você deseja sair do jogo?</string>
     <string name="sairJogoPont">Ao sair da sala você perderá toda a sua pontuação.</string>
     <string name="labelSetaDir">Seta para a direita</string>
     <string name="labelCheck">Sinal de check</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="JustATime">Só um momento...</string>
+  
+    <string name="transmissao">Transmissão</string>
 </resources>

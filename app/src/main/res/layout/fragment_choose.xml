@@ -26,13 +26,14 @@
         android:layout_height="wrap_content"
         android:text="@string/escolhaDoenca"
         android:layout_marginStart="20dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="20dp"
         android:layout_below="@+id/txtEstudo"
         android:textSize="20sp" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/imageLogo"
         android:layout_below="@+id/textViewTitle">
 
         <androidx.recyclerview.widget.RecyclerView
@@ -41,24 +42,23 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_marginTop="30dp"
-            android:layout_above="@id/imageLogo"
             android:scrollbars="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/recycler_view_listadoencas" />
-
-        <ImageView
-            android:id="@+id/imageLogo"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginTop="20dp"
-            android:adjustViewBounds="true"
-            android:contentDescription="@string/labelLupa"
-            android:scaleType="fitCenter"
-            android:scaleX="-1"
-            android:src="@drawable/logo"
-            android:visibility="visible" />
     </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/imageLogo"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="20dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/labelBooks"
+        android:scaleType="fitCenter"
+        android:scaleX="-1"
+        android:src="@drawable/books"
+        android:visibility="visible" />
 
 </RelativeLayout>
