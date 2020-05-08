@@ -102,6 +102,9 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
             parametros.putString("nome", jogador)
             parametros.putStringArrayList("doencas", doencas)
 
+            timerRanking.cancel()
+            timerRanking.purge()
+
             Navigation.findNavController(view).navigate(R.id.action_roomDiqueiroDicasFragment_to_roomAdivinhadorFragment, parametros)
         }
     }

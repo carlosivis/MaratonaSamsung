@@ -101,7 +101,12 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
 
         timerCronometro.schedule(10000) {
             val parametro = Bundle()
-            parametro.putInt("id", id_sessao)
+            parametro.putInt("id_sessao", id_sessao)
+
+            timerRanking.cancel()
+            timerRanking.purge()
+//            timerDicas.cancel()
+//            timerDicas.purge()
 
             Navigation.findNavController(view).navigate(R.id.action_roomAdivinhadorFragment_to_roomDiqueiroDoencaFragment, parametro)
         }
