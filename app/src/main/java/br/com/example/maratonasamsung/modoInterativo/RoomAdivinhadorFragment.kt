@@ -83,8 +83,10 @@ class RoomAdivinhadorFragment :  Fragment() {
         ranking(id_sessao)
         dicas(id_sessao)
         chronometro()
-        Timer().schedule(60000){
-            Navigation.findNavController(view).navigate(R.id.action_roomAdivinhadorFragment_to_placeholderRodadaFragment)
+        Timer().schedule(60000) {
+            Navigation.findNavController(view)
+                .navigate(R.id.action_roomAdivinhadorFragment_to_placeholderRodadaFragment)
+        }
     }
 
     fun onClick(v: View?) {
@@ -200,7 +202,7 @@ class RoomAdivinhadorFragment :  Fragment() {
         })
     }
 
-    fun jogadorUpdate(rodada: Int){
+    fun jogadorUpdate(rodada: Int) {
         Service.retrofit.jogadorUpdate(
             jogadorUpdate = JogadorUpdate(
                 id_sessao = requireArguments().getInt("id"),
@@ -214,7 +216,6 @@ class RoomAdivinhadorFragment :  Fragment() {
 
             override fun onResponse(call: Call<JogadorResponse>, response: Response<JogadorResponse>) {
                 Log.d("Nice", response.toString())
-
                 val jogador = response.body()
             }
         })
