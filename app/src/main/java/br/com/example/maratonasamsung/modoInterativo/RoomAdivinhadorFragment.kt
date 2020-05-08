@@ -25,6 +25,7 @@ import br.com.example.maratonasamsung.model.Responses.RankingResponse
 import br.com.example.maratonasamsung.model.Responses.SessaoResponseListing
 import br.com.example.maratonasamsung.service.Service
 import kotlinx.android.synthetic.main.fragment_room_adivinhador.*
+import kotlinx.coroutines.awaitAll
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -106,6 +107,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener{
             parametro.putInt("id_sessao", id_sessao)
             parametro.putString("diqueiro", list.darDica.nome)
             parametro.putString("jogador_nome", jogador)
+            parametro.putStringArrayList("doencas",doencas!!)
 
             timerRanking.cancel()
             timerRanking.purge()
@@ -262,13 +264,16 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener{
             layoutManager = LinearLayoutManager(context)
             isComputingLayout
             adapter= rankingAdapter
+            onPause()
         }
     }
     private fun configureRecyclerViewDicas(list: ArrayList<String>) {
         dicasAdapter = DicasAdapter(list)
         recyclerRanking.apply {
             layoutManager = LinearLayoutManager(context)
+            isComputingLayout
             adapter= rankingAdapter
+            //onPause()
         }
     }
 
