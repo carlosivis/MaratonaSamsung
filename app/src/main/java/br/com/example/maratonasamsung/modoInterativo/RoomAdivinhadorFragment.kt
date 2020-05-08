@@ -41,6 +41,8 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
     var navController: NavController? = null
     lateinit var spinnerAdapter: ArrayAdapter<String>
     val timerCronometro = Timer()
+    val timerRanking = Timer()
+    val timerDicas = Timer()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -66,6 +68,10 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
                         tempoCronometro.stop()
                         timerCronometro.cancel()
                         timerCronometro.purge()
+                        timerRanking.cancel()
+                        timerRanking.purge()
+//                        timerDicas.cancel()
+//                        timerDicas.purge()
                         jogadorEncerrar(id_sessao, jogador)
                     }
                     .setNegativeButton(R.string.cancelar) { dialog, which -> }
@@ -143,9 +149,9 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
                 }
             }
         })
-//        Timer().schedule(2000) {
-//            ranking(id_sessao)
-//        }
+        timerRanking.schedule(2000) {
+            ranking(id_sessao)
+        }
     }
 
     fun dicas(id_sessao: Int){
@@ -172,7 +178,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
 //                    }
                 }
             })
-//        Timer().schedule(2000){
+//        timerDicas.schedule(2000){
 //            dicas(id_sessao)
 //        }
     }

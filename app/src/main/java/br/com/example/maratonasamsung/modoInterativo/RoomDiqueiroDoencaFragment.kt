@@ -28,7 +28,7 @@ class RoomDiqueiroDoencaFragment : Fragment(), View.OnClickListener {
 
     var navController: NavController? = null
     lateinit var spinnerAdapter: ArrayAdapter<String>
-    var rodada: Int = 0 //não sei se inicializar com zero dá certo, nem se a variavel global funciona
+    var rodada: Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

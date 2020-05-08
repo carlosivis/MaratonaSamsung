@@ -38,7 +38,8 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
 
     var navController: NavController? = null
     lateinit var spinnerAdapter: ArrayAdapter<String>
-    val timer = Timer()
+    val timerCronometro = Timer()
+    val timerRanking = Timer()
     lateinit var sintomasGlobal: ArrayList<String>
     lateinit var prevencoesGlobal: ArrayList<String>
     lateinit var transmicoesGlobal: ArrayList<String>
@@ -64,8 +65,10 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                     .setPositiveButton(R.string.sair) { dialog, which ->
                         navController!!.navigate(R.id.mainFragment)
                         diqueirotempoCronometro.stop()
-                        timer.cancel()
-                        timer.purge()
+                        timerCronometro.cancel()
+                        timerCronometro.purge()
+                        timerRanking.cancel()
+                        timerRanking.purge()
                         jogadorEncerrar(id_sessao, jogador)
                     }
                     .setNegativeButton(R.string.cancelar) { dialog, which -> }
@@ -93,7 +96,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
         transmicoesGlobal = transmicoes(doenca)
         chronometro()
 
-        timer.schedule(100000) {
+        timerCronometro.schedule(20000) {
             val parametros = Bundle()
             parametros.putInt("id_sessao", id_sessao)
             parametros.putString("nome", jogador)
@@ -106,7 +109,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
     @RequiresApi(Build.VERSION_CODES.N)
     fun chronometro(){
         diqueirotempoCronometro.isCountDown= true
-        diqueirotempoCronometro.base = SystemClock.elapsedRealtime()+100000
+        diqueirotempoCronometro.base = SystemClock.elapsedRealtime()+20000
         diqueirotempoCronometro.start()
     }
 
@@ -175,9 +178,9 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                 }
             }
         })
-//        Timer().schedule(2000) {
-//            ranking(id_sessao)
-//        }
+        timerRanking.schedule(2000) {
+            ranking(id_sessao)
+        }
     }
 
     fun populaSpinnerSintoma(sintomas: ArrayList<String>) {

@@ -40,9 +40,6 @@ class AguardandoJogadoresFragment : Fragment() {
 
         val id_sessao = requireArguments().getInt("id_sessao")
         jogadores(id_sessao)
-
-        Timer().schedule(5000){
-        }
     }
 
     fun jogadores(id_sessao: Int){
@@ -76,7 +73,6 @@ class AguardandoJogadoresFragment : Fragment() {
                     parametros.putStringArrayList("doencas", doencas)
 
                     navController!!.navigate(R.id.action_aguardandoJogadoresFragment_to_roomDiqueiroDoencaFragment, parametros)
-//                    Navigation.findNavController(view).navigate(R.id.action_aguardandoJogadoresFragment_to_roomDiqueiroDoencaFragment)
                 }
             }
         })
