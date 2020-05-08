@@ -25,7 +25,6 @@ import br.com.example.maratonasamsung.model.Responses.RankingResponse
 import br.com.example.maratonasamsung.model.Responses.SessaoResponseListing
 import br.com.example.maratonasamsung.service.Service
 import kotlinx.android.synthetic.main.fragment_room_adivinhador.*
-import kotlinx.coroutines.awaitAll
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -113,7 +112,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener{
             timerRanking.purge()
             timerDicas.cancel()
             timerDicas.purge()
-
+            listDicas.clear()
             Navigation.findNavController(view).navigate(R.id.action_roomAdivinhadorFragment_to_placeholderRodadaFragment, parametro)
         }
     }
@@ -177,7 +176,6 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener{
                     response.body()?.dicas?.transmicoes?.forEach { listDicas.add(it.nome) }
                     response.body()?.dicas?.prevencoes?.forEach { listDicas.add(it.nome) }
                     response.body()?.dicas?.sintomas?.forEach { listDicas.add(it.nome) }
-
                     configureRecyclerViewDicas(listDicas)
                 }
             })
@@ -265,15 +263,15 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener{
             isComputingLayout
             adapter= rankingAdapter
             onPause()
+            onCancelPendingInputEvents()
         }
     }
     private fun configureRecyclerViewDicas(list: ArrayList<String>) {
         dicasAdapter = DicasAdapter(list)
-        recyclerRanking.apply {
+        recyclerDicas.apply {
             layoutManager = LinearLayoutManager(context)
-            isComputingLayout
-            adapter= rankingAdapter
-            //onPause()
+            adapter= dicasAdapter
+            onCancelPendingInputEvents()
         }
     }
 
