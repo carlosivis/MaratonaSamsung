@@ -7,6 +7,18 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.MainActivity">
 
+    <Chronometer
+        android:id="@+id/diqueirotempoCronometro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.100000024" />
+
     <TextView
         android:id="@+id/txtDiqueiro"
         android:layout_width="wrap_content"
@@ -84,9 +96,10 @@
         android:background="@drawable/border"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.22000003"
+        app:layout_constraintVertical_bias="0.237"
         tools:listitem="@layout/recycler_view_ranking" />
 
     <TextView

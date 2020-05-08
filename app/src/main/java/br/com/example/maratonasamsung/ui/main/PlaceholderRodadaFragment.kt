@@ -34,7 +34,7 @@ class PlaceholderRodadaFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         Timer().schedule(5000){
-            Navigation.findNavController(view).navigate(R.id.action_placeholderRodadaFragment_to_roomAdivinhadorFragment)
+//            Navigation.findNavController(view).navigate(R.id.action_placeholderRodadaFragment_to_placeholderRodadaAuxFragment)
         }
     }
 

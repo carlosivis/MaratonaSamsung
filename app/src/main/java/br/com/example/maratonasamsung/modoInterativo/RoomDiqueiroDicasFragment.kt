@@ -1,6 +1,8 @@
 package br.com.example.maratonasamsung.modoInterativo
 
+import android.os.Build
 import android.os.Bundle
+import android.os.SystemClock
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +11,7 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Toast
 import androidx.activity.addCallback
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
@@ -20,7 +23,9 @@ import br.com.example.maratonasamsung.model.Requests.EditSessaoSintomaRequest
 import br.com.example.maratonasamsung.model.Requests.EditSessaoTransmicaoRequest
 import br.com.example.maratonasamsung.model.Responses.*
 import br.com.example.maratonasamsung.service.Service
+import kotlinx.android.synthetic.main.fragment_room_adivinhador.*
 import kotlinx.android.synthetic.main.fragment_room_diqueiro_dicas.*
+import kotlinx.android.synthetic.main.fragment_room_diqueiro_dicas.recyclerRanking
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -62,18 +67,39 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
         callback
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
         view.findViewById<Button>(R.id.diqueiroBtnDicas).setOnClickListener(this)
 
         val id_sessao = requireArguments().getInt("id")
+        val jogador = requireArguments().getString("jogador").toString()
         val doenca: String = requireArguments().getString("doenca").toString()
+        val doencas = requireArguments().getStringArrayList("doencas")
+
 
         ranking(id_sessao)
         sintomasGlobal = sintomas(doenca)
         prevencoesGlobal = prevencoes(doenca)
         transmicoesGlobal = transmicoes(doenca)
+        chronometro()
+
+        Timer().schedule(10000) {
+            val parametros = Bundle()
+            parametros.putInt("id", id_sessao)
+            parametros.putString("nome", jogador)
+            parametros.putStringArrayList("doencas", doencas)
+
+            Navigation.findNavController(view).navigate(R.id.action_roomDiqueiroDicasFragment_to_roomAdivinhadorFragment, parametros)
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.N)
+    fun chronometro(){
+        diqueirotempoCronometro.isCountDown= true
+        diqueirotempoCronometro.base = SystemClock.elapsedRealtime()+10000
+        diqueirotempoCronometro.start()
     }
 
     override fun onClick(v: View?) {
@@ -141,9 +167,9 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                 }
             }
         })
-        Timer().schedule(2000) {
-            ranking(id_sessao)
-        }
+//        Timer().schedule(2000) {
+//            ranking(id_sessao)
+//        }
     }
 
     fun populaSpinnerSintoma(sintomas: ArrayList<String>) {

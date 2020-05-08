@@ -67,6 +67,8 @@ class RoomDiqueiroDoencaFragment : Fragment(), View.OnClickListener {
         when(v!!.id){
             R.id.diqueiroBtnDoenca -> {
                 val id_sessao = requireArguments().getInt("id")
+                val jogador = requireArguments().getString("jogador").toString()
+                val doencas = requireArguments().getStringArrayList("doencas")
                 val doenca = diqueiroSpinnerDoenca.selectedItem.toString()
 
 //                val rodada = pegarRodada(id_sessao)
@@ -80,8 +82,10 @@ class RoomDiqueiroDoencaFragment : Fragment(), View.OnClickListener {
                 else {
                     val parametros = Bundle()
                     parametros.putInt("id", id_sessao)
-                    parametros.putString("doenca", doenca)
                     parametros.putInt("rodada", (rodada+1))
+                    parametros.putString("nome", jogador)
+                    parametros.putString("doenca", doenca)
+                    parametros.putStringArrayList("doencas", doencas)
 
                     navController!!.navigate(R.id.action_roomDiqueiroDoencaFragment_to_roomDiqueiroDicasFragment, parametros)
                 }
@@ -103,10 +107,11 @@ class RoomDiqueiroDoencaFragment : Fragment(), View.OnClickListener {
 
                 rodada = sessao?.sessao!!.rodada
 
+                val doencas: ArrayList<String> = arrayListOf("")
+                sessao?.doencas!!.forEach { doencas.add((it.nome)) }
+
                 val doencasSelecionadas: ArrayList<String> = arrayListOf("")
                 sessao?.doencasSelecionadas!!.forEach { doencasSelecionadas.add((it.nome)) }
-
-                val doencas = requireArguments().getStringArrayList("doencas")
 
                 if(doencasSelecionadas.isNotEmpty()) {
                     doencas!!.removeAll(doencasSelecionadas)
@@ -122,24 +127,4 @@ class RoomDiqueiroDoencaFragment : Fragment(), View.OnClickListener {
             }
         })
     }
-
-    //Para ter acesso a rodada
-//    fun pegarRodada(id_sessao: Int): Int {
-//        var rodada: Int = 0
-//        Service.retrofit.listarSessao(
-//            id_sessao = id_sessao
-//        ).enqueue(object : Callback<SessaoResponseListing> {
-//            override fun onFailure(call: Call<SessaoResponseListing>, t: Throwable) {
-//                Log.d("Deu ruim", t.toString())
-//            }
-//            override fun onResponse(call: Call<SessaoResponseListing>, response: Response<SessaoResponseListing>) {
-//                Log.d("Nice", response.toString())
-//
-//                val sessao = response.body()
-//
-//                rodada = sessao?.sessao!!.rodada
-//            }
-//        })
-//        return rodada
-//    }
 }

@@ -95,11 +95,11 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
                 nome = nome,
                 senha = senha
             )
-        ).enqueue(object : Callback<SessaoRequest>{
-            override fun onFailure(call: Call<SessaoRequest>, t: Throwable) {
+        ).enqueue(object : Callback<SalaResponse>{
+            override fun onFailure(call: Call<SalaResponse>, t: Throwable) {
                 Log.d("Deu ruim", t.toString())
             }
-            override fun onResponse(call: Call<SessaoRequest>, response: Response<SessaoRequest>) {
+            override fun onResponse(call: Call<SalaResponse>, response: Response<SalaResponse>) {
                 Log.d("Nice", response.toString())
 
                 val sessao = response.body()
