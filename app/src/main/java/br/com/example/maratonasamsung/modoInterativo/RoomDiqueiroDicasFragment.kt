@@ -54,8 +54,8 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val id_sessao = requireArguments().getInt("id")
-        val jogador = requireArguments().getString("jogador").toString()
+        val id_sessao = requireArguments().getInt("id_sessao")
+        val jogador = requireArguments().getString("jogador_nome").toString()
         val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
             activity?.let {
                 AlertDialog.Builder(it)
@@ -66,7 +66,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                         diqueirotempoCronometro.stop()
                         timer.cancel()
                         timer.purge()
-//                        jogadorEncerrar(id_sessao, jogador)
+                        jogadorEncerrar(id_sessao, jogador)
                     }
                     .setNegativeButton(R.string.cancelar) { dialog, which -> }
                     .show()
@@ -81,8 +81,8 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
         navController = Navigation.findNavController(view)
         view.findViewById<Button>(R.id.diqueiroBtnDicas).setOnClickListener(this)
 
-        val id_sessao = requireArguments().getInt("id")
-        val jogador = requireArguments().getString("jogador").toString()
+        val id_sessao = requireArguments().getInt("id_sessao")
+        val jogador = requireArguments().getString("jogador_nome").toString()
         val doenca: String = requireArguments().getString("doenca").toString()
         val doencas = requireArguments().getStringArrayList("doencas")
 
@@ -95,7 +95,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
 
         timer.schedule(100000) {
             val parametros = Bundle()
-            parametros.putInt("id", id_sessao)
+            parametros.putInt("id_sessao", id_sessao)
             parametros.putString("nome", jogador)
             parametros.putStringArrayList("doencas", doencas)
 
@@ -294,7 +294,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
     }
 
     fun editarSessaoSintoma(dica: DicaUnicaSintoma, rodada: Int){
-        val id_sessao = requireArguments().getInt("id")
+        val id_sessao = requireArguments().getInt("id_sessao")
         val doenca: String = requireArguments().getString("doenca").toString()
         Service.retrofit.editarSessaoSintoma(
             sessao = EditSessaoSintomaRequest(
@@ -326,7 +326,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
     }
 
     fun editarSessaoPrevencao(dica: DicaUnicaPrevencao, rodada: Int){
-        val id_sessao = requireArguments().getInt("id")
+        val id_sessao = requireArguments().getInt("id_sessao")
         val doenca: String = requireArguments().getString("doenca").toString()
         Service.retrofit.editarSessaoPrevencao(
             sessao = EditSessaoPrevencaoRequest(
@@ -358,7 +358,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
     }
 
     fun editarSessaoTransmicao(dica: DicaUnicaTransmicao, rodada: Int){
-        val id_sessao = requireArguments().getInt("id")
+        val id_sessao = requireArguments().getInt("id_sessao")
         val doenca: String = requireArguments().getString("doenca").toString()
         Service.retrofit.editarSessaoTransmicao(
             sessao = EditSessaoTransmicaoRequest(
@@ -395,6 +395,14 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                 id_sessao = id_sessao,
                 nome = jogador
             )
-        )
+        ).enqueue(object : Callback<JogadorEncerra> {
+            override fun onFailure(call: Call<JogadorEncerra>, t: Throwable) {
+                Log.d("Falha ao encerrar", t.toString())
+            }
+
+            override fun onResponse(call: Call<JogadorEncerra>, response: Response<JogadorEncerra>) {
+                Log.d("Sucesso ao encerrar", response.body().toString())
+            }
+        })
     }
 }

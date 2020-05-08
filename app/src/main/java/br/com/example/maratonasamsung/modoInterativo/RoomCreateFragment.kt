@@ -106,8 +106,8 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
                 sessao?.doencas!!.forEach { doencas.add((it.nome)) }
 
                 val parametros = Bundle()
-                parametros.putInt("id", sessao.id_sessao)
-                parametros.putString("jogador", createEditUsuario.text.toString())
+                parametros.putInt("id_sessap", sessao.id_sessao)
+                parametros.putString("jogador_nome", createEditUsuario.text.toString())
                 parametros.putStringArrayList("doencas", doencas)
 
                 jogadorNovo(sessao.id_sessao, parametros)

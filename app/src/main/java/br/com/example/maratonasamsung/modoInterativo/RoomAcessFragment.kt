@@ -108,7 +108,7 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
                 sessao?.doencas!!.forEach { doencas.add((it.nome)) }
 
                 val parametros = Bundle()
-                parametros.putInt("id", sessao.id_sessao)
+                parametros.putInt("id_sessao", sessao.id_sessao)
                 parametros.putStringArrayList("doencas", doencas)
                 navController!!.navigate(R.id.action_roomAcessFragment_to_roomAcessNameFragment, parametros)
             }

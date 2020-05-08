@@ -52,8 +52,10 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val id_sessao = requireArguments().getInt("id")
-        val jogador = requireArguments().getString("nome").toString()
+
+        val id_sessao = requireArguments().getInt("id_sessao")
+        val jogador = requireArguments().getString("jogador_nome").toString()
+
         val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
             activity?.let {
                 AlertDialog.Builder(it)
@@ -78,7 +80,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
 
-        val id_sessao = requireArguments().getInt("id")
+        val id_sessao = requireArguments().getInt("id_sessao")
         val doencas = requireArguments().getStringArrayList("doencas")
 
         doencas!!.toMutableList()
@@ -215,8 +217,8 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
     fun jogadorUpdate(rodada: Int) {
         Service.retrofit.jogadorUpdate(
             jogadorUpdate = JogadorUpdate(
-                id_sessao = requireArguments().getInt("id"),
-                nome = requireArguments().getString("nome").toString(),
+                id_sessao = requireArguments().getInt("id_sessao"),
+                nome = requireArguments().getString("jogador_nome").toString(),
                 rodada = rodada
             )
         ).enqueue(object : Callback<JogadorResponse> {
