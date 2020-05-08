@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import br.com.example.maratonasamsung.R
 import br.com.example.maratonasamsung.model.Requests.JogadorRequest
 import br.com.example.maratonasamsung.model.Requests.JogadorUpdate
@@ -37,7 +38,7 @@ import kotlin.collections.ArrayList
 import kotlin.concurrent.schedule
 
 
-class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
+class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener{
 
     var navController: NavController? = null
     lateinit var spinnerAdapter: ArrayAdapter<String>
@@ -75,8 +76,8 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
                         timerCronometro.purge()
                         timerRanking.cancel()
                         timerRanking.purge()
-//                        timerDicas.cancel()
-//                        timerDicas.purge()
+                        timerDicas.cancel()
+                        timerDicas.purge()
                         jogadorEncerrar(id_sessao, jogador)
                     }
                     .setNegativeButton(R.string.cancelar) { dialog, which -> }
@@ -93,6 +94,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
 
         val id_sessao = requireArguments().getInt("id_sessao")
         val doencas = requireArguments().getStringArrayList("doencas")
+        val jogador = requireArguments().getString("jogador_nome").toString()
 
         doencas!!.toMutableList()
         context?.let {
@@ -107,13 +109,15 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
         timerCronometro.schedule(10000) {
             val parametro = Bundle()
             parametro.putInt("id_sessao", id_sessao)
+            parametro.putString("diqueiro", list.darDica.nome)
+            parametro.putString("jogador_nome", jogador)
 
             timerRanking.cancel()
             timerRanking.purge()
-//            timerDicas.cancel()
-//            timerDicas.purge()
+            timerDicas.cancel()
+            timerDicas.purge()
 
-            Navigation.findNavController(view).navigate(R.id.action_roomAdivinhadorFragment_to_roomDiqueiroDoencaFragment, parametro)
+            Navigation.findNavController(view).navigate(R.id.action_roomAdivinhadorFragment_to_placeholderRodadaFragment, parametro)
         }
     }
 
@@ -176,6 +180,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
                     response.body()?.dicas?.transmicoes?.forEach { listDicas.add(it.nome) }
                     response.body()?.dicas?.prevencoes?.forEach { listDicas.add(it.nome) }
                     response.body()?.dicas?.sintomas?.forEach { listDicas.add(it.nome) }
+
                     configureRecyclerViewDicas(listDicas)
                 }
             })
@@ -259,17 +264,17 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
     private fun configureRecyclerViewRanking(list: RankingResponse) {
         rankingAdapter = RankingAdapter(list)
         recyclerRanking.apply {
-            layoutManager = LinearLayoutManager(context)
             adapter= rankingAdapter
         }
     }
     private fun configureRecyclerViewDicas(list: ArrayList<String>) {
         dicasAdapter = DicasAdapter(list)
         recyclerRanking.apply {
-            layoutManager = LinearLayoutManager(context)
+         //   layoutManager = LinearLayoutManager(context)
             adapter= rankingAdapter
         }
     }
+
 }
 
 
