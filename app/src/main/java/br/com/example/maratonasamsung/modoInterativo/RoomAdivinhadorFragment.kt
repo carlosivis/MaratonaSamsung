@@ -20,10 +20,8 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.example.maratonasamsung.R
 import br.com.example.maratonasamsung.model.Requests.JogadorUpdate
-import br.com.example.maratonasamsung.model.Requests.SalaRequest
 import br.com.example.maratonasamsung.model.Responses.JogadorResponse
 import br.com.example.maratonasamsung.model.Responses.RankingResponse
-import br.com.example.maratonasamsung.model.Responses.SessaoResponse
 import br.com.example.maratonasamsung.model.Responses.SessaoResponseListing
 import br.com.example.maratonasamsung.service.Service
 import kotlinx.android.synthetic.main.fragment_room_adivinhador.*
@@ -36,7 +34,7 @@ import java.util.*
 import kotlin.concurrent.schedule
 
 
-class RoomAdivinhadorFragment :  Fragment() {
+class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
 
     var navController: NavController? = null
     lateinit var spinnerAdapter: ArrayAdapter<String>
@@ -83,13 +81,23 @@ class RoomAdivinhadorFragment :  Fragment() {
         ranking(id_sessao)
         dicas(id_sessao)
         chronometro()
-        Timer().schedule(60000) {
-            Navigation.findNavController(view)
-                .navigate(R.id.action_roomAdivinhadorFragment_to_placeholderRodadaFragment)
+
+        Timer().schedule(10000) {
+            val parametro = Bundle()
+            parametro.putInt("id", id_sessao)
+
+            Navigation.findNavController(view).navigate(R.id.action_roomAdivinhadorFragment_to_roomDiqueiroDoencaFragment, parametro)
         }
     }
 
-    fun onClick(v: View?) {
+    @RequiresApi(Build.VERSION_CODES.N)
+    fun chronometro(){
+        tempoCronometro.isCountDown= true
+        tempoCronometro.base = SystemClock.elapsedRealtime()+10000
+        tempoCronometro.start()
+    }
+
+    override fun onClick(v: View?) {
         when(v!!.id){
             R.id.adivinhadorBtnAdivinhar -> {
                 val resposta = spinnerResposta.selectedItem.toString()
@@ -124,9 +132,9 @@ class RoomAdivinhadorFragment :  Fragment() {
                 }
             }
         })
-        Timer().schedule(2000) {
-            ranking(id_sessao)
-        }
+//        Timer().schedule(2000) {
+//            ranking(id_sessao)
+//        }
     }
 
     fun dicas(id_sessao: Int){
@@ -141,28 +149,21 @@ class RoomAdivinhadorFragment :  Fragment() {
 
                     val sessao = response.body()
 
-                    val dicas: ArrayList<String> = arrayListOf("")
-
-                    sessao?.dicas!!.sintomas.forEach { dicas.add(it.toString()) }
-                    sessao.dicas.prevencoes.forEach { dicas.add(it.toString()) }
-                    sessao.dicas.transmicoes.forEach { dicas.add(it.toString()) }
-
-                    recyclerDicas.apply {
-                        layoutManager = LinearLayoutManager(activity)
-                        adapter = DicasAdapter(dicas)
-                    }
+//                    val dicas: ArrayList<String> = arrayListOf("")
+//
+//                    sessao?.dicas!!.sintomas.forEach { dicas.add(it.toString()) }
+//                    sessao.dicas.prevencoes.forEach { dicas.add(it.toString()) }
+//                    sessao.dicas.transmicoes.forEach { dicas.add(it.toString()) }
+//
+//                    recyclerDicas.apply {
+//                        layoutManager = LinearLayoutManager(activity)
+//                        adapter = DicasAdapter(dicas)
+//                    }
                 }
             })
-        Timer().schedule(2000){
-            dicas(id_sessao)
-        }
-    }
-
-    @RequiresApi(Build.VERSION_CODES.N)
-    fun chronometro(){
-        tempoCronometro.isCountDown= true
-        tempoCronometro.base = SystemClock.elapsedRealtime()+60500
-        tempoCronometro.start()
+//        Timer().schedule(2000){
+//            dicas(id_sessao)
+//        }
     }
       
     fun listarSessao(id_sessao: Int) {

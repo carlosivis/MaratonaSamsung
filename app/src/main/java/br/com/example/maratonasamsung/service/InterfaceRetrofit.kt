@@ -19,7 +19,7 @@ interface InterfaceRetrofit {
     fun criarSala(@Body sala: SalaRequest): Call<SalaResponse>
 
     @POST("/sessao")
-    fun cadastrarSessao(@Body sala: SalaRequest): Call<SessaoRequest>
+    fun cadastrarSessao(@Body sala: SalaRequest): Call<SalaResponse>
 
     @GET("/sessao/{id_sessao}")
     fun listarSessao(@Path ("id_sessao") id_sessao: Int): Call<SessaoResponseListing>
