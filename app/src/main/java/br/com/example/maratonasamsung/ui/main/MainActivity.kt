@@ -7,9 +7,14 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import br.com.example.maratonasamsung.R
+import br.com.example.maratonasamsung.modoInterativo.RoomAdivinhadorFragment
+import br.com.example.maratonasamsung.modoInterativo.RoomDiqueiroDicasFragment
+import br.com.example.maratonasamsung.modoInterativo.RoomDiqueiroDoencaFragment
 import br.com.example.maratonasamsung.tutoriaisRegras.TutorialActivity
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
@@ -33,6 +38,41 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    override fun onBackPressed() {
+        val gameFragment = supportFragmentManager.findFragmentById(R.id.roomAdivinhadorFragment)
+        if(gameFragment is RoomAdivinhadorFragment) {
+            AlertDialog.Builder(this)
+                .setTitle(R.string.sairJogo)
+                .setMessage(R.string.sairJogoPont)
+                .setPositiveButton(R.string.sair) { dialog, which ->
+                    navController!!.navigate(R.id.mainFragment)
+                }
+                .setNegativeButton(R.string.cancelar) { dialog, which -> }
+                .show()
+        }
+        else if(gameFragment is RoomDiqueiroDoencaFragment) {
+            AlertDialog.Builder(this)
+                .setTitle(R.string.sairJogo)
+                .setPositiveButton(R.string.sair) { dialog, which ->
+                    navController!!.navigate(R.id.mainFragment)
+                }
+                .setNegativeButton(R.string.cancelar) { dialog, which -> }
+                .show()
+        }
+        else if(gameFragment is RoomDiqueiroDicasFragment) {
+            AlertDialog.Builder(this)
+                .setTitle(R.string.sairJogo)
+                .setMessage(R.string.sairJogoPont)
+                .setPositiveButton(R.string.sair) { dialog, which ->
+                    navController!!.navigate(R.id.mainFragment)
+                }
+                .setNegativeButton(R.string.cancelar) { dialog, which -> }
+                .show()
+        }
+        else {
+            super.onBackPressed()
+        }
+    }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater: MenuInflater = menuInflater
@@ -52,7 +92,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             else -> return super.onOptionsItemSelected(item)
         }
     }
-
 
     override fun onClick(v: View?) {
         when(v!!.id){

@@ -15,7 +15,9 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.example.maratonasamsung.R
-import br.com.example.maratonasamsung.model.Requests.EditSessaoRequest
+import br.com.example.maratonasamsung.model.Requests.EditSessaoPrevencaoRequest
+import br.com.example.maratonasamsung.model.Requests.EditSessaoSintomaRequest
+import br.com.example.maratonasamsung.model.Requests.EditSessaoTransmicaoRequest
 import br.com.example.maratonasamsung.model.Responses.*
 import br.com.example.maratonasamsung.service.Service
 import kotlinx.android.synthetic.main.fragment_room_diqueiro_dicas.*
@@ -30,9 +32,9 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
 
     var navController: NavController? = null
     lateinit var spinnerAdapter: ArrayAdapter<String>
-    var rodada: Int = 1
-    val id_sessao = requireArguments().getInt("id")
-    val doenca: String = requireArguments().getString("doenca").toString()
+    lateinit var sintomasGlobal: ArrayList<String>
+    lateinit var prevencoesGlobal: ArrayList<String>
+    lateinit var transmicoesGlobal: ArrayList<String>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,7 +55,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                     .setPositiveButton(R.string.sair) { dialog, which ->
                         navController!!.navigate(R.id.mainFragment)
                     }
-                    .setNegativeButton(R.string.voltar) { dialog, which -> }
+                    .setNegativeButton(R.string.cancelar) { dialog, which -> }
                     .show()
             }
         }
@@ -65,78 +67,63 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
         navController = Navigation.findNavController(view)
         view.findViewById<Button>(R.id.diqueiroBtnDicas).setOnClickListener(this)
 
+        val id_sessao = requireArguments().getInt("id")
+        val doenca: String = requireArguments().getString("doenca").toString()
+
         ranking(id_sessao)
-        sintomas(doenca)
-        prevencoes(doenca)
-        transmicoes(doenca)
+        sintomasGlobal = sintomas(doenca)
+        prevencoesGlobal = prevencoes(doenca)
+        transmicoesGlobal = transmicoes(doenca)
     }
 
     override fun onClick(v: View?) {
         when(v!!.id){
             R.id.diqueiroBtnDicas -> {
-                val sintoma = diqueiroSpinnerSintoma.selectedItem.toString()
-                val prevencao = diqueiroSpinnerPrevencao.selectedItem.toString()
-                val transmicao = diqueiroSpinnerTransmicao.selectedItem.toString()
 
-//                if(sintoma.isEmpty() && prevencao.isEmpty() && transmicao.isEmpty()) {
-//                    val texto = "Selecione uma dica"
-//                    val duracao = Toast.LENGTH_SHORT
-//                    val toast = Toast.makeText(context, texto, duracao)
-//                    toast.show()
-//                }
-//                if(!sintoma.isEmpty() && prevencao.isEmpty() && transmicao.isEmpty())
-//                    editarSessao(sintoma)
-//                else if(sintoma.isEmpty() && !prevencao.isEmpty() && transmicao.isEmpty())
-//                    editarSessao(prevencao)
-//                else if(sintoma.isEmpty() && prevencao.isEmpty() && !transmicao.isEmpty())
-//                    editarSessao(transmicao)
-//                else {
-//                    val texto = "Você pode enviar apenas uma dica por vez"
-//                    val duracao = Toast.LENGTH_SHORT
-//                    val toast = Toast.makeText(context, texto, duracao)
-//                    toast.show()
-//                }
+                val rodada = requireArguments().getInt("rodada")
 
+                val sintoma: String =
+                    if (diqueiroSpinnerSintoma.visibility == View.VISIBLE) diqueiroSpinnerSintoma.selectedItem.toString()
+                    else ""
 
+                val prevencao: String =
+                    if (diqueiroSpinnerPrevencao.visibility == View.VISIBLE) diqueiroSpinnerPrevencao.selectedItem.toString()
+                    else ""
 
-//                if( (!sintoma.isEmpty() && !transmicao.isEmpty() && !prevencao.isEmpty()) || (!sintoma.isEmpty() && !transmicao.isEmpty())
-//                    || (!sintoma.isEmpty() && !prevencao.isEmpty()) || (!transmicao.isEmpty() && !prevencao.isEmpty()) ) {
-//                    val texto = "Você pode enviar somente uma dica por vez"
-//                    val duracao = Toast.LENGTH_SHORT
-//                    val toast = Toast.makeText(context, texto, duracao)
-//                    toast.show()
-//                }
-//                else if(!sintoma.isEmpty())
-//                    editarSessao(sintoma)
-//                else if(!prevencao.isEmpty())
-//                    editarSessao(prevencao)
-//                else if(!transmicao.isEmpty())
-//                    editarSessao(transmicao)
+                val transmicao: String =
+                    if (diqueiroSpinnerTransmicao.visibility == View.VISIBLE) diqueiroSpinnerTransmicao.selectedItem.toString()
+                    else ""
+
+                if(sintoma.isEmpty() && prevencao.isEmpty() && transmicao.isEmpty()) {
+                    val texto = "Selecione uma dica"
+                    val duracao = Toast.LENGTH_SHORT
+                    val toast = Toast.makeText(context, texto, duracao)
+                    toast.show()
+                }
+                else if(sintoma.isNotEmpty() && prevencao.isEmpty() && transmicao.isEmpty()) {
+                    editarSessaoSintoma(DicaUnicaSintoma(sintoma), rodada)
+                    diqueiroSpinnerSintoma.setSelection(0)
+                }
+                else if(sintoma.isEmpty() && prevencao.isNotEmpty() && transmicao.isEmpty()) {
+                    editarSessaoPrevencao(DicaUnicaPrevencao(prevencao), rodada)
+                    diqueiroSpinnerSintoma.setSelection(0)
+                }
+                else if(sintoma.isEmpty() && prevencao.isEmpty() && transmicao.isNotEmpty()) {
+                    editarSessaoTransmicao(DicaUnicaTransmicao(transmicao), rodada)
+                    diqueiroSpinnerSintoma.setSelection(0)
+                }
+                else {
+                    val texto = "Você pode enviar apenas uma dica por vez"
+                    val duracao = Toast.LENGTH_SHORT
+                    val toast = Toast.makeText(context, texto, duracao)
+                    toast.show()
+                    if (diqueiroSpinnerSintoma.visibility == View.VISIBLE) diqueiroSpinnerSintoma.setSelection(0)
+                    if (diqueiroSpinnerPrevencao.visibility == View.VISIBLE) diqueiroSpinnerPrevencao.setSelection(0)
+                    if (diqueiroSpinnerTransmicao.visibility == View.VISIBLE) diqueiroSpinnerTransmicao.setSelection(0)
+                }
             }
         }
     }
-
-//    fun editarSessao(dica: String){
-//        Service.retrofit.editarSessao(
-//            sessao = EditSessaoRequest(
-//                id_sessao = id_sessao,
-//                rodada = rodada,
-//                doenca = doenca
-////                dicas = dica
-//            )
-//        ).enqueue(object : Callback<SessaoResponseEditing>{
-//            override fun onFailure(call: Call<SessaoResponseEditing>, t: Throwable) {
-//                Log.d("Deu ruim", t.toString())
-//            }
-//            override fun onResponse(call: Call<SessaoResponseEditing>, response: Response<SessaoResponseEditing>) {
-//                Log.d("Nice", response.body().toString())
-//
-//                val sessao = response.body()
-//
-//                //AQUI EU RECEBO, ENTRE OUTRAS COISAS, TODAS AS DICAS QUE JÁ FORAM E EU PRECISO RETIRÁ-LAS DOS SPINNERS
-//            }
-//        })
-//    }
 
     fun ranking(id_sessao: Int){
         Service.retrofit.ranking(
@@ -158,28 +145,34 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
             ranking(id_sessao)
         }
     }
-    fun sintomas(doenca: String) {
+
+    fun populaSpinnerSintoma(sintomas: ArrayList<String>) {
+        sintomas.toMutableList()
+        context?.let {
+            spinnerAdapter =
+                ArrayAdapter(it, android.R.layout.simple_spinner_item, sintomas)
+        }
+        diqueiroSpinnerSintoma.adapter = spinnerAdapter
+    }
+
+    fun sintomas(doenca: String): ArrayList<String> {
+        val sintomas: ArrayList<String> = arrayListOf("")
+
         Service.retrofit.sintomas(
             doenca = doenca
-        ).enqueue(object : Callback<List<Sintoma>>{
-            override fun onFailure(call: Call<List<Sintoma>>, t: Throwable) {
+        ).enqueue(object : Callback<Sintomas>{
+            override fun onFailure(call: Call<Sintomas>, t: Throwable) {
                 Log.d("Deu ruim", t.toString())
             }
 
-            override fun onResponse(call: Call<List<Sintoma>>, response: Response<List<Sintoma>>) {
+            override fun onResponse(call: Call<Sintomas>, response: Response<Sintomas>) {
                 Log.d("Nice", response.toString())
 
                 val listaSintomas = response.body()
 
-                if (listaSintomas?.size != 0) {
-                    val sintomas: ArrayList<String> = arrayListOf("")
-                    listaSintomas?.forEach { sintomas.add((it.nome)) }
-                    sintomas.toMutableList()
-                    context?.let {
-                        spinnerAdapter =
-                            ArrayAdapter(it, android.R.layout.simple_spinner_item, sintomas)
-                    }
-                    diqueiroSpinnerSintoma.adapter = spinnerAdapter
+                if (listaSintomas?.sintomas!!.isNotEmpty()) {
+                    listaSintomas.sintomas.forEach { sintomas.add((it.nome)) }
+                    populaSpinnerSintoma(sintomas)
                 }
                 else {
                     diqueiroSpinnerSintoma.visibility = View.INVISIBLE
@@ -187,30 +180,37 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                 }
             }
         })
+        return sintomas
     }
 
-    fun prevencoes(doenca: String) {
+    fun populaSpinnerPrevencoes(prevencoes: ArrayList<String>) {
+        prevencoes.toMutableList()
+        context?.let {
+            spinnerAdapter =
+                ArrayAdapter(it, android.R.layout.simple_spinner_item, prevencoes)
+        }
+        diqueiroSpinnerPrevencao.adapter = spinnerAdapter
+    }
+
+    fun prevencoes(doenca: String): ArrayList<String> {
+        val prevencoes: ArrayList<String> = arrayListOf("")
+
         Service.retrofit.prevencoes(
             doenca = doenca
-        ).enqueue(object : Callback<List<Prevencao>>{
-            override fun onFailure(call: Call<List<Prevencao>>, t: Throwable) {
+        ).enqueue(object : Callback<Prevencoes>{
+            override fun onFailure(call: Call<Prevencoes>, t: Throwable) {
                 Log.d("Deu ruim", t.toString())
             }
 
-            override fun onResponse(call: Call<List<Prevencao>>, response: Response<List<Prevencao>>) {
+            override fun onResponse(call: Call<Prevencoes>, response: Response<Prevencoes>) {
                 Log.d("Nice", response.toString())
 
                 val listaPrevencao = response.body()
 
-                if (listaPrevencao?.size != 0) {
-                    val prevencoes: ArrayList<String> = arrayListOf("")
-                    listaPrevencao?.forEach { prevencoes.add((it.nome)) }
-                    prevencoes.toMutableList()
-                    context?.let {
-                        spinnerAdapter =
-                            ArrayAdapter(it, android.R.layout.simple_spinner_item, prevencoes)
-                    }
-                    diqueiroSpinnerPrevencao.adapter = spinnerAdapter
+                if (listaPrevencao?.prevencoes!!.isNotEmpty()) {
+                    listaPrevencao.prevencoes.forEach { prevencoes.add((it.nome)) }
+
+                    populaSpinnerPrevencoes(prevencoes)
                 }
                 else {
                     diqueiroSpinnerPrevencao.visibility = View.INVISIBLE
@@ -218,35 +218,139 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                 }
             }
         })
+        return prevencoes
     }
 
-    fun transmicoes(doenca: String) {
+    fun populaSpinnerTransmicoes(transmicoes: ArrayList<String>) {
+        transmicoes.toMutableList()
+        context?.let {
+            spinnerAdapter =
+                ArrayAdapter(it, android.R.layout.simple_spinner_item, transmicoes)
+        }
+        diqueiroSpinnerTransmicao.adapter = spinnerAdapter
+    }
+
+    fun transmicoes(doenca: String): ArrayList<String> {
+        val transmicoes: ArrayList<String> = arrayListOf("")
+
         Service.retrofit.transmicoes(
             doenca = doenca
-        ).enqueue(object : Callback<List<Transmicao>>{
-            override fun onFailure(call: Call<List<Transmicao>>, t: Throwable) {
+        ).enqueue(object : Callback<Transmissoes>{
+            override fun onFailure(call: Call<Transmissoes>, t: Throwable) {
                 Log.d("Deu ruim", t.toString())
             }
 
-            override fun onResponse(call: Call<List<Transmicao>>, response: Response<List<Transmicao>>) {
+            override fun onResponse(call: Call<Transmissoes>, response: Response<Transmissoes>) {
                 Log.d("Nice", response.toString())
 
                 val listaTransmicao = response.body()
 
-                if (listaTransmicao?.size != 0) {
-                    val transmicoes: ArrayList<String> = arrayListOf("")
-                    listaTransmicao?.forEach { transmicoes.add((it.nome)) }
-                    transmicoes.toMutableList()
-                    context?.let {
-                        spinnerAdapter =
-                            ArrayAdapter(it, android.R.layout.simple_spinner_item, transmicoes)
-                    }
-                    diqueiroSpinnerTransmicao.adapter = spinnerAdapter
+                if (listaTransmicao?.transmicao!!.isNotEmpty()) {
+                    listaTransmicao.transmicao.forEach { transmicoes.add((it.nome)) }
+
+                    populaSpinnerTransmicoes(transmicoes)
                 }
                 else {
                     diqueiroSpinnerTransmicao.visibility = View.INVISIBLE
                     diqueiroTxtTransmissoes.visibility = View.INVISIBLE
                 }
+            }
+        })
+        return transmicoes
+    }
+
+    fun editarSessaoSintoma(dica: DicaUnicaSintoma, rodada: Int){
+        val id_sessao = requireArguments().getInt("id")
+        val doenca: String = requireArguments().getString("doenca").toString()
+        Service.retrofit.editarSessaoSintoma(
+            sessao = EditSessaoSintomaRequest(
+                id_sessao = id_sessao,
+                rodada = rodada,
+                doenca = doenca,
+                dicas = dica
+            )
+        ).enqueue(object : Callback<SessaoResponseEditing>{
+            override fun onFailure(call: Call<SessaoResponseEditing>, t: Throwable) {
+                Log.d("Deu ruim", t.toString())
+            }
+            override fun onResponse(call: Call<SessaoResponseEditing>, response: Response<SessaoResponseEditing>) {
+                Log.d("Nice", response.body().toString())
+
+                val sessao = response.body()
+
+                val sintomasSelecionados: ArrayList<String> = arrayListOf("")
+                sessao?.dicas!!.sintomas.forEach { sintomasSelecionados.add((it.nome)) }
+
+                if(sintomasSelecionados.isNotEmpty()) {
+                    sintomasGlobal.removeAll(sintomasSelecionados)
+                }
+
+                sintomasGlobal.add(0, "")
+                populaSpinnerSintoma(sintomasGlobal)
+            }
+        })
+    }
+
+    fun editarSessaoPrevencao(dica: DicaUnicaPrevencao, rodada: Int){
+        val id_sessao = requireArguments().getInt("id")
+        val doenca: String = requireArguments().getString("doenca").toString()
+        Service.retrofit.editarSessaoPrevencao(
+            sessao = EditSessaoPrevencaoRequest(
+                id_sessao = id_sessao,
+                rodada = rodada,
+                doenca = doenca,
+                dicas = dica
+            )
+        ).enqueue(object : Callback<SessaoResponseEditing>{
+            override fun onFailure(call: Call<SessaoResponseEditing>, t: Throwable) {
+                Log.d("Deu ruim", t.toString())
+            }
+            override fun onResponse(call: Call<SessaoResponseEditing>, response: Response<SessaoResponseEditing>) {
+                Log.d("Nice", response.body().toString())
+
+                val sessao = response.body()
+
+                val prevecoesSelecionados: ArrayList<String> = arrayListOf("")
+                sessao?.dicas!!.sintomas.forEach { prevecoesSelecionados.add((it.nome)) }
+
+                if(prevecoesSelecionados.isNotEmpty()) {
+                    prevencoesGlobal.removeAll(prevecoesSelecionados)
+                }
+
+                prevencoesGlobal.add(0, "")
+                populaSpinnerSintoma(prevencoesGlobal)
+            }
+        })
+    }
+
+    fun editarSessaoTransmicao(dica: DicaUnicaTransmicao, rodada: Int){
+        val id_sessao = requireArguments().getInt("id")
+        val doenca: String = requireArguments().getString("doenca").toString()
+        Service.retrofit.editarSessaoTransmicao(
+            sessao = EditSessaoTransmicaoRequest(
+                id_sessao = id_sessao,
+                rodada = rodada,
+                doenca = doenca,
+                dicas = dica
+            )
+        ).enqueue(object : Callback<SessaoResponseEditing>{
+            override fun onFailure(call: Call<SessaoResponseEditing>, t: Throwable) {
+                Log.d("Deu ruim", t.toString())
+            }
+            override fun onResponse(call: Call<SessaoResponseEditing>, response: Response<SessaoResponseEditing>) {
+                Log.d("Nice", response.body().toString())
+
+                val sessao = response.body()
+
+                val transmicoesSelecionados: ArrayList<String> = arrayListOf("")
+                sessao?.dicas!!.sintomas.forEach { transmicoesSelecionados.add((it.nome)) }
+
+                if(transmicoesSelecionados.isNotEmpty()) {
+                    transmicoesGlobal.removeAll(transmicoesSelecionados)
+                }
+
+                transmicoesGlobal.add(0, "")
+                populaSpinnerSintoma(transmicoesGlobal)
             }
         })
     }

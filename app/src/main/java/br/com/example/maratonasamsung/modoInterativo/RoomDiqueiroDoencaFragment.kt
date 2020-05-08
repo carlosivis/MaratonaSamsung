@@ -26,6 +26,7 @@ class RoomDiqueiroDoencaFragment : Fragment(), View.OnClickListener {
 
     var navController: NavController? = null
     lateinit var spinnerAdapter: ArrayAdapter<String>
+    var rodada: Int = 0 //não sei se inicializar com zero dá certo, nem se a variavel global funciona
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,21 +59,17 @@ class RoomDiqueiroDoencaFragment : Fragment(), View.OnClickListener {
         view.findViewById<Button>(R.id.diqueiroBtnDoenca).setOnClickListener(this)
 
         val id_sessao = requireArguments().getInt("id")
-        val doencas = requireArguments().getStringArrayList("doencas")
 
-//        listarSessao(id_sessao)
-
-        doencas!!.toMutableList()
-        context?.let {
-            spinnerAdapter = ArrayAdapter(it, android.R.layout.simple_spinner_item, doencas)
-        }
-        diqueiroSpinnerDoenca.adapter = spinnerAdapter
+        listarSessao(id_sessao)
     }
 
     override fun onClick(v: View?) {
         when(v!!.id){
             R.id.diqueiroBtnDoenca -> {
+                val id_sessao = requireArguments().getInt("id")
                 val doenca = diqueiroSpinnerDoenca.selectedItem.toString()
+
+//                val rodada = pegarRodada(id_sessao)
 
                 if(doenca.isEmpty()) {
                     val texto = "Selecione uma doença"
@@ -81,11 +78,11 @@ class RoomDiqueiroDoencaFragment : Fragment(), View.OnClickListener {
                     toast.show()
                 }
                 else {
-                    val id_sessao = requireArguments().getInt("id")
-
                     val parametros = Bundle()
                     parametros.putInt("id", id_sessao)
                     parametros.putString("doenca", doenca)
+                    parametros.putInt("rodada", (rodada+1))
+
                     navController!!.navigate(R.id.action_roomDiqueiroDoencaFragment_to_roomDiqueiroDicasFragment, parametros)
                 }
             }
@@ -104,20 +101,45 @@ class RoomDiqueiroDoencaFragment : Fragment(), View.OnClickListener {
 
                 val sessao = response.body()
 
-                val doencas: ArrayList<String> = arrayListOf("")
-                sessao?.doencas!!.forEach { doencas.add((it.nome)) }
+                rodada = sessao?.sessao!!.rodada
 
                 val doencasSelecionadas: ArrayList<String> = arrayListOf("")
-                sessao.doencasSelecionadas.forEach { doencasSelecionadas.add((it.nome)) }
+                sessao?.doencasSelecionadas!!.forEach { doencasSelecionadas.add((it.nome)) }
 
-                for(doenca in doencas) {
-                    doencasSelecionadas.forEach {
-                        if (it.equals(doenca)) doencas.remove(doenca)
-                    }
+                val doencas = requireArguments().getStringArrayList("doencas")
+
+                if(doencasSelecionadas.isNotEmpty()) {
+                    doencas!!.removeAll(doencasSelecionadas)
                 }
 
-                //AQUI EU JÁ TENHO TODAS AS DOENÇAS QUE AINDA NÃO FORAM USADAS NO JOGO E EU PRECISO RETIRÁ-LAS DO SPINNER
+                doencas?.add(0, "")
+
+                doencas!!.toMutableList()
+                context?.let {
+                    spinnerAdapter = ArrayAdapter(it, android.R.layout.simple_spinner_item, doencas)
+                }
+                diqueiroSpinnerDoenca.adapter = spinnerAdapter
             }
         })
     }
+
+    //Para ter acesso a rodada
+//    fun pegarRodada(id_sessao: Int): Int {
+//        var rodada: Int = 0
+//        Service.retrofit.listarSessao(
+//            id_sessao = id_sessao
+//        ).enqueue(object : Callback<SessaoResponseListing> {
+//            override fun onFailure(call: Call<SessaoResponseListing>, t: Throwable) {
+//                Log.d("Deu ruim", t.toString())
+//            }
+//            override fun onResponse(call: Call<SessaoResponseListing>, response: Response<SessaoResponseListing>) {
+//                Log.d("Nice", response.toString())
+//
+//                val sessao = response.body()
+//
+//                rodada = sessao?.sessao!!.rodada
+//            }
+//        })
+//        return rodada
+//    }
 }
