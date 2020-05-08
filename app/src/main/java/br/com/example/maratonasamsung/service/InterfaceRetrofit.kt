@@ -24,9 +24,6 @@ interface InterfaceRetrofit {
     @GET("/sessao/{id_sessao}")
     fun listarSessao(@Path ("id_sessao") id_sessao: Int): Call<SessaoResponseListing>
 
-    @GET("/sessao/{id_sessao}")
-    fun dicas(@Path ("id_sessao") id_sessao: Int): Call<SessaoResponse>
-
     @PUT("/sessao")
     fun editarSessaoSintoma(@Body sessao: EditSessaoSintomaRequest): Call<SessaoResponseEditing>
 
@@ -35,6 +32,9 @@ interface InterfaceRetrofit {
 
     @PUT("/sessao")
     fun editarSessaoTransmicao(@Body sessao: EditSessaoTransmicaoRequest): Call<SessaoResponseEditing>
+
+    @GET("/sessao/{id_sessao}")
+    fun dicas(@Path ("id_sessao") id_sessao: Int): Call<SessaoResponse>
 
     @GET("/doenca")
     fun doencas(): Call<List<DoencasResponse>>
@@ -54,6 +54,6 @@ interface InterfaceRetrofit {
     @POST("/jogador")
     fun jogadorNovo(@Body jogador: JogadorRequest): Call<JogadorResponse>
 
-//    @PUT("/jogador")
-//    fun jogadorUpdate(jogadorUpdate: JogadorUpdate): Call<JogadorResponse>
+    @PUT("/jogador")
+    fun jogadorUpdate(@Body jogadorUpdate: JogadorUpdate): Call<JogadorResponse>
 }

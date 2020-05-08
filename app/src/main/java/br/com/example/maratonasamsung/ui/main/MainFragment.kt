@@ -1,16 +1,18 @@
 package br.com.example.maratonasamsung.ui.main
 
-import android.os.Bundle
+import android.os.*
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Chronometer
 import androidx.activity.addCallback
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import br.com.example.maratonasamsung.R
+
 
 class MainFragment : Fragment(), View.OnClickListener {
 
@@ -28,9 +30,10 @@ class MainFragment : Fragment(), View.OnClickListener {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
         view.findViewById<Button>(R.id.btnModoEstudo).setOnClickListener(this)
-        view.findViewById<Button>(R.id.btnModoInterativo).setOnClickListener(this)
+        view.findViewById<Button>(R.id.btnModoInterativo    ).setOnClickListener(this)
         view.findViewById<Button>(R.id.btnMais).setOnClickListener(this)
-    }
+        }
+
 
     override fun onClick(v: View?) {
         when(v!!.id){
