@@ -33,6 +33,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.concurrent.schedule
 
 
@@ -43,6 +44,10 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
     val timerCronometro = Timer()
     val timerRanking = Timer()
     val timerDicas = Timer()
+    lateinit var list: RankingResponse
+    lateinit var rankingAdapter: RankingAdapter
+    lateinit var listDicas: ArrayList<String>
+    lateinit var dicasAdapter: DicasAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -143,10 +148,8 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
 
             override fun onResponse(call: Call<RankingResponse>, response: Response<RankingResponse>) {
                 Log.d("Ranking com Sucesso", response.body().toString())
-                recyclerRanking.apply {
-                    layoutManager = LinearLayoutManager(activity)
-                    adapter = RankingAdapter(response.body()!!)
-                }
+                list= response.body()!!
+                configureRecyclerViewRanking(list)
             }
         })
         timerRanking.schedule(2000) {
@@ -163,24 +166,16 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
 
                 override fun onResponse(call: Call<SessaoResponseListing>, response: Response<SessaoResponseListing>) {
                     Log.d("Sucesso ao pegar dicas", response.body().toString())
-
-                    val sessao = response.body()
-
-//                    val dicas: ArrayList<String> = arrayListOf("")
-//
-//                    sessao?.dicas!!.sintomas.forEach { dicas.add(it.toString()) }
-//                    sessao.dicas.prevencoes.forEach { dicas.add(it.toString()) }
-//                    sessao.dicas.transmicoes.forEach { dicas.add(it.toString()) }
-//
-//                    recyclerDicas.apply {
-//                        layoutManager = LinearLayoutManager(activity)
-//                        adapter = DicasAdapter(dicas)
-//                    }
+                    listDicas= arrayListOf("")
+                    response.body()?.dicas?.transmicoes?.forEach { listDicas.add(it.nome) }
+                    response.body()?.dicas?.prevencoes?.forEach { listDicas.add(it.nome) }
+                    response.body()?.dicas?.sintomas?.forEach { listDicas.add(it.nome) }
+                    configureRecyclerViewDicas(listDicas)
                 }
             })
-//        timerDicas.schedule(2000){
-//            dicas(id_sessao)
-//        }
+        timerDicas.schedule(2000){
+            dicas(id_sessao)
+        }
     }
       
     fun listarSessao(id_sessao: Int) {
@@ -254,6 +249,20 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
                 Log.d("Sucesso ao encerrar", response.body().toString())
             }
         })
+    }
+    private fun configureRecyclerViewRanking(list: RankingResponse) {
+        rankingAdapter = RankingAdapter(list)
+        recyclerRanking.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter= rankingAdapter
+        }
+    }
+    private fun configureRecyclerViewDicas(list: ArrayList<String>) {
+        dicasAdapter = DicasAdapter(list)
+        recyclerRanking.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter= rankingAdapter
+        }
     }
 }
 
