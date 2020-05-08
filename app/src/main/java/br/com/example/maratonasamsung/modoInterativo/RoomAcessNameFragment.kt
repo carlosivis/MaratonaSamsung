@@ -89,7 +89,7 @@ class RoomAcessNameFragment : Fragment(), View.OnClickListener {
 
                     val parametros = Bundle()
                     parametros.putInt("id", id_sessao)
-                    parametros.putString("nome", jogador.nome)
+                    parametros.putString("jogador", jogador.nome)
                     parametros.putStringArrayList("doencas", doencas)
 
                     navController!!.navigate(R.id.action_roomAcessNameFragment_to_roomAdivinhadorFragment, parametros)

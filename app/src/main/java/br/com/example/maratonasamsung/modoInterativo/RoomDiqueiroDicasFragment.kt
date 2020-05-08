@@ -21,6 +21,7 @@ import br.com.example.maratonasamsung.R
 import br.com.example.maratonasamsung.model.Requests.EditSessaoPrevencaoRequest
 import br.com.example.maratonasamsung.model.Requests.EditSessaoSintomaRequest
 import br.com.example.maratonasamsung.model.Requests.EditSessaoTransmicaoRequest
+import br.com.example.maratonasamsung.model.Requests.JogadorRequest
 import br.com.example.maratonasamsung.model.Responses.*
 import br.com.example.maratonasamsung.service.Service
 import kotlinx.android.synthetic.main.fragment_room_adivinhador.*
@@ -37,6 +38,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
 
     var navController: NavController? = null
     lateinit var spinnerAdapter: ArrayAdapter<String>
+    val timer = Timer()
     lateinit var sintomasGlobal: ArrayList<String>
     lateinit var prevencoesGlobal: ArrayList<String>
     lateinit var transmicoesGlobal: ArrayList<String>
@@ -52,6 +54,8 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val id_sessao = requireArguments().getInt("id")
+        val jogador = requireArguments().getString("jogador").toString()
         val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
             activity?.let {
                 AlertDialog.Builder(it)
@@ -59,6 +63,10 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                     .setMessage(R.string.sairJogoPont)
                     .setPositiveButton(R.string.sair) { dialog, which ->
                         navController!!.navigate(R.id.mainFragment)
+                        diqueirotempoCronometro.stop()
+                        timer.cancel()
+                        timer.purge()
+//                        jogadorEncerrar(id_sessao, jogador)
                     }
                     .setNegativeButton(R.string.cancelar) { dialog, which -> }
                     .show()
@@ -85,7 +93,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
         transmicoesGlobal = transmicoes(doenca)
         chronometro()
 
-        Timer().schedule(10000) {
+        timer.schedule(100000) {
             val parametros = Bundle()
             parametros.putInt("id", id_sessao)
             parametros.putString("nome", jogador)
@@ -98,7 +106,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
     @RequiresApi(Build.VERSION_CODES.N)
     fun chronometro(){
         diqueirotempoCronometro.isCountDown= true
-        diqueirotempoCronometro.base = SystemClock.elapsedRealtime()+10000
+        diqueirotempoCronometro.base = SystemClock.elapsedRealtime()+100000
         diqueirotempoCronometro.start()
     }
 
@@ -379,5 +387,14 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                 populaSpinnerSintoma(transmicoesGlobal)
             }
         })
+    }
+
+    fun jogadorEncerrar(id_sessao: Int, jogador: String) {
+        Service.retrofit.jogadorEncerrar(
+            jogador = JogadorRequest(
+                id_sessao = id_sessao,
+                nome = jogador
+            )
+        )
     }
 }

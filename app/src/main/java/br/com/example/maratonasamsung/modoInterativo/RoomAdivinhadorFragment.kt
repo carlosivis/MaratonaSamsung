@@ -19,6 +19,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.example.maratonasamsung.R
+import br.com.example.maratonasamsung.model.Requests.JogadorRequest
 import br.com.example.maratonasamsung.model.Requests.JogadorUpdate
 import br.com.example.maratonasamsung.model.Responses.JogadorResponse
 import br.com.example.maratonasamsung.model.Responses.RankingResponse
@@ -38,6 +39,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
 
     var navController: NavController? = null
     lateinit var spinnerAdapter: ArrayAdapter<String>
+    val timer = Timer()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,6 +51,8 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val id_sessao = requireArguments().getInt("id")
+        val jogador = requireArguments().getString("nome").toString()
         val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
             activity?.let {
                 AlertDialog.Builder(it)
@@ -56,6 +60,10 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
                     .setMessage(R.string.sairJogoPont)
                     .setPositiveButton(R.string.sair) { dialog, which ->
                         navController!!.navigate(R.id.mainFragment)
+                        tempoCronometro.stop()
+                        timer.cancel()
+                        timer.purge()
+//                        jogadorEncerrar(id_sessao, jogador)
                     }
                     .setNegativeButton(R.string.cancelar) { dialog, which -> }
                     .show()
@@ -82,7 +90,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
         dicas(id_sessao)
         chronometro()
 
-        Timer().schedule(10000) {
+        timer.schedule(10000) {
             val parametro = Bundle()
             parametro.putInt("id", id_sessao)
 
@@ -220,6 +228,15 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
                 val jogador = response.body()
             }
         })
+    }
+
+    fun jogadorEncerrar(id_sessao: Int, jogador: String) {
+        Service.retrofit.jogadorEncerrar(
+            jogador = JogadorRequest(
+                id_sessao = id_sessao,
+                nome = jogador
+            )
+        )
     }
 }
 

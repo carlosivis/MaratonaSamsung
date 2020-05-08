@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import br.com.example.maratonasamsung.R
+import br.com.example.maratonasamsung.model.Requests.JogadorRequest
 import br.com.example.maratonasamsung.model.Responses.SessaoResponseListing
 import br.com.example.maratonasamsung.service.Service
 import kotlinx.android.synthetic.main.fragment_room_diqueiro_doenca.*
@@ -39,12 +40,15 @@ class RoomDiqueiroDoencaFragment : Fragment(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val id_sessao = requireArguments().getInt("id")
+        val jogador = requireArguments().getString("jogador").toString()
         val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
             activity?.let {
                 AlertDialog.Builder(it)
                     .setTitle(R.string.sairJogo)
                     .setPositiveButton(R.string.sair) { dialog, which ->
                         navController!!.navigate(R.id.mainFragment)
+                        jogadorEncerrar(id_sessao, jogador)
                     }
                     .setNegativeButton(R.string.voltar) { dialog, which -> }
                     .show()
@@ -70,8 +74,6 @@ class RoomDiqueiroDoencaFragment : Fragment(), View.OnClickListener {
                 val jogador = requireArguments().getString("jogador").toString()
                 val doencas = requireArguments().getStringArrayList("doencas")
                 val doenca = diqueiroSpinnerDoenca.selectedItem.toString()
-
-//                val rodada = pegarRodada(id_sessao)
 
                 if(doenca.isEmpty()) {
                     val texto = "Selecione uma doença"
@@ -126,5 +128,14 @@ class RoomDiqueiroDoencaFragment : Fragment(), View.OnClickListener {
                 diqueiroSpinnerDoenca.adapter = spinnerAdapter
             }
         })
+    }
+
+    fun jogadorEncerrar(id_sessao: Int, jogador: String) {
+        Service.retrofit.jogadorEncerrar(
+            jogador = JogadorRequest(
+                id_sessao = id_sessao,
+                nome = jogador
+            )
+        )
     }
 }
