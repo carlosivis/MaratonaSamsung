@@ -93,11 +93,11 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
                 senha = senha
 
             )
-        ).enqueue(object : Callback<SessaoRequest>{
-            override fun onFailure(call: Call<SessaoRequest>, t: Throwable) {
+        ).enqueue(object : Callback<SalaResponse>{
+            override fun onFailure(call: Call<SalaResponse>, t: Throwable) {
                 Log.d("Deu ruim", t.toString())
             }
-            override fun onResponse(call: Call<SessaoRequest>, response: Response<SessaoRequest>) {
+            override fun onResponse(call: Call<SalaResponse>, response: Response<SalaResponse>) {
                 Log.d("Nice", response.toString())
 
                 val sessao = response.body()
@@ -107,6 +107,7 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
 
                 val parametros = Bundle()
                 parametros.putInt("id", sessao.id_sessao)
+                parametros.putString("jogador", createEditUsuario.text.toString())
                 parametros.putStringArrayList("doencas", doencas)
 
                 jogadorNovo(sessao.id_sessao, parametros)
