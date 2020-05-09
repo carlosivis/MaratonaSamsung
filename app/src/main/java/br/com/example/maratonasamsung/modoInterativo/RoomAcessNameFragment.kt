@@ -80,13 +80,13 @@ class RoomAcessNameFragment : Fragment(), View.OnClickListener {
 
                     quantidadeJogadores.removeAt(0)
 
-                    jogadorNovo(id_sessao, quantidadeJogadores.size)
+                    jogadorNovo(id_sessao, quantidadeJogadores.size, jogadores.darDica.nome)
                 }
             }
         })
     }
 
-    fun jogadorNovo(id_sessao: Int, quantidadeJogadores: Int){
+    fun jogadorNovo(id_sessao: Int, quantidadeJogadores: Int, diqueiro: String){
         Service.retrofit.jogadorNovo(
             jogador = JogadorRequest(
                 id_sessao = id_sessao,
@@ -127,14 +127,15 @@ class RoomAcessNameFragment : Fragment(), View.OnClickListener {
                         val parametros = Bundle()
                         parametros.putInt("id_sessao", id_sessao)
                         parametros.putString("jogador_nome", jogador.nome)
+                        parametros.putString("diqueiro", diqueiro)
                         parametros.putStringArrayList("doencas", doencas)
 
                         if (quantidadeJogadores > 2) {
-                            var rodada = pegarRodada(id_sessao)
+                            val rodada = pegarRodada(id_sessao)
                             parametros.putInt("rodada", rodada)
                             navController!!.navigate(R.id.action_roomAcessNameFragment_to_aguardandoRodadaFragment, parametros)
                         }
-                            else
+                        else
                             navController!!.navigate(R.id.action_roomAcessNameFragment_to_roomAdivinhadorFragment, parametros)
                     }
                 }
@@ -157,8 +158,8 @@ class RoomAcessNameFragment : Fragment(), View.OnClickListener {
                     context?.let { ErrorCases().error(it)}
                 }
                 else{
-                    val response = response.body()
-                    rodada = response?.sessao!!.rodada
+                    val resposta = response.body()
+                    rodada = resposta?.sessao!!.rodada
                 }
             }
         })

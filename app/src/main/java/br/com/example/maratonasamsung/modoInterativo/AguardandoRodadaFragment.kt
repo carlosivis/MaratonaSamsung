@@ -85,11 +85,13 @@ class AguardandoRodadaFragment : Fragment() {
                         timerRodada.purge()
 
                         val jogador = requireArguments().getString("jogador_nome").toString()
+                        val diqueiro = requireArguments().getString("diqueiro").toString()
                         val doencas = requireArguments().getStringArrayList("doencas")
 
                         val parametros = Bundle()
                         parametros.putInt("id_sessao", id_sessao)
                         parametros.putString("jogador_nome", jogador)
+                        parametros.putString("diqueiro", diqueiro)
                         parametros.putStringArrayList("doencas", doencas)
                         navController!!.navigate(R.id.action_aguardandoRodadaFragment_to_placeholderRodadaFragment, parametros)
                     }
