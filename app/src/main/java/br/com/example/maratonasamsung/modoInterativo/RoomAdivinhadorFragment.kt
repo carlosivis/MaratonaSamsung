@@ -104,7 +104,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener{
 //        dicas(id_sessao)
         chronometro()
 
-        timerCronometro.schedule(20000) {
+        timerCronometro.schedule(40000) {
             val parametro = Bundle()
             parametro.putInt("id_sessao", id_sessao)
             parametro.putString("diqueiro", list.darDica.nome)

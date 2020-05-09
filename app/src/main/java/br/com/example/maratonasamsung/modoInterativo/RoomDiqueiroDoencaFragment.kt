@@ -177,7 +177,7 @@ class RoomDiqueiroDoencaFragment : Fragment(), View.OnClickListener {
         Service.retrofit.editarRodada(
             sessao = EditarRodadaRequest(
                 id_sessao = id_sessao,
-                rodada = rodada,
+                rodada = (rodada+1),
                 doenca = doenca
             )
         ).enqueue(object : Callback<SessaoResponseEditing>{
