@@ -119,8 +119,6 @@ class RoomDiqueiroDoencaFragment : Fragment(), View.OnClickListener {
                     toast.show()
                 }
                 else {
-                    editarRodada(id_sessao, doenca)
-
                     val parametros = Bundle()
                     parametros.putInt("id_sessao", id_sessao)
                     parametros.putInt("rodada", (rodada))
@@ -169,25 +167,6 @@ class RoomDiqueiroDoencaFragment : Fragment(), View.OnClickListener {
                 }
                 else
                     Log.d("Erro do banco", response.message())
-            }
-        })
-    }
-
-    fun editarRodada(id_sessao: Int, doenca: String){
-        Service.retrofit.editarRodada(
-            sessao = EditarRodadaRequest(
-                id_sessao = id_sessao,
-                rodada = (rodada+1),
-                doenca = doenca
-            )
-        ).enqueue(object : Callback<SessaoResponseEditing>{
-            override fun onFailure(call: Call<SessaoResponseEditing>, t: Throwable) {
-                Log.d("Deu ruim", t.toString())
-            }
-            override fun onResponse(call: Call<SessaoResponseEditing>, response: Response<SessaoResponseEditing>) {
-                Log.d("Nice", response.body().toString())
-
-                val sessao = response.body()
             }
         })
     }

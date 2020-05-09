@@ -17,12 +17,10 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.example.maratonasamsung.R
+import br.com.example.maratonasamsung.model.Requests.EditarRodadaRequest
 import br.com.example.maratonasamsung.model.Requests.JogadorRequest
 import br.com.example.maratonasamsung.model.Requests.JogadorUpdate
-import br.com.example.maratonasamsung.model.Responses.JogadorEncerra
-import br.com.example.maratonasamsung.model.Responses.JogadorResponse
-import br.com.example.maratonasamsung.model.Responses.RankingResponse
-import br.com.example.maratonasamsung.model.Responses.SessaoResponseListing
+import br.com.example.maratonasamsung.model.Responses.*
 import br.com.example.maratonasamsung.service.Service
 import kotlinx.android.synthetic.main.fragment_room_adivinhador.*
 import retrofit2.Call
@@ -111,12 +109,13 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener{
             parametro.putString("jogador_nome", jogador)
             parametro.putStringArrayList("doencas",doencas!!)
 
+            jogadorUpdate(id_sessao,true)
             tempoCronometro.stop()
             timerRanking.cancel()
             timerRanking.purge()
             timerDicas.cancel()
             timerDicas.purge()
-//            listDicas.clear()
+            listDicas.clear()
 
             if (rodada == 5){
                 jogadorEncerrar(id_sessao, jogador)
@@ -215,7 +214,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener{
                 Log.d("Nice", response.toString())
                 if (response.isSuccessful) {
                     val sessao = response.body()
-//                val rodada = sessao?.sessao!!.rodada
+
                     val doencasSelecionadas: ArrayList<String> = arrayListOf("")
                     sessao?.doencasSelecionadas!!.forEach { doencasSelecionadas.add((it.nome)) }
                     lateinit var doenca: String
@@ -228,7 +227,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener{
                     val resposta = spinnerResposta.selectedItem.toString()
 
                     if (resposta == doenca) {
-                        jogadorUpdate(rodada)
+                        jogadorUpdate(rodada, false)
                     } else {
                         val texto = "Resposta incorreta"
                         val duracao = Toast.LENGTH_SHORT
@@ -242,12 +241,13 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener{
         })
     }
 
-    fun jogadorUpdate(rodada: Int) {
+    fun jogadorUpdate(rodada: Int, fim: Boolean) {
         Service.retrofit.jogadorUpdate(
             jogadorUpdate = JogadorUpdate(
                 id_sessao = requireArguments().getInt("id_sessao"),
                 nome = requireArguments().getString("jogador_nome").toString(),
-                rodada = rodada
+                rodada = rodada,
+                fim = fim
             )
         ).enqueue(object : Callback<JogadorResponse> {
             override fun onFailure(call: Call<JogadorResponse>, t: Throwable) {

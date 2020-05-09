@@ -18,10 +18,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.example.maratonasamsung.R
-import br.com.example.maratonasamsung.model.Requests.EditSessaoPrevencaoRequest
-import br.com.example.maratonasamsung.model.Requests.EditSessaoSintomaRequest
-import br.com.example.maratonasamsung.model.Requests.EditSessaoTransmicaoRequest
-import br.com.example.maratonasamsung.model.Requests.JogadorRequest
+import br.com.example.maratonasamsung.model.Requests.*
 import br.com.example.maratonasamsung.model.Responses.*
 import br.com.example.maratonasamsung.service.Service
 import kotlinx.android.synthetic.main.fragment_room_adivinhador.*
@@ -107,6 +104,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
             parametros.putString("diqueiro", list.darDica.nome)
             parametros.putString("jogador_nome", jogador)
 
+            editarRodada(id_sessao, doenca)
             diqueirotempoCronometro.stop()
             timerRanking.cancel()
             timerRanking.purge()
@@ -428,6 +426,25 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                 }
                 else
                     Log.d("Erro do banco", response.message())
+            }
+        })
+    }
+
+    fun editarRodada(id_sessao: Int, doenca: String){
+        Service.retrofit.editarRodada(
+            sessao = EditarRodadaRequest(
+                id_sessao = id_sessao,
+                rodada = (rodada+1),
+                doenca = doenca
+            )
+        ).enqueue(object : Callback<SessaoResponseEditing>{
+            override fun onFailure(call: Call<SessaoResponseEditing>, t: Throwable) {
+                Log.d("Deu ruim", t.toString())
+            }
+            override fun onResponse(call: Call<SessaoResponseEditing>, response: Response<SessaoResponseEditing>) {
+                Log.d("Nice", response.body().toString())
+
+                val sessao = response.body()
             }
         })
     }
