@@ -15,6 +15,7 @@ import br.com.example.maratonasamsung.model.Requests.SalaRequest
 import br.com.example.maratonasamsung.model.Requests.SessaoRequest
 import br.com.example.maratonasamsung.model.Responses.SalaResponse
 import br.com.example.maratonasamsung.model.Responses.SessaoResponse
+import br.com.example.maratonasamsung.service.ErrorCases
 import br.com.example.maratonasamsung.service.Service
 import kotlinx.android.synthetic.main.fragment_room_acess.*
 import retrofit2.Call
@@ -86,8 +87,10 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
                         acessEditSenha.setText("")
                     }
                 }
-                else
+                else {
                     Log.d("Erro do banco", response.message())
+                    context?.let { ErrorCases().error(it) }
+                }
             }
         })
     }
@@ -119,8 +122,10 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
                         parametros
                     )
                 }
-                else
+                else {
                     Log.d("Erro do banco", response.message())
+                    context?.let { ErrorCases().error(it) }
+                }
             }
         })
     }

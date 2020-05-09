@@ -12,6 +12,7 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.example.maratonasamsung.R
 import br.com.example.maratonasamsung.model.Responses.DoencasResponse
+import br.com.example.maratonasamsung.service.ErrorCases
 import br.com.example.maratonasamsung.service.Service
 import kotlinx.android.synthetic.main.fragment_choose.*
 import kotlinx.android.synthetic.main.fragment_item_choose.*
@@ -59,8 +60,10 @@ class ChooseFragment : Fragment() {
                     list = response.body()!!
                     configureRecyclerView(list.filter { it.tipo == arguments!!.getString("agenteInfectante") })
                 }
-                else
+                else {
                     Log.d("Erro do banco", response.message())
+                    context?.let { ErrorCases().error(it) }
+                }
             }
         })
     }

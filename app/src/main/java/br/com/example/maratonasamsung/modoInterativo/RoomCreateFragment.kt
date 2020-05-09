@@ -17,6 +17,7 @@ import br.com.example.maratonasamsung.model.Requests.SessaoRequest
 import br.com.example.maratonasamsung.model.Responses.JogadorResponse
 import br.com.example.maratonasamsung.model.Responses.SalaResponse
 import br.com.example.maratonasamsung.model.Responses.SessaoResponse
+import br.com.example.maratonasamsung.service.ErrorCases
 import br.com.example.maratonasamsung.service.Service
 import kotlinx.android.synthetic.main.fragment_room_create.*
 import retrofit2.Call
@@ -82,8 +83,10 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
                     } else
                         cadastrarSessao(sala.nome, sala.senha)
                 }
-                else
+                else {
                     Log.d("Erro do banco", response.message())
+                    context?.let { ErrorCases().error(it) }
+                }
             }
         })
     }
@@ -136,8 +139,10 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
                 Log.d("Nice", response.toString())
                 if (response.isSuccessful)
                     navController!!.navigate(R.id.action_roomCreateFragment_to_aguardandoJogadoresFragment, parametros)
-                else
+                else {
                     Log.d("Erro do banco", response.message())
+                    context?.let { ErrorCases().error(it) }
+                }
             }
         })
     }
