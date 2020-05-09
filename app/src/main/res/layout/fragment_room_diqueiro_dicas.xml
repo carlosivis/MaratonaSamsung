@@ -18,8 +18,7 @@
         android:fontFamily="@font/lanehum"
         android:layout_alignParentEnd="true"
         android:layout_below="@id/txtDiqueiro"
-        android:layout_marginBottom="20dp"
-        />
+        android:layout_marginBottom="20dp" />
 
     <TextView
         android:id="@+id/txtDiqueiro"
