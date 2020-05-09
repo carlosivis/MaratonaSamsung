@@ -109,6 +109,9 @@
             android:id="@+id/action_roomAdivinhadorFragment_to_winnerFragment"
             app:destination="@id/winnerFragment"
             app:enterAnim="@anim/nav_default_enter_anim" />
+        <action
+            android:id="@+id/action_roomAdivinhadorFragment_to_placeholderRodadaFragment"
+            app:destination="@id/placeholderRodadaFragment" />
     </fragment>
     <fragment
         android:id="@+id/chooseFragment"
@@ -175,5 +178,17 @@
         android:name="br.com.example.maratonasamsung.modoInterativo.WinnerFragment"
         android:label="fragment_winner"
         tools:layout="@layout/fragment_winner" />
+    <fragment
+        android:id="@+id/placeholderRodadaFragment"
+        android:name="br.com.example.maratonasamsung.PlaceholderRodadaFragment"
+        android:label="fragment_placeholder_rodada"
+        tools:layout="@layout/fragment_placeholder_rodada" >
+        <action
+            android:id="@+id/action_placeholderRodadaFragment_to_roomDiqueiroDoencaFragment"
+            app:destination="@id/roomDiqueiroDoencaFragment" />
+        <action
+            android:id="@+id/action_placeholderRodadaFragment_to_roomAdivinhadorFragment"
+            app:destination="@id/roomAdivinhadorFragment" />
+    </fragment>
 </navigation>
 

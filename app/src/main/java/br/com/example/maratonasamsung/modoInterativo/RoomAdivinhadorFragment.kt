@@ -272,6 +272,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener{
             layoutManager = LinearLayoutManager(context)
             adapter= dicasAdapter
             onCancelPendingInputEvents()
+            onPause()
         }
     }
 
