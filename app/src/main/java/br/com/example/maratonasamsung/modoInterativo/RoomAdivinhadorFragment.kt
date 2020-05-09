@@ -46,7 +46,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener{
     val timerDicas = Timer()
     lateinit var list: RankingResponse
     lateinit var rankingAdapter: RankingAdapter
-    lateinit var listDicas: ArrayList<String>
+    var listDicas: ArrayList<String> = arrayListOf("")
     lateinit var dicasAdapter: DicasAdapter
     val  vencedor = Bundle()
     var rodada: Int = 0
