@@ -2,14 +2,12 @@ package br.com.example.maratonasamsung.modoInterativo
 
 import android.os.Build
 import android.os.Bundle
-import android.os.Handler
 import android.os.SystemClock
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.Chronometer
 import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.annotation.RequiresApi
@@ -27,8 +25,6 @@ import br.com.example.maratonasamsung.model.Responses.RankingResponse
 import br.com.example.maratonasamsung.model.Responses.SessaoResponseListing
 import br.com.example.maratonasamsung.service.Service
 import kotlinx.android.synthetic.main.fragment_room_adivinhador.*
-import kotlinx.android.synthetic.main.main_fragment.*
-import kotlinx.coroutines.delay
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -37,7 +33,7 @@ import kotlin.collections.ArrayList
 import kotlin.concurrent.schedule
 
 
-class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
+class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener{
 
     var navController: NavController? = null
     lateinit var spinnerAdapter: ArrayAdapter<String>
@@ -75,8 +71,8 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
                         timerCronometro.purge()
                         timerRanking.cancel()
                         timerRanking.purge()
-//                        timerDicas.cancel()
-//                        timerDicas.purge()
+                        timerDicas.cancel()
+                        timerDicas.purge()
                         jogadorEncerrar(id_sessao, jogador)
                     }
                     .setNegativeButton(R.string.cancelar) { dialog, which -> }
@@ -93,6 +89,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
 
         val id_sessao = requireArguments().getInt("id_sessao")
         val doencas = requireArguments().getStringArrayList("doencas")
+        val jogador = requireArguments().getString("jogador_nome").toString()
 
         doencas!!.toMutableList()
         context?.let {
@@ -107,13 +104,16 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
         timerCronometro.schedule(10000) {
             val parametro = Bundle()
             parametro.putInt("id_sessao", id_sessao)
+            parametro.putString("diqueiro", list.darDica.nome)
+            parametro.putString("jogador_nome", jogador)
+            parametro.putStringArrayList("doencas",doencas!!)
 
             timerRanking.cancel()
             timerRanking.purge()
-//            timerDicas.cancel()
-//            timerDicas.purge()
-
-            Navigation.findNavController(view).navigate(R.id.action_roomAdivinhadorFragment_to_roomDiqueiroDoencaFragment, parametro)
+            timerDicas.cancel()
+            timerDicas.purge()
+            listDicas.clear()
+            Navigation.findNavController(view).navigate(R.id.action_roomAdivinhadorFragment_to_placeholderRodadaFragment, parametro)
         }
     }
 
@@ -260,16 +260,21 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
         rankingAdapter = RankingAdapter(list)
         recyclerRanking.apply {
             layoutManager = LinearLayoutManager(context)
+            isComputingLayout
             adapter= rankingAdapter
+            onPause()
+            onCancelPendingInputEvents()
         }
     }
     private fun configureRecyclerViewDicas(list: ArrayList<String>) {
         dicasAdapter = DicasAdapter(list)
-        recyclerRanking.apply {
+        recyclerDicas.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter= rankingAdapter
+            adapter= dicasAdapter
+            onCancelPendingInputEvents()
         }
     }
+
 }
 
 
