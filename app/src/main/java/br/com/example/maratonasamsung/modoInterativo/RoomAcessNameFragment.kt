@@ -39,7 +39,8 @@ class RoomAcessNameFragment : Fragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         when(v!!.id){
             R.id.acessnameBtnAcessarSala -> {
-                val id_sessao = requireArguments().getInt("id")
+                val id_sessao = requireArguments().getInt("id_sessao")
+
                 if(acessnameEditUsuario.text.toString() == "") {
                     val texto = "Preencha todos os campos obrigatórios"
                     val duracao = Toast.LENGTH_SHORT
@@ -88,8 +89,8 @@ class RoomAcessNameFragment : Fragment(), View.OnClickListener {
                     val doencas = arguments!!.getStringArrayList("doencas")
 
                     val parametros = Bundle()
-                    parametros.putInt("id", id_sessao)
-                    parametros.putString("nome", jogador.nome)
+                    parametros.putInt("id_sessao", id_sessao)
+                    parametros.putString("jogador_nome", jogador.nome)
                     parametros.putStringArrayList("doencas", doencas)
 
                     navController!!.navigate(R.id.action_roomAcessNameFragment_to_roomAdivinhadorFragment, parametros)

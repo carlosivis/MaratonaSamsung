@@ -14,6 +14,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import br.com.example.maratonasamsung.R
+import br.com.example.maratonasamsung.model.Requests.JogadorRequest
+import br.com.example.maratonasamsung.model.Responses.JogadorEncerra
 import br.com.example.maratonasamsung.model.Responses.SessaoResponseListing
 import br.com.example.maratonasamsung.service.Service
 import kotlinx.android.synthetic.main.fragment_room_diqueiro_doenca.*
@@ -26,7 +28,7 @@ class RoomDiqueiroDoencaFragment : Fragment(), View.OnClickListener {
 
     var navController: NavController? = null
     lateinit var spinnerAdapter: ArrayAdapter<String>
-    var rodada: Int = 0 //não sei se inicializar com zero dá certo, nem se a variavel global funciona
+    var rodada: Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,12 +41,15 @@ class RoomDiqueiroDoencaFragment : Fragment(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val id_sessao = requireArguments().getInt("id_sessao")
+        val jogador = requireArguments().getString("jogador_nome").toString()
         val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
             activity?.let {
                 AlertDialog.Builder(it)
                     .setTitle(R.string.sairJogo)
                     .setPositiveButton(R.string.sair) { dialog, which ->
                         navController!!.navigate(R.id.mainFragment)
+                        jogadorEncerrar(id_sessao, jogador)
                     }
                     .setNegativeButton(R.string.voltar) { dialog, which -> }
                     .show()
@@ -58,7 +63,7 @@ class RoomDiqueiroDoencaFragment : Fragment(), View.OnClickListener {
         navController = Navigation.findNavController(view)
         view.findViewById<Button>(R.id.diqueiroBtnDoenca).setOnClickListener(this)
 
-        val id_sessao = requireArguments().getInt("id")
+        val id_sessao = requireArguments().getInt("id_sessao")
 
         listarSessao(id_sessao)
     }
@@ -66,12 +71,10 @@ class RoomDiqueiroDoencaFragment : Fragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         when(v!!.id){
             R.id.diqueiroBtnDoenca -> {
-                val id_sessao = requireArguments().getInt("id")
-                val jogador = requireArguments().getString("jogador").toString()
+                val id_sessao = requireArguments().getInt("id_sessao")
+                val jogador = requireArguments().getString("jogador_nome").toString()
                 val doencas = requireArguments().getStringArrayList("doencas")
                 val doenca = diqueiroSpinnerDoenca.selectedItem.toString()
-
-//                val rodada = pegarRodada(id_sessao)
 
                 if(doenca.isEmpty()) {
                     val texto = "Selecione uma doença"
@@ -81,9 +84,9 @@ class RoomDiqueiroDoencaFragment : Fragment(), View.OnClickListener {
                 }
                 else {
                     val parametros = Bundle()
-                    parametros.putInt("id", id_sessao)
+                    parametros.putInt("id_sessao", id_sessao)
                     parametros.putInt("rodada", (rodada+1))
-                    parametros.putString("nome", jogador)
+                    parametros.putString("jogador_nome", jogador)
                     parametros.putString("doenca", doenca)
                     parametros.putStringArrayList("doencas", doencas)
 
@@ -111,19 +114,36 @@ class RoomDiqueiroDoencaFragment : Fragment(), View.OnClickListener {
                 sessao?.doencas!!.forEach { doencas.add((it.nome)) }
 
                 val doencasSelecionadas: ArrayList<String> = arrayListOf("")
-                sessao?.doencasSelecionadas!!.forEach { doencasSelecionadas.add((it.nome)) }
+                sessao.doencasSelecionadas.forEach { doencasSelecionadas.add((it.nome)) }
 
                 if(doencasSelecionadas.isNotEmpty()) {
-                    doencas!!.removeAll(doencasSelecionadas)
+                    doencas.removeAll(doencasSelecionadas)
                 }
 
-                doencas?.add(0, "")
+                doencas.add(0, "")
 
-                doencas!!.toMutableList()
+                doencas.toMutableList()
                 context?.let {
                     spinnerAdapter = ArrayAdapter(it, android.R.layout.simple_spinner_item, doencas)
                 }
                 diqueiroSpinnerDoenca.adapter = spinnerAdapter
+            }
+        })
+    }
+
+    fun jogadorEncerrar(id_sessao: Int, jogador: String) {
+        Service.retrofit.jogadorEncerrar(
+            jogador = JogadorRequest(
+                id_sessao = id_sessao,
+                nome = jogador
+            )
+        ).enqueue(object : Callback<JogadorEncerra> {
+            override fun onFailure(call: Call<JogadorEncerra>, t: Throwable) {
+                Log.d("Falha ao encerrar", t.toString())
+            }
+
+            override fun onResponse(call: Call<JogadorEncerra>, response: Response<JogadorEncerra>) {
+                Log.d("Sucesso ao encerrar", response.body().toString())
             }
         })
     }

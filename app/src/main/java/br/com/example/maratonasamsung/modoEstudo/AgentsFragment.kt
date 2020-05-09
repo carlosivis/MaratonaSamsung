@@ -39,22 +39,22 @@ class AgentsFragment : Fragment(), View.OnClickListener {
         val parametros = Bundle()
         when(v!!.id){
             R.id.imageProtozoario -> {
-                agenteInfectante = "protozoarios"
+                agenteInfectante = "PROTOZOARIOS"
                 parametros.putString("agenteInfectante", agenteInfectante)
                 navController!!.navigate(R.id.action_agentsFragment_to_chooseFragment, parametros)
             }
             R.id.imagePlatelminto -> {
-                agenteInfectante = "platelmintos ou nemaltelmintos"
+                agenteInfectante = "PLATELMINTOS E NEMATELMINTOS"
                 parametros.putString("agenteInfectante", agenteInfectante)
                 navController!!.navigate(R.id.action_agentsFragment_to_chooseFragment, parametros)
             }
             R.id.imageVirus -> {
-                agenteInfectante = "virus"
+                agenteInfectante = "VIRUS"
                 parametros.putString("agenteInfectante", agenteInfectante)
                 navController!!.navigate(R.id.action_agentsFragment_to_chooseFragment, parametros)
             }
             R.id.imageBacteria -> {
-                agenteInfectante = "bacterias"
+                agenteInfectante = "BACTERIAS"
                 parametros.putString("agenteInfectante", agenteInfectante)
                 navController!!.navigate(R.id.action_agentsFragment_to_chooseFragment, parametros)
             }

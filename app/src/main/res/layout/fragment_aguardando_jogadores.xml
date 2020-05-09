@@ -7,9 +7,7 @@
     android:layout_marginTop="20dp"
     android:layout_marginEnd="20dp"
     android:layout_marginBottom="20dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".PlaceholderRodadaFragment">
-
+    tools:context=".ui.main.AguardandoJogadoresFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -17,11 +15,11 @@
         android:layout_centerInParent="true">
 
         <TextView
-            android:id="@+id/txtTipoJogador"
+            android:id="@+id/txtJustATime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            tools:text="Vc é X tipo de jogador"
+            android:text="@string/aguardando_jogadores"
             android:textAlignment="center"
             android:textSize="20sp" />
 
@@ -30,7 +28,7 @@
             style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/txtTipoJogador"
+            android:layout_below="@+id/txtJustATime"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="40dp"
             android:indeterminateTint="@color/colorText" />

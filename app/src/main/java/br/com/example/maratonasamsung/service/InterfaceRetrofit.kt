@@ -33,9 +33,6 @@ interface InterfaceRetrofit {
     @PUT("/sessao")
     fun editarSessaoTransmicao(@Body sessao: EditSessaoTransmicaoRequest): Call<SessaoResponseEditing>
 
-    @GET("/sessao/{id_sessao}")
-    fun dicas(@Path ("id_sessao") id_sessao: Int): Call<SessaoResponse>
-
     @GET("/doenca")
     fun doencas(): Call<List<DoencasResponse>>
 
@@ -48,12 +45,12 @@ interface InterfaceRetrofit {
     @GET("/transmicaos/{doenca}")
     fun transmicoes(@Path("doenca") doenca: String): Call<Transmissoes>
 
-//    @GET("/jogador")
-//    fun jogador(): Call<JogadorResponse>
-
     @POST("/jogador")
     fun jogadorNovo(@Body jogador: JogadorRequest): Call<JogadorResponse>
 
     @PUT("/jogador")
     fun jogadorUpdate(@Body jogadorUpdate: JogadorUpdate): Call<JogadorResponse>
+
+    @HTTP(method = "DELETE", path = "/jogador/encerra", hasBody = true)
+    fun jogadorEncerrar(@Body jogador: JogadorRequest): Call<JogadorEncerra>
 }

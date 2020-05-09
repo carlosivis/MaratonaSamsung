@@ -14,6 +14,7 @@ import br.com.example.maratonasamsung.R
 import br.com.example.maratonasamsung.model.Responses.DoencasResponse
 import br.com.example.maratonasamsung.service.Service
 import kotlinx.android.synthetic.main.fragment_choose.*
+import kotlinx.android.synthetic.main.fragment_item_choose.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -21,13 +22,13 @@ import retrofit2.Response
 class ChooseFragment : Fragment() {
 
     var navController: NavController? = null
-    lateinit var doenca: List<DoencasResponse>
+    lateinit var list: List<DoencasResponse>
+    lateinit var doencaAdapter: DoencaAdapter
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         retainInstance = true
-
     }
 
     override fun onCreateView(
@@ -42,11 +43,11 @@ class ChooseFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-            doencas()
+        doencas()
         navController = Navigation.findNavController(view)
         }
   
-    fun doencas(){
+    fun doencas() {
         Service.retrofit.doencas().enqueue(object : Callback<List<DoencasResponse>>{
             override fun onFailure(call: Call<List<DoencasResponse>>, t: Throwable) {
                 Log.d("Deu ruim!!!",t.toString())
@@ -54,13 +55,17 @@ class ChooseFragment : Fragment() {
 
             override fun onResponse(call: Call<List<DoencasResponse>>, response: Response<List<DoencasResponse>>) {
                 Log.d("Sucesso", response.body().toString())
-                doenca = response.body()!!
-                recyclerDoencas.apply{
-                    layoutManager = LinearLayoutManager(activity)
-                    adapter = DoencaAdapter(doenca.filter { it.tipo == arguments!!.getString("agenteInfectante") })
-                }
+                list= response.body()!!
+                configureRecyclerView(list.filter{it.tipo == arguments!!.getString("agenteInfectante")})
             }
         })
+    }
+    private fun configureRecyclerView(list: List<DoencasResponse>) {
+        doencaAdapter = DoencaAdapter(list)
+        recyclerDoencas.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter=doencaAdapter
+        }
     }
 }
 
