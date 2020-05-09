@@ -37,7 +37,7 @@
     <string name="estudo">Modo Estudo</string>
     <string name="estudoText">Neste modo você tem acesso a informações importantes sobre as doenças, de forma interativa e simplificada. Fundamental para um bom desempenho no Modo Interativo.</string>
     <string name="interativo">Modo Interativo</string>
-    <string name="interativoText">Aqui você praticará os conhecimentos adquiridos no Modo Estudo ao interagir com amigos e colegas em um jogo de adivinhação de doenças. Por enquanto, ele ainda não está disponível para ser jogado sozinho.</string>
+    <string name="interativoText">Aqui você praticará os conhecimentos adquiridos no Modo Estudo e também irá interagir com amigos e colegas em um jogo de adivinhação de doenças.</string>
     <string name="config">Sobre o APP</string>
     <string name="configText">Aqui você encontrará todas as informações sobre o aplicativo, incluindo mais detalhes sobre o funcionamento do jogo, além de poder rever essa introdução quando quiser. Vamos lá!</string>
     <string name="voltar">Voltar</string>
@@ -45,7 +45,7 @@
     <string name="tutorial">Tutorial</string>
     <string name="regrasPont">Funcionamento</string>
     <string name="regrasText2" tools:ignore="Typos">O jogador a dar dicas tem 10 (dez) segundos para escolher sua dica inicial, ou passará a vez a outro jogador. Os demais, então, terão 1 (um) minuto para adivinhar a doença, enquanto poderão ser dadas mais dicas a critério do jogador da vez.\n\nAo acertar a doença, tanto os adivinhadores que fizeram o acerto quanto o jogador que está dando as dicas ganham pontos. Cada adivinhador ganha uma quantidade de pontos diferente de acordo com o valor da rodada no momento do seu acerto. A rodada começa valendo 10 (dez) pontos, mas tem seu valor alterado com os seguintes acontecimentos:\n\n\u2022 A cada nova dica dada pelo jogador da vez, a rodada passa a valer menos 1 (um) ponto para todos os adivinhadores.\n\u2022 Quando um adivinhador acerta a doença, a rodada também passa a valer menos 1 (um) ponto para os adivinhadores que ainda não a acertaram.\n\u2022 Quando um adivinhador faz uma tentativa errada, a rodada passa a valer ainda menos 1 (um) ponto somente para aquele adivinhador em questão.\n\nO jogador a dar dicas ganha a mesma quantidade de pontos do primeiro adivinhador e mais 2 (dois) pontos por cada acerto seguinte dos demais adivinhadores.</string>
-    <string name="regrasText">Em cada rodada, os adivinhadores terão 1 (um) minuto para adivinhar a doença, enquanto poderão ser dadas mais dicas a critério do diqueiro.\n\nAo acertar a doença, tanto os adivinhadores que fizeram o acerto quanto o diqueiro ganham pontos. Cada adivinhador ganha uma quantidade de pontos diferente, sendo esse valor de 10 (dez) dividido pela ordem de acerto do adivinhador (1 (um) se for o primeiro a adivinhar a doença, 2 (dois) se for o segundo e assim por diante). \n\nO diqueiro ganha 75% dos pontos adquiridos por cada adivinhador.</string>
+    <string name="regrasText">O jogador a dar dicas tem 10 (dez) segundos para escolher sua dica inicial, ou passará a vez a outro jogador. Os demais, então, terão 1 (um) minuto para adivinhar a doença, enquanto poderão ser dadas mais dicas a critério do jogador da vez.\n\nAo acertar a doença, tanto os adivinhadores que fizeram o acerto quanto o jogador que está dando as dicas ganham pontos. Cada adivinhador ganha uma quantidade de pontos diferente, sendo esse valor de 10 (dez) dividido pela ordem de acerto do adivinhador (1 (um) se for o primeiro a adivinhar a doença, 2 (dois) se for o segundo e assim por diante). \n\nO jogador a dar dicas ganha 75% dos pontos adquiridos por cada adivinhador.</string>
     <string name="chooseFragmentTitle">Escolha uma classe de agente infectante:</string>
     <string name="bacteria">Bactéria</string>
     <string name="platelminto">Platelminto</string>
@@ -67,7 +67,6 @@
     <string name="labelGame">Ilustração de um controle de videogame</string>
     <string name="labelFriendship">Ilustração de uma pessoa com o braço por trás de outra</string>
     <string name="labelVirus">Ilustração de um vírus</string>
-    <string name="labelWinner">Ilustração de uma taça de campeonato</string>
     <string name="labelBacteria">Ilustração de uma bactéria</string>
     <string name="labelPlatelminto">Ilustração de um platelminto</string>
     <string name="labelProtozoario">Ilustração de um protozoário</string>
@@ -81,7 +80,6 @@
     <string name="creditsPlatelminto">Ícone feito por \n<a href="https://www.flaticon.com/authors/freepik">Freepik</a> de \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
     <string name="creditsProtozoario">Ícone feito por \n<a href="https://www.flaticon.com/authors/freepik">Freepik</a> de \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
     <string name="creditsVirus">Ícone feito por \n<a href="https://www.flaticon.com/authors/freepik">Freepik</a> de \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
-    <string name="creditsWinner">Ícone feito por \n<a href="https://www.flaticon.com/authors/freepik">Freepik</a> de \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
     <string name="sair">Sair</string>
     <string name="cancelar">Cancelar</string>
     <string name="sairApp">Você deseja sair do app?</string>
