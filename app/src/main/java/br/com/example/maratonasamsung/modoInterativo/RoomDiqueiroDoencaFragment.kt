@@ -40,6 +40,7 @@ class RoomDiqueiroDoencaFragment : Fragment(), View.OnClickListener {
 
     var navController: NavController? = null
     lateinit var spinnerAdapter: ArrayAdapter<String>
+    val timerCronometro = Timer()
     var rodada: Int = 0
     val parametros = Bundle()
 
@@ -62,6 +63,9 @@ class RoomDiqueiroDoencaFragment : Fragment(), View.OnClickListener {
                     .setTitle(R.string.sairJogo)
                     .setPositiveButton(R.string.sair) { dialog, which ->
                         navController!!.navigate(R.id.mainFragment)
+                        diqueiroDoencaChronometro.stop()
+                        timerCronometro.cancel()
+                        timerCronometro.purge()
                         jogadorEncerrar(id_sessao, jogador)
                     }
                     .setNegativeButton(R.string.voltar) { dialog, which -> }
@@ -84,9 +88,7 @@ class RoomDiqueiroDoencaFragment : Fragment(), View.OnClickListener {
         chronometro()
         listarSessao(id_sessao)
 
-        Timer().schedule(20000){
-            diqueiroDoencaChronometro.stop()
-
+        timerCronometro.schedule(20000){
             parametros.putInt("id_sessao", id_sessao)
             parametros.putInt("rodada", (rodada+1))
             parametros.putString("jogador_nome", jogador)
@@ -120,6 +122,10 @@ class RoomDiqueiroDoencaFragment : Fragment(), View.OnClickListener {
                     toast.show()
                 }
                 else {
+                    diqueiroDoencaChronometro.stop()
+                    timerCronometro.cancel()
+                    timerCronometro.purge()
+
                     val parametros = Bundle()
                     parametros.putInt("id_sessao", id_sessao)
                     parametros.putInt("rodada", (rodada))

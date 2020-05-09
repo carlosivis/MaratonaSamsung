@@ -41,6 +41,8 @@ class AguardandoJogadoresFragment : Fragment() {
                     .setTitle(R.string.sairJogo)
                     .setPositiveButton(R.string.sair) { dialog, which ->
                         navController!!.navigate(R.id.mainFragment)
+                        timerJogadores.cancel()
+                        timerJogadores.purge()
                     }
                     .setNegativeButton(R.string.cancelar) { dialog, which -> }
                     .show()
