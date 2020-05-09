@@ -200,12 +200,8 @@
         android:label="fragment_aguardando_rodada"
         tools:layout="@layout/fragment_aguardando_rodada" >
         <action
-            android:id="@+id/action_aguardandoRodadaFragment_to_roomDiqueiroDoencaFragment"
-            app:destination="@id/roomDiqueiroDoencaFragment"
-            app:enterAnim="@anim/nav_default_enter_anim" />
-        <action
-            android:id="@+id/action_aguardandoRodadaFragment_to_roomAdivinhadorFragment"
-            app:destination="@id/roomAdivinhadorFragment"
+            android:id="@+id/action_aguardandoRodadaFragment_to_placeholderRodadaFragment"
+            app:destination="@id/placeholderRodadaFragment"
             app:enterAnim="@anim/nav_default_enter_anim" />
     </fragment>
 </navigation>

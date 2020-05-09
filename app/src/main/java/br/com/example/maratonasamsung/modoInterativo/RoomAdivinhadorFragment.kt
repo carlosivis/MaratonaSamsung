@@ -49,6 +49,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener{
     var listDicas: ArrayList<String> = arrayListOf("")
     lateinit var dicasAdapter: DicasAdapter
     val  vencedor = Bundle()
+    lateinit var doencaRodada: String
     var rodada: Int = 0
 
     override fun onCreateView(
@@ -103,6 +104,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener{
         }
         spinnerResposta.adapter = spinnerAdapter
 
+        dicas(id_sessao)
         ranking(id_sessao)
         chronometro()
 
@@ -203,6 +205,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener{
                         response.body()?.dicas?.sintomas?.forEach { listDicas.add(it.nome) }
                         configureRecyclerViewDicas(listDicas)
                         rodada = response.body()!!.sessao.rodada
+                        doencaRodada = response.body()!!.ultimaDoenca
                     }
                 }
             })

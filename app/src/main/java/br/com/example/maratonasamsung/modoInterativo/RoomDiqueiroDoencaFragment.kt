@@ -90,7 +90,7 @@ class RoomDiqueiroDoencaFragment : Fragment() { //, View.OnClickListener
 
         timerCronometro.schedule(5000){
             parametros.putInt("id_sessao", id_sessao)
-            parametros.putInt("rodada", (rodada+1))
+            parametros.putInt("rodada", rodada)
             parametros.putString("jogador_nome", jogador)
             parametros.putString("doenca", doencas?.random())
             parametros.putStringArrayList("doencas", doencas)
