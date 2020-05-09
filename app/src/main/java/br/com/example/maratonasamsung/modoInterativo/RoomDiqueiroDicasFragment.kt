@@ -18,10 +18,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.example.maratonasamsung.R
-import br.com.example.maratonasamsung.model.Requests.EditSessaoPrevencaoRequest
-import br.com.example.maratonasamsung.model.Requests.EditSessaoSintomaRequest
-import br.com.example.maratonasamsung.model.Requests.EditSessaoTransmicaoRequest
-import br.com.example.maratonasamsung.model.Requests.JogadorRequest
+import br.com.example.maratonasamsung.model.Requests.*
 import br.com.example.maratonasamsung.model.Responses.*
 import br.com.example.maratonasamsung.service.ErrorCases
 import br.com.example.maratonasamsung.service.Service
@@ -100,13 +97,6 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
         transmicoesGlobal = transmicoes(doenca)
         chronometro()
 
-        if (rodada == 6){
-            timerRanking.cancel()
-            timerRanking.purge()
-            jogadorEncerrar(id_sessao, jogador)
-            Navigation.findNavController(view).navigate(R.id.action_roomDiqueiroDicasFragment_to_winnerFragment, vencedor)
-        }
-
         timerCronometro.schedule(20000) {
             val parametros = Bundle()
             parametros.putInt("id_sessao", id_sessao)
@@ -115,10 +105,17 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
             parametros.putString("diqueiro", list.darDica.nome)
             parametros.putString("jogador_nome", jogador)
 
+            editarRodada(id_sessao, doenca)
+            diqueirotempoCronometro.stop()
             timerRanking.cancel()
             timerRanking.purge()
 
-            Navigation.findNavController(view).navigate(R.id.action_roomDiqueiroDicasFragment_to_roomAdivinhadorFragment, parametros)
+            if (rodada == 5){
+                jogadorEncerrar(id_sessao, jogador)
+                Navigation.findNavController(view).navigate(R.id.action_roomDiqueiroDicasFragment_to_winnerFragment, vencedor)
+            }
+            else
+                Navigation.findNavController(view).navigate(R.id.action_roomDiqueiroDicasFragment_to_roomAdivinhadorFragment, parametros)
         }
     }
 
@@ -442,6 +439,25 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                     Log.d("Erro do banco", response.message())
                     context?.let { ErrorCases().error(it) }
                 }
+            }
+        })
+    }
+
+    fun editarRodada(id_sessao: Int, doenca: String){
+        Service.retrofit.editarRodada(
+            sessao = EditarRodadaRequest(
+                id_sessao = id_sessao,
+                rodada = (rodada+1),
+                doenca = doenca
+            )
+        ).enqueue(object : Callback<SessaoResponseEditing>{
+            override fun onFailure(call: Call<SessaoResponseEditing>, t: Throwable) {
+                Log.d("Deu ruim", t.toString())
+            }
+            override fun onResponse(call: Call<SessaoResponseEditing>, response: Response<SessaoResponseEditing>) {
+                Log.d("Nice", response.body().toString())
+
+                val sessao = response.body()
             }
         })
     }
