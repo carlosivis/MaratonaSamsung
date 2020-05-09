@@ -66,35 +66,40 @@ class RoomAcessNameFragment : Fragment(), View.OnClickListener {
 
             override fun onResponse(call: Call<JogadorResponse>, response: Response<JogadorResponse>) {
                 Log.d("Nice", response.toString())
+                if (response.isSuccessful) {
 
-                val jogador = response.body()
+                    val jogador = response.body()
 
-                if(!jogador!!.status) {
-                    if(jogador.message == "Esse nome já existe") {
-                        val texto = "Nome de usuário já existente nesta sala"
-                        val duracao = Toast.LENGTH_SHORT
-                        val toast = Toast.makeText(context, texto, duracao)
-                        toast.show()
-                        acessnameEditUsuario.setText("")
-                    }
-                    else if(jogador.message == "Sessao já foi iniciada") {
-                        val texto = "Rodada já iniciada, entrada não mais permitida"
-                        val duracao = Toast.LENGTH_SHORT
-                        val toast = Toast.makeText(context, texto, duracao)
-                        toast.show()
-                        acessnameEditUsuario.setText("")
+                    if (!jogador!!.status) {
+                        if (jogador.message == "Esse nome já existe") {
+                            val texto = "Nome de usuário já existente nesta sala"
+                            val duracao = Toast.LENGTH_SHORT
+                            val toast = Toast.makeText(context, texto, duracao)
+                            toast.show()
+                            acessnameEditUsuario.setText("")
+                        } else if (jogador.message == "Sessao já foi iniciada") {
+                            val texto = "Rodada já iniciada, entrada não mais permitida"
+                            val duracao = Toast.LENGTH_SHORT
+                            val toast = Toast.makeText(context, texto, duracao)
+                            toast.show()
+                            acessnameEditUsuario.setText("")
+                        }
+                    } else {
+                        val doencas = arguments!!.getStringArrayList("doencas")
+
+                        val parametros = Bundle()
+                        parametros.putInt("id_sessao", id_sessao)
+                        parametros.putString("jogador_nome", jogador.nome)
+                        parametros.putStringArrayList("doencas", doencas)
+
+                        navController!!.navigate(
+                            R.id.action_roomAcessNameFragment_to_roomAdivinhadorFragment,
+                            parametros
+                        )
                     }
                 }
-                else {
-                    val doencas = arguments!!.getStringArrayList("doencas")
-
-                    val parametros = Bundle()
-                    parametros.putInt("id_sessao", id_sessao)
-                    parametros.putString("jogador_nome", jogador.nome)
-                    parametros.putStringArrayList("doencas", doencas)
-
-                    navController!!.navigate(R.id.action_roomAcessNameFragment_to_roomAdivinhadorFragment, parametros)
-                }
+                else
+                    Log.d("Erro do banco", response.message())
             }
         })
     }

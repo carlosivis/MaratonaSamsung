@@ -64,27 +64,30 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
             }
             override fun onResponse(call: Call<SalaResponse>, response: Response<SalaResponse>) {
                 Log.d("Nice", response.toString())
+                if (response.isSuccessful) {
 
-                val sala = response.body()
-                if(sala!!.status) {
-                    if (sala.senha == acessEditSenha.text.toString())
-                        cadastrarSessao(sala.nome, sala.senha)
-                    else {
-                        val texto = "Senha inválida"
+                    val sala = response.body()
+                    if (sala!!.status) {
+                        if (sala.senha == acessEditSenha.text.toString())
+                            cadastrarSessao(sala.nome, sala.senha)
+                        else {
+                            val texto = "Senha inválida"
+                            val duracao = Toast.LENGTH_SHORT
+                            val toast = Toast.makeText(context, texto, duracao)
+                            toast.show()
+                            acessEditSenha.setText("")
+                        }
+                    } else {
+                        val texto = "Sala não encontrada"
                         val duracao = Toast.LENGTH_SHORT
                         val toast = Toast.makeText(context, texto, duracao)
                         toast.show()
+                        acessEditNomeSala.setText("")
                         acessEditSenha.setText("")
                     }
                 }
-                else {
-                    val texto = "Sala não encontrada"
-                    val duracao = Toast.LENGTH_SHORT
-                    val toast = Toast.makeText(context, texto, duracao)
-                    toast.show()
-                    acessEditNomeSala.setText("")
-                    acessEditSenha.setText("")
-                }
+                else
+                    Log.d("Erro do banco", response.message())
             }
         })
     }
@@ -101,16 +104,23 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
             }
             override fun onResponse(call: Call<SalaResponse>, response: Response<SalaResponse>) {
                 Log.d("Nice", response.toString())
+                if (response.isSuccessful) {
 
-                val sessao = response.body()
+                    val sessao = response.body()
 
-                val doencas: ArrayList<String> = arrayListOf("")
-                sessao?.doencas!!.forEach { doencas.add((it.nome)) }
+                    val doencas: ArrayList<String> = arrayListOf("")
+                    sessao?.doencas!!.forEach { doencas.add((it.nome)) }
 
-                val parametros = Bundle()
-                parametros.putInt("id_sessao", sessao.id_sessao)
-                parametros.putStringArrayList("doencas", doencas)
-                navController!!.navigate(R.id.action_roomAcessFragment_to_roomAcessNameFragment, parametros)
+                    val parametros = Bundle()
+                    parametros.putInt("id_sessao", sessao.id_sessao)
+                    parametros.putStringArrayList("doencas", doencas)
+                    navController!!.navigate(
+                        R.id.action_roomAcessFragment_to_roomAcessNameFragment,
+                        parametros
+                    )
+                }
+                else
+                    Log.d("Erro do banco", response.message())
             }
         })
     }
