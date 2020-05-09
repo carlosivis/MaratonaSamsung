@@ -271,6 +271,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener{
             }
         })
     }
+
     private fun configureRecyclerViewRanking(list: RankingResponse) {
         rankingAdapter = RankingAdapter(list)
         recyclerRanking.apply {
@@ -281,6 +282,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener{
             onCancelPendingInputEvents()
         }
     }
+
     private fun configureRecyclerViewDicas(list: ArrayList<String>) {
         dicasAdapter = DicasAdapter(list)
         recyclerDicas.apply {
