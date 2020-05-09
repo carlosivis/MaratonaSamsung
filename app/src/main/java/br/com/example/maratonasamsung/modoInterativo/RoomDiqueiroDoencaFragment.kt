@@ -24,6 +24,7 @@ import br.com.example.maratonasamsung.model.Responses.JogadorEncerra
 import br.com.example.maratonasamsung.model.Responses.SessaoResponseEditing
 import br.com.example.maratonasamsung.model.Responses.SessaoResponseListing
 import br.com.example.maratonasamsung.service.Service
+import kotlinx.android.synthetic.main.fragment_room_adivinhador.*
 import kotlinx.android.synthetic.main.fragment_room_diqueiro_dicas.*
 import kotlinx.android.synthetic.main.fragment_room_diqueiro_doenca.*
 import retrofit2.Call
@@ -40,10 +41,6 @@ class RoomDiqueiroDoencaFragment : Fragment(), View.OnClickListener {
     lateinit var spinnerAdapter: ArrayAdapter<String>
     var rodada: Int = 0
     val parametros = Bundle()
-    val id_sessao = requireArguments().getInt("id_sessao")
-    val jogador = requireArguments().getString("jogador_nome").toString()
-    val doencas = requireArguments().getStringArrayList("doencas")
-    val doenca = diqueiroSpinnerDoenca.selectedItem.toString()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -80,22 +77,40 @@ class RoomDiqueiroDoencaFragment : Fragment(), View.OnClickListener {
         view.findViewById<Button>(R.id.diqueiroBtnDoenca).setOnClickListener(this)
 
         val id_sessao = requireArguments().getInt("id_sessao")
+        val jogador = requireArguments().getString("jogador_nome").toString()
+        val doencas = requireArguments().getStringArrayList("doencas")
+
         chronometro()
         listarSessao(id_sessao)
+
         Timer().schedule(20000){
+            diqueiroDoencaChronometro.stop()
+
             parametros.putInt("id_sessao", id_sessao)
             parametros.putInt("rodada", (rodada+1))
             parametros.putString("jogador_nome", jogador)
             parametros.putString("doenca", doencas?.random())
             parametros.putStringArrayList("doencas", doencas)
+
             navController!!.navigate(R.id.action_roomDiqueiroDoencaFragment_to_roomDiqueiroDicasFragment, parametros)
         }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.N)
+    fun chronometro(){
+        diqueiroDoencaChronometro.isCountDown= true
+        diqueiroDoencaChronometro.base = SystemClock.elapsedRealtime()+20000
+        diqueiroDoencaChronometro.start()
     }
 
     override fun onClick(v: View?) {
         when(v!!.id){
             R.id.diqueiroBtnDoenca -> {
 
+                val id_sessao = requireArguments().getInt("id_sessao")
+                val jogador = requireArguments().getString("jogador_nome").toString()
+                val doencas = requireArguments().getStringArrayList("doencas")
+                val doenca = diqueiroSpinnerDoenca.selectedItem.toString()
 
                 if(doenca.isEmpty()) {
                     val texto = "Selecione uma doença"
@@ -188,12 +203,5 @@ class RoomDiqueiroDoencaFragment : Fragment(), View.OnClickListener {
                 Log.d("Sucesso ao encerrar", response.body().toString())
             }
         })
-    }
-
-    @RequiresApi(Build.VERSION_CODES.N)
-    fun chronometro(){
-        diqueirochronometro.isCountDown= true
-        diqueirochronometro.base = SystemClock.elapsedRealtime()+20000
-        diqueirochronometro.start()
     }
 }

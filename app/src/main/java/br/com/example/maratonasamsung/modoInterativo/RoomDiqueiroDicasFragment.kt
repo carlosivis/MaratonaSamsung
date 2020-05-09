@@ -99,13 +99,6 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
         transmicoesGlobal = transmicoes(doenca)
         chronometro()
 
-        if (rodada == 6){
-            timerRanking.cancel()
-            timerRanking.purge()
-            jogadorEncerrar(id_sessao, jogador)
-            Navigation.findNavController(view).navigate(R.id.action_roomDiqueiroDicasFragment_to_winnerFragment, vencedor)
-        }
-
         timerCronometro.schedule(20000) {
             val parametros = Bundle()
             parametros.putInt("id_sessao", id_sessao)
@@ -114,10 +107,16 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
             parametros.putString("diqueiro", list.darDica.nome)
             parametros.putString("jogador_nome", jogador)
 
+            diqueirotempoCronometro.stop()
             timerRanking.cancel()
             timerRanking.purge()
 
-            Navigation.findNavController(view).navigate(R.id.action_roomDiqueiroDicasFragment_to_roomAdivinhadorFragment, parametros)
+            if (rodada == 5){
+                jogadorEncerrar(id_sessao, jogador)
+                Navigation.findNavController(view).navigate(R.id.action_roomDiqueiroDicasFragment_to_winnerFragment, vencedor)
+            }
+            else
+                Navigation.findNavController(view).navigate(R.id.action_roomDiqueiroDicasFragment_to_roomAdivinhadorFragment, parametros)
         }
     }
 

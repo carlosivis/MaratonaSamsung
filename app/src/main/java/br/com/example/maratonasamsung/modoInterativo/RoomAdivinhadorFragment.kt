@@ -101,18 +101,8 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener{
         spinnerResposta.adapter = spinnerAdapter
 
         ranking(id_sessao)
-        dicas(id_sessao)
+//        dicas(id_sessao)
         chronometro()
-
-        if (rodada == 6){
-            timerRanking.cancel()
-            timerRanking.purge()
-            timerDicas.cancel()
-            timerDicas.purge()
-            listDicas.clear()
-            jogadorEncerrar(id_sessao, jogador)
-            Navigation.findNavController(view).navigate(R.id.action_roomAdivinhadorFragment_to_winnerFragment, vencedor)
-        }
 
         timerCronometro.schedule(20000) {
             val parametro = Bundle()
@@ -121,12 +111,19 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener{
             parametro.putString("jogador_nome", jogador)
             parametro.putStringArrayList("doencas",doencas!!)
 
+            tempoCronometro.stop()
             timerRanking.cancel()
             timerRanking.purge()
             timerDicas.cancel()
             timerDicas.purge()
-            listDicas.clear()
-            Navigation.findNavController(view).navigate(R.id.action_roomAdivinhadorFragment_to_placeholderRodadaFragment, parametro)
+//            listDicas.clear()
+
+            if (rodada == 5){
+                jogadorEncerrar(id_sessao, jogador)
+                Navigation.findNavController(view).navigate(R.id.action_roomAdivinhadorFragment_to_winnerFragment, vencedor)
+            }
+            else
+                Navigation.findNavController(view).navigate(R.id.action_roomAdivinhadorFragment_to_placeholderRodadaFragment, parametro)
         }
     }
 
