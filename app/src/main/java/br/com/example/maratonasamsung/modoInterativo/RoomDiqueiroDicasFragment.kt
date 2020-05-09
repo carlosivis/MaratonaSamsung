@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.example.maratonasamsung.R
 import br.com.example.maratonasamsung.model.Requests.*
 import br.com.example.maratonasamsung.model.Responses.*
+import br.com.example.maratonasamsung.service.ErrorCases
 import br.com.example.maratonasamsung.service.Service
 import kotlinx.android.synthetic.main.fragment_room_adivinhador.*
 import kotlinx.android.synthetic.main.fragment_room_diqueiro_dicas.*
@@ -194,8 +195,10 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                         adapter = RankingAdapter(response.body()!!)
                     }
                 }
-                else
+                else {
                     Log.d("Erro do banco", response.message())
+                    context?.let { ErrorCases().error(it) }
+                }
             }
         })
         timerRanking.schedule(2000) {
@@ -236,8 +239,10 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                         diqueiroTxtSintomas.visibility = View.INVISIBLE
                     }
                 }
-                else
+                else {
                     Log.d("Erro do banco", response.message())
+                    context?.let { ErrorCases().error(it) }
+                }
             }
         })
         return sintomas
@@ -277,8 +282,10 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                         diqueiroTxtPrevencoes.visibility = View.INVISIBLE
                     }
                 }
-                else
+                else {
                     Log.d("Erro do banco", response.message())
+                    context?.let { ErrorCases().error(it) }
+                }
             }
         })
         return prevencoes
@@ -352,8 +359,10 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                     sintomasGlobal.add(0, "")
                     populaSpinnerSintoma(sintomasGlobal)
                 }
-                else
+                else {
                     Log.d("Erro do banco", response.message())
+                    context?.let { ErrorCases().error(it) }
+                }
             }
         })
     }
@@ -388,8 +397,10 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                     prevencoesGlobal.add(0, "")
                     populaSpinnerSintoma(prevencoesGlobal)
                 }
-                else
+                else {
                     Log.d("Erro do banco", response.message())
+                    context?.let { ErrorCases().error(it) }
+                }
             }
         })
     }
@@ -424,8 +435,10 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                     transmicoesGlobal.add(0, "")
                     populaSpinnerSintoma(transmicoesGlobal)
                 }
-                else
+                else {
                     Log.d("Erro do banco", response.message())
+                    context?.let { ErrorCases().error(it) }
+                }
             }
         })
     }

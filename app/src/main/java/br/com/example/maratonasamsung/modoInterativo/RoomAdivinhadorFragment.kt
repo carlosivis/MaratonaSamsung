@@ -20,6 +20,11 @@ import br.com.example.maratonasamsung.R
 import br.com.example.maratonasamsung.model.Requests.EditarRodadaRequest
 import br.com.example.maratonasamsung.model.Requests.JogadorRequest
 import br.com.example.maratonasamsung.model.Requests.JogadorUpdate
+import br.com.example.maratonasamsung.model.Responses.JogadorEncerra
+import br.com.example.maratonasamsung.model.Responses.JogadorResponse
+import br.com.example.maratonasamsung.model.Responses.RankingResponse
+import br.com.example.maratonasamsung.model.Responses.SessaoResponseListing
+import br.com.example.maratonasamsung.service.ErrorCases
 import br.com.example.maratonasamsung.model.Responses.*
 import br.com.example.maratonasamsung.service.Service
 import kotlinx.android.synthetic.main.fragment_room_adivinhador.*
@@ -167,8 +172,10 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener{
                     vencedor.putString("vencedor", list.jogadores.first().nome)
                     configureRecyclerViewRanking(list)
                 }
-                else
+                else {
                     Log.d("Erro do banco", response.message())
+                    context?.let { ErrorCases().error(it) }
+                }
             }
         })
         timerRanking.schedule(2000) {
@@ -194,8 +201,10 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener{
                         configureRecyclerViewDicas(listDicas)
                         rodada = response.body()!!.sessao.rodada
                     }
-                    else
+                    else {
                         Log.d("Erro do banco", response.message())
+                        context?.let { ErrorCases().error(it) }
+                    }
                 }
             })
         timerDicas.schedule(2000){
@@ -235,8 +244,10 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener{
                         toast.show()
                     }
                 }
-                else
+                else {
                     Log.d("Erro do banco", response.message())
+                    context?.let { ErrorCases().error(it) }
+                }
             }
         })
     }
@@ -259,8 +270,10 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener{
                 if (response.isSuccessful) {
                     val jogador = response.body()
                 }
-                else
+                else {
                     Log.d("Erro do banco", response.message())
+                    context?.let { ErrorCases().error(it) }
+                }
             }
         })
     }

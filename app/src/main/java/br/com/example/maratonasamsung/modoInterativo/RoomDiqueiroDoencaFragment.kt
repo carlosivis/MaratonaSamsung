@@ -23,6 +23,7 @@ import br.com.example.maratonasamsung.model.Requests.JogadorRequest
 import br.com.example.maratonasamsung.model.Responses.JogadorEncerra
 import br.com.example.maratonasamsung.model.Responses.SessaoResponseEditing
 import br.com.example.maratonasamsung.model.Responses.SessaoResponseListing
+import br.com.example.maratonasamsung.service.ErrorCases
 import br.com.example.maratonasamsung.service.Service
 import kotlinx.android.synthetic.main.fragment_room_adivinhador.*
 import kotlinx.android.synthetic.main.fragment_room_diqueiro_dicas.*
@@ -165,8 +166,10 @@ class RoomDiqueiroDoencaFragment : Fragment(), View.OnClickListener {
                     }
                     diqueiroSpinnerDoenca.adapter = spinnerAdapter
                 }
-                else
+                else {
                     Log.d("Erro do banco", response.message())
+                    context?.let { ErrorCases().error(it) }
+                }
             }
         })
     }
