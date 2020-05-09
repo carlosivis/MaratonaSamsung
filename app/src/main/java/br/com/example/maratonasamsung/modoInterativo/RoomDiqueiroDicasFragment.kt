@@ -45,6 +45,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
     lateinit var transmicoesGlobal: ArrayList<String>
     lateinit var  vencedor: Bundle
     var rodada:Int = 0
+    lateinit var list: RankingResponse
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -110,6 +111,8 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
             parametros.putInt("id_sessao", id_sessao)
             parametros.putString("nome", jogador)
             parametros.putStringArrayList("doencas", doencas)
+            parametros.putString("diqueiro", list.darDica.nome)
+            parametros.putString("jogador_nome", jogador)
 
             timerRanking.cancel()
             timerRanking.purge()
@@ -184,6 +187,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
 
             override fun onResponse(call: Call<RankingResponse>, response: Response<RankingResponse>) {
                 Log.d("Ranking com Sucesso", response.body().toString())
+                list = response.body()!!
                 vencedor.putString("vencedor",response.body()!!.jogadores.first().nome)
                 recyclerRanking.apply {
                     layoutManager = LinearLayoutManager(activity)
