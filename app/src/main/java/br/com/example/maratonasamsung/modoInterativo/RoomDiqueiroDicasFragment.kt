@@ -131,16 +131,34 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
             R.id.diqueiroBtnDicas -> {
 
                 val rodada = requireArguments().getInt("rodada")
+                val sintoma: String
+                val prevencao: String
+                val transmicao: String
 
-                val sintoma: String = diqueiroSpinnerSintoma.selectedItem.toString()
+                if(diqueiroSpinnerSintoma.selectedItem.toString().isNotEmpty())
+                    sintoma = diqueiroSpinnerSintoma.selectedItem.toString()
+                else
+                    sintoma = ""
+
+                if(diqueiroSpinnerSintoma.selectedItem.toString().isNotEmpty())
+                    prevencao = diqueiroSpinnerPrevencao.selectedItem.toString()
+                else
+                    prevencao = ""
+
+                if(diqueiroSpinnerSintoma.selectedItem.toString().isNotEmpty())
+                    transmicao = diqueiroSpinnerTransmicao.selectedItem.toString()
+                else
+                    transmicao = ""
+
+//                val sintoma: String = //diqueiroSpinnerSintoma.selectedItem.toString()
 //                    if (diqueiroSpinnerSintoma.visibility == View.VISIBLE) diqueiroSpinnerSintoma.selectedItem.toString()
 //                    else ""
 
-                val prevencao: String = diqueiroSpinnerPrevencao.selectedItem.toString()
+//                val prevencao: String = //diqueiroSpinnerPrevencao.selectedItem.toString()
 //                    if (diqueiroSpinnerPrevencao.visibility == View.VISIBLE) diqueiroSpinnerPrevencao.selectedItem.toString()
 //                    else ""
 
-                val transmicao: String = diqueiroSpinnerTransmicao.selectedItem.toString()
+//                val transmicao: String = //diqueiroSpinnerTransmicao.selectedItem.toString()
 //                    if (diqueiroSpinnerTransmicao.visibility == View.VISIBLE) diqueiroSpinnerTransmicao.selectedItem.toString()
 //                    else ""
 
@@ -231,13 +249,13 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
 
                     val listaSintomas = response.body()
 
-//                    if (listaSintomas?.sintomas!!.isNotEmpty()) {
+                    if (listaSintomas?.sintomas!!.isNotEmpty()) {
                         listaSintomas?.sintomas!!.forEach { sintomas.add((it.nome)) }
                         populaSpinnerSintoma(sintomas)
-//                    } else {
-//                        diqueiroSpinnerSintoma.visibility = View.INVISIBLE
-//                        diqueiroTxtSintomas.visibility = View.INVISIBLE
-//                    }
+                    } else {
+                        diqueiroSpinnerSintoma.visibility = View.INVISIBLE
+                        diqueiroTxtSintomas.visibility = View.INVISIBLE
+                    }
                 }
                 else {
                     Log.d("Erro do banco", response.message())
@@ -273,14 +291,14 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
 
                     val listaPrevencao = response.body()
 
-//                    if (listaPrevencao?.prevencoes!!.isNotEmpty()) {
+                    if (listaPrevencao?.prevencoes!!.isNotEmpty()) {
                         listaPrevencao?.prevencoes!!.forEach { prevencoes.add((it.nome)) }
 
                         populaSpinnerPrevencoes(prevencoes)
-//                    } else {
-//                        diqueiroSpinnerPrevencao.visibility = View.INVISIBLE
-//                        diqueiroTxtPrevencoes.visibility = View.INVISIBLE
-//                    }
+                    } else {
+                        diqueiroSpinnerPrevencao.visibility = View.INVISIBLE
+                        diqueiroTxtPrevencoes.visibility = View.INVISIBLE
+                    }
                 }
                 else {
                     Log.d("Erro do banco", response.message())
@@ -315,15 +333,15 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
 
                 val listaTransmicao = response.body()
 
-//                if (listaTransmicao?.transmicao!!.isNotEmpty()) {
+                if (listaTransmicao?.transmicao!!.isNotEmpty()) {
                     listaTransmicao?.transmicao!!.forEach { transmicoes.add((it.nome)) }
 
                     populaSpinnerTransmicoes(transmicoes)
-//                }
-//                else {
-//                    diqueiroSpinnerTransmicao.visibility = View.INVISIBLE
-//                    diqueiroTxtTransmissoes.visibility = View.INVISIBLE
-//                }
+                }
+                else {
+                    diqueiroSpinnerTransmicao.visibility = View.INVISIBLE
+                    diqueiroTxtTransmissoes.visibility = View.INVISIBLE
+                }
             }
         })
         return transmicoes

@@ -101,7 +101,7 @@ class AguardandoJogadoresFragment : Fragment() {
                 }
             }
         })
-        timerJogadores.schedule(2000) {
+        timerJogadores.schedule(1000) {
             jogadores(id_sessao)
         }
     }
