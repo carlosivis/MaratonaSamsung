@@ -1,6 +1,8 @@
 package br.com.example.maratonasamsung.modoInterativo
 
+import android.os.Build
 import android.os.Bundle
+import android.os.SystemClock
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +11,7 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Toast
 import androidx.activity.addCallback
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
@@ -21,10 +24,14 @@ import br.com.example.maratonasamsung.model.Responses.JogadorEncerra
 import br.com.example.maratonasamsung.model.Responses.SessaoResponseEditing
 import br.com.example.maratonasamsung.model.Responses.SessaoResponseListing
 import br.com.example.maratonasamsung.service.Service
+import kotlinx.android.synthetic.main.fragment_room_diqueiro_dicas.*
 import kotlinx.android.synthetic.main.fragment_room_diqueiro_doenca.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.concurrent.schedule
 
 
 class RoomDiqueiroDoencaFragment : Fragment(), View.OnClickListener {
@@ -32,6 +39,11 @@ class RoomDiqueiroDoencaFragment : Fragment(), View.OnClickListener {
     var navController: NavController? = null
     lateinit var spinnerAdapter: ArrayAdapter<String>
     var rodada: Int = 0
+    val parametros = Bundle()
+    val id_sessao = requireArguments().getInt("id_sessao")
+    val jogador = requireArguments().getString("jogador_nome").toString()
+    val doencas = requireArguments().getStringArrayList("doencas")
+    val doenca = diqueiroSpinnerDoenca.selectedItem.toString()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -61,23 +73,29 @@ class RoomDiqueiroDoencaFragment : Fragment(), View.OnClickListener {
         callback
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
         view.findViewById<Button>(R.id.diqueiroBtnDoenca).setOnClickListener(this)
 
         val id_sessao = requireArguments().getInt("id_sessao")
-
+        chronometro()
         listarSessao(id_sessao)
+        Timer().schedule(20000){
+            parametros.putInt("id_sessao", id_sessao)
+            parametros.putInt("rodada", (rodada+1))
+            parametros.putString("jogador_nome", jogador)
+            parametros.putString("doenca", doencas?.random())
+            parametros.putStringArrayList("doencas", doencas)
+            navController!!.navigate(R.id.action_roomDiqueiroDoencaFragment_to_roomDiqueiroDicasFragment, parametros)
+        }
     }
 
     override fun onClick(v: View?) {
         when(v!!.id){
             R.id.diqueiroBtnDoenca -> {
-                val id_sessao = requireArguments().getInt("id_sessao")
-                val jogador = requireArguments().getString("jogador_nome").toString()
-                val doencas = requireArguments().getStringArrayList("doencas")
-                val doenca = diqueiroSpinnerDoenca.selectedItem.toString()
+
 
                 if(doenca.isEmpty()) {
                     val texto = "Selecione uma doença"
@@ -170,5 +188,12 @@ class RoomDiqueiroDoencaFragment : Fragment(), View.OnClickListener {
                 Log.d("Sucesso ao encerrar", response.body().toString())
             }
         })
+    }
+
+    @RequiresApi(Build.VERSION_CODES.N)
+    fun chronometro(){
+        diqueirochronometro.isCountDown= true
+        diqueirochronometro.base = SystemClock.elapsedRealtime()+20000
+        diqueirochronometro.start()
     }
 }

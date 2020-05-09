@@ -133,7 +133,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener{
     @RequiresApi(Build.VERSION_CODES.N)
     fun chronometro(){
         tempoCronometro.isCountDown= true
-        tempoCronometro.base = SystemClock.elapsedRealtime()+20000
+        tempoCronometro.base = SystemClock.elapsedRealtime()+40000
         tempoCronometro.start()
     }
 
