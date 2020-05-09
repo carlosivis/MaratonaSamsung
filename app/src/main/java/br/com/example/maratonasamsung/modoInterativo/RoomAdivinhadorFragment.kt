@@ -104,7 +104,6 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener{
         spinnerResposta.adapter = spinnerAdapter
 
         ranking(id_sessao)
-//        dicas(id_sessao)
         chronometro()
 
         timerCronometro.schedule(40000) {
