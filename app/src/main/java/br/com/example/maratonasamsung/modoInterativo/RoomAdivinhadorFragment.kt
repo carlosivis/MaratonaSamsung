@@ -114,7 +114,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener{
             Navigation.findNavController(view).navigate(R.id.action_roomAdivinhadorFragment_to_winnerFragment, vencedor)
         }
 
-        timerCronometro.schedule(10000) {
+        timerCronometro.schedule(20000) {
             val parametro = Bundle()
             parametro.putInt("id_sessao", id_sessao)
             parametro.putString("diqueiro", list.darDica.nome)
@@ -133,7 +133,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener{
     @RequiresApi(Build.VERSION_CODES.N)
     fun chronometro(){
         tempoCronometro.isCountDown= true
-        tempoCronometro.base = SystemClock.elapsedRealtime()+10000
+        tempoCronometro.base = SystemClock.elapsedRealtime()+20000
         tempoCronometro.start()
     }
 
