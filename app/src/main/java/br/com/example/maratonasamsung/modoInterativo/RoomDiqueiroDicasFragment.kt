@@ -43,6 +43,8 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
     lateinit var sintomasGlobal: ArrayList<String>
     lateinit var prevencoesGlobal: ArrayList<String>
     lateinit var transmicoesGlobal: ArrayList<String>
+    lateinit var  vencedor: Bundle
+    var rodada:Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -95,6 +97,13 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
         prevencoesGlobal = prevencoes(doenca)
         transmicoesGlobal = transmicoes(doenca)
         chronometro()
+
+        if (rodada == 6){
+            timerRanking.cancel()
+            timerRanking.purge()
+            jogadorEncerrar(id_sessao, jogador)
+            Navigation.findNavController(view).navigate(R.id.action_roomDiqueiroDicasFragment_to_winnerFragment, vencedor)
+        }
 
         timerCronometro.schedule(20000) {
             val parametros = Bundle()
@@ -175,6 +184,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
 
             override fun onResponse(call: Call<RankingResponse>, response: Response<RankingResponse>) {
                 Log.d("Ranking com Sucesso", response.body().toString())
+                vencedor.putString("vencedor",response.body()!!.jogadores.first().nome)
                 recyclerRanking.apply {
                     layoutManager = LinearLayoutManager(activity)
                     adapter = RankingAdapter(response.body()!!)

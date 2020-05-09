@@ -31,6 +31,7 @@ import retrofit2.Response
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.concurrent.schedule
+import kotlin.properties.Delegates
 
 
 class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener{
@@ -44,6 +45,8 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener{
     lateinit var rankingAdapter: RankingAdapter
     lateinit var listDicas: ArrayList<String>
     lateinit var dicasAdapter: DicasAdapter
+    lateinit var  vencedor: Bundle
+    var rodada:Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -100,6 +103,15 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener{
         ranking(id_sessao)
         dicas(id_sessao)
         chronometro()
+        if (rodada == 6){
+            timerRanking.cancel()
+            timerRanking.purge()
+            timerDicas.cancel()
+            timerDicas.purge()
+            listDicas.clear()
+            jogadorEncerrar(id_sessao, jogador)
+            Navigation.findNavController(view).navigate(R.id.action_roomAdivinhadorFragment_to_winnerFragment, vencedor)
+        }
 
         timerCronometro.schedule(10000) {
             val parametro = Bundle()
@@ -154,6 +166,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener{
             override fun onResponse(call: Call<RankingResponse>, response: Response<RankingResponse>) {
                 Log.d("Ranking com Sucesso", response.body().toString())
                 list= response.body()!!
+                vencedor.putString("vencedor",list.jogadores.first().nome)
                 configureRecyclerViewRanking(list)
             }
         })
@@ -177,6 +190,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener{
                     response.body()?.dicas?.prevencoes?.forEach { listDicas.add(it.nome) }
                     response.body()?.dicas?.sintomas?.forEach { listDicas.add(it.nome) }
                     configureRecyclerViewDicas(listDicas)
+                    rodada=response.body()!!.sessao.rodada
                 }
             })
         timerDicas.schedule(2000){
