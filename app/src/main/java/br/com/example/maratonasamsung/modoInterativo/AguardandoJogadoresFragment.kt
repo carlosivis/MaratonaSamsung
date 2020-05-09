@@ -67,8 +67,11 @@ class AguardandoJogadoresFragment : Fragment() {
 
             override fun onResponse(call: Call<RankingResponse>, response: Response<RankingResponse>) {
                 Log.d("Sucesso pegar jogadores", response.body().toString())
-                if (response.isSuccessful) {
-
+                if (response.code()==500){
+                    Log.d("Erro do banco", response.message())
+                    context?.let { ErrorCases().error(it)}
+                }
+                else{
                     val jogadores = response.body()
 
                     val quantidadeJogadores: ArrayList<String> = arrayListOf("")
@@ -93,10 +96,6 @@ class AguardandoJogadoresFragment : Fragment() {
                             parametros
                         )
                     }
-                }
-                else {
-                    Log.d("Erro do banco", response.message())
-                    context?.let { ErrorCases().error(it) }
                 }
             }
         })

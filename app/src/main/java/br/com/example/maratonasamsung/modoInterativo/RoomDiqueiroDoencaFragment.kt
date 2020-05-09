@@ -142,7 +142,11 @@ class RoomDiqueiroDoencaFragment : Fragment(), View.OnClickListener {
             }
             override fun onResponse(call: Call<SessaoResponseListing>, response: Response<SessaoResponseListing>) {
                 Log.d("Nice", response.toString())
-                if (response.isSuccessful) {
+                if (response.code()==500){
+                    Log.d("Erro do banco", response.message())
+                    context?.let { ErrorCases().error(it)}
+                }
+                else{
                     val sessao = response.body()
 
                     rodada = sessao?.sessao!!.rodada
@@ -165,10 +169,6 @@ class RoomDiqueiroDoencaFragment : Fragment(), View.OnClickListener {
                             ArrayAdapter(it, android.R.layout.simple_spinner_item, doencas)
                     }
                     diqueiroSpinnerDoenca.adapter = spinnerAdapter
-                }
-                else {
-                    Log.d("Erro do banco", response.message())
-                    context?.let { ErrorCases().error(it) }
                 }
             }
         })

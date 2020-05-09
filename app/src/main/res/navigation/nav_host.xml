@@ -180,7 +180,7 @@
         tools:layout="@layout/fragment_winner" />
     <fragment
         android:id="@+id/placeholderRodadaFragment"
-        android:name="br.com.example.maratonasamsung.PlaceholderRodadaFragment"
+        android:name="br.com.example.maratonasamsung.modoInterativo.PlaceholderRodadaFragment"
         android:label="fragment_placeholder_rodada"
         tools:layout="@layout/fragment_placeholder_rodada" >
         <action

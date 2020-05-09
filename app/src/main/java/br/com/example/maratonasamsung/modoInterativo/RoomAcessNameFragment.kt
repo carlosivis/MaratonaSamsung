@@ -67,7 +67,11 @@ class RoomAcessNameFragment : Fragment(), View.OnClickListener {
 
             override fun onResponse(call: Call<JogadorResponse>, response: Response<JogadorResponse>) {
                 Log.d("Nice", response.toString())
-                if (response.isSuccessful) {
+                if (response.code()==500){
+                    Log.d("Erro do banco", response.message())
+                    context?.let { ErrorCases().error(it)}
+                }
+                else{
 
                     val jogador = response.body()
 
@@ -98,10 +102,6 @@ class RoomAcessNameFragment : Fragment(), View.OnClickListener {
                             parametros
                         )
                     }
-                }
-                else {
-                    Log.d("Erro do banco", response.message())
-                    context?.let { ErrorCases().error(it) }
                 }
             }
         })
