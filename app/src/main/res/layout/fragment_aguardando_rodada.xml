@@ -3,11 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginStart="20dp"
-    android:layout_marginTop="20dp"
-    android:layout_marginEnd="20dp"
     android:layout_marginBottom="20dp"
-    tools:context=".modoInterativo.AguardandoJogadoresFragment">
+    android:layout_marginStart="20dp"
+    android:layout_marginEnd="20dp"
+    android:layout_marginTop="20dp"
+    tools:context=".modoInterativo.AguardandoRodadaFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:text="@string/aguardando_jogadores"
+            android:text="Aguardando próxima roadada..."
             android:textAlignment="center"
             android:textSize="20sp" />
 
