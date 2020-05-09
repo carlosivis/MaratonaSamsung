@@ -14,11 +14,12 @@
         android:id="@+id/diqueirotempoCronometro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
         android:layout_gravity="end"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="25dp" />
+        android:fontFamily="@font/lanehum"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/txtDiqueiro"
+        android:layout_marginBottom="20dp"
+        />
 
     <TextView
         android:id="@+id/txtDiqueiro"
@@ -28,7 +29,7 @@
         android:textColor="@color/colorText"
         android:textSize="30sp"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="40dp" />
+        android:layout_marginBottom="20dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerRanking"
@@ -36,7 +37,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/border"
         android:layout_above="@+id/diqueiroTxtSintomas"
-        android:layout_below="@+id/txtDiqueiro"
+        android:layout_below="@+id/diqueirotempoCronometro"
         tools:listitem="@layout/recycler_view_ranking" />
 
     <TextView

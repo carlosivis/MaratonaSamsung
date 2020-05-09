@@ -23,7 +23,7 @@
         android:id="@+id/diqueirochronometro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:fontFamily="@font/lanehum"
         android:layout_marginTop="20dp"
         android:layout_below="@id/txtDiqueiro"
         android:layout_alignParentEnd="true"
