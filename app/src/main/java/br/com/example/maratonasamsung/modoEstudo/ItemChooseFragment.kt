@@ -27,10 +27,10 @@ class ItemChooseFragment : Fragment() {
         txtDoencaNome.text = param.nome
         Log.d(param.tipo, "euaqui")
         when (param.tipo) {
-            "bacterias" -> imageDoenca.setImageResource(R.drawable.bacteria)
-            "virus" -> imageDoenca.setImageResource(R.drawable.virus)
-            "platelmintos ou nemaltelmintos" -> imageDoenca.setImageResource(R.drawable.platelminto)
-            "protozoarios" -> imageDoenca.setImageResource(R.drawable.protozoario)
+            "BACTERIAS" -> imageDoenca.setImageResource(R.drawable.bacteria)
+            "VIRUS" -> imageDoenca.setImageResource(R.drawable.virus)
+            "PLATELMINTOS E NEMATELMINTOS" -> imageDoenca.setImageResource(R.drawable.platelminto)
+            "PROTOZOARIOS" -> imageDoenca.setImageResource(R.drawable.protozoario)
         }
         txtAgente.text = "Agente: ${param.agente}"
         txtArraySintoma.text = "\u25CF " + param.sintomas.joinToString(" \n\u25CF ") { it.nome }
