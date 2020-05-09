@@ -56,8 +56,7 @@ class ChooseFragment : Fragment() {
             override fun onResponse(call: Call<List<DoencasResponse>>, response: Response<List<DoencasResponse>>) {
                 Log.d("Sucesso", response.body().toString())
                 list= response.body()!!
-                configureRecyclerView(list)
-
+                configureRecyclerView(list.filter{it.tipo == arguments!!.getString("agenteInfectante")})
             }
         })
     }
