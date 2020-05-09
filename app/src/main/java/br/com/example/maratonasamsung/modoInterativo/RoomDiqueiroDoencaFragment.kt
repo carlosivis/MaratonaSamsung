@@ -14,8 +14,11 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import br.com.example.maratonasamsung.R
+import br.com.example.maratonasamsung.model.Requests.EditSessaoSintomaRequest
+import br.com.example.maratonasamsung.model.Requests.EditarRodadaRequest
 import br.com.example.maratonasamsung.model.Requests.JogadorRequest
 import br.com.example.maratonasamsung.model.Responses.JogadorEncerra
+import br.com.example.maratonasamsung.model.Responses.SessaoResponseEditing
 import br.com.example.maratonasamsung.model.Responses.SessaoResponseListing
 import br.com.example.maratonasamsung.service.Service
 import kotlinx.android.synthetic.main.fragment_room_diqueiro_doenca.*
@@ -83,9 +86,11 @@ class RoomDiqueiroDoencaFragment : Fragment(), View.OnClickListener {
                     toast.show()
                 }
                 else {
+                    editarRodada(id_sessao, doenca)
+
                     val parametros = Bundle()
                     parametros.putInt("id_sessao", id_sessao)
-                    parametros.putInt("rodada", (rodada+1))
+                    parametros.putInt("rodada", (rodada))
                     parametros.putString("jogador_nome", jogador)
                     parametros.putString("doenca", doenca)
                     parametros.putStringArrayList("doencas", doencas)
@@ -111,7 +116,7 @@ class RoomDiqueiroDoencaFragment : Fragment(), View.OnClickListener {
                 rodada = sessao?.sessao!!.rodada
 
                 val doencas: ArrayList<String> = arrayListOf("")
-                sessao?.doencas!!.forEach { doencas.add((it.nome)) }
+                sessao.doencas.forEach { doencas.add((it.nome)) }
 
                 val doencasSelecionadas: ArrayList<String> = arrayListOf("")
                 sessao.doencasSelecionadas.forEach { doencasSelecionadas.add((it.nome)) }
@@ -127,6 +132,25 @@ class RoomDiqueiroDoencaFragment : Fragment(), View.OnClickListener {
                     spinnerAdapter = ArrayAdapter(it, android.R.layout.simple_spinner_item, doencas)
                 }
                 diqueiroSpinnerDoenca.adapter = spinnerAdapter
+            }
+        })
+    }
+
+    fun editarRodada(id_sessao: Int, doenca: String){
+        Service.retrofit.editarRodada(
+            sessao = EditarRodadaRequest(
+                id_sessao = id_sessao,
+                rodada = rodada,
+                doenca = doenca
+            )
+        ).enqueue(object : Callback<SessaoResponseEditing>{
+            override fun onFailure(call: Call<SessaoResponseEditing>, t: Throwable) {
+                Log.d("Deu ruim", t.toString())
+            }
+            override fun onResponse(call: Call<SessaoResponseEditing>, response: Response<SessaoResponseEditing>) {
+                Log.d("Nice", response.body().toString())
+
+                val sessao = response.body()
             }
         })
     }

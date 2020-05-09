@@ -31,6 +31,7 @@ import retrofit2.Response
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.concurrent.schedule
+import kotlin.properties.Delegates
 
 
 class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener{
@@ -44,6 +45,8 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener{
     lateinit var rankingAdapter: RankingAdapter
     lateinit var listDicas: ArrayList<String>
     lateinit var dicasAdapter: DicasAdapter
+    val  vencedor = Bundle()
+    var rodada: Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -101,7 +104,17 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener{
         dicas(id_sessao)
         chronometro()
 
-        timerCronometro.schedule(10000) {
+        if (rodada == 6){
+            timerRanking.cancel()
+            timerRanking.purge()
+            timerDicas.cancel()
+            timerDicas.purge()
+            listDicas.clear()
+            jogadorEncerrar(id_sessao, jogador)
+            Navigation.findNavController(view).navigate(R.id.action_roomAdivinhadorFragment_to_winnerFragment, vencedor)
+        }
+
+        timerCronometro.schedule(20000) {
             val parametro = Bundle()
             parametro.putInt("id_sessao", id_sessao)
             parametro.putString("diqueiro", list.darDica.nome)
@@ -120,7 +133,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener{
     @RequiresApi(Build.VERSION_CODES.N)
     fun chronometro(){
         tempoCronometro.isCountDown= true
-        tempoCronometro.base = SystemClock.elapsedRealtime()+10000
+        tempoCronometro.base = SystemClock.elapsedRealtime()+20000
         tempoCronometro.start()
     }
 
@@ -154,6 +167,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener{
             override fun onResponse(call: Call<RankingResponse>, response: Response<RankingResponse>) {
                 Log.d("Ranking com Sucesso", response.body().toString())
                 list= response.body()!!
+                vencedor.putString("vencedor",list.jogadores.first().nome)
                 configureRecyclerViewRanking(list)
             }
         })
@@ -177,6 +191,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener{
                     response.body()?.dicas?.prevencoes?.forEach { listDicas.add(it.nome) }
                     response.body()?.dicas?.sintomas?.forEach { listDicas.add(it.nome) }
                     configureRecyclerViewDicas(listDicas)
+                    rodada=response.body()!!.sessao.rodada
                 }
             })
         timerDicas.schedule(2000){
@@ -196,10 +211,10 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener{
 
                 val sessao = response.body()
 
-                val rodada = sessao?.sessao!!.rodada
+//                val rodada = sessao?.sessao!!.rodada
 
                 val doencasSelecionadas: ArrayList<String> = arrayListOf("")
-                sessao.doencasSelecionadas.forEach { doencasSelecionadas.add((it.nome)) }
+                sessao?.doencasSelecionadas!!.forEach { doencasSelecionadas.add((it.nome)) }
 
                 lateinit var doenca: String
                 doenca =
@@ -256,6 +271,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener{
             }
         })
     }
+
     private fun configureRecyclerViewRanking(list: RankingResponse) {
         rankingAdapter = RankingAdapter(list)
         recyclerRanking.apply {
@@ -266,6 +282,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener{
             onCancelPendingInputEvents()
         }
     }
+
     private fun configureRecyclerViewDicas(list: ArrayList<String>) {
         dicasAdapter = DicasAdapter(list)
         recyclerDicas.apply {
