@@ -198,8 +198,8 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener{
                     }
                     else{
                         listDicas = arrayListOf("")
-                        response.body()?.dicas?.transmicoes?.forEach { listDicas.add(it.nome) }
-                        response.body()?.dicas?.prevencoes?.forEach { listDicas.add(it.nome) }
+                        response.body()?.dicas?.transmicao?.forEach { listDicas.add(it.nome) }
+                        response.body()?.dicas?.prevencao?.forEach { listDicas.add(it.nome) }
                         response.body()?.dicas?.sintomas?.forEach { listDicas.add(it.nome) }
                         configureRecyclerViewDicas(listDicas)
                         rodada = response.body()!!.sessao.rodada
