@@ -143,28 +143,32 @@ class RoomDiqueiroDoencaFragment : Fragment(), View.OnClickListener {
             }
             override fun onResponse(call: Call<SessaoResponseListing>, response: Response<SessaoResponseListing>) {
                 Log.d("Nice", response.toString())
+                if (response.isSuccessful) {
+                    val sessao = response.body()
 
-                val sessao = response.body()
+                    rodada = sessao?.sessao!!.rodada
 
-                rodada = sessao?.sessao!!.rodada
+                    val doencas: ArrayList<String> = arrayListOf("")
+                    sessao.doencas.forEach { doencas.add((it.nome)) }
 
-                val doencas: ArrayList<String> = arrayListOf("")
-                sessao.doencas.forEach { doencas.add((it.nome)) }
+                    val doencasSelecionadas: ArrayList<String> = arrayListOf("")
+                    sessao.doencasSelecionadas.forEach { doencasSelecionadas.add((it.nome)) }
 
-                val doencasSelecionadas: ArrayList<String> = arrayListOf("")
-                sessao.doencasSelecionadas.forEach { doencasSelecionadas.add((it.nome)) }
+                    if (doencasSelecionadas.isNotEmpty()) {
+                        doencas.removeAll(doencasSelecionadas)
+                    }
 
-                if(doencasSelecionadas.isNotEmpty()) {
-                    doencas.removeAll(doencasSelecionadas)
+                    doencas.add(0, "")
+
+                    doencas.toMutableList()
+                    context?.let {
+                        spinnerAdapter =
+                            ArrayAdapter(it, android.R.layout.simple_spinner_item, doencas)
+                    }
+                    diqueiroSpinnerDoenca.adapter = spinnerAdapter
                 }
-
-                doencas.add(0, "")
-
-                doencas.toMutableList()
-                context?.let {
-                    spinnerAdapter = ArrayAdapter(it, android.R.layout.simple_spinner_item, doencas)
-                }
-                diqueiroSpinnerDoenca.adapter = spinnerAdapter
+                else
+                    Log.d("Erro do banco", response.message())
             }
         })
     }

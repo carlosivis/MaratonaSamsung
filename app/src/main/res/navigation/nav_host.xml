@@ -165,7 +165,7 @@
         tools:layout="@layout/fragment_credits" />
     <fragment
         android:id="@+id/aguardandoJogadoresFragment"
-        android:name="br.com.example.maratonasamsung.ui.main.AguardandoJogadoresFragment"
+        android:name="br.com.example.maratonasamsung.modoInterativo.AguardandoJogadoresFragment"
         android:label="fragment_aguardando_jogadores"
         tools:layout="@layout/fragment_aguardando_jogadores" >
         <action

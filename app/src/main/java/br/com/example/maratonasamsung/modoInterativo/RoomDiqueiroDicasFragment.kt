@@ -186,14 +186,18 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
 
             override fun onResponse(call: Call<RankingResponse>, response: Response<RankingResponse>) {
                 Log.d("Ranking com Sucesso", response.body().toString())
-                list = response.body()!!
+                if (response.isSuccessful) {
+                    list = response.body()!!
 
-                vencedor.putString("vencedor",response.body()!!.jogadores.first().nome)
+                    vencedor.putString("vencedor", response.body()!!.jogadores.first().nome)
 
-                recyclerRanking.apply {
-                    layoutManager = LinearLayoutManager(activity)
-                    adapter = RankingAdapter(response.body()!!)
+                    recyclerRanking.apply {
+                        layoutManager = LinearLayoutManager(activity)
+                        adapter = RankingAdapter(response.body()!!)
+                    }
                 }
+                else
+                    Log.d("Erro do banco", response.message())
             }
         })
         timerRanking.schedule(2000) {
@@ -222,17 +226,20 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
 
             override fun onResponse(call: Call<Sintomas>, response: Response<Sintomas>) {
                 Log.d("Nice", response.toString())
+                if (response.isSuccessful) {
 
-                val listaSintomas = response.body()
+                    val listaSintomas = response.body()
 
-                if (listaSintomas?.sintomas!!.isNotEmpty()) {
-                    listaSintomas.sintomas.forEach { sintomas.add((it.nome)) }
-                    populaSpinnerSintoma(sintomas)
+                    if (listaSintomas?.sintomas!!.isNotEmpty()) {
+                        listaSintomas.sintomas.forEach { sintomas.add((it.nome)) }
+                        populaSpinnerSintoma(sintomas)
+                    } else {
+                        diqueiroSpinnerSintoma.visibility = View.INVISIBLE
+                        diqueiroTxtSintomas.visibility = View.INVISIBLE
+                    }
                 }
-                else {
-                    diqueiroSpinnerSintoma.visibility = View.INVISIBLE
-                    diqueiroTxtSintomas.visibility = View.INVISIBLE
-                }
+                else
+                    Log.d("Erro do banco", response.message())
             }
         })
         return sintomas
@@ -259,18 +266,21 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
 
             override fun onResponse(call: Call<Prevencoes>, response: Response<Prevencoes>) {
                 Log.d("Nice", response.toString())
+                if (response.isSuccessful) {
 
-                val listaPrevencao = response.body()
+                    val listaPrevencao = response.body()
 
-                if (listaPrevencao?.prevencoes!!.isNotEmpty()) {
-                    listaPrevencao.prevencoes.forEach { prevencoes.add((it.nome)) }
+                    if (listaPrevencao?.prevencoes!!.isNotEmpty()) {
+                        listaPrevencao.prevencoes.forEach { prevencoes.add((it.nome)) }
 
-                    populaSpinnerPrevencoes(prevencoes)
+                        populaSpinnerPrevencoes(prevencoes)
+                    } else {
+                        diqueiroSpinnerPrevencao.visibility = View.INVISIBLE
+                        diqueiroTxtPrevencoes.visibility = View.INVISIBLE
+                    }
                 }
-                else {
-                    diqueiroSpinnerPrevencao.visibility = View.INVISIBLE
-                    diqueiroTxtPrevencoes.visibility = View.INVISIBLE
-                }
+                else
+                    Log.d("Erro do banco", response.message())
             }
         })
         return prevencoes
@@ -330,18 +340,22 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
             }
             override fun onResponse(call: Call<SessaoResponseEditing>, response: Response<SessaoResponseEditing>) {
                 Log.d("Nice", response.body().toString())
+                if (response.isSuccessful) {
 
-                val sessao = response.body()
+                    val sessao = response.body()
 
-                val sintomasSelecionados: ArrayList<String> = arrayListOf("")
-                sessao?.dicas!!.sintomas.forEach { sintomasSelecionados.add((it.nome)) }
+                    val sintomasSelecionados: ArrayList<String> = arrayListOf("")
+                    sessao?.dicas!!.sintomas.forEach { sintomasSelecionados.add((it.nome)) }
 
-                if(sintomasSelecionados.isNotEmpty()) {
-                    sintomasGlobal.removeAll(sintomasSelecionados)
+                    if (sintomasSelecionados.isNotEmpty()) {
+                        sintomasGlobal.removeAll(sintomasSelecionados)
+                    }
+
+                    sintomasGlobal.add(0, "")
+                    populaSpinnerSintoma(sintomasGlobal)
                 }
-
-                sintomasGlobal.add(0, "")
-                populaSpinnerSintoma(sintomasGlobal)
+                else
+                    Log.d("Erro do banco", response.message())
             }
         })
     }
@@ -362,18 +376,22 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
             }
             override fun onResponse(call: Call<SessaoResponseEditing>, response: Response<SessaoResponseEditing>) {
                 Log.d("Nice", response.body().toString())
+                if (response.isSuccessful) {
 
-                val sessao = response.body()
+                    val sessao = response.body()
 
-                val prevecoesSelecionados: ArrayList<String> = arrayListOf("")
-                sessao?.dicas!!.sintomas.forEach { prevecoesSelecionados.add((it.nome)) }
+                    val prevecoesSelecionados: ArrayList<String> = arrayListOf("")
+                    sessao?.dicas!!.sintomas.forEach { prevecoesSelecionados.add((it.nome)) }
 
-                if(prevecoesSelecionados.isNotEmpty()) {
-                    prevencoesGlobal.removeAll(prevecoesSelecionados)
+                    if (prevecoesSelecionados.isNotEmpty()) {
+                        prevencoesGlobal.removeAll(prevecoesSelecionados)
+                    }
+
+                    prevencoesGlobal.add(0, "")
+                    populaSpinnerSintoma(prevencoesGlobal)
                 }
-
-                prevencoesGlobal.add(0, "")
-                populaSpinnerSintoma(prevencoesGlobal)
+                else
+                    Log.d("Erro do banco", response.message())
             }
         })
     }
@@ -394,18 +412,22 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
             }
             override fun onResponse(call: Call<SessaoResponseEditing>, response: Response<SessaoResponseEditing>) {
                 Log.d("Nice", response.body().toString())
+                if (response.isSuccessful) {
 
-                val sessao = response.body()
+                    val sessao = response.body()
 
-                val transmicoesSelecionados: ArrayList<String> = arrayListOf("")
-                sessao?.dicas!!.sintomas.forEach { transmicoesSelecionados.add((it.nome)) }
+                    val transmicoesSelecionados: ArrayList<String> = arrayListOf("")
+                    sessao?.dicas!!.sintomas.forEach { transmicoesSelecionados.add((it.nome)) }
 
-                if(transmicoesSelecionados.isNotEmpty()) {
-                    transmicoesGlobal.removeAll(transmicoesSelecionados)
+                    if (transmicoesSelecionados.isNotEmpty()) {
+                        transmicoesGlobal.removeAll(transmicoesSelecionados)
+                    }
+
+                    transmicoesGlobal.add(0, "")
+                    populaSpinnerSintoma(transmicoesGlobal)
                 }
-
-                transmicoesGlobal.add(0, "")
-                populaSpinnerSintoma(transmicoesGlobal)
+                else
+                    Log.d("Erro do banco", response.message())
             }
         })
     }

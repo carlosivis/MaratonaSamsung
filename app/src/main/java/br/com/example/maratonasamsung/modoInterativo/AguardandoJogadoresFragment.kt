@@ -1,4 +1,4 @@
-package br.com.example.maratonasamsung.ui.main
+package br.com.example.maratonasamsung.modoInterativo
 
 import android.app.AlertDialog
 import android.os.Bundle
@@ -66,28 +66,35 @@ class AguardandoJogadoresFragment : Fragment() {
 
             override fun onResponse(call: Call<RankingResponse>, response: Response<RankingResponse>) {
                 Log.d("Sucesso pegar jogadores", response.body().toString())
+                if (response.isSuccessful) {
 
-                val jogadores = response.body()
+                    val jogadores = response.body()
 
-                val quantidadeJogadores: ArrayList<String> = arrayListOf("")
-                jogadores?.jogadores!!.forEach { quantidadeJogadores.add((it.nome)) }
+                    val quantidadeJogadores: ArrayList<String> = arrayListOf("")
+                    jogadores?.jogadores!!.forEach { quantidadeJogadores.add((it.nome)) }
 
-                quantidadeJogadores.removeAt(0)
+                    quantidadeJogadores.removeAt(0)
 
-                if(quantidadeJogadores.size > 1) {
-                    timerJogadores.cancel()
-                    timerJogadores.purge()
+                    if (quantidadeJogadores.size > 1) {
+                        timerJogadores.cancel()
+                        timerJogadores.purge()
 
-                    val jogador = requireArguments().getString("jogador_nome").toString()
-                    val doencas = requireArguments().getStringArrayList("doencas")
+                        val jogador = requireArguments().getString("jogador_nome").toString()
+                        val doencas = requireArguments().getStringArrayList("doencas")
 
-                    val parametros = Bundle()
-                    parametros.putInt("id_sessao", id_sessao)
-                    parametros.putString("jogador_nome", jogador)
-                    parametros.putStringArrayList("doencas", doencas)
+                        val parametros = Bundle()
+                        parametros.putInt("id_sessao", id_sessao)
+                        parametros.putString("jogador_nome", jogador)
+                        parametros.putStringArrayList("doencas", doencas)
 
-                    navController!!.navigate(R.id.action_aguardandoJogadoresFragment_to_roomDiqueiroDoencaFragment, parametros)
+                        navController!!.navigate(
+                            R.id.action_aguardandoJogadoresFragment_to_roomDiqueiroDoencaFragment,
+                            parametros
+                        )
+                    }
                 }
+                else
+                    Log.d("Erro do banco", response.message())
             }
         })
         timerJogadores.schedule(2000) {

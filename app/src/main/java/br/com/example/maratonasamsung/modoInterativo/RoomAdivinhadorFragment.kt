@@ -163,9 +163,13 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener{
 
             override fun onResponse(call: Call<RankingResponse>, response: Response<RankingResponse>) {
                 Log.d("Ranking com Sucesso", response.body().toString())
-                list= response.body()!!
-                vencedor.putString("vencedor",list.jogadores.first().nome)
-                configureRecyclerViewRanking(list)
+                if (response.isSuccessful) {
+                    list = response.body()!!
+                    vencedor.putString("vencedor", list.jogadores.first().nome)
+                    configureRecyclerViewRanking(list)
+                }
+                else
+                    Log.d("Erro do banco", response.message())
             }
         })
         timerRanking.schedule(2000) {
@@ -183,12 +187,16 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener{
 
                 override fun onResponse(call: Call<SessaoResponseListing>, response: Response<SessaoResponseListing>) {
                     Log.d("Sucesso ao pegar dicas", response.body().toString())
-                    listDicas= arrayListOf("")
-                    response.body()?.dicas?.transmicoes?.forEach { listDicas.add(it.nome) }
-                    response.body()?.dicas?.prevencoes?.forEach { listDicas.add(it.nome) }
-                    response.body()?.dicas?.sintomas?.forEach { listDicas.add(it.nome) }
-                    configureRecyclerViewDicas(listDicas)
-                    rodada=response.body()!!.sessao.rodada
+                    if (response.isSuccessful) {
+                        listDicas = arrayListOf("")
+                        response.body()?.dicas?.transmicoes?.forEach { listDicas.add(it.nome) }
+                        response.body()?.dicas?.prevencoes?.forEach { listDicas.add(it.nome) }
+                        response.body()?.dicas?.sintomas?.forEach { listDicas.add(it.nome) }
+                        configureRecyclerViewDicas(listDicas)
+                        rodada = response.body()!!.sessao.rodada
+                    }
+                    else
+                        Log.d("Erro do banco", response.message())
                 }
             })
         timerDicas.schedule(2000){
@@ -205,30 +213,31 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener{
             }
             override fun onResponse(call: Call<SessaoResponseListing>, response: Response<SessaoResponseListing>) {
                 Log.d("Nice", response.toString())
-
-                val sessao = response.body()
-
+                if (response.isSuccessful) {
+                    val sessao = response.body()
 //                val rodada = sessao?.sessao!!.rodada
+                    val doencasSelecionadas: ArrayList<String> = arrayListOf("")
+                    sessao?.doencasSelecionadas!!.forEach { doencasSelecionadas.add((it.nome)) }
+                    lateinit var doenca: String
+                    doenca =
+                        if (doencasSelecionadas.isNotEmpty()) doencasSelecionadas.get(
+                            doencasSelecionadas.lastIndex
+                        )
+                        else ""
 
-                val doencasSelecionadas: ArrayList<String> = arrayListOf("")
-                sessao?.doencasSelecionadas!!.forEach { doencasSelecionadas.add((it.nome)) }
+                    val resposta = spinnerResposta.selectedItem.toString()
 
-                lateinit var doenca: String
-                doenca =
-                    if(doencasSelecionadas.isNotEmpty()) doencasSelecionadas.get(doencasSelecionadas.lastIndex)
-                    else ""
-
-                val resposta = spinnerResposta.selectedItem.toString()
-
-                if (resposta == doenca) {
-                    jogadorUpdate(rodada)
+                    if (resposta == doenca) {
+                        jogadorUpdate(rodada)
+                    } else {
+                        val texto = "Resposta incorreta"
+                        val duracao = Toast.LENGTH_SHORT
+                        val toast = Toast.makeText(context, texto, duracao)
+                        toast.show()
+                    }
                 }
-                else {
-                    val texto = "Resposta incorreta"
-                    val duracao = Toast.LENGTH_SHORT
-                    val toast = Toast.makeText(context, texto, duracao)
-                    toast.show()
-                }
+                else
+                    Log.d("Erro do banco", response.message())
             }
         })
     }
@@ -247,7 +256,11 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener{
 
             override fun onResponse(call: Call<JogadorResponse>, response: Response<JogadorResponse>) {
                 Log.d("Nice", response.toString())
-                val jogador = response.body()
+                if (response.isSuccessful) {
+                    val jogador = response.body()
+                }
+                else
+                    Log.d("Erro do banco", response.message())
             }
         })
     }
