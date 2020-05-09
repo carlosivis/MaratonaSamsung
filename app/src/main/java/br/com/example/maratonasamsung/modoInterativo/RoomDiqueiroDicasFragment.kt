@@ -43,7 +43,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
     lateinit var sintomasGlobal: ArrayList<String>
     lateinit var prevencoesGlobal: ArrayList<String>
     lateinit var transmicoesGlobal: ArrayList<String>
-    lateinit var  vencedor: Bundle
+    val  vencedor = Bundle()
     var rodada:Int = 0
     lateinit var list: RankingResponse
 
@@ -188,7 +188,9 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
             override fun onResponse(call: Call<RankingResponse>, response: Response<RankingResponse>) {
                 Log.d("Ranking com Sucesso", response.body().toString())
                 list = response.body()!!
+
                 vencedor.putString("vencedor",response.body()!!.jogadores.first().nome)
+
                 recyclerRanking.apply {
                     layoutManager = LinearLayoutManager(activity)
                     adapter = RankingAdapter(response.body()!!)

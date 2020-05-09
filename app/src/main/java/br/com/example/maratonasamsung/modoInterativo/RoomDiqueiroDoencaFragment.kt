@@ -111,7 +111,7 @@ class RoomDiqueiroDoencaFragment : Fragment(), View.OnClickListener {
                 rodada = sessao?.sessao!!.rodada
 
                 val doencas: ArrayList<String> = arrayListOf("")
-                sessao?.doencas!!.forEach { doencas.add((it.nome)) }
+                sessao.doencas.forEach { doencas.add((it.nome)) }
 
                 val doencasSelecionadas: ArrayList<String> = arrayListOf("")
                 sessao.doencasSelecionadas.forEach { doencasSelecionadas.add((it.nome)) }

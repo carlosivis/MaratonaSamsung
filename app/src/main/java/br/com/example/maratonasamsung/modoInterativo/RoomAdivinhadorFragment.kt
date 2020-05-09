@@ -45,8 +45,8 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener{
     lateinit var rankingAdapter: RankingAdapter
     lateinit var listDicas: ArrayList<String>
     lateinit var dicasAdapter: DicasAdapter
-    lateinit var  vencedor: Bundle
-    var rodada:Int = 0
+    val  vencedor = Bundle()
+    var rodada: Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -103,6 +103,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener{
         ranking(id_sessao)
         dicas(id_sessao)
         chronometro()
+
         if (rodada == 6){
             timerRanking.cancel()
             timerRanking.purge()
@@ -210,10 +211,10 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener{
 
                 val sessao = response.body()
 
-                val rodada = sessao?.sessao!!.rodada
+//                val rodada = sessao?.sessao!!.rodada
 
                 val doencasSelecionadas: ArrayList<String> = arrayListOf("")
-                sessao.doencasSelecionadas.forEach { doencasSelecionadas.add((it.nome)) }
+                sessao?.doencasSelecionadas!!.forEach { doencasSelecionadas.add((it.nome)) }
 
                 lateinit var doenca: String
                 doenca =
