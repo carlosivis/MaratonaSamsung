@@ -33,6 +33,7 @@ class PlaceholderRodadaFragment : Fragment() {
         parametros.getString("id_sessao")
         parametros.putString("jogador_nome",jogador)
         parametros.putInt("id_sessao",requireArguments().getInt("id_sessao"))
+        parametros.putStringArrayList("doencas",requireArguments().getStringArrayList("doencas"))
         if (jogador==diqueiro)
             txtTipoJogador.text = "Agora você será o Diqueiro"
         else
