@@ -19,11 +19,21 @@
         android:textColor="@color/colorText"
         android:textSize="30sp" />
 
+    <Chronometer
+        android:id="@+id/diqueirochronometro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/txtDiqueiro"
+        android:layout_alignParentEnd="true"
+        />
+
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/diqueiroBtnDoenca"
-        android:layout_below="@+id/txtDiqueiro">
+        android:layout_below="@+id/diqueirochronometro">
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -47,13 +57,6 @@
                 android:layout_height="wrap_content"
                 android:dropDownWidth="wrap_content"
                 android:scrollbarSize="4dp" />
-            <Chronometer
-                android:id="@+id/diqueirochronometro"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:layout_below="@id/diqueiroSpinnerDoenca"
-                />
         </RelativeLayout>
     </RelativeLayout>
 
