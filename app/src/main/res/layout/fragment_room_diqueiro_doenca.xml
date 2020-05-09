@@ -15,48 +15,43 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/txt_diqueiro"
+        android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
         android:textColor="@color/colorText"
         android:textSize="30sp" />
 
-    <Chronometer
-        android:id="@+id/diqueiroDoencaChronometro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/lanehum"
-        android:layout_marginTop="20dp"
-        android:layout_below="@id/txtDiqueiro"
-        android:layout_alignParentEnd="true"
-        />
+
 
     <RelativeLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/diqueiroBtnDoenca"
-        android:layout_below="@+id/diqueiroDoencaChronometro">
+        android:layout_below="@+id/txtDiqueiro">
 
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true">
+            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true">
 
             <TextView
                 android:id="@+id/diqueiroTxtDoenca"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/txt_escolha_doenca"
+                android:text="Sorteando uma doença..."
                 android:layout_marginBottom="20dp"
                 android:textSize="20sp"
                 />
 
-            <Spinner
-                android:id="@+id/diqueiroSpinnerDoenca"
-                style="@style/spinnerTheme"
-                android:layout_below="@id/diqueiroTxtDoenca"
-                android:layout_width="match_parent"
+            <ProgressBar
+                android:id="@+id/chronoPlaceholder"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:dropDownWidth="wrap_content"
-                android:scrollbarSize="4dp" />
+                android:layout_below="@+id/diqueiroTxtDoenca"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:indeterminateTint="@color/colorText" />
         </RelativeLayout>
     </RelativeLayout>
 
