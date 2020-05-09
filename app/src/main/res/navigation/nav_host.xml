@@ -70,6 +70,10 @@
             android:id="@+id/action_roomAcessNameFragment_to_roomAdivinhadorFragment"
             app:destination="@id/roomAdivinhadorFragment"
             app:enterAnim="@anim/nav_default_enter_anim" />
+        <action
+            android:id="@+id/action_roomAcessNameFragment_to_aguardandoRodadaFragment"
+            app:destination="@id/aguardandoRodadaFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
     </fragment>
     <fragment
         android:id="@+id/roomDiqueiroDoencaFragment"
@@ -189,6 +193,20 @@
         <action
             android:id="@+id/action_placeholderRodadaFragment_to_roomAdivinhadorFragment"
             app:destination="@id/roomAdivinhadorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/aguardandoRodadaFragment"
+        android:name="br.com.example.maratonasamsung.modoInterativo.AguardandoRodadaFragment"
+        android:label="fragment_aguardando_rodada"
+        tools:layout="@layout/fragment_aguardando_rodada" >
+        <action
+            android:id="@+id/action_aguardandoRodadaFragment_to_roomDiqueiroDoencaFragment"
+            app:destination="@id/roomDiqueiroDoencaFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+        <action
+            android:id="@+id/action_aguardandoRodadaFragment_to_roomAdivinhadorFragment"
+            app:destination="@id/roomAdivinhadorFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
     </fragment>
 </navigation>
 
