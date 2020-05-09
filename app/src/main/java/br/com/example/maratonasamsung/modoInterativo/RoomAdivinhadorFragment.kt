@@ -167,14 +167,14 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener{
 
             override fun onResponse(call: Call<RankingResponse>, response: Response<RankingResponse>) {
                 Log.d("Ranking com Sucesso", response.body().toString())
-                if (response.isSuccessful) {
+                if (response.code()==500){
+                    Log.d("Erro do banco", response.message())
+                    context?.let { ErrorCases().error(it)}
+                }
+                else{
                     list = response.body()!!
                     vencedor.putString("vencedor", list.jogadores.first().nome)
                     configureRecyclerViewRanking(list)
-                }
-                else {
-                    Log.d("Erro do banco", response.message())
-                    context?.let { ErrorCases().error(it) }
                 }
             }
         })
@@ -193,17 +193,17 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener{
 
                 override fun onResponse(call: Call<SessaoResponseListing>, response: Response<SessaoResponseListing>) {
                     Log.d("Sucesso ao pegar dicas", response.body().toString())
-                    if (response.isSuccessful) {
+                    if (response.code()==500){
+                        Log.d("Erro do banco", response.message())
+                        context?.let { ErrorCases().error(it)}
+                    }
+                    else{
                         listDicas = arrayListOf("")
                         response.body()?.dicas?.transmicoes?.forEach { listDicas.add(it.nome) }
                         response.body()?.dicas?.prevencoes?.forEach { listDicas.add(it.nome) }
                         response.body()?.dicas?.sintomas?.forEach { listDicas.add(it.nome) }
                         configureRecyclerViewDicas(listDicas)
                         rodada = response.body()!!.sessao.rodada
-                    }
-                    else {
-                        Log.d("Erro do banco", response.message())
-                        context?.let { ErrorCases().error(it) }
                     }
                 }
             })
@@ -221,7 +221,11 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener{
             }
             override fun onResponse(call: Call<SessaoResponseListing>, response: Response<SessaoResponseListing>) {
                 Log.d("Nice", response.toString())
-                if (response.isSuccessful) {
+                if (response.code()==500){
+                    Log.d("Erro do banco", response.message())
+                    context?.let { ErrorCases().error(it)}
+                }
+                else{
                     val sessao = response.body()
 
                     val doencasSelecionadas: ArrayList<String> = arrayListOf("")
@@ -244,10 +248,6 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener{
                         toast.show()
                     }
                 }
-                else {
-                    Log.d("Erro do banco", response.message())
-                    context?.let { ErrorCases().error(it) }
-                }
             }
         })
     }
@@ -267,12 +267,12 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener{
 
             override fun onResponse(call: Call<JogadorResponse>, response: Response<JogadorResponse>) {
                 Log.d("Nice", response.toString())
-                if (response.isSuccessful) {
-                    val jogador = response.body()
-                }
-                else {
+                if (response.code()==500){
                     Log.d("Erro do banco", response.message())
-                    context?.let { ErrorCases().error(it) }
+                    context?.let { ErrorCases().error(it)}
+                }
+                else{
+                    val jogador = response.body()
                 }
             }
         })

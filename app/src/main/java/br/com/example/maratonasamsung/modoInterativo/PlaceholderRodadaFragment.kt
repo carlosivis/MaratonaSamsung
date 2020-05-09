@@ -1,4 +1,4 @@
-package br.com.example.maratonasamsung
+package br.com.example.maratonasamsung.modoInterativo
 
 import android.os.Bundle
 import android.util.Log
@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
+import br.com.example.maratonasamsung.R
 import kotlinx.android.synthetic.main.fragment_placeholder_rodada.*
 import java.util.*
 import kotlin.concurrent.schedule

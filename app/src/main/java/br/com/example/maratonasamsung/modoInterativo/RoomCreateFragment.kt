@@ -70,7 +70,12 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
             }
             override fun onResponse(call: Call<SalaResponse>, response: Response<SalaResponse>) {
                 Log.d("Nice", response.body().toString())
-                if (response.isSuccessful) {
+
+                if (response.code()==500){
+                    Log.d("Erro do banco", response.message())
+                    context?.let { ErrorCases().error(it)}
+                }
+                else {
                     val sala = response.body()
 
                     if (!sala!!.status) {
@@ -82,10 +87,6 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
                         createEditSenha.setText("")
                     } else
                         cadastrarSessao(sala.nome, sala.senha)
-                }
-                else {
-                    Log.d("Erro do banco", response.message())
-                    context?.let { ErrorCases().error(it) }
                 }
             }
         })
@@ -104,7 +105,11 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
             }
             override fun onResponse(call: Call<SalaResponse>, response: Response<SalaResponse>) {
                 Log.d("Nice", response.toString())
-                if (response.isSuccessful) {
+                if (response.code()==500){
+                    Log.d("Erro do banco", response.message())
+                    context?.let { ErrorCases().error(it)}
+                }
+                else {
 
                     val sessao = response.body()
 
@@ -118,8 +123,6 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
 
                     jogadorNovo(sessao.id_sessao, parametros)
                 }
-                else
-                    Log.d("Erro do banco", response.message())
             }
         })
     }
@@ -137,11 +140,15 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
 
             override fun onResponse(call: Call<JogadorResponse>, response: Response<JogadorResponse>) {
                 Log.d("Nice", response.toString())
-                if (response.isSuccessful)
-                    navController!!.navigate(R.id.action_roomCreateFragment_to_aguardandoJogadoresFragment, parametros)
+                if (response.code()==500){
+                        Log.d("Erro do banco", response.message())
+                        context?.let { ErrorCases().error(it)}
+                    }
                 else {
-                    Log.d("Erro do banco", response.message())
-                    context?.let { ErrorCases().error(it) }
+                    navController!!.navigate(
+                        R.id.action_roomCreateFragment_to_aguardandoJogadoresFragment,
+                        parametros
+                    )
                 }
             }
         })

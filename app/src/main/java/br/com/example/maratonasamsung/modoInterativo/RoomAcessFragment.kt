@@ -65,8 +65,11 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
             }
             override fun onResponse(call: Call<SalaResponse>, response: Response<SalaResponse>) {
                 Log.d("Nice", response.toString())
-                if (response.isSuccessful) {
-
+                if (response.code()==500){
+                    Log.d("Erro do banco", response.message())
+                    context?.let { ErrorCases().error(it)}
+                }
+                else{
                     val sala = response.body()
                     if (sala!!.status) {
                         if (sala.senha == acessEditSenha.text.toString())
@@ -87,10 +90,6 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
                         acessEditSenha.setText("")
                     }
                 }
-                else {
-                    Log.d("Erro do banco", response.message())
-                    context?.let { ErrorCases().error(it) }
-                }
             }
         })
     }
@@ -107,7 +106,11 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
             }
             override fun onResponse(call: Call<SalaResponse>, response: Response<SalaResponse>) {
                 Log.d("Nice", response.toString())
-                if (response.isSuccessful) {
+                if (response.code()==500){
+                    Log.d("Erro do banco", response.message())
+                    context?.let { ErrorCases().error(it)}
+                }
+                else{
 
                     val sessao = response.body()
 
@@ -121,10 +124,6 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
                         R.id.action_roomAcessFragment_to_roomAcessNameFragment,
                         parametros
                     )
-                }
-                else {
-                    Log.d("Erro do banco", response.message())
-                    context?.let { ErrorCases().error(it) }
                 }
             }
         })

@@ -56,13 +56,13 @@ class ChooseFragment : Fragment() {
 
             override fun onResponse(call: Call<List<DoencasResponse>>, response: Response<List<DoencasResponse>>) {
                 Log.d("Sucesso", response.body().toString())
-                if (response.isSuccessful) {
+                if (response.code()==500){
+                    Log.d("Erro do banco", response.message())
+                    context?.let { ErrorCases().error(it)}
+                }
+                else{
                     list = response.body()!!
                     configureRecyclerView(list.filter { it.tipo == arguments!!.getString("agenteInfectante") })
-                }
-                else {
-                    Log.d("Erro do banco", response.message())
-                    context?.let { ErrorCases().error(it) }
                 }
             }
         })
