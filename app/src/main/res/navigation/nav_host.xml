@@ -46,10 +46,6 @@
             android:id="@+id/action_roomCreateFragment_to_aguardandoJogadoresFragment"
             app:destination="@id/aguardandoJogadoresFragment"
             app:enterAnim="@anim/nav_default_enter_anim" />
-<!--        <action-->
-<!--            android:id="@+id/action_roomCreateFragment_to_roomDiqueiroDoencaFragment"-->
-<!--            app:destination="@id/roomDiqueiroDoencaFragment"-->
-<!--            app:enterAnim="@anim/nav_default_enter_anim" />-->
     </fragment>
     <fragment
         android:id="@+id/roomAcessFragment"
@@ -83,14 +79,22 @@
             android:id="@+id/action_roomDiqueiroDoencaFragment_to_roomDiqueiroDicasFragment"
             app:destination="@id/roomDiqueiroDicasFragment"
             app:enterAnim="@anim/nav_default_enter_anim" />
+        <action
+            android:id="@+id/action_roomDiqueiroDoencaFragment_to_mainFragment"
+            app:destination="@id/mainFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
     </fragment>
     <fragment
         android:id="@+id/roomDiqueiroDicasFragment"
         android:name="br.com.example.maratonasamsung.modoInterativo.RoomDiqueiroDicasFragment"
         android:label="RoomDiqueiroDicasFragment" >
         <action
-            android:id="@+id/action_roomDiqueiroDicasFragment_to_roomAdivinhadorFragment"
-            app:destination="@id/roomAdivinhadorFragment"
+            android:id="@+id/action_roomDiqueiroDicasFragment_to_placeholderRodadaFragment"
+            app:destination="@id/placeholderRodadaFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+        <action
+            android:id="@+id/action_roomDiqueiroDicasFragment_to_mainFragment"
+            app:destination="@id/mainFragment"
             app:enterAnim="@anim/nav_default_enter_anim" />
         <action
             android:id="@+id/action_roomDiqueiroDicasFragment_to_winnerFragment"
@@ -102,8 +106,8 @@
         android:name="br.com.example.maratonasamsung.modoInterativo.RoomAdivinhadorFragment"
         android:label="RoomAdivinhadorFragment" >
         <action
-            android:id="@+id/action_roomAdivinhadorFragment_to_roomDiqueiroDoencaFragment"
-            app:destination="@id/roomDiqueiroDoencaFragment"
+            android:id="@+id/action_roomAdivinhadorFragment_to_placeholderRodadaFragment"
+            app:destination="@id/placeholderRodadaFragment"
             app:enterAnim="@anim/nav_default_enter_anim" />
         <action
             android:id="@+id/action_roomAdivinhadorFragment_to_mainFragment"
@@ -113,9 +117,6 @@
             android:id="@+id/action_roomAdivinhadorFragment_to_winnerFragment"
             app:destination="@id/winnerFragment"
             app:enterAnim="@anim/nav_default_enter_anim" />
-        <action
-            android:id="@+id/action_roomAdivinhadorFragment_to_placeholderRodadaFragment"
-            app:destination="@id/placeholderRodadaFragment" />
     </fragment>
     <fragment
         android:id="@+id/chooseFragment"
@@ -176,12 +177,21 @@
             android:id="@+id/action_aguardandoJogadoresFragment_to_roomDiqueiroDoencaFragment"
             app:destination="@id/roomDiqueiroDoencaFragment"
             app:enterAnim="@anim/nav_default_enter_anim" />
+        <action
+            android:id="@+id/action_aguardandoJogadoresFragment_to_mainFragment"
+            app:destination="@id/mainFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
     </fragment>
     <fragment
         android:id="@+id/winnerFragment"
         android:name="br.com.example.maratonasamsung.modoInterativo.WinnerFragment"
         android:label="fragment_winner"
-        tools:layout="@layout/fragment_winner" />
+        tools:layout="@layout/fragment_winner" >
+        <action
+            android:id="@+id/action_winnerFragment_to_mainFragment"
+            app:destination="@id/mainFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+    </fragment>
     <fragment
         android:id="@+id/placeholderRodadaFragment"
         android:name="br.com.example.maratonasamsung.modoInterativo.PlaceholderRodadaFragment"
@@ -189,10 +199,16 @@
         tools:layout="@layout/fragment_placeholder_rodada" >
         <action
             android:id="@+id/action_placeholderRodadaFragment_to_roomDiqueiroDoencaFragment"
-            app:destination="@id/roomDiqueiroDoencaFragment" />
+            app:destination="@id/roomDiqueiroDoencaFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
         <action
             android:id="@+id/action_placeholderRodadaFragment_to_roomAdivinhadorFragment"
-            app:destination="@id/roomAdivinhadorFragment" />
+            app:destination="@id/roomAdivinhadorFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+        <action
+            android:id="@+id/action_placeholderRodadaFragment_to_mainFragment"
+            app:destination="@id/mainFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
     </fragment>
     <fragment
         android:id="@+id/aguardandoRodadaFragment"
@@ -202,6 +218,10 @@
         <action
             android:id="@+id/action_aguardandoRodadaFragment_to_placeholderRodadaFragment"
             app:destination="@id/placeholderRodadaFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+        <action
+            android:id="@+id/action_aguardandoRodadaFragment_to_mainFragment"
+            app:destination="@id/mainFragment"
             app:enterAnim="@anim/nav_default_enter_anim" />
     </fragment>
 </navigation>

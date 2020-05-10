@@ -22,15 +22,17 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.ArrayList
-import kotlin.concurrent.schedule
 
 class RoomAcessNameFragment : Fragment(), View.OnClickListener {
+
     var navController: NavController? = null
+    var rodada: Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_room_acess_name, container, false)
     }
@@ -47,7 +49,7 @@ class RoomAcessNameFragment : Fragment(), View.OnClickListener {
                 val id_sessao = requireArguments().getInt("id_sessao")
 
                 if(acessnameEditUsuario.text.toString() == "") {
-                    val texto = "Preencha todos os campos obrigatórios"
+                    val texto = "Preencha o campos obrigatório"
                     val duracao = Toast.LENGTH_SHORT
                     val toast = Toast.makeText(context, texto, duracao)
                     toast.show()
@@ -63,24 +65,25 @@ class RoomAcessNameFragment : Fragment(), View.OnClickListener {
             id_sessao = id_sessao
         ).enqueue(object : Callback<RankingResponse> {
             override fun onFailure(call: Call<RankingResponse>, t: Throwable) {
-                Log.d("Falha pegar jogadores", t.toString())
+                Log.d("Ruim: Jogadores", t.toString())
             }
 
             override fun onResponse(call: Call<RankingResponse>, response: Response<RankingResponse>) {
-                Log.d("Sucesso pegar jogadores", response.body().toString())
-                if (response.code()==500){
-                    Log.d("Erro do banco", response.message())
-                    context?.let { ErrorCases().error(it)}
-                }
-                else{
-                    val jogadores = response.body()
+                Log.d("Bom: Jogadores", response.body().toString())
+
+                if (response.isSuccessful) {
+                    val jogadores = response.body()!!
 
                     val quantidadeJogadores: ArrayList<String> = arrayListOf("")
-                    jogadores?.jogadores!!.forEach { quantidadeJogadores.add((it.nome)) }
+                    jogadores.jogadores.forEach { quantidadeJogadores.add((it.nome)) }
 
                     quantidadeJogadores.removeAt(0)
 
                     jogadorNovo(id_sessao, quantidadeJogadores.size, jogadores.darDica.nome)
+                }
+                else {
+                    Log.d("Erro banco: Jogadores", response.message())
+                    context?.let { ErrorCases().error(it)}
                 }
             }
         })
@@ -94,17 +97,12 @@ class RoomAcessNameFragment : Fragment(), View.OnClickListener {
             )
         ).enqueue(object : Callback<JogadorResponse> {
             override fun onFailure(call: Call<JogadorResponse>, t: Throwable) {
-                Log.d("Deu ruim", t.toString())
+                Log.d("Ruim: Jogador novo", t.toString())
             }
-
             override fun onResponse(call: Call<JogadorResponse>, response: Response<JogadorResponse>) {
-                Log.d("Nice", response.toString())
-                if (response.code()==500){
-                    Log.d("Erro do banco", response.message())
-                    context?.let { ErrorCases().error(it)}
-                }
-                else{
+                Log.d("Bom: Jogador novo", response.toString())
 
+                if (response.isSuccessful) {
                     val jogador = response.body()
 
                     if (!jogador!!.status) {
@@ -121,17 +119,17 @@ class RoomAcessNameFragment : Fragment(), View.OnClickListener {
                             toast.show()
                             acessnameEditUsuario.setText("")
                         }
-                    } else {
+                    }
+                    else {
                         val doencas = arguments!!.getStringArrayList("doencas")
 
                         val parametros = Bundle()
                         parametros.putInt("id_sessao", id_sessao)
                         parametros.putString("jogador_nome", jogador.nome)
-                        parametros.putString("diqueiro", diqueiro)
                         parametros.putStringArrayList("doencas", doencas)
 
                         if (quantidadeJogadores > 2) {
-                            val rodada = pegarRodada(id_sessao)
+                            pegarRodada(id_sessao)
                             parametros.putInt("rodada", rodada)
                             navController!!.navigate(R.id.action_roomAcessNameFragment_to_aguardandoRodadaFragment, parametros)
                         }
@@ -139,30 +137,33 @@ class RoomAcessNameFragment : Fragment(), View.OnClickListener {
                             navController!!.navigate(R.id.action_roomAcessNameFragment_to_roomAdivinhadorFragment, parametros)
                     }
                 }
+                else {
+                    Log.d("Erro banco: JogadorNovo", response.message())
+                    context?.let { ErrorCases().error(it)}
+                }
             }
         })
     }
 
-    fun pegarRodada(id_sessao: Int): Int {
-        var rodada: Int = 0
+    fun pegarRodada(id_sessao: Int) {
         Service.retrofit.listarSessao(
             id_sessao = id_sessao
         ).enqueue(object : Callback<SessaoResponseListing> {
             override fun onFailure(call: Call<SessaoResponseListing>, t: Throwable) {
-                Log.d("Deu ruim", t.toString())
+                Log.d("Ruim: Pegar Rodada", t.toString())
             }
             override fun onResponse(call: Call<SessaoResponseListing>, response: Response<SessaoResponseListing>) {
-                Log.d("Nice", response.toString())
-                if (response.code()==500){
-                    Log.d("Erro do banco", response.message())
-                    context?.let { ErrorCases().error(it)}
+                Log.d("Bom: Pegar Rodada", response.toString())
+
+                if (response.isSuccessful) {
+                    val resposta = response.body()!!
+                    rodada = resposta.sessao.rodada
                 }
-                else{
-                    val resposta = response.body()
-                    rodada = resposta?.sessao!!.rodada
+                else {
+                    Log.d("Erro banco: PegarRodada", response.message())
+                    context?.let { ErrorCases().error(it)}
                 }
             }
         })
-        return rodada
     }
 }

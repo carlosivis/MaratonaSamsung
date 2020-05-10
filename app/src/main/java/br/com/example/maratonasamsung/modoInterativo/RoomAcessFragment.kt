@@ -12,9 +12,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import br.com.example.maratonasamsung.R
 import br.com.example.maratonasamsung.model.Requests.SalaRequest
-import br.com.example.maratonasamsung.model.Requests.SessaoRequest
 import br.com.example.maratonasamsung.model.Responses.SalaResponse
-import br.com.example.maratonasamsung.model.Responses.SessaoResponse
 import br.com.example.maratonasamsung.service.ErrorCases
 import br.com.example.maratonasamsung.service.Service
 import kotlinx.android.synthetic.main.fragment_room_acess.*
@@ -61,17 +59,14 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
             nome = acessEditNomeSala.text.toString()
         ).enqueue(object : Callback<SalaResponse>{
             override fun onFailure(call: Call<SalaResponse>, t: Throwable) {
-                Log.d("Deu ruim", t.toString())
+                Log.d("Ruim: Acessar Sala", t.toString())
             }
             override fun onResponse(call: Call<SalaResponse>, response: Response<SalaResponse>) {
-                Log.d("Nice", response.toString())
-                if (response.code()==500){
-                    Log.d("Erro do banco", response.message())
-                    context?.let { ErrorCases().error(it)}
-                }
-                else{
-                    val sala = response.body()
-                    if (sala!!.status) {
+                Log.d("Bom: Acessar Sala", response.toString())
+
+                if (response.isSuccessful) {
+                    val sala = response.body()!!
+                    if (sala.status) {
                         if (sala.senha == acessEditSenha.text.toString())
                             cadastrarSessao(sala.nome, sala.senha)
                         else {
@@ -81,7 +76,8 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
                             toast.show()
                             acessEditSenha.setText("")
                         }
-                    } else {
+                    }
+                    else {
                         val texto = "Sala não encontrada"
                         val duracao = Toast.LENGTH_SHORT
                         val toast = Toast.makeText(context, texto, duracao)
@@ -89,6 +85,10 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
                         acessEditNomeSala.setText("")
                         acessEditSenha.setText("")
                     }
+                }
+                else {
+                    Log.d("Erro banco: AcessarSala", response.message())
+                    context?.let { ErrorCases().error(it)}
                 }
             }
         })
@@ -102,28 +102,25 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
             )
         ).enqueue(object : Callback<SalaResponse>{
             override fun onFailure(call: Call<SalaResponse>, t: Throwable) {
-                Log.d("Deu ruim", t.toString())
+                Log.d("Ruim: Cadastrar Sessao", t.toString())
             }
             override fun onResponse(call: Call<SalaResponse>, response: Response<SalaResponse>) {
-                Log.d("Nice", response.toString())
-                if (response.code()==500){
-                    Log.d("Erro do banco", response.message())
-                    context?.let { ErrorCases().error(it)}
-                }
-                else{
+                Log.d("Bom: Cadastrar Sessao", response.toString())
 
-                    val sessao = response.body()
+                if (response.isSuccessful) {
+                    val sessao = response.body()!!
 
                     val doencas: ArrayList<String> = arrayListOf("")
-                    sessao?.doencas!!.forEach { doencas.add((it.nome)) }
+                    sessao.doencas.forEach { doencas.add((it.nome)) }
 
                     val parametros = Bundle()
                     parametros.putInt("id_sessao", sessao.id_sessao)
                     parametros.putStringArrayList("doencas", doencas)
-                    navController!!.navigate(
-                        R.id.action_roomAcessFragment_to_roomAcessNameFragment,
-                        parametros
-                    )
+                    navController!!.navigate(R.id.action_roomAcessFragment_to_roomAcessNameFragment, parametros)
+                }
+                else {
+                    Log.d("Erro banco: CadSessao", response.message())
+                    context?.let { ErrorCases().error(it)}
                 }
             }
         })

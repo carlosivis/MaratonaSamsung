@@ -13,10 +13,8 @@ import androidx.navigation.Navigation
 import br.com.example.maratonasamsung.R
 import br.com.example.maratonasamsung.model.Requests.JogadorRequest
 import br.com.example.maratonasamsung.model.Requests.SalaRequest
-import br.com.example.maratonasamsung.model.Requests.SessaoRequest
 import br.com.example.maratonasamsung.model.Responses.JogadorResponse
 import br.com.example.maratonasamsung.model.Responses.SalaResponse
-import br.com.example.maratonasamsung.model.Responses.SessaoResponse
 import br.com.example.maratonasamsung.service.ErrorCases
 import br.com.example.maratonasamsung.service.Service
 import kotlinx.android.synthetic.main.fragment_room_create.*
@@ -28,6 +26,7 @@ import retrofit2.Response
 class RoomCreateFragment : Fragment(), View.OnClickListener {
 
     var navController: NavController? = null
+    val parametros = Bundle()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -66,27 +65,28 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
             )
         ).enqueue(object : Callback<SalaResponse>{
             override fun onFailure(call: Call<SalaResponse>, t: Throwable) {
-                Log.d("Deu ruim", t.toString())
+                Log.d("Ruim: Criar sala", t.toString())
             }
             override fun onResponse(call: Call<SalaResponse>, response: Response<SalaResponse>) {
-                Log.d("Nice", response.body().toString())
+                Log.d("Bom: Criar sala", response.body().toString())
 
-                if (response.code()==500){
-                    Log.d("Erro do banco", response.message())
-                    context?.let { ErrorCases().error(it)}
-                }
-                else {
-                    val sala = response.body()
+                if (response.isSuccessful) {
+                    val sala = response.body()!!
 
-                    if (!sala!!.status) {
+                    if (!sala.status) {
                         val texto = "Nome da sala já existente"
                         val duracao = Toast.LENGTH_SHORT
                         val toast = Toast.makeText(context, texto, duracao)
                         toast.show()
                         createEditNomeSala.setText("")
                         createEditSenha.setText("")
-                    } else
+                    }
+                    else
                         cadastrarSessao(sala.nome, sala.senha)
+                }
+                else {
+                    Log.d("Erro banco: Criar sala", response.message())
+                    context?.let { ErrorCases().error(it)}
                 }
             }
         })
@@ -97,37 +97,35 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
             sala = SalaRequest(
                 nome = nome,
                 senha = senha
-
             )
         ).enqueue(object : Callback<SalaResponse>{
             override fun onFailure(call: Call<SalaResponse>, t: Throwable) {
-                Log.d("Deu ruim", t.toString())
+                Log.d("Ruim: Cadastrar sessão", t.toString())
             }
             override fun onResponse(call: Call<SalaResponse>, response: Response<SalaResponse>) {
-                Log.d("Nice", response.toString())
-                if (response.code()==500){
-                    Log.d("Erro do banco", response.message())
-                    context?.let { ErrorCases().error(it)}
-                }
-                else {
+                Log.d("Bom: Cadastrar sessão", response.toString())
 
-                    val sessao = response.body()
+                if (response.isSuccessful) {
+                    val sessao = response.body()!!
 
                     val doencas: ArrayList<String> = arrayListOf("")
-                    sessao?.doencas!!.forEach { doencas.add((it.nome)) }
+                    sessao.doencas.forEach { doencas.add((it.nome)) }
 
-                    val parametros = Bundle()
                     parametros.putInt("id_sessao", sessao.id_sessao)
                     parametros.putString("jogador_nome", createEditUsuario.text.toString())
                     parametros.putStringArrayList("doencas", doencas)
 
-                    jogadorNovo(sessao.id_sessao, parametros)
+                    jogadorNovo(sessao.id_sessao)
+                }
+                else {
+                    Log.d("Erro banco: CadSessão", response.message())
+                    context?.let { ErrorCases().error(it)}
                 }
             }
         })
     }
 
-    fun jogadorNovo(id_sessao: Int, parametros: Bundle){
+    fun jogadorNovo(id_sessao: Int){
         Service.retrofit.jogadorNovo(
             jogador = JogadorRequest(
                 id_sessao = id_sessao,
@@ -135,20 +133,17 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
             )
         ).enqueue(object : Callback<JogadorResponse>{
             override fun onFailure(call: Call<JogadorResponse>, t: Throwable) {
-                Log.d("Deu ruim", t.toString())
+                Log.d("Ruim: jogadorNovo", t.toString())
             }
 
             override fun onResponse(call: Call<JogadorResponse>, response: Response<JogadorResponse>) {
-                Log.d("Nice", response.toString())
-                if (response.code()==500){
-                        Log.d("Erro do banco", response.message())
-                        context?.let { ErrorCases().error(it)}
-                    }
+                Log.d("Bom: jogadorNovo", response.toString())
+
+                if (response.isSuccessful)
+                    navController!!.navigate(R.id.action_roomCreateFragment_to_aguardandoJogadoresFragment, parametros)
                 else {
-                    navController!!.navigate(
-                        R.id.action_roomCreateFragment_to_aguardandoJogadoresFragment,
-                        parametros
-                    )
+                    Log.d("Erro banco; jogadorNovo", response.message())
+                    context?.let { ErrorCases().error(it)}
                 }
             }
         })

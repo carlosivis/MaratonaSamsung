@@ -2,14 +2,10 @@ package br.com.example.maratonasamsung.modoInterativo
 
 import android.os.Build
 import android.os.Bundle
-import android.os.SystemClock
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
@@ -17,32 +13,24 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import br.com.example.maratonasamsung.R
-import br.com.example.maratonasamsung.model.Requests.EditSessaoSintomaRequest
-import br.com.example.maratonasamsung.model.Requests.EditarRodadaRequest
 import br.com.example.maratonasamsung.model.Requests.JogadorRequest
 import br.com.example.maratonasamsung.model.Responses.JogadorEncerra
-import br.com.example.maratonasamsung.model.Responses.SessaoResponseEditing
-import br.com.example.maratonasamsung.model.Responses.SessaoResponseListing
 import br.com.example.maratonasamsung.service.ErrorCases
 import br.com.example.maratonasamsung.service.Service
-import kotlinx.android.synthetic.main.fragment_room_adivinhador.*
-import kotlinx.android.synthetic.main.fragment_room_diqueiro_dicas.*
-import kotlinx.android.synthetic.main.fragment_room_diqueiro_doenca.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
-import kotlin.collections.ArrayList
 import kotlin.concurrent.schedule
 
 
 class RoomDiqueiroDoencaFragment : Fragment() { //, View.OnClickListener
 
+    //    lateinit var spinnerAdapter: ArrayAdapter<String>
     var navController: NavController? = null
-//    lateinit var spinnerAdapter: ArrayAdapter<String>
     val timerCronometro = Timer()
-    var rodada: Int = 0
     val parametros = Bundle()
+    var rodada: Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,14 +43,16 @@ class RoomDiqueiroDoencaFragment : Fragment() { //, View.OnClickListener
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         val id_sessao = requireArguments().getInt("id_sessao")
         val jogador = requireArguments().getString("jogador_nome").toString()
+
         val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
             activity?.let {
                 AlertDialog.Builder(it)
                     .setTitle(R.string.sairJogo)
                     .setPositiveButton(R.string.sair) { dialog, which ->
-                        navController!!.navigate(R.id.mainFragment)
+                        navController!!.navigate(R.id.action_roomDiqueiroDoencaFragment_to_mainFragment)
 //                        diqueiroDoencaChronometro.stop()
                         timerCronometro.cancel()
                         timerCronometro.purge()
@@ -97,6 +87,28 @@ class RoomDiqueiroDoencaFragment : Fragment() { //, View.OnClickListener
 
             navController!!.navigate(R.id.action_roomDiqueiroDoencaFragment_to_roomDiqueiroDicasFragment, parametros)
         }
+    }
+
+    fun jogadorEncerrar(id_sessao: Int, jogador: String) {
+        Service.retrofit.jogadorEncerrar(
+            jogador = JogadorRequest(
+                id_sessao = id_sessao,
+                nome = jogador
+            )
+        ).enqueue(object : Callback<JogadorEncerra> {
+            override fun onFailure(call: Call<JogadorEncerra>, t: Throwable) {
+                Log.d("Ruim: Jogador Encerrar", t.toString())
+            }
+
+            override fun onResponse(call: Call<JogadorEncerra>, response: Response<JogadorEncerra>) {
+                Log.d("Bom: Jogador Encerrar", response.body().toString())
+
+                if (!response.isSuccessful) {
+                    Log.d("Erro banco: JogadorEnc", response.message())
+                    context?.let { ErrorCases().error(it)}
+                }
+            }
+        })
     }
 
 //    @RequiresApi(Build.VERSION_CODES.N)
@@ -179,21 +191,4 @@ class RoomDiqueiroDoencaFragment : Fragment() { //, View.OnClickListener
 //            }
 //        })
 //    }
-
-    fun jogadorEncerrar(id_sessao: Int, jogador: String) {
-        Service.retrofit.jogadorEncerrar(
-            jogador = JogadorRequest(
-                id_sessao = id_sessao,
-                nome = jogador
-            )
-        ).enqueue(object : Callback<JogadorEncerra> {
-            override fun onFailure(call: Call<JogadorEncerra>, t: Throwable) {
-                Log.d("Falha ao encerrar", t.toString())
-            }
-
-            override fun onResponse(call: Call<JogadorEncerra>, response: Response<JogadorEncerra>) {
-                Log.d("Sucesso ao encerrar", response.body().toString())
-            }
-        })
-    }
 }

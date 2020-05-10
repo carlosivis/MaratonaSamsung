@@ -40,7 +40,7 @@ class AguardandoJogadoresFragment : Fragment() {
                 AlertDialog.Builder(it)
                     .setTitle(R.string.sairJogo)
                     .setPositiveButton(R.string.sair) { dialog, which ->
-                        navController!!.navigate(R.id.mainFragment)
+                        navController!!.navigate(R.id.action_aguardandoJogadoresFragment_to_mainFragment)
                         timerJogadores.cancel()
                         timerJogadores.purge()
                     }
@@ -64,20 +64,17 @@ class AguardandoJogadoresFragment : Fragment() {
             id_sessao = id_sessao
         ).enqueue(object : Callback<RankingResponse> {
             override fun onFailure(call: Call<RankingResponse>, t: Throwable) {
-                Log.d("Falha pegar jogadores", t.toString())
+                Log.d("Ruim: jogadores", t.toString())
             }
 
             override fun onResponse(call: Call<RankingResponse>, response: Response<RankingResponse>) {
-                Log.d("Sucesso pegar jogadores", response.body().toString())
-                if (response.code()==500){
-                    Log.d("Erro do banco", response.message())
-                    context?.let { ErrorCases().error(it)}
-                }
-                else{
-                    val jogadores = response.body()
+                Log.d("Bom: jogadores", response.body().toString())
+
+                if (response.isSuccessful) {
+                    val jogadores = response.body()!!
 
                     val quantidadeJogadores: ArrayList<String> = arrayListOf("")
-                    jogadores?.jogadores!!.forEach { quantidadeJogadores.add((it.nome)) }
+                    jogadores.jogadores.forEach { quantidadeJogadores.add((it.nome)) }
 
                     quantidadeJogadores.removeAt(0)
 
@@ -93,11 +90,12 @@ class AguardandoJogadoresFragment : Fragment() {
                         parametros.putString("jogador_nome", jogador)
                         parametros.putStringArrayList("doencas", doencas)
 
-                        navController!!.navigate(
-                            R.id.action_aguardandoJogadoresFragment_to_roomDiqueiroDoencaFragment,
-                            parametros
-                        )
+                        navController!!.navigate(R.id.action_aguardandoJogadoresFragment_to_roomDiqueiroDoencaFragment, parametros)
                     }
+                }
+                else {
+                    Log.d("Erro banco: jogadores", response.message())
+                    context?.let { ErrorCases().error(it)}
                 }
             }
         })

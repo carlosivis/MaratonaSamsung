@@ -1,21 +1,31 @@
 package br.com.example.maratonasamsung.modoInterativo
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
+import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import br.com.example.maratonasamsung.R
+import br.com.example.maratonasamsung.model.Responses.RankingResponse
+import br.com.example.maratonasamsung.service.ErrorCases
+import br.com.example.maratonasamsung.service.Service
 import kotlinx.android.synthetic.main.fragment_placeholder_rodada.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.*
 import kotlin.concurrent.schedule
 
-/**
- * A simple [Fragment] subclass.
- */
 class PlaceholderRodadaFragment : Fragment() {
+
+    var navController: NavController? = null
+    val timerCronometro = Timer()
+    lateinit var diqueiro: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,28 +35,77 @@ class PlaceholderRodadaFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_placeholder_rodada, container, false)
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
+            activity?.let {
+                AlertDialog.Builder(it)
+                    .setTitle(R.string.sairJogo)
+                    .setPositiveButton(R.string.sair) { dialog, which ->
+                        navController!!.navigate(R.id.action_placeholderRodadaFragment_to_mainFragment)
+                        timerCronometro.cancel()
+                        timerCronometro.purge()
+                    }
+                    .setNegativeButton(R.string.cancelar) { dialog, which -> }
+                    .show()
+            }
+        }
+        callback
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val jogador = requireArguments().getString("jogador_nome")
-        val diqueiro = requireArguments().getString("diqueiro")
-        Log.d("Testezinho","$jogador - $diqueiro")
+        navController = Navigation.findNavController(view)
+
+        val id_sessao = requireArguments().getInt("id_sessao")
+        val jogador = requireArguments().getString("jogador_nome").toString()
+        val doencas = requireArguments().getStringArrayList("doencas")
+
+//        val diqueiro = requireArguments().getString("diqueiro").toString()
+//        Log.d("Testezinho","$jogador - $diqueiro")
+
+        ranking(id_sessao)
+
         val parametros = Bundle()
-        parametros.getString("id_sessao")
         parametros.putString("jogador_nome",jogador)
-        parametros.putInt("id_sessao",requireArguments().getInt("id_sessao"))
-        parametros.putStringArrayList("doencas",requireArguments().getStringArrayList("doencas"))
-        if (jogador==diqueiro)
-            txtTipoJogador.text = "Agora você será o Diqueiro"
-        else
-            txtTipoJogador.text = "Agora você será o Adivinhador"
+        parametros.putInt("id_sessao", id_sessao)
+        parametros.putStringArrayList("doencas", doencas)
 
-        Timer().schedule(5000) {
+        timerCronometro.schedule(5000) {
             if (jogador == diqueiro)
-                Navigation.findNavController(view).navigate(R.id.action_placeholderRodadaFragment_to_roomDiqueiroDoencaFragment,parametros)
-
+                navController!!.navigate(R.id.action_placeholderRodadaFragment_to_roomDiqueiroDoencaFragment,parametros)
             else
-                Navigation.findNavController(view).navigate(R.id.action_placeholderRodadaFragment_to_roomAdivinhadorFragment,parametros)
+                navController!!.navigate(R.id.action_placeholderRodadaFragment_to_roomAdivinhadorFragment,parametros)
         }
+    }
 
+    fun ranking(id_sessao: Int){
+        Service.retrofit.ranking(
+            id_sessao = id_sessao
+        ).enqueue(object : Callback<RankingResponse> {
+            override fun onFailure(call: Call<RankingResponse>, t: Throwable) {
+                Log.d("Ruim: Ranking", t.toString())
+            }
+
+            override fun onResponse(call: Call<RankingResponse>, response: Response<RankingResponse>) {
+                Log.d("Bom: Ranking", response.body().toString())
+
+                if (response.isSuccessful) {
+                    val resposta = response.body()!!
+
+                    diqueiro = resposta.darDica.nome
+                    val jogador = requireArguments().getString("jogador_nome").toString()
+
+                    if (jogador == diqueiro)
+                        txtTipoJogador.text = "Agora você será o Diqueiro"
+                    else
+                        txtTipoJogador.text = "Agora você será o Adivinhador"
+                }
+                else {
+                    Log.d("Erro banco: Ranking", response.message())
+                    context?.let { ErrorCases().error(it)}
+                }
+            }
+        })
     }
 }
