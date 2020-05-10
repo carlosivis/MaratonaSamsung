@@ -22,6 +22,7 @@ import br.com.example.maratonasamsung.model.Requests.*
 import br.com.example.maratonasamsung.model.Responses.*
 import br.com.example.maratonasamsung.service.ErrorCases
 import br.com.example.maratonasamsung.service.Service
+import kotlinx.android.synthetic.main.fragment_item_choose.*
 import kotlinx.android.synthetic.main.fragment_room_diqueiro_dicas.*
 import kotlinx.android.synthetic.main.fragment_room_diqueiro_dicas.recyclerRanking
 import retrofit2.Call
@@ -37,7 +38,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
     lateinit var spinnerAdapter: ArrayAdapter<String>
     lateinit var list: RankingResponse
     val parametros = Bundle()
-    val  vencedor = Bundle()
+    val vencedor = Bundle()
     val timerCronometro = Timer()
     val timerRanking = Timer()
     var sintomasGlobal: ArrayList<String> = arrayListOf("")
@@ -97,6 +98,8 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
         prevencoes(doenca)
         transmicoes(doenca)
         ranking(id_sessao)
+
+        nomeDoenca.text = "DOENÇA SELECIONADA: $doenca"
 
         timerCronometro.schedule(20000) {
             parametros.putInt("id_sessao", id_sessao)
