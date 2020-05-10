@@ -10,16 +10,6 @@
     android:layout_marginBottom="20dp"
     tools:context=".ui.main.MainActivity">
 
-    <Chronometer
-        android:id="@+id/diqueirotempoCronometro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:fontFamily="@font/lanehum"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@id/txtDiqueiro"
-        android:layout_marginBottom="20dp" />
-
     <TextView
         android:id="@+id/txtDiqueiro"
         android:layout_width="wrap_content"
@@ -30,14 +20,33 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp" />
 
+    <Chronometer
+        android:id="@+id/diqueirotempoCronometro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:fontFamily="@font/lanehum"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/txtDiqueiro"
+        android:layout_marginBottom="20dp" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerRanking"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/border"
-        android:layout_above="@+id/diqueiroTxtSintomas"
+        android:layout_above="@+id/nomeDoenca"
         android:layout_below="@+id/diqueirotempoCronometro"
         tools:listitem="@layout/recycler_view_ranking" />
+
+    <TextView
+        android:id="@+id/nomeDoenca"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/diqueiroTxtSintomas"
+        android:textSize="20sp"
+        android:layout_marginTop="20dp"
+        android:text="DOENÇA SELECIONADA: XX"/>
 
     <TextView
         android:id="@+id/diqueiroTxtSintomas"
