@@ -210,7 +210,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                         timerRanking.cancel()
                         timerRanking.purge()
                         jogadorEncerrar(id_sessao, jogador)
-                        navController!!.navigate(R.id.action_roomAdivinhadorFragment_to_mainFragment)
+                        navController!!.navigate(R.id.action_roomDiqueiroDicasFragment_to_mainFragment)
                     }
                 }
                 else {
