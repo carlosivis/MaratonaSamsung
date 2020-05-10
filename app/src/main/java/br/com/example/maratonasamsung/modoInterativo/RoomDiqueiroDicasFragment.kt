@@ -101,11 +101,11 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
 
         nomeDoenca.text = "DOENÇA SELECIONADA: $doenca"
 
-        timerCronometro.schedule(20000) {
+        timerCronometro.schedule(40000) {
+
             parametros.putInt("id_sessao", id_sessao)
             parametros.putString("jogador_nome", jogador)
             parametros.putStringArrayList("doencas", doencas)
-//            parametros.putString("diqueiro", list.darDica.nome)
 
             editarRodada(id_sessao, doenca)
             diqueirotempoCronometro.stop()
@@ -125,7 +125,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
     @RequiresApi(Build.VERSION_CODES.N)
     fun chronometro(){
         diqueirotempoCronometro.isCountDown= true
-        diqueirotempoCronometro.base = SystemClock.elapsedRealtime()+20000
+        diqueirotempoCronometro.base = SystemClock.elapsedRealtime()+40000
         diqueirotempoCronometro.start()
     }
 
