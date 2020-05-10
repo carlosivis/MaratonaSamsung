@@ -1,10 +1,12 @@
 package br.com.example.maratonasamsung.modoInterativo
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -22,6 +24,19 @@ class WinnerFragment : Fragment(), View.OnClickListener {
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_winner, container, false)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
+            activity?.let {
+                AlertDialog.Builder(it)
+                    .setTitle("Você não pode voltar! Use o botão apropriado para sair da tela")
+                    .setNegativeButton(android.R.string.ok) { dialog, which -> }
+                    .show()
+            }
+        }
+        callback
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

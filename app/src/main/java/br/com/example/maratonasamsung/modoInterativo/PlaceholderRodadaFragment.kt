@@ -41,12 +41,7 @@ class PlaceholderRodadaFragment : Fragment() {
             activity?.let {
                 AlertDialog.Builder(it)
                     .setTitle("Você não pode sair dessa tela")
-//                    .setPositiveButton(R.string.sair) { dialog, which ->
-//                        navController!!.navigate(R.id.action_placeholderRodadaFragment_to_mainFragment)
-//                        timerCronometro.cancel()
-//                        timerCronometro.purge()
-//                    }
-                    .setNegativeButton(R.string.sair) { dialog, which -> }
+                    .setNegativeButton(android.R.string.ok) { dialog, which -> }
                     .show()
             }
         }

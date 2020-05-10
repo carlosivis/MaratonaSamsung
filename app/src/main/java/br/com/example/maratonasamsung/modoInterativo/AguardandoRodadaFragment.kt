@@ -39,13 +39,8 @@ class AguardandoRodadaFragment : Fragment() {
         val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
             activity?.let {
                 AlertDialog.Builder(it)
-                    .setTitle(R.string.sairJogo)
-                    .setPositiveButton(R.string.sair) { dialog, which ->
-                        navController!!.navigate(R.id.action_aguardandoRodadaFragment_to_mainFragment)
-                        timerRodada.cancel()
-                        timerRodada.purge()
-                    }
-                    .setNegativeButton(R.string.cancelar) { dialog, which -> }
+                    .setTitle("Você não pode sair dessa tela")
+                    .setNegativeButton(android.R.string.ok) { dialog, which -> }
                     .show()
             }
         }
