@@ -40,13 +40,13 @@ class PlaceholderRodadaFragment : Fragment() {
         val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
             activity?.let {
                 AlertDialog.Builder(it)
-                    .setTitle(R.string.sairJogo)
-                    .setPositiveButton(R.string.sair) { dialog, which ->
-                        navController!!.navigate(R.id.action_placeholderRodadaFragment_to_mainFragment)
-                        timerCronometro.cancel()
-                        timerCronometro.purge()
-                    }
-                    .setNegativeButton(R.string.cancelar) { dialog, which -> }
+                    .setTitle("Você não pode sair dessa tela")
+//                    .setPositiveButton(R.string.sair) { dialog, which ->
+//                        navController!!.navigate(R.id.action_placeholderRodadaFragment_to_mainFragment)
+//                        timerCronometro.cancel()
+//                        timerCronometro.purge()
+//                    }
+                    .setNegativeButton(R.string.sair) { dialog, which -> }
                     .show()
             }
         }

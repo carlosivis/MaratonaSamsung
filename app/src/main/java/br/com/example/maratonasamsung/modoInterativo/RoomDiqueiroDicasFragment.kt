@@ -36,7 +36,6 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
 
     var navController: NavController? = null
     lateinit var spinnerAdapter: ArrayAdapter<String>
-    lateinit var list: RankingResponse
     val parametros = Bundle()
     val vencedor = Bundle()
     val timerCronometro = Timer()
@@ -188,13 +187,30 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                 Log.d("Bom: Ranking", response.body().toString())
 
                 if (response.isSuccessful) {
-                    list = response.body()!!
+                    val ranking = response.body()!!
 
-                    vencedor.putString("vencedor", response.body()!!.jogadores.first().nome)
+                    vencedor.putString("vencedor", ranking.jogadores.first().nome)
 
                     recyclerRanking.apply {
                         layoutManager = LinearLayoutManager(activity)
                         adapter = RankingAdapter(response.body()!!)
+                    }
+
+                    val quantidadeJogadores: ArrayList<String> = arrayListOf("")
+                    ranking.jogadores.forEach { quantidadeJogadores.add((it.nome)) }
+
+                    quantidadeJogadores.removeAt(0)
+
+                    if (quantidadeJogadores.size < 2) {
+                        val jogador = requireArguments().getString("jogador_nome").toString()
+
+                        diqueirotempoCronometro.stop()
+                        timerCronometro.cancel()
+                        timerCronometro.purge()
+                        timerRanking.cancel()
+                        timerRanking.purge()
+                        jogadorEncerrar(id_sessao, jogador)
+                        navController!!.navigate(R.id.action_roomAdivinhadorFragment_to_mainFragment)
                     }
                 }
                 else {
