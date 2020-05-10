@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.annotation.RequiresApi
@@ -90,6 +91,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
+        view.findViewById<Button>(R.id.adivinhadorBtnAdivinhar).setOnClickListener(this)
 
         val id_sessao = requireArguments().getInt("id_sessao")
         val doencas = requireArguments().getStringArrayList("doencas")
@@ -281,9 +283,14 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
 
                     if (resposta == doenca) {
                         jogadorUpdate(rodada, false)
+                        adivinhadorBtnAdivinhar.isEnabled = false
+                        val texto = "Parabéns, você acertou!"
+                        val duracao = Toast.LENGTH_SHORT
+                        val toast = Toast.makeText(context, texto, duracao)
+                        toast.show()
                     }
                     else {
-                        val texto = "Resposta incorreta"
+                        val texto = "Resposta incorreta, tente novamente"
                         val duracao = Toast.LENGTH_SHORT
                         val toast = Toast.makeText(context, texto, duracao)
                         toast.show()
