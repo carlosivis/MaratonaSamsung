@@ -143,15 +143,23 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
             R.id.adivinhadorBtnAdivinhar -> {
                 val resposta = spinnerResposta.selectedItem.toString()
 
-                if(resposta.isEmpty()) {
-                    val texto = "Selecione uma doença como resposta"
+                if(adivinhadorBtnAdivinhar.isEnabled) {
+                    if(resposta.isEmpty()) {
+                        val texto = "Selecione uma doença como resposta"
+                        val duracao = Toast.LENGTH_SHORT
+                        val toast = Toast.makeText(context, texto, duracao)
+                        toast.show()
+                    }
+                    else {
+                        val id_sessao = requireArguments().getInt("id_sessao")
+                        listarSessao(id_sessao)
+                    }
+                }
+                else {
+                    val texto = "Você já acertou a doença!"
                     val duracao = Toast.LENGTH_SHORT
                     val toast = Toast.makeText(context, texto, duracao)
                     toast.show()
-                }
-                else {
-                    val id_sessao = requireArguments().getInt("id_sessao")
-                    listarSessao(id_sessao)
                 }
             }
         }

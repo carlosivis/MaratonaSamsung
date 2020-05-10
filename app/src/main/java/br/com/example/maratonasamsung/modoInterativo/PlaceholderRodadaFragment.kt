@@ -57,7 +57,7 @@ class PlaceholderRodadaFragment : Fragment() {
         val doencas = requireArguments().getStringArrayList("doencas")
 
 //        val diqueiro = requireArguments().getString("diqueiro").toString()
-//        Log.d("Testezinho","$jogador - $diqueiro")
+
 
         ranking(id_sessao)
 
@@ -90,6 +90,8 @@ class PlaceholderRodadaFragment : Fragment() {
 
                     diqueiro = resposta.darDica.nome
                     val jogador = requireArguments().getString("jogador_nome").toString()
+
+                    Log.d("Jogadores","$jogador - $diqueiro")
 
                     if (jogador == diqueiro)
                         txtTipoJogador.text = "Agora você será o Diqueiro"
