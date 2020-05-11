@@ -10,6 +10,7 @@ import android.widget.Button
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import br.com.example.maratonasamsung.R
+import kotlinx.android.synthetic.main.fragment_room_typek.*
 
 
 class RoomTypekFragment : Fragment(), View.OnClickListener {
