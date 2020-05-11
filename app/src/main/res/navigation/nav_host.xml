@@ -220,6 +220,10 @@
             app:destination="@id/placeholderRodadaFragment"
             app:enterAnim="@anim/nav_default_enter_anim" />
         <action
+            android:id="@+id/action_aguardandoRodadaFragment_to_roomAcessNameFragment"
+            app:destination="@id/roomAcessNameFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+        <action
             android:id="@+id/action_aguardandoRodadaFragment_to_mainFragment"
             app:destination="@id/mainFragment"
             app:enterAnim="@anim/nav_default_enter_anim" />

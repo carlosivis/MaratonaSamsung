@@ -15,10 +15,10 @@
         android:id="@+id/txtDiqueiro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
         android:layout_marginBottom="30dp"
-        android:text="@string/txt_modo_interativo"
+        android:text="@string/txt_adivinhador"
         android:textColor="@color/colorText"
         android:textSize="30sp" />
 

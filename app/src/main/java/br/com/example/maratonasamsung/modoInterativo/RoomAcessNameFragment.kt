@@ -56,9 +56,50 @@ class RoomAcessNameFragment : Fragment(), View.OnClickListener {
                     toast.show()
                 }
                 else
-                    jogadorNovo(id_sessao)
+                    jogadores(id_sessao)
             }
         }
+    }
+
+    fun jogadores(id_sessao: Int){
+        Service.retrofit.ranking(
+            id_sessao = id_sessao
+        ).enqueue(object : Callback<RankingResponse> {
+            override fun onFailure(call: Call<RankingResponse>, t: Throwable) {
+                Log.d("Ruim: Jogadores", t.toString())
+            }
+
+            override fun onResponse(call: Call<RankingResponse>, response: Response<RankingResponse>) {
+                Log.d("Bom: Jogadores", response.body().toString())
+
+                if (response.isSuccessful) {
+                    val jogadores = response.body()!!
+
+                    val quantidadeJogadores: ArrayList<String> = arrayListOf("")
+                    jogadores.jogadores.forEach { quantidadeJogadores.add((it.nome)) }
+
+                    quantidadeJogadores.removeAt(0)
+
+                    val doencas = arguments!!.getStringArrayList("doencas")
+
+                    parametros.putInt("id_sessao", id_sessao)
+                    parametros.putString("jogador_nome", acessnameEditUsuario.text.toString())
+                    parametros.putStringArrayList("doencas", doencas)
+
+                    if (quantidadeJogadores.size >= 2) {
+                        pegarRodada(id_sessao)
+                        parametros.putInt("rodada", rodada)
+                        navController!!.navigate(R.id.action_roomAcessNameFragment_to_aguardandoRodadaFragment, parametros)
+                    }
+                    else
+                        jogadorNovo(id_sessao)
+                }
+                else {
+                    Log.d("Erro banco: Jogadores", response.message())
+                    context?.let { ErrorCases().error(it)}
+                }
+            }
+        })
     }
 
     fun jogadorNovo(id_sessao: Int){
@@ -92,53 +133,11 @@ class RoomAcessNameFragment : Fragment(), View.OnClickListener {
                             acessnameEditUsuario.setText("")
                         }
                     }
-                    else {
-                        parametros.putString("jogador_nome", jogador.nome)
-                        jogadores(id_sessao)
-                    }
+                    else
+                        navController!!.navigate(R.id.action_roomAcessNameFragment_to_roomAdivinhadorFragment, parametros)
                 }
                 else {
                     Log.d("Erro banco: JogadorNovo", response.message())
-                    context?.let { ErrorCases().error(it)}
-                }
-            }
-        })
-    }
-
-    fun jogadores(id_sessao: Int){
-        Service.retrofit.ranking(
-            id_sessao = id_sessao
-        ).enqueue(object : Callback<RankingResponse> {
-            override fun onFailure(call: Call<RankingResponse>, t: Throwable) {
-                Log.d("Ruim: Jogadores", t.toString())
-            }
-
-            override fun onResponse(call: Call<RankingResponse>, response: Response<RankingResponse>) {
-                Log.d("Bom: Jogadores", response.body().toString())
-
-                if (response.isSuccessful) {
-                    val jogadores = response.body()!!
-
-                        val quantidadeJogadores: ArrayList<String> = arrayListOf("")
-                        jogadores.jogadores.forEach { quantidadeJogadores.add((it.nome)) }
-
-                        quantidadeJogadores.removeAt(0)
-
-                        val doencas = arguments!!.getStringArrayList("doencas")
-
-                        parametros.putInt("id_sessao", id_sessao)
-                        parametros.putStringArrayList("doencas", doencas)
-
-                        if (quantidadeJogadores.size > 2) {
-                            pegarRodada(id_sessao)
-                            parametros.putInt("rodada", rodada)
-                            navController!!.navigate(R.id.action_roomAcessNameFragment_to_aguardandoRodadaFragment, parametros)
-                        }
-                        else
-                            navController!!.navigate(R.id.action_roomAcessNameFragment_to_roomAdivinhadorFragment, parametros)
-                }
-                else {
-                    Log.d("Erro banco: Jogadores", response.message())
                     context?.let { ErrorCases().error(it)}
                 }
             }

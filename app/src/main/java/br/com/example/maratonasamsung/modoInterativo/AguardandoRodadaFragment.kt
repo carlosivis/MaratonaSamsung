@@ -7,13 +7,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import br.com.example.maratonasamsung.R
+import br.com.example.maratonasamsung.model.Requests.JogadorRequest
+import br.com.example.maratonasamsung.model.Responses.JogadorResponse
 import br.com.example.maratonasamsung.model.Responses.SessaoResponseListing
 import br.com.example.maratonasamsung.service.ErrorCases
 import br.com.example.maratonasamsung.service.Service
+import kotlinx.android.synthetic.main.fragment_room_acess_name.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -24,6 +28,7 @@ class AguardandoRodadaFragment : Fragment() {
 
     var navController: NavController? = null
     val timerRodada = Timer()
+    var criouJogador = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -75,14 +80,18 @@ class AguardandoRodadaFragment : Fragment() {
                         timerRodada.cancel()
                         timerRodada.purge()
 
-                        val jogador = requireArguments().getString("jogador_nome").toString()
-                        val doencas = requireArguments().getStringArrayList("doencas")
+                        jogadorNovo(id_sessao)
 
-                        val parametros = Bundle()
-                        parametros.putInt("id_sessao", id_sessao)
-                        parametros.putString("jogador_nome", jogador)
-                        parametros.putStringArrayList("doencas", doencas)
-                        navController!!.navigate(R.id.action_aguardandoRodadaFragment_to_placeholderRodadaFragment, parametros)
+                        if(criouJogador) {
+                            val jogador = requireArguments().getString("jogador_nome").toString()
+                            val doencas = requireArguments().getStringArrayList("doencas")
+
+                            val parametros = Bundle()
+                            parametros.putInt("id_sessao", id_sessao)
+                            parametros.putString("jogador_nome", jogador)
+                            parametros.putStringArrayList("doencas", doencas)
+                            navController!!.navigate(R.id.action_aguardandoRodadaFragment_to_placeholderRodadaFragment, parametros)
+                        }
                     }
                 }
                 else {
@@ -94,5 +103,55 @@ class AguardandoRodadaFragment : Fragment() {
         timerRodada.schedule(1000) {
             pegarRodada(id_sessao)
         }
+    }
+
+    fun jogadorNovo(id_sessao: Int){
+        Service.retrofit.jogadorNovo(
+            jogador = JogadorRequest(
+                id_sessao = id_sessao,
+                nome = requireArguments().getString("jogador_nome").toString()
+            )
+        ).enqueue(object : Callback<JogadorResponse> {
+            override fun onFailure(call: Call<JogadorResponse>, t: Throwable) {
+                Log.d("Ruim: Jogador novo", t.toString())
+            }
+            override fun onResponse(call: Call<JogadorResponse>, response: Response<JogadorResponse>) {
+                Log.d("Bom: Jogador novo", response.toString())
+
+                if (response.isSuccessful) {
+                    val jogador = response.body()
+
+                    if (!jogador!!.status) {
+                        val doencas = requireArguments().getStringArrayList("doencas")
+
+                        val parametrosAcessName = Bundle()
+                        parametrosAcessName.putInt("id_sessao", id_sessao)
+                        parametrosAcessName.putStringArrayList("doencas", doencas)
+
+                        if (jogador.message == "Esse nome já existe") {
+                            val texto = "Nome de usuário já existente nesta sala"
+                            val duracao = Toast.LENGTH_SHORT
+                            val toast = Toast.makeText(context, texto, duracao)
+                            toast.show()
+
+                            navController!!.navigate(R.id.action_aguardandoRodadaFragment_to_roomAcessNameFragment, parametrosAcessName)
+                        } else if (jogador.message == "Sessao já foi iniciada") {
+                            val texto = "Rodada já iniciada, entrada não mais permitida"
+                            val duracao = Toast.LENGTH_SHORT
+                            val toast = Toast.makeText(context, texto, duracao)
+                            toast.show()
+
+                            navController!!.navigate(R.id.action_aguardandoRodadaFragment_to_roomAcessNameFragment, parametrosAcessName)
+                        }
+                    }
+                    else
+                        criouJogador = true
+                }
+                else {
+                    Log.d("Erro banco: JogadorNovo", response.message())
+                    context?.let { ErrorCases().error(it)}
+                }
+            }
+        })
     }
 }
