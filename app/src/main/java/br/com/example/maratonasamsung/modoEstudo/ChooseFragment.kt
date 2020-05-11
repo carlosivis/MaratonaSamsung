@@ -58,7 +58,7 @@ class ChooseFragment : Fragment() {
                 Log.d("Sucesso", response.body().toString())
                 if (response.code()==500){
                     Log.d("Erro do banco", response.message())
-                    context?.let { ErrorCases().error(it)}
+                    context?.let { ErrorCases().error(it) }
                 }
                 else{
                     list = response.body()!!
