@@ -257,8 +257,8 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
                         resposta.dicas.transmicao.forEach { listDicas.add(it.nome) }
 
                     configureRecyclerViewDicas(listDicas)
-                    rodada = response.body()!!.sessao.rodada
-                    doencaRodada = response.body()!!.ultimaDoenca
+                    rodada = resposta.sessao.rodada
+                    doencaRodada = resposta.ultimaDoenca
                 }
                 else {
                     Log.d("Erro banco: Dicas", response.message())
