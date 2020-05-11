@@ -56,14 +56,11 @@ class PlaceholderRodadaFragment : Fragment() {
         val jogador = requireArguments().getString("jogador_nome").toString()
         val doencas = requireArguments().getStringArrayList("doencas")
 
-//        val diqueiro = requireArguments().getString("diqueiro").toString()
-
-
         ranking(id_sessao)
 
         val parametros = Bundle()
-        parametros.putString("jogador_nome",jogador)
         parametros.putInt("id_sessao", id_sessao)
+        parametros.putString("jogador_nome",jogador)
         parametros.putStringArrayList("doencas", doencas)
 
         timerCronometro.schedule(5000) {

@@ -42,7 +42,6 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
     var sintomasGlobal: ArrayList<String> = arrayListOf("")
     var prevencoesGlobal: ArrayList<String> = arrayListOf("")
     var transmicoesGlobal: ArrayList<String> = arrayListOf("")
-    var rodada:Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -87,6 +86,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
         view.findViewById<Button>(R.id.diqueiroBtnDicas).setOnClickListener(this)
 
         val id_sessao = requireArguments().getInt("id_sessao")
+        val rodada = requireArguments().getInt("rodada")
         val jogador = requireArguments().getString("jogador_nome").toString()
         val doenca: String = requireArguments().getString("doenca").toString()
         val doencas = requireArguments().getStringArrayList("doencas")
@@ -491,6 +491,8 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
     }
 
     fun editarRodada(id_sessao: Int, doenca: String){
+        val rodada = requireArguments().getInt("rodada")
+
         Service.retrofit.editarRodada(
             sessao = EditarSessaoRequest(
                 id_sessao = id_sessao,

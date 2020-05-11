@@ -15,6 +15,7 @@ import androidx.navigation.Navigation
 import br.com.example.maratonasamsung.R
 import br.com.example.maratonasamsung.model.Requests.JogadorRequest
 import br.com.example.maratonasamsung.model.Responses.JogadorEncerra
+import br.com.example.maratonasamsung.model.Responses.SessaoResponseListing
 import br.com.example.maratonasamsung.service.ErrorCases
 import br.com.example.maratonasamsung.service.Service
 import retrofit2.Call
@@ -76,7 +77,7 @@ class RoomDiqueiroDoencaFragment : Fragment() { //, View.OnClickListener
         val doencas = requireArguments().getStringArrayList("doencas")
 
 //        chronometro()
-//        listarSessao(id_sessao)
+        listarSessao(id_sessao)
 
         timerCronometro.schedule(5000){
             parametros.putInt("id_sessao", id_sessao)
@@ -87,6 +88,28 @@ class RoomDiqueiroDoencaFragment : Fragment() { //, View.OnClickListener
 
             navController!!.navigate(R.id.action_roomDiqueiroDoencaFragment_to_roomDiqueiroDicasFragment, parametros)
         }
+    }
+
+    fun listarSessao(id_sessao: Int) {
+        Service.retrofit.listarSessao(
+            id_sessao = id_sessao
+        ).enqueue(object : Callback<SessaoResponseListing> {
+            override fun onFailure(call: Call<SessaoResponseListing>, t: Throwable) {
+                Log.d("Deu ruim", t.toString())
+            }
+            override fun onResponse(call: Call<SessaoResponseListing>, response: Response<SessaoResponseListing>) {
+                Log.d("Nice", response.toString())
+
+                if (!response.isSuccessful) {
+                    val sessao = response.body()!!
+                    rodada = sessao.sessao.rodada
+                }
+                else {
+                    Log.d("Erro do banco", response.message())
+                    context?.let { ErrorCases().error(it)}
+                }
+            }
+        })
     }
 
     fun jogadorEncerrar(id_sessao: Int, jogador: String) {
@@ -149,46 +172,5 @@ class RoomDiqueiroDoencaFragment : Fragment() { //, View.OnClickListener
 //                }
 //            }
 //        }
-//    }
-
-//    fun listarSessao(id_sessao: Int) {
-//        Service.retrofit.listarSessao(
-//            id_sessao = id_sessao
-//        ).enqueue(object : Callback<SessaoResponseListing> {
-//            override fun onFailure(call: Call<SessaoResponseListing>, t: Throwable) {
-//                Log.d("Deu ruim", t.toString())
-//            }
-//            override fun onResponse(call: Call<SessaoResponseListing>, response: Response<SessaoResponseListing>) {
-//                Log.d("Nice", response.toString())
-//                if (response.code()==500){
-//                    Log.d("Erro do banco", response.message())
-//                    context?.let { ErrorCases().error(it)}
-//                }
-//                else{
-//                    val sessao = response.body()
-//
-//                    rodada = sessao?.sessao!!.rodada
-//
-//                    val doencas: ArrayList<String> = arrayListOf("")
-//                    sessao.doencas.forEach { doencas.add((it.nome)) }
-//
-//                    val doencasSelecionadas: ArrayList<String> = arrayListOf("")
-//                    sessao.doencasSelecionadas.forEach { doencasSelecionadas.add((it.nome)) }
-//
-//                    if (doencasSelecionadas.isNotEmpty()) {
-//                        doencas.removeAll(doencasSelecionadas)
-//                    }
-//
-//                    doencas.add(0, "")
-//
-//                    doencas.toMutableList()
-//                    context?.let {
-//                        spinnerAdapter =
-//                            ArrayAdapter(it, android.R.layout.simple_spinner_item, doencas)
-//                    }
-//                    diqueiroSpinnerDoenca.adapter = spinnerAdapter
-//                }
-//            }
-//        })
 //    }
 }
