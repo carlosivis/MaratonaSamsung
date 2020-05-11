@@ -119,7 +119,6 @@ class RoomAcessNameFragment : Fragment(), View.OnClickListener {
                 if (response.isSuccessful) {
                     val jogadores = response.body()!!
 
-
                         val quantidadeJogadores: ArrayList<String> = arrayListOf("")
                         jogadores.jogadores.forEach { quantidadeJogadores.add((it.nome)) }
 
@@ -137,7 +136,6 @@ class RoomAcessNameFragment : Fragment(), View.OnClickListener {
                         }
                         else
                             navController!!.navigate(R.id.action_roomAcessNameFragment_to_roomAdivinhadorFragment, parametros)
-
                 }
                 else {
                     Log.d("Erro banco: Jogadores", response.message())

@@ -227,7 +227,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                 }
             }
         })
-        timerRanking.schedule(10000) {
+        timerRanking.schedule(30000) {
             ranking(id_sessao)
         }
     }

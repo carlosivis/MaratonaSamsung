@@ -255,7 +255,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
                 }
             }
         })
-        timerRanking.schedule(10000) {
+        timerRanking.schedule(30000) {
             ranking(id_sessao)
         }
     }
@@ -299,7 +299,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
                 }
             }
         })
-        timerDicas.schedule(2000){
+        timerDicas.schedule(5000){
             dicas(id_sessao)
         }
     }
