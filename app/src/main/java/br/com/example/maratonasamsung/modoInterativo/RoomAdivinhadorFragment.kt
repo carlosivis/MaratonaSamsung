@@ -48,6 +48,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
     var listDicas: ArrayList<String> = arrayListOf("")
     lateinit var doencaRodada: String
     var rodada: Int = 0
+    var clicavel = true
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -103,8 +104,6 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
         }
         spinnerResposta.adapter = spinnerAdapter
 
-        adivinhadorBtnAdivinhar.isClickable = true
-
         chronometro()
         dicas(id_sessao)
         ranking(id_sessao)
@@ -144,6 +143,9 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
         when(v!!.id){
             R.id.adivinhadorBtnAdivinhar -> {
                 val resposta = spinnerResposta.selectedItem.toString()
+
+                if(!clicavel)
+                    adivinhadorBtnAdivinhar.isClickable = false
 
                 if(adivinhadorBtnAdivinhar.isClickable) {
                     if(resposta.isEmpty()) {
@@ -292,8 +294,8 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
                     val resposta = spinnerResposta.selectedItem.toString()
 
                     if (resposta == doenca) {
+                        clicavel = false
                         jogadorUpdate(rodada, false)
-                        adivinhadorBtnAdivinhar.isClickable = false
                         val texto = "Parabéns, você acertou!"
                         val duracao = Toast.LENGTH_SHORT
                         val toast = Toast.makeText(context, texto, duracao)
