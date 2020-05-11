@@ -144,10 +144,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
             R.id.adivinhadorBtnAdivinhar -> {
                 val resposta = spinnerResposta.selectedItem.toString()
 
-                if(!clicavel)
-                    adivinhadorBtnAdivinhar.isClickable = false
-
-                if(adivinhadorBtnAdivinhar.isClickable) {
+                if(clicavel) {
                     if(resposta.isEmpty()) {
                         val texto = "Selecione uma doença como resposta"
                         val duracao = Toast.LENGTH_SHORT
