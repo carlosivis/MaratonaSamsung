@@ -329,7 +329,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
             override fun onResponse(call: Call<JogadorResponse>, response: Response<JogadorResponse>) {
                 Log.d("Bom: Jogador Update", response.toString())
 
-                if (!response.isSuccessful) {
+                if (response.code() == 500) {
                     Log.d("Erro banco: JogUpdate", response.message())
                     context?.let { ErrorCases().error(it)}
                 }
@@ -351,7 +351,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
             override fun onResponse(call: Call<JogadorEncerra>, response: Response<JogadorEncerra>) {
                 Log.d("Bom: Jogador Encerrar", response.body().toString())
 
-                if (!response.isSuccessful) {
+                if (response.code() == 500) {
                     Log.d("Erro banco: JogUpdate", response.message())
                     context?.let { ErrorCases().error(it)}
                 }

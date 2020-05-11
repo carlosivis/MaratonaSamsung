@@ -242,7 +242,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
             override fun onResponse(call: Call<SessaoResponseEditing>, response: Response<SessaoResponseEditing>) {
                 Log.d("Bom: EditarSessao", response.body().toString())
 
-                if (!response.isSuccessful) {
+                if (response.code() == 500) {
                     Log.d("Erro banco: EditarSes", response.message())
                     context?.let { ErrorCases().error(it)}
                 }
@@ -506,7 +506,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
             override fun onResponse(call: Call<SessaoResponseEditing>, response: Response<SessaoResponseEditing>) {
                 Log.d("Bom: Editar Rodada", response.body().toString())
 
-                if (!response.isSuccessful) {
+                if (response.code() == 500) {
                     Log.d("Erro banco: EditarRodad", response.message())
                     context?.let { ErrorCases().error(it)}
                 }
@@ -528,7 +528,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
             override fun onResponse(call: Call<JogadorEncerra>, response: Response<JogadorEncerra>) {
                 Log.d("Bom: Jogador Encerrar", response.body().toString())
 
-                if (!response.isSuccessful) {
+                if (response.code() == 500) {
                     Log.d("Erro banco: JogadorEnc", response.message())
                     context?.let { ErrorCases().error(it)}
                 }
