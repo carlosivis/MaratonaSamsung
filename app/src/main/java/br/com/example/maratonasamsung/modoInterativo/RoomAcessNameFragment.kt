@@ -79,7 +79,7 @@ class RoomAcessNameFragment : Fragment(), View.OnClickListener {
 
                     quantidadeJogadores.removeAt(0)
 
-                    jogadorNovo(id_sessao, quantidadeJogadores.size, jogadores.darDica.nome)
+                    jogadorNovo(id_sessao, quantidadeJogadores)
                 }
                 else {
                     Log.d("Erro banco: Jogadores", response.message())
@@ -89,7 +89,7 @@ class RoomAcessNameFragment : Fragment(), View.OnClickListener {
         })
     }
 
-    fun jogadorNovo(id_sessao: Int, quantidadeJogadores: Int, diqueiro: String){
+    fun jogadorNovo(id_sessao: Int, quantidadeJogadores: ArrayList<String>){
         Service.retrofit.jogadorNovo(
             jogador = JogadorRequest(
                 id_sessao = id_sessao,
@@ -128,7 +128,10 @@ class RoomAcessNameFragment : Fragment(), View.OnClickListener {
                         parametros.putString("jogador_nome", jogador.nome)
                         parametros.putStringArrayList("doencas", doencas)
 
-                        if (quantidadeJogadores > 2) {
+                        Log.d("mariaVetor", quantidadeJogadores.toString())
+                        Log.d("maria", quantidadeJogadores.toString())
+
+                        if (quantidadeJogadores.size > 2) {
                             pegarRodada(id_sessao)
                             parametros.putInt("rodada", rodada)
                             navController!!.navigate(R.id.action_roomAcessNameFragment_to_aguardandoRodadaFragment, parametros)

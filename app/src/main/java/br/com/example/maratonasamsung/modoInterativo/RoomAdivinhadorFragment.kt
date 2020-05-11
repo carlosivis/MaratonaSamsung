@@ -157,6 +157,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
                     }
                 }
                 else {
+                    spinnerResposta.setSelection(0)
                     val texto = "Você já acertou a doença!"
                     val duracao = Toast.LENGTH_SHORT
                     val toast = Toast.makeText(context, texto, duracao)
@@ -293,12 +294,14 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
                     if (resposta == doenca) {
                         clicavel = false
                         jogadorUpdate(rodada, false)
+                        spinnerResposta.setSelection(0)
                         val texto = "Parabéns, você acertou!"
                         val duracao = Toast.LENGTH_SHORT
                         val toast = Toast.makeText(context, texto, duracao)
                         toast.show()
                     }
                     else {
+                        spinnerResposta.setSelection(0)
                         val texto = "Resposta incorreta, tente novamente"
                         val duracao = Toast.LENGTH_SHORT
                         val toast = Toast.makeText(context, texto, duracao)
