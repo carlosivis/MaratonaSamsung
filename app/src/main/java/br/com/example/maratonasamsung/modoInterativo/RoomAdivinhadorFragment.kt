@@ -105,6 +105,10 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
         spinnerResposta.adapter = spinnerAdapter
 
         chronometro()
+        //Tentativa de fazer a rodada ficar certo (Fazer teste verificando se quando eu mando a rodada pro jogadorUpdate
+        // tá certo, comparar com o diqueiro dicas, que usa rodada pra pegar os sintomas, talvez lá esteja errado tbm, mas
+        // que eu saiba, não)
+        pegarRodadaDoenca(id_sessao)
         dicas(id_sessao)
         ranking(id_sessao)
 
@@ -176,6 +180,29 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
             onPause()
             onCancelPendingInputEvents()
         }
+    }
+
+    fun pegarRodadaDoenca(id_sessao: Int) {
+        Service.retrofit.listarSessao(
+            id_sessao = id_sessao
+        ).enqueue(object : Callback<SessaoResponseListing> {
+            override fun onFailure(call: Call<SessaoResponseListing>, t: Throwable) {
+                Log.d("Deu ruim", t.toString())
+            }
+            override fun onResponse(call: Call<SessaoResponseListing>, response: Response<SessaoResponseListing>) {
+                Log.d("Nice", response.toString())
+
+                if (response.isSuccessful) {
+                    val resposta = response.body()!!
+                    rodada = resposta.sessao.rodada
+                    doencaRodada = resposta.ultimaDoenca
+                }
+                else {
+                    Log.d("Erro do banco", response.message())
+                    context?.let { ErrorCases().error(it)}
+                }
+            }
+        })
     }
 
     fun ranking(id_sessao: Int){
@@ -255,8 +282,6 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
                         resposta.dicas.transmicao.forEach { listDicas.add(it.nome) }
 
                     configureRecyclerViewDicas(listDicas)
-                    rodada = resposta.sessao.rodada
-                    doencaRodada = resposta.ultimaDoenca
                 }
                 else {
                     Log.d("Erro banco: Dicas", response.message())

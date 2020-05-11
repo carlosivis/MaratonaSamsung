@@ -77,7 +77,7 @@ class RoomDiqueiroDoencaFragment : Fragment() { //, View.OnClickListener
         val doencas = requireArguments().getStringArrayList("doencas")
 
 //        chronometro()
-        listarSessao(id_sessao)
+        pegarRodada(id_sessao)
 
         timerCronometro.schedule(5000){
             parametros.putInt("id_sessao", id_sessao)
@@ -90,7 +90,7 @@ class RoomDiqueiroDoencaFragment : Fragment() { //, View.OnClickListener
         }
     }
 
-    fun listarSessao(id_sessao: Int) {
+    fun pegarRodada(id_sessao: Int) {
         Service.retrofit.listarSessao(
             id_sessao = id_sessao
         ).enqueue(object : Callback<SessaoResponseListing> {
