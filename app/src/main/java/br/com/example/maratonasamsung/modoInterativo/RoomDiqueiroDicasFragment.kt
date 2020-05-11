@@ -22,7 +22,6 @@ import br.com.example.maratonasamsung.model.Requests.*
 import br.com.example.maratonasamsung.model.Responses.*
 import br.com.example.maratonasamsung.service.ErrorCases
 import br.com.example.maratonasamsung.service.Service
-import kotlinx.android.synthetic.main.fragment_item_choose.*
 import kotlinx.android.synthetic.main.fragment_room_diqueiro_dicas.*
 import kotlinx.android.synthetic.main.fragment_room_diqueiro_dicas.recyclerRanking
 import retrofit2.Call
@@ -93,6 +92,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
         val doencas = requireArguments().getStringArrayList("doencas")
 
         chronometro()
+        definirDoenca()
         sintomas(doenca)
         prevencoes(doenca)
         transmicoes(doenca)
@@ -222,6 +222,32 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
         timerRanking.schedule(2000) {
             ranking(id_sessao)
         }
+    }
+
+    fun definirDoenca(){
+        val id_sessao = requireArguments().getInt("id_sessao")
+        val rodada = requireArguments().getInt("rodada")
+        val doenca: String = requireArguments().getString("doenca").toString()
+
+        Service.retrofit.editarSessao(
+            sessao = EditarSessaoRequest(
+                id_sessao = id_sessao,
+                rodada = rodada,
+                doenca = doenca
+            )
+        ).enqueue(object : Callback<SessaoResponseEditing>{
+            override fun onFailure(call: Call<SessaoResponseEditing>, t: Throwable) {
+                Log.d("Ruim: EditarSessao", t.toString())
+            }
+            override fun onResponse(call: Call<SessaoResponseEditing>, response: Response<SessaoResponseEditing>) {
+                Log.d("Bom: EditarSessao", response.body().toString())
+
+                if (!response.isSuccessful) {
+                    Log.d("Erro banco: EditarSes", response.message())
+                    context?.let { ErrorCases().error(it)}
+                }
+            }
+        })
     }
 
     fun populaSpinnerSintoma(sintomas: ArrayList<String>) {
@@ -466,7 +492,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
 
     fun editarRodada(id_sessao: Int, doenca: String){
         Service.retrofit.editarRodada(
-            sessao = EditarRodadaRequest(
+            sessao = EditarSessaoRequest(
                 id_sessao = id_sessao,
                 rodada = (rodada+1),
                 doenca = doenca
