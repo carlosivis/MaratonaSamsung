@@ -28,7 +28,6 @@ class AguardandoRodadaFragment : Fragment() {
 
     var navController: NavController? = null
     val timerRodada = Timer()
-    var criouJogador = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -81,17 +80,6 @@ class AguardandoRodadaFragment : Fragment() {
                         timerRodada.purge()
 
                         jogadorNovo(id_sessao)
-
-                        if(criouJogador) {
-                            val jogador = requireArguments().getString("jogador_nome").toString()
-                            val doencas = requireArguments().getStringArrayList("doencas")
-
-                            val parametros = Bundle()
-                            parametros.putInt("id_sessao", id_sessao)
-                            parametros.putString("jogador_nome", jogador)
-                            parametros.putStringArrayList("doencas", doencas)
-                            navController!!.navigate(R.id.action_aguardandoRodadaFragment_to_placeholderRodadaFragment, parametros)
-                        }
                     }
                 }
                 else {
@@ -125,7 +113,6 @@ class AguardandoRodadaFragment : Fragment() {
                         val doencas = requireArguments().getStringArrayList("doencas")
 
                         val parametrosAcessName = Bundle()
-                        parametrosAcessName.putInt("id_sessao", id_sessao)
                         parametrosAcessName.putStringArrayList("doencas", doencas)
 
                         if (jogador.message == "Esse nome já existe") {
@@ -144,8 +131,16 @@ class AguardandoRodadaFragment : Fragment() {
                             navController!!.navigate(R.id.action_aguardandoRodadaFragment_to_roomAcessNameFragment, parametrosAcessName)
                         }
                     }
-                    else
-                        criouJogador = true
+                    else {
+                        val jogador = requireArguments().getString("jogador_nome").toString()
+                        val doencas = requireArguments().getStringArrayList("doencas")
+
+                        val parametros = Bundle()
+                        parametros.putInt("id_sessao", id_sessao)
+                        parametros.putString("jogador_nome", jogador)
+                        parametros.putStringArrayList("doencas", doencas)
+                        navController!!.navigate(R.id.action_aguardandoRodadaFragment_to_placeholderRodadaFragment, parametros)
+                    }
                 }
                 else {
                     Log.d("Erro banco: JogadorNovo", response.message())
