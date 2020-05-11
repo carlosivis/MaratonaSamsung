@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -85,15 +86,23 @@ class PlaceholderRodadaFragment : Fragment() {
                 if (response.isSuccessful) {
                     val resposta = response.body()!!
 
-                    diqueiro = resposta.darDica.nome
-                    val jogador = requireArguments().getString("jogador_nome").toString()
+                    if (!resposta.status) {
+                        val texto = "Erro ao atualizar ranking"
+                        val duracao = Toast.LENGTH_SHORT
+                        val toast = Toast.makeText(context, texto, duracao)
+                        toast.show()
+                    }
+                    else {
+                        diqueiro = resposta.darDica.nome
+                        val jogador = requireArguments().getString("jogador_nome").toString()
 
-                    Log.d("Jogadores","$jogador - $diqueiro")
+                        Log.d("Jogadores","$jogador - $diqueiro")
 
-                    if (jogador == diqueiro)
-                        txtTipoJogador.text = "Agora você será o Diqueiro"
-                    else
-                        txtTipoJogador.text = "Agora você será o Adivinhador"
+                        if (jogador == diqueiro)
+                            txtTipoJogador.text = "Agora você será o Diqueiro"
+                        else
+                            txtTipoJogador.text = "Agora você será o Adivinhador"
+                    }
                 }
                 else {
                     Log.d("Erro banco: Ranking", response.message())

@@ -217,26 +217,35 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
 
                 if (response.isSuccessful) {
                     val ranking = response.body()!!
-                    vencedor.putString("vencedor", ranking.jogadores.first().nome)
-                    configureRecyclerViewRanking(ranking)
 
-                    val quantidadeJogadores: ArrayList<String> = arrayListOf("")
-                    ranking.jogadores.forEach { quantidadeJogadores.add((it.nome)) }
+                    if (!ranking.status) {
+                        val texto = "Erro ao atualizar ranking"
+                        val duracao = Toast.LENGTH_SHORT
+                        val toast = Toast.makeText(context, texto, duracao)
+                        toast.show()
+                    }
+                    else {
+                        vencedor.putString("vencedor", ranking.jogadores.first().nome)
+                        configureRecyclerViewRanking(ranking)
 
-                    quantidadeJogadores.removeAt(0)
+                        val quantidadeJogadores: ArrayList<String> = arrayListOf("")
+                        ranking.jogadores.forEach { quantidadeJogadores.add((it.nome)) }
 
-                    if (quantidadeJogadores.size < 2) {
-                        val jogador = requireArguments().getString("jogador_nome").toString()
+                        quantidadeJogadores.removeAt(0)
 
-                        tempoCronometro.stop()
-                        timerCronometro.cancel()
-                        timerCronometro.purge()
-                        timerRanking.cancel()
-                        timerRanking.purge()
-                        timerDicas.cancel()
-                        timerDicas.purge()
-                        jogadorEncerrar(id_sessao, jogador)
-                        navController!!.navigate(R.id.action_roomAdivinhadorFragment_to_mainFragment)
+                        if (quantidadeJogadores.size < 2) {
+                            val jogador = requireArguments().getString("jogador_nome").toString()
+
+                            tempoCronometro.stop()
+                            timerCronometro.cancel()
+                            timerCronometro.purge()
+                            timerRanking.cancel()
+                            timerRanking.purge()
+                            timerDicas.cancel()
+                            timerDicas.purge()
+                            jogadorEncerrar(id_sessao, jogador)
+                            navController!!.navigate(R.id.action_roomAdivinhadorFragment_to_mainFragment)
+                        }
                     }
                 }
                 else {

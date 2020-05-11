@@ -189,28 +189,36 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                 if (response.isSuccessful) {
                     val ranking = response.body()!!
 
-                    vencedor.putString("vencedor", ranking.jogadores.first().nome)
-
-                    recyclerRanking.apply {
-                        layoutManager = LinearLayoutManager(activity)
-                        adapter = RankingAdapter(response.body()!!)
+                    if (!ranking.status) {
+                        val texto = "Erro ao atualizar ranking"
+                        val duracao = Toast.LENGTH_SHORT
+                        val toast = Toast.makeText(context, texto, duracao)
+                        toast.show()
                     }
+                    else {
+                        vencedor.putString("vencedor", ranking.jogadores.first().nome)
 
-                    val quantidadeJogadores: ArrayList<String> = arrayListOf("")
-                    ranking.jogadores.forEach { quantidadeJogadores.add((it.nome)) }
+                        recyclerRanking.apply {
+                            layoutManager = LinearLayoutManager(activity)
+                            adapter = RankingAdapter(response.body()!!)
+                        }
 
-                    quantidadeJogadores.removeAt(0)
+                        val quantidadeJogadores: ArrayList<String> = arrayListOf("")
+                        ranking.jogadores.forEach { quantidadeJogadores.add((it.nome)) }
 
-                    if (quantidadeJogadores.size < 2) {
-                        val jogador = requireArguments().getString("jogador_nome").toString()
+                        quantidadeJogadores.removeAt(0)
 
-                        diqueirotempoCronometro.stop()
-                        timerCronometro.cancel()
-                        timerCronometro.purge()
-                        timerRanking.cancel()
-                        timerRanking.purge()
-                        jogadorEncerrar(id_sessao, jogador)
-                        navController!!.navigate(R.id.action_roomDiqueiroDicasFragment_to_mainFragment)
+                        if (quantidadeJogadores.size < 2) {
+                            val jogador = requireArguments().getString("jogador_nome").toString()
+
+                            diqueirotempoCronometro.stop()
+                            timerCronometro.cancel()
+                            timerCronometro.purge()
+                            timerRanking.cancel()
+                            timerRanking.purge()
+                            jogadorEncerrar(id_sessao, jogador)
+                            navController!!.navigate(R.id.action_roomDiqueiroDicasFragment_to_mainFragment)
+                        }
                     }
                 }
                 else {

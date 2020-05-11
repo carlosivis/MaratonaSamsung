@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -68,24 +69,32 @@ class AguardandoJogadoresFragment : Fragment() {
                 if (response.isSuccessful) {
                     val jogadores = response.body()!!
 
-                    val quantidadeJogadores: ArrayList<String> = arrayListOf("")
-                    jogadores.jogadores.forEach { quantidadeJogadores.add((it.nome)) }
+                    if (!jogadores.status) {
+                        val texto = "Erro ao atualizar ranking"
+                        val duracao = Toast.LENGTH_SHORT
+                        val toast = Toast.makeText(context, texto, duracao)
+                        toast.show()
+                    }
+                    else {
+                        val quantidadeJogadores: ArrayList<String> = arrayListOf("")
+                        jogadores.jogadores.forEach { quantidadeJogadores.add((it.nome)) }
 
-                    quantidadeJogadores.removeAt(0)
+                        quantidadeJogadores.removeAt(0)
 
-                    if (quantidadeJogadores.size > 1) {
-                        timerJogadores.cancel()
-                        timerJogadores.purge()
+                        if (quantidadeJogadores.size > 1) {
+                            timerJogadores.cancel()
+                            timerJogadores.purge()
 
-                        val jogador = requireArguments().getString("jogador_nome").toString()
-                        val doencas = requireArguments().getStringArrayList("doencas")
+                            val jogador = requireArguments().getString("jogador_nome").toString()
+                            val doencas = requireArguments().getStringArrayList("doencas")
 
-                        val parametros = Bundle()
-                        parametros.putInt("id_sessao", id_sessao)
-                        parametros.putString("jogador_nome", jogador)
-                        parametros.putStringArrayList("doencas", doencas)
+                            val parametros = Bundle()
+                            parametros.putInt("id_sessao", id_sessao)
+                            parametros.putString("jogador_nome", jogador)
+                            parametros.putStringArrayList("doencas", doencas)
 
-                        navController!!.navigate(R.id.action_aguardandoJogadoresFragment_to_roomDiqueiroDoencaFragment, parametros)
+                            navController!!.navigate(R.id.action_aguardandoJogadoresFragment_to_roomDiqueiroDoencaFragment, parametros)
+                        }
                     }
                 }
                 else {
