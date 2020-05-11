@@ -223,6 +223,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
                         val duracao = Toast.LENGTH_SHORT
                         val toast = Toast.makeText(context, texto, duracao)
                         toast.show()
+                        configureRecyclerViewRanking(ranking)
                     }
                     else {
                         vencedor.putString("vencedor", ranking.jogadores.first().nome)
@@ -254,7 +255,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
                 }
             }
         })
-        timerRanking.schedule(2000) {
+        timerRanking.schedule(10000) {
             ranking(id_sessao)
         }
     }
