@@ -329,6 +329,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
                     if (resposta == doenca) {
                         clicavel = false
                         jogadorUpdate(rodada, false)
+                        ranking(id_sessao)
                         spinnerResposta.setSelection(0)
                         val texto = "Parabéns, você acertou!"
                         val duracao = Toast.LENGTH_SHORT
