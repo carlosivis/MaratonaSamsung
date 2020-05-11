@@ -144,10 +144,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
             R.id.adivinhadorBtnAdivinhar -> {
                 val resposta = spinnerResposta.selectedItem.toString()
 
-                if(!clicavel)
-                    adivinhadorBtnAdivinhar.isClickable = false
-
-                if(adivinhadorBtnAdivinhar.isClickable) {
+                if(clicavel) {
                     if(resposta.isEmpty()) {
                         val texto = "Selecione uma doença como resposta"
                         val duracao = Toast.LENGTH_SHORT
@@ -332,7 +329,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
             override fun onResponse(call: Call<JogadorResponse>, response: Response<JogadorResponse>) {
                 Log.d("Bom: Jogador Update", response.toString())
 
-                if (!response.isSuccessful) {
+                if (response.code() == 500) {
                     Log.d("Erro banco: JogUpdate", response.message())
                     context?.let { ErrorCases().error(it)}
                 }
@@ -354,7 +351,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
             override fun onResponse(call: Call<JogadorEncerra>, response: Response<JogadorEncerra>) {
                 Log.d("Bom: Jogador Encerrar", response.body().toString())
 
-                if (!response.isSuccessful) {
+                if (response.code() == 500) {
                     Log.d("Erro banco: JogUpdate", response.message())
                     context?.let { ErrorCases().error(it)}
                 }
