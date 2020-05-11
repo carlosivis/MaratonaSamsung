@@ -225,7 +225,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
     private fun configureRecyclerViewDicas(list: ArrayList<String>) {
         dicasAdapter = DicasAdapter(list)
         recyclerDicas.apply {
-            layoutManager = LinearLayoutManager(context)
+            layoutManager = LinearLayoutManager(activity)
             adapter= dicasAdapter
             onCancelPendingInputEvents()
             onPause()
