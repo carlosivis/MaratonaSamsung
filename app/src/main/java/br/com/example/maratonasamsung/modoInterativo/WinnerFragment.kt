@@ -1,6 +1,6 @@
 package br.com.example.maratonasamsung.modoInterativo
 
-import android.app.AlertDialog
+import androidx.appcompat.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
