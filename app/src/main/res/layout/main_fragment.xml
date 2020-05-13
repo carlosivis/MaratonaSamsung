@@ -23,7 +23,6 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/roundbutton"
                 android:ems="9"
-                android:shadowColor="#FFFFFF"
                 android:text="@string/estudo"
                 android:textSize="18sp" />
 

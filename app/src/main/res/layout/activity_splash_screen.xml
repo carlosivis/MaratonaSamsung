@@ -39,8 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/textView1"
         android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true"
-        android:indeterminateTint="@color/colorText" />
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:id="@+id/textView1"

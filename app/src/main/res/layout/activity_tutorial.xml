@@ -59,7 +59,7 @@
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@+id/btn_next"
             android:layout_centerInParent="true"
-            android:text="1/4"
+            android:text="@string/umdequatro"
             android:textSize="18sp" />
 
         <ImageButton
