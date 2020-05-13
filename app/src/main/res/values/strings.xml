@@ -20,11 +20,11 @@
     <string name="txt_senha">Senha:</string>
 
     <string name="txt_escolha_doenca">Escolha uma doença:</string>
-    <string name="txt_resposta">Resposta</string>
+    <string name="txt_resposta">Sua resposta</string>
 
-    <string name="txt_sintomas">Sintoma(s)</string>
-    <string name="txt_prevencoes">Prevenção(ões)</string>
-    <string name="txt_tranmissoes">Transmissão(ões)</string>
+    <string name="txt_sintomas">Sintomas disponíveis</string>
+    <string name="txt_prevencoes">Prevenções disponíveis</string>
+    <string name="txt_tranmissoes">Transmissões disponíveis</string>
 
 
     <string name="txt_diqueiro">Diqueiro</string>
@@ -62,7 +62,7 @@
     <string name="senha">Inserir senha</string>
     <string name="nomeUser">Inserir o nome do usuário</string>
     <string name="ranking">Ranking</string>
-    <string name="dicas">Dicas</string>
+    <string name="dicas">Dicas enviadas pelo Diqueiro</string>
     <string name="labelGear">Ilustração de um ponto de interrogação</string>
     <string name="labelBooks">Ilustração de um livro e, acima, um cérebro</string>
     <string name="labelGame">Ilustração de um controle de videogame</string>

@@ -44,7 +44,7 @@
             android:text="@string/ranking"
             android:layout_gravity="center"
             android:textColor="@color/colorText"
-            android:textSize="25sp" />
+            android:textSize="20sp" />
 
         <Chronometer
             android:id="@+id/tempoCronometro"
@@ -77,7 +77,7 @@
             android:shadowColor="@color/colorAccent"
             android:text="@string/dicas"
             android:textColor="@color/colorText"
-            android:textSize="25sp" />
+            android:textSize="20sp"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerDicas"
@@ -97,7 +97,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/spinnerResposta"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
         android:shadowColor="@color/colorAccent"
         android:text="@string/txt_resposta"
         android:textColor="@color/colorText"
@@ -122,8 +122,7 @@
         android:layout_alignParentBottom="true"
         android:background="@drawable/roundbutton"
         android:ems="4"
-        android:text="@string/btn_adivinhar"
-        android:textColor="@color/colorText" />
+        android:text="@string/btn_adivinhar" />
 
     <ProgressBar
         android:id="@+id/adivinhadorProgressBar"
@@ -132,8 +131,8 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/adivinhadorBtnAdivinhar"
         android:layout_alignBottom="@+id/adivinhadorBtnAdivinhar"
-        android:layout_alignLeft="@+id/adivinhadorBtnAdivinhar"
-        android:layout_alignRight="@+id/adivinhadorBtnAdivinhar"/>
+        android:layout_alignStart="@+id/adivinhadorBtnAdivinhar"
+        android:layout_alignEnd="@+id/adivinhadorBtnAdivinhar"/>
 
     <TextView
         android:id="@+id/adivinhadorTxtAcertou"

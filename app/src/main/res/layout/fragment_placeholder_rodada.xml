@@ -18,9 +18,11 @@
             android:id="@+id/txtDoencaRodada"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:layout_centerHorizontal="true"
             tools:text="A doença era:"
-            android:textSize="20sp"
+            android:layout_marginBottom="40dp"
+            android:textSize="25sp"
             />
         <TextView
             android:id="@+id/txtTipoJogador"

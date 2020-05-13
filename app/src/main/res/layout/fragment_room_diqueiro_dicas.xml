@@ -36,7 +36,7 @@
             android:text="@string/ranking"
             android:layout_gravity="center"
             android:textColor="@color/colorText"
-            android:textSize="25sp" />
+            android:textSize="20sp" />
 
         <Chronometer
             android:id="@+id/diqueirotempoCronometro"
@@ -53,18 +53,42 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/border"
-        android:layout_above="@+id/nomeDoenca"
+        android:layout_above="@+id/linearLayout2"
         android:layout_below="@+id/linearLayout"
         tools:listitem="@layout/recycler_view_ranking" />
 
+    <LinearLayout
+        android:id="@id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_above="@id/envieDicas">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_item"
+            android:layout_marginEnd="10dp"
+            android:layout_gravity="center"
+            />
+        <TextView
+            android:id="@+id/nomeDoenca"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_gravity="center"
+            tools:text="DOENÇA SELECIONADA: XX" />
+    </LinearLayout>
+
     <TextView
-        android:id="@+id/nomeDoenca"
+        android:id="@+id/envieDicas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/diqueiroTxtSintomas"
-        android:textSize="20sp"
-        android:layout_marginTop="20dp"
-        tools:text="DOENÇA SELECIONADA: XX" />
+        android:layout_marginTop="10dp"
+        android:text="Envie dicas para os Adivinhadores:"
+        android:textSize="15sp"
+        android:layout_above="@+id/diqueiroTxtSintomas"/>
 
     <TextView
         android:id="@+id/diqueiroTxtSintomas"

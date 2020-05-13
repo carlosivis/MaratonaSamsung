@@ -103,7 +103,7 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/acessBtnContinuar"
         android:layout_alignBottom="@+id/acessBtnContinuar"
-        android:layout_alignLeft="@+id/acessBtnContinuar"
-        android:layout_alignRight="@+id/acessBtnContinuar"/>
+        android:layout_alignStart="@+id/acessBtnContinuar"
+        android:layout_alignEnd="@+id/acessBtnContinuar"/>
 
 </RelativeLayout>
