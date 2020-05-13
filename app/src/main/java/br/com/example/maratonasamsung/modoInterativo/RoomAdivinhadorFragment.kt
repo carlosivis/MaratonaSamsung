@@ -100,8 +100,8 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
 
         adivinhadorProgressBar.visibility = View.INVISIBLE
         adivinhadorTxtAcertou.visibility = View.INVISIBLE
-
-        doencas!!.toMutableList()
+        doencas!!.toArray()
+        doencas.sort()
         context?.let {
             spinnerAdapter = ArrayAdapter(it, android.R.layout.simple_spinner_item, doencas)
         }
