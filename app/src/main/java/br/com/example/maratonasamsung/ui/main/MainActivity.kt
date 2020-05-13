@@ -98,5 +98,4 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             R.id.txtDoencaNomeLista -> navController!!.navigate(R.id.action_chooseFragment_to_itemChooseFragment)
         }
     }
-
 }
