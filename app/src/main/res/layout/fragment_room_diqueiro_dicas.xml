@@ -114,7 +114,8 @@
         android:layout_marginTop="30dp"
         android:background="@drawable/roundbutton"
         android:ems="5"
-        android:text="@string/btn_enviar_dica" />
+        android:text="@string/btn_enviar_dica"
+        />
 
     <ProgressBar
         android:id="@+id/diqueiroProgressBar"
