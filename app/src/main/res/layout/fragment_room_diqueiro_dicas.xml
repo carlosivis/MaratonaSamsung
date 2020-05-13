@@ -20,15 +20,33 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp" />
 
-    <Chronometer
-        android:id="@+id/diqueirotempoCronometro"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:fontFamily="@font/lanehum"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@id/txtDiqueiro"
-        android:layout_marginBottom="20dp" />
+        android:layout_below="@+id/txtDiqueiro"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/adivinhadorTxtRanking"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:shadowColor="@color/colorAccent"
+            android:text="@string/ranking"
+            android:layout_gravity="center"
+            android:textColor="@color/colorText"
+            android:textSize="25sp" />
+
+        <Chronometer
+            android:id="@+id/diqueirotempoCronometro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="end"
+            android:fontFamily="@font/lanehum"
+            />
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerRanking"
@@ -36,7 +54,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/border"
         android:layout_above="@+id/nomeDoenca"
-        android:layout_below="@+id/diqueirotempoCronometro"
+        android:layout_below="@+id/linearLayout"
         tools:listitem="@layout/recycler_view_ranking" />
 
     <TextView
