@@ -15,12 +15,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true">
-
+        <TextView
+            android:id="@+id/txtDoencaRodada"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            tools:text="A doença era:"
+            android:textSize="20sp"
+            />
         <TextView
             android:id="@+id/txtTipoJogador"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
+            android:layout_below="@id/txtDoencaRodada"
             tools:text="Vc é X tipo de jogador"
             android:textAlignment="center"
             android:textSize="20sp" />

@@ -105,6 +105,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
             parametros.putInt("id_sessao", id_sessao)
             parametros.putString("jogador_nome", jogador)
             parametros.putStringArrayList("doencas", doencas)
+            parametros.putString("ultimaDoenca", doenca)
 
             editarRodada(id_sessao, doenca)
             diqueirotempoCronometro.stop()

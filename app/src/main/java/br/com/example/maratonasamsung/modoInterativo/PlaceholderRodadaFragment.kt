@@ -56,8 +56,12 @@ class PlaceholderRodadaFragment : Fragment() {
         val id_sessao = requireArguments().getInt("id_sessao")
         val jogador = requireArguments().getString("jogador_nome").toString()
         val doencas = requireArguments().getStringArrayList("doencas")
+        val ultimaDoenca = requireArguments().getString("ultimaDoenca")
+
 
         ranking(id_sessao)
+        txtDoencaRodada.text = "A Doença era: $ultimaDoenca"
+
 
         val parametros = Bundle()
         parametros.putInt("id_sessao", id_sessao)
