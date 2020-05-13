@@ -8,7 +8,7 @@
     <string name="btn_continuar">Continuar</string>
 
     <string name="btn_enviar_dica">Enviar dica</string>
-    <string name="btn_adivinhar">Adivinhar</string>
+    <string name="btn_adivinhar">Enviar tentativa</string>
 
     <string name="txt_modo_interativo">Modo Interativo</string>
 

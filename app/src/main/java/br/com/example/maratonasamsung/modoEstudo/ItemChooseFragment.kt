@@ -33,9 +33,9 @@ class ItemChooseFragment : Fragment() {
             "PROTOZOARIOS" -> imageDoenca.setImageResource(R.drawable.protozoario)
         }
         txtAgente.text = "Agente: ${param.agente}"
-        txtArraySintoma.text = "\u25CF " + param.sintomas.joinToString(" \n\u25CF ") { it.nome }
-        txtPrevencao.text = "\u25CF " + param.prevencao.joinToString(" \n\u25CF ") { it.nome }
-        txtTransmissao.text = "\u25CF " + param.transmicao.joinToString(" \n\u25CF ") { it.nome }
+        txtArraySintoma.text = "\u00B7 "+param.sintomas.joinToString(" \n\u00B7 ") { it.nome }
+        txtPrevencao.text = "\u00B7 " + param.prevencao.joinToString(" \n\u00B7 ") { it.nome }
+        txtTransmissao.text = "\u00B7 " + param.transmicao.joinToString(" \n\u00B7 ") { it.nome }
 
     }
 }

@@ -51,12 +51,12 @@ class ChooseFragment : Fragment(), View.OnClickListener {
         doencas()
         navController = Navigation.findNavController(view)
 
-        view.findViewById<ImageButton>(R.id.btn_back).setOnClickListener(this)
+        //view.findViewById<ImageButton>(R.id.btn_back).setOnClickListener(this)
         }
 
     override fun onClick(v: View?) {
         when (v!!.id) {
-            R.id.btn_back -> activity?.onBackPressed()
+            //R.id.btn_back -> activity?.onBackPressed()
         }
     }
   
