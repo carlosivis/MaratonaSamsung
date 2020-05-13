@@ -12,6 +12,8 @@ import androidx.activity.addCallback
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import br.com.example.maratonasamsung.R
+import br.com.example.maratonasamsung.model.Requests.JogadorRequest
+import br.com.example.maratonasamsung.model.Responses.JogadorEncerra
 import br.com.example.maratonasamsung.model.Responses.RankingResponse
 import br.com.example.maratonasamsung.service.ErrorCases
 import br.com.example.maratonasamsung.service.Service
@@ -30,17 +32,28 @@ class AguardandoJogadoresFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_aguardando_jogadores, container, false)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val jogador = requireArguments().getString("jogador_nome").toString()
+        val id_sessao = requireArguments().getInt("id_sessao")
+
         val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
             activity?.let {
                 AlertDialog.Builder(it)
-                    .setTitle("Você não pode sair dessa tela")
-                    .setNegativeButton(android.R.string.ok) { dialog, which -> }
+                    .setTitle(R.string.sairJogo)
+                    .setPositiveButton(R.string.sair) { dialog, which ->
+                        navController!!.navigate(R.id.action_aguardandoJogadoresFragment_to_mainFragment)
+                        timerJogadores.cancel()
+                        timerJogadores.purge()
+                        jogadorEncerrar(id_sessao, jogador)
+                    }
+                    .setNegativeButton(R.string.cancelar) { dialog, which -> }
                     .show()
             }
         }
@@ -106,5 +119,27 @@ class AguardandoJogadoresFragment : Fragment() {
         timerJogadores.schedule(1000) {
             jogadores(id_sessao)
         }
+    }
+
+    fun jogadorEncerrar(id_sessao: Int, jogador: String) {
+        Service.retrofit.jogadorEncerrar(
+            jogador = JogadorRequest(
+                id_sessao = id_sessao,
+                nome = jogador
+            )
+        ).enqueue(object : Callback<JogadorEncerra> {
+            override fun onFailure(call: Call<JogadorEncerra>, t: Throwable) {
+                Log.d("Ruim: Jogador Encerrar", t.toString())
+            }
+
+            override fun onResponse(call: Call<JogadorEncerra>, response: Response<JogadorEncerra>) {
+                Log.d("Bom: Jogador Encerrar", response.body().toString())
+
+                if (response.code() == 500) {
+                    Log.d("Erro banco: JogUpdate", response.message())
+                    context?.let { ErrorCases().error(it)}
+                }
+            }
+        })
     }
 }

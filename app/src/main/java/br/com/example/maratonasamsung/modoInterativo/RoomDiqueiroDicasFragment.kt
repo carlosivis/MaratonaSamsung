@@ -160,7 +160,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                         diqueiroProgressBar.visibility = View.VISIBLE;
                         clicavel = false
 
-                        editarSessaoSintoma(DicaUnicaSintoma(sintoma))
+                        editarSessaoSintoma(DicaUnicaSm;kpintoma(sintoma))
                         diqueiroSpinnerSintoma.setSelection(0)
                     }
                     else if(sintoma.isEmpty() && prevencao.isNotEmpty() && transmicao.isEmpty()) {

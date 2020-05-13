@@ -13,6 +13,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import br.com.example.maratonasamsung.R
 import br.com.example.maratonasamsung.model.Requests.JogadorRequest
+import br.com.example.maratonasamsung.model.Responses.JogadorEncerra
 import br.com.example.maratonasamsung.model.Responses.JogadorResponse
 import br.com.example.maratonasamsung.model.Responses.SessaoResponseListing
 import br.com.example.maratonasamsung.service.ErrorCases
@@ -40,11 +41,20 @@ class AguardandoRodadaFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val id_sessao = requireArguments().getInt("id_sessao")
+        val jogador = requireArguments().getString("jogador_nome").toString()
+
         val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
             activity?.let {
                 AlertDialog.Builder(it)
-                    .setTitle("Você não pode sair dessa tela")
-                    .setNegativeButton(android.R.string.ok) { dialog, which -> }
+                    .setTitle(R.string.sairJogo)
+                    .setPositiveButton(R.string.sair) { dialog, which ->
+                        navController!!.navigate(R.id.action_aguardandoRodadaFragment_to_mainFragment)
+                        timerRodada.cancel()
+                        timerRodada.purge()
+                        jogadorEncerrar(id_sessao, jogador)
+                    }
+                    .setNegativeButton(R.string.cancelar) { dialog, which -> }
                     .show()
             }
         }
@@ -144,6 +154,28 @@ class AguardandoRodadaFragment : Fragment() {
                 }
                 else {
                     Log.d("Erro banco: JogadorNovo", response.message())
+                    context?.let { ErrorCases().error(it)}
+                }
+            }
+        })
+    }
+
+    fun jogadorEncerrar(id_sessao: Int, jogador: String) {
+        Service.retrofit.jogadorEncerrar(
+            jogador = JogadorRequest(
+                id_sessao = id_sessao,
+                nome = jogador
+            )
+        ).enqueue(object : Callback<JogadorEncerra> {
+            override fun onFailure(call: Call<JogadorEncerra>, t: Throwable) {
+                Log.d("Ruim: Jogador Encerrar", t.toString())
+            }
+
+            override fun onResponse(call: Call<JogadorEncerra>, response: Response<JogadorEncerra>) {
+                Log.d("Bom: Jogador Encerrar", response.body().toString())
+
+                if (response.code() == 500) {
+                    Log.d("Erro banco: JogUpdate", response.message())
                     context?.let { ErrorCases().error(it)}
                 }
             }
