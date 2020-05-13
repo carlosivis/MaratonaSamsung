@@ -6,6 +6,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageButton
+import android.widget.ImageView
+import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -20,7 +24,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ChooseFragment : Fragment() {
+class ChooseFragment : Fragment(), View.OnClickListener {
 
     var navController: NavController? = null
     lateinit var list: List<DoencasResponse>
@@ -46,7 +50,15 @@ class ChooseFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         doencas()
         navController = Navigation.findNavController(view)
+
+        view.findViewById<ImageButton>(R.id.btn_back).setOnClickListener(this)
         }
+
+    override fun onClick(v: View?) {
+        when (v!!.id) {
+            R.id.btn_back -> activity?.onBackPressed()
+        }
+    }
   
     fun doencas() {
         Service.retrofit.doencas().enqueue(object : Callback<List<DoencasResponse>>{

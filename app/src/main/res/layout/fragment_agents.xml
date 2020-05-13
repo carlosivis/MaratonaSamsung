@@ -34,8 +34,7 @@
         android:id="@+id/linearLayout2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="50dp"
-
+        android:layout_marginBottom="40dp"
         android:layout_alignParentBottom="true"
         android:layout_below="@+id/textViewTitle">
 
@@ -47,7 +46,7 @@
             android:stretchColumns="*">
 
             <TableRow
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:layout_marginTop="20dp"
@@ -81,22 +80,27 @@
             </TableRow>
 
             <TableRow
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="40dp">
 
                 <TextView
                     android:text="@string/bacteria"
+                    android:textSize="18sp"
                     android:gravity="center"
+                    android:layout_gravity="center"
                     />
                 <TextView
                     android:text="@string/platelminto"
+                    android:textSize="18sp"
                     android:gravity="center"
+                    android:layout_gravity="center"
                     />
 
             </TableRow>
 
             <TableRow
+                android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:layout_marginBottom="20dp">
@@ -129,17 +133,22 @@
             </TableRow>
 
             <TableRow
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp">
 
                 <TextView
+                    android:layout_width="match_parent"
                     android:text="@string/protozoario"
                     android:gravity="center"
+                    android:textSize="18sp"
+                    android:layout_gravity="center"
                     />
                 <TextView
                     android:text="@string/virus"
+                    android:textSize="18sp"
                     android:gravity="center"
+                    android:layout_gravity="center"
                     />
 
             </TableRow>

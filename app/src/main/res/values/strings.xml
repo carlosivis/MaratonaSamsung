@@ -96,4 +96,5 @@
     <string name="aguardando_jogadores">Aguardando pelo menos mais um jogador para iniciar a rodada</string>
 
     <string name="transmissao">Transmissão</string>
+    <string name="labelSetaEsq">Seta para a esquerda</string>
 </resources>
