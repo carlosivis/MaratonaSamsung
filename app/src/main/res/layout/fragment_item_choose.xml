@@ -24,6 +24,7 @@
 
     <ScrollView
         android:id="@+id/scrView"
+        android:fadeScrollbars="false"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/txtDoencaNome">

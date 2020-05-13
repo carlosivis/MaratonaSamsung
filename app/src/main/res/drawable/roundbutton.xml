@@ -1,20 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <!-- "shadow" -->
-    <item>
-        <shape android:shape="rectangle">
-            <solid android:color="@android:color/black" />
-            <corners android:radius="12dp" />
-        </shape>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="false">
+        <layer-list>
+            <item>
+                <shape android:shape="rectangle">
+                    <solid android:color="@android:color/black" />
+                    <corners android:radius="12dp" />
+                </shape>
+            </item>
+            <item android:bottom="3px">
+                <shape android:shape="rectangle">
+                    <solid android:color="@color/colorGeralClaro" />
+                    <corners android:radius="12dp" />
+                </shape>
+            </item>
+        </layer-list>
     </item>
 
-
-    <item android:bottom="3px">
-        <shape android:shape="rectangle">
-            <solid android:color="@color/colorButton" />
-            <corners android:radius="12dp" />
-        </shape>
+    <item android:state_pressed="true">
+        <layer-list>
+            <item>
+                <shape android:shape="rectangle">
+                    <solid android:color="@android:color/black" />
+                    <corners android:radius="12dp" />
+                </shape>
+            </item>
+            <item android:bottom="3px">
+                <shape android:shape="rectangle">
+                    <solid android:color="@color/colorGeralMedio" />
+                    <corners android:radius="12dp" />
+                </shape>
+            </item>
+        </layer-list>
     </item>
-
-</layer-list>
+</selector>
