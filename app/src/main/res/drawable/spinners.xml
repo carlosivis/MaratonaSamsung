@@ -10,9 +10,7 @@
                     <stroke android:width="2dp" android:color="@android:color/white" />
                 </shape>
             </item>
-            <item>
-                <bitmap android:gravity="right|center_vertical" android:src="@android:drawable/arrow_down_float" />
-            </item>
+            <item android:drawable="@drawable/ic_spinner" android:gravity="center_vertical|end"/>
         </layer-list>
     </item>
 </selector>

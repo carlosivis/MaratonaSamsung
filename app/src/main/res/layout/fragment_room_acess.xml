@@ -101,9 +101,9 @@
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="280dp"
-        android:layout_marginBottom="2dp" />
+        android:layout_alignTop="@+id/acessBtnContinuar"
+        android:layout_alignBottom="@+id/acessBtnContinuar"
+        android:layout_alignStart="@+id/acessBtnContinuar"
+        android:layout_alignEnd="@+id/acessBtnContinuar"/>
 
 </RelativeLayout>

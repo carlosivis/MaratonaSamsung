@@ -93,6 +93,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
         val doencas = requireArguments().getStringArrayList("doencas")
 
         diqueiroProgressBar.visibility = View.INVISIBLE
+        Toast.makeText(context,"Você pode enviar varias dicas!", Toast.LENGTH_SHORT).show()
 
         chronometro()
         definirDoenca()
