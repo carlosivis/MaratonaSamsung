@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import br.com.example.maratonasamsung.R
+import kotlinx.android.synthetic.main.fragment_agents.*
 
 /**
  * A simple [Fragment] subclass.

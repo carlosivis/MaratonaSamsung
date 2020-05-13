@@ -80,6 +80,10 @@
         <item name="android:fontFamily">@font/lanehum</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:letterSpacing">0.1</item>
+        <item name="android:shadowColor">@android:color/black</item>
+        <item name="android:shadowDx">1</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">3</item>
     </style>
 
 
