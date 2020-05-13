@@ -50,8 +50,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/diqueiroTxtDoenca"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
-                android:indeterminateTint="@color/colorText" />
+                android:layout_marginTop="20dp" />
         </RelativeLayout>
     </RelativeLayout>
 </RelativeLayout>

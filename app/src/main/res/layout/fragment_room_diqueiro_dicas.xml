@@ -140,8 +140,9 @@
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="57dp" />
+        android:layout_alignTop="@+id/diqueiroBtnDicas"
+        android:layout_alignBottom="@+id/diqueiroBtnDicas"
+        android:layout_alignLeft="@+id/diqueiroBtnDicas"
+        android:layout_alignRight="@+id/diqueiroBtnDicas"/>
 
 </RelativeLayout>
