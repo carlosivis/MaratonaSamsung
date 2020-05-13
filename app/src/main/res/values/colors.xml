@@ -6,7 +6,7 @@
     <color name="colorBackground">#3c102f</color>
     <color name="colorText">#ffffff</color>
     <color name="colorButton">#581845</color>
-    <color name="colorteste"></color>
+    <color name="colorteste" />
 
     <color name="colorGeralBase">#542437</color>
     <color name="colorGeral1">#873F47</color>

@@ -72,7 +72,7 @@
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@+id/btn_end"
             android:layout_centerInParent="true"
-            android:text="4/4"
+            android:text="@string/quatrodequatro"
             android:textSize="18sp" />
 
         <ImageButton

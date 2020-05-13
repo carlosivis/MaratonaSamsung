@@ -97,4 +97,12 @@
 
     <string name="transmissao">Transmissão</string>
     <string name="labelSetaEsq">Seta para a esquerda</string>
+    <string name="umdequatro">1/4</string>
+    <string name="doisdequatro">2/4</string>
+    <string name="tresdequatro">3/4</string>
+    <string name="quatrodequatro">4/4</string>
+    <string name="aguardandoRodada">Aguardando próxima rodada...</string>
+    <string name="voceJaAcertou">Você já acertou, aguardar final da rodada</string>
+    <string name="sorteandoDoenca">Sorteando uma doença...</string>
+    <string name="jogoFim">Jogo finalizado! O(A) vencedor(a) foi</string>
 </resources>

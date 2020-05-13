@@ -48,7 +48,7 @@
 
                 <TextView
                     android:gravity="center"
-                    android:text="Jogo finalizado! O(A) vencedor(a) foi"
+                    android:text="@string/jogoFim"
                     android:textSize="25sp" />
 
             </TableRow>
