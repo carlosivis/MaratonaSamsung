@@ -42,6 +42,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
     var sintomasGlobal: ArrayList<String> = arrayListOf("")
     var prevencoesGlobal: ArrayList<String> = arrayListOf("")
     var transmicoesGlobal: ArrayList<String> = arrayListOf("")
+    var clicavel = true
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -91,6 +92,8 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
         val doenca: String = requireArguments().getString("doenca").toString()
         val doencas = requireArguments().getStringArrayList("doencas")
 
+        diqueiroProgressBar.visibility = View.INVISIBLE
+
         chronometro()
         definirDoenca()
         sintomas(doenca)
@@ -131,45 +134,60 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         when(v!!.id){
             R.id.diqueiroBtnDicas -> {
-                val sintoma: String =
-                    if (diqueiroSpinnerSintoma.visibility == View.VISIBLE) diqueiroSpinnerSintoma.selectedItem.toString()
-                    else ""
 
-                val prevencao: String =
-                    if (diqueiroSpinnerPrevencao.visibility == View.VISIBLE) diqueiroSpinnerPrevencao.selectedItem.toString()
-                    else ""
+                if(clicavel) {
+                    val sintoma: String =
+                        if (diqueiroSpinnerSintoma.visibility == View.VISIBLE) diqueiroSpinnerSintoma.selectedItem.toString()
+                        else ""
 
-                val transmicao: String =
-                    if (diqueiroSpinnerTransmicao.visibility == View.VISIBLE) diqueiroSpinnerTransmicao.selectedItem.toString()
-                    else ""
+                    val prevencao: String =
+                        if (diqueiroSpinnerPrevencao.visibility == View.VISIBLE) diqueiroSpinnerPrevencao.selectedItem.toString()
+                        else ""
 
-                if(sintoma.isEmpty() && prevencao.isEmpty() && transmicao.isEmpty()) {
-                    val texto = "Selecione uma dica"
-                    val duracao = Toast.LENGTH_SHORT
-                    val toast = Toast.makeText(context, texto, duracao)
-                    toast.show()
-                }
-                else if(sintoma.isNotEmpty() && prevencao.isEmpty() && transmicao.isEmpty()) {
-                    editarSessaoSintoma(DicaUnicaSintoma(sintoma))
-                    diqueiroSpinnerSintoma.setSelection(0)
-                }
-                else if(sintoma.isEmpty() && prevencao.isNotEmpty() && transmicao.isEmpty()) {
-                    editarSessaoPrevencao(DicaUnicaPrevencao(prevencao))
-                    diqueiroSpinnerSintoma.setSelection(0)
-                }
-                else if(sintoma.isEmpty() && prevencao.isEmpty() && transmicao.isNotEmpty()) {
-                    editarSessaoTransmicao(DicaUnicaTransmicao(transmicao))
-                    diqueiroSpinnerSintoma.setSelection(0)
-                }
-                else {
-                    val texto = "Você pode enviar apenas uma dica por vez"
-                    val duracao = Toast.LENGTH_SHORT
-                    val toast = Toast.makeText(context, texto, duracao)
-                    toast.show()
+                    val transmicao: String =
+                        if (diqueiroSpinnerTransmicao.visibility == View.VISIBLE) diqueiroSpinnerTransmicao.selectedItem.toString()
+                        else ""
 
-                    if (diqueiroSpinnerSintoma.visibility == View.VISIBLE) diqueiroSpinnerSintoma.setSelection(0)
-                    if (diqueiroSpinnerPrevencao.visibility == View.VISIBLE) diqueiroSpinnerPrevencao.setSelection(0)
-                    if (diqueiroSpinnerTransmicao.visibility == View.VISIBLE) diqueiroSpinnerTransmicao.setSelection(0)
+                    if(sintoma.isEmpty() && prevencao.isEmpty() && transmicao.isEmpty()) {
+                        val texto = "Selecione uma dica"
+                        val duracao = Toast.LENGTH_SHORT
+                        val toast = Toast.makeText(context, texto, duracao)
+                        toast.show()
+                    }
+                    else if(sintoma.isNotEmpty() && prevencao.isEmpty() && transmicao.isEmpty()) {
+                        diqueiroBtnDicas.setText("")
+                        diqueiroProgressBar.visibility = View.VISIBLE;
+                        clicavel = false
+
+                        editarSessaoSintoma(DicaUnicaSintoma(sintoma))
+                        diqueiroSpinnerSintoma.setSelection(0)
+                    }
+                    else if(sintoma.isEmpty() && prevencao.isNotEmpty() && transmicao.isEmpty()) {
+                        diqueiroBtnDicas.setText("")
+                        diqueiroProgressBar.visibility = View.VISIBLE;
+                        clicavel = false
+
+                        editarSessaoPrevencao(DicaUnicaPrevencao(prevencao))
+                        diqueiroSpinnerSintoma.setSelection(0)
+                    }
+                    else if(sintoma.isEmpty() && prevencao.isEmpty() && transmicao.isNotEmpty()) {
+                        diqueiroBtnDicas.setText("")
+                        diqueiroProgressBar.visibility = View.VISIBLE;
+                        clicavel = false
+
+                        editarSessaoTransmicao(DicaUnicaTransmicao(transmicao))
+                        diqueiroSpinnerSintoma.setSelection(0)
+                    }
+                    else {
+                        val texto = "Você pode enviar apenas uma dica por vez"
+                        val duracao = Toast.LENGTH_SHORT
+                        val toast = Toast.makeText(context, texto, duracao)
+                        toast.show()
+
+                        if (diqueiroSpinnerSintoma.visibility == View.VISIBLE) diqueiroSpinnerSintoma.setSelection(0)
+                        if (diqueiroSpinnerPrevencao.visibility == View.VISIBLE) diqueiroSpinnerPrevencao.setSelection(0)
+                        if (diqueiroSpinnerTransmicao.visibility == View.VISIBLE) diqueiroSpinnerTransmicao.setSelection(0)
+                    }
                 }
             }
         }
@@ -397,8 +415,17 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
             override fun onResponse(call: Call<SessaoResponseEditing>, response: Response<SessaoResponseEditing>) {
                 Log.d("Bom: EditarSessaoSint", response.body().toString())
 
+                clicavel = true
+                diqueiroBtnDicas.setText(R.string.btn_enviar_dica)
+                diqueiroProgressBar.visibility = View.INVISIBLE
+
                 if (response.isSuccessful) {
                     val sessao = response.body()!!
+
+                    val texto = "Dica enviada!"
+                    val duracao = Toast.LENGTH_SHORT
+                    val toast = Toast.makeText(context, texto, duracao)
+                    toast.show()
 
                     val sintomasSelecionados: ArrayList<String> = arrayListOf("")
                     sessao.dicas.sintomas.forEach { sintomasSelecionados.add((it.nome)) }
@@ -437,8 +464,17 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
             override fun onResponse(call: Call<SessaoResponseEditing>, response: Response<SessaoResponseEditing>) {
                 Log.d("Bom: EditarSessaoPrev", response.body().toString())
 
+                clicavel = true
+                diqueiroBtnDicas.setText(R.string.btn_enviar_dica)
+                diqueiroProgressBar.visibility = View.INVISIBLE
+
                 if (response.isSuccessful) {
                     val sessao = response.body()!!
+
+                    val texto = "Dica enviada!"
+                    val duracao = Toast.LENGTH_SHORT
+                    val toast = Toast.makeText(context, texto, duracao)
+                    toast.show()
 
                     val prevecoesSelecionados: ArrayList<String> = arrayListOf("")
                     sessao.dicas.sintomas.forEach { prevecoesSelecionados.add((it.nome)) }
@@ -477,8 +513,17 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
             override fun onResponse(call: Call<SessaoResponseEditing>, response: Response<SessaoResponseEditing>) {
                 Log.d("Bom: EditarSessaoTrans", response.body().toString())
 
+                clicavel = true
+                diqueiroBtnDicas.setText(R.string.btn_enviar_dica)
+                diqueiroProgressBar.visibility = View.INVISIBLE
+
                 if (response.isSuccessful) {
                     val sessao = response.body()!!
+
+                    val texto = "Dica enviada!"
+                    val duracao = Toast.LENGTH_SHORT
+                    val toast = Toast.makeText(context, texto, duracao)
+                    toast.show()
 
                     val transmicoesSelecionados: ArrayList<String> = arrayListOf("")
                     sessao.dicas.sintomas.forEach { transmicoesSelecionados.add((it.nome)) }

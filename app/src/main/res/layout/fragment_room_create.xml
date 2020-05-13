@@ -118,4 +118,14 @@
         android:ems="4"
         android:text="@string/btn_criar" />
 
+    <ProgressBar
+        android:id="@+id/createProgressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="38dp"
+        android:layout_height="35dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="6dp" />
+
 </RelativeLayout>

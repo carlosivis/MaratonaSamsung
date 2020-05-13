@@ -61,6 +61,7 @@
                 android:textCursorDrawable="@null"
                 android:textSize="18sp" />
         </RelativeLayout>
+
     </RelativeLayout>
 
     <Button
@@ -73,5 +74,14 @@
         android:text="@string/btn_acessar"
         android:layout_alignParentBottom="true"
         android:layout_marginTop="30dp" />
+
+    <ProgressBar
+        android:id="@+id/acessNameProgressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="40dp" />
 
 </RelativeLayout>

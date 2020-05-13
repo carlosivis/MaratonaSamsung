@@ -116,4 +116,13 @@
         android:ems="5"
         android:text="@string/btn_enviar_dica" />
 
+    <ProgressBar
+        android:id="@+id/diqueiroProgressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="57dp" />
+
 </RelativeLayout>

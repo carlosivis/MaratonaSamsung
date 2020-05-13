@@ -98,6 +98,9 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
         val doencas = requireArguments().getStringArrayList("doencas")
         val jogador = requireArguments().getString("jogador_nome").toString()
 
+        adivinhadorProgressBar.visibility = View.INVISIBLE
+        adivinhadorTxtAcertou.visibility = View.INVISIBLE
+
         doencas!!.toMutableList()
         context?.let {
             spinnerAdapter = ArrayAdapter(it, android.R.layout.simple_spinner_item, doencas)
@@ -105,9 +108,6 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
         spinnerResposta.adapter = spinnerAdapter
 
         chronometro()
-        //Tentativa de fazer a rodada ficar certo (Fazer teste verificando se quando eu mando a rodada pro jogadorUpdate
-        // tá certo, comparar com o diqueiro dicas, que usa rodada pra pegar os sintomas, talvez lá esteja errado tbm, mas
-        // que eu saiba, não)
         pegarRodadaDoenca(id_sessao)
         dicas(id_sessao)
         ranking(id_sessao)
@@ -126,7 +126,6 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
             timerDicas.purge()
             listDicas.clear()
 
-            //Porque a rodada 0 está sendo jogada (confirmar)
             if (rodada == 4){
                 jogadorEncerrar(id_sessao, jogador)
                 navController!!.navigate(R.id.action_roomAdivinhadorFragment_to_winnerFragment, vencedor)
@@ -156,16 +155,13 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
                         toast.show()
                     }
                     else {
+                        adivinhadorBtnAdivinhar.setText("")
+                        adivinhadorProgressBar.visibility = View.VISIBLE;
+                        clicavel = false
+
                         val id_sessao = requireArguments().getInt("id_sessao")
                         listarSessao(id_sessao)
                     }
-                }
-                else {
-                    spinnerResposta.setSelection(0)
-                    val texto = "Você já acertou a doença!"
-                    val duracao = Toast.LENGTH_SHORT
-                    val toast = Toast.makeText(context, texto, duracao)
-                    toast.show()
                 }
             }
         }
@@ -319,6 +315,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
 
                     val doencasSelecionadas: ArrayList<String> = arrayListOf("")
                     sessao.doencasSelecionadas.forEach { doencasSelecionadas.add((it.nome)) }
+
                     lateinit var doenca: String
                     doenca =
                         if (doencasSelecionadas.isNotEmpty()) doencasSelecionadas[doencasSelecionadas.lastIndex]
@@ -327,7 +324,6 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
                     val resposta = spinnerResposta.selectedItem.toString()
 
                     if (resposta == doenca) {
-                        clicavel = false
                         jogadorUpdate(rodada, false)
                         ranking(id_sessao)
                         spinnerResposta.setSelection(0)
@@ -335,6 +331,12 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
                         val duracao = Toast.LENGTH_SHORT
                         val toast = Toast.makeText(context, texto, duracao)
                         toast.show()
+
+                        textResposta.visibility = View.INVISIBLE
+                        spinnerResposta.visibility = View.INVISIBLE
+                        adivinhadorBtnAdivinhar.visibility = View.INVISIBLE
+                        adivinhadorProgressBar.visibility = View.INVISIBLE
+                        adivinhadorTxtAcertou.visibility = View.VISIBLE
                     }
                     else {
                         spinnerResposta.setSelection(0)
@@ -342,11 +344,19 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
                         val duracao = Toast.LENGTH_SHORT
                         val toast = Toast.makeText(context, texto, duracao)
                         toast.show()
+
+                        clicavel = true
+                        adivinhadorBtnAdivinhar.setText(R.string.btn_adivinhar)
+                        adivinhadorProgressBar.visibility = View.INVISIBLE
                     }
                 }
                 else {
                     Log.d("Erro banco: ListSessao", response.message())
                     context?.let { ErrorCases().error(it)}
+
+                    clicavel = true
+                    adivinhadorBtnAdivinhar.setText(R.string.btn_adivinhar)
+                    adivinhadorProgressBar.visibility = View.INVISIBLE
                 }
             }
         })

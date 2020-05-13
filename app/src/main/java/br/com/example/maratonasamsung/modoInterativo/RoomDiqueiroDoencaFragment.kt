@@ -70,13 +70,11 @@ class RoomDiqueiroDoencaFragment : Fragment() { //, View.OnClickListener
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
-//        view.findViewById<Button>(R.id.diqueiroBtnDoenca).setOnClickListener(this)
 
         val id_sessao = requireArguments().getInt("id_sessao")
         val jogador = requireArguments().getString("jogador_nome").toString()
         val doencas = requireArguments().getStringArrayList("doencas")
 
-//        chronometro()
         pegarRodada(id_sessao)
 
         timerCronometro.schedule(5000){
@@ -133,44 +131,4 @@ class RoomDiqueiroDoencaFragment : Fragment() { //, View.OnClickListener
             }
         })
     }
-
-//    @RequiresApi(Build.VERSION_CODES.N)
-//    fun chronometro(){
-//        diqueiroDoencaChronometro.isCountDown= true
-//        diqueiroDoencaChronometro.base = SystemClock.elapsedRealtime()+20000
-//        diqueiroDoencaChronometro.start()
-//    }
-
-//    override fun onClick(v: View?) {
-//        when(v!!.id){
-//            R.id.diqueiroBtnDoenca -> {
-//
-//                val id_sessao = requireArguments().getInt("id_sessao")
-//                val jogador = requireArguments().getString("jogador_nome").toString()
-//                val doencas = requireArguments().getStringArrayList("doencas")
-//                val doenca = diqueiroSpinnerDoenca.selectedItem.toString()
-//
-//                if(doenca.isEmpty()) {
-//                    val texto = "Selecione uma doença"
-//                    val duracao = Toast.LENGTH_SHORT
-//                    val toast = Toast.makeText(context, texto, duracao)
-//                    toast.show()
-//                }
-//                else {
-//                    diqueiroDoencaChronometro.stop()
-//                    timerCronometro.cancel()
-//                    timerCronometro.purge()
-//
-//                    val parametros = Bundle()
-//                    parametros.putInt("id_sessao", id_sessao)
-//                    parametros.putInt("rodada", (rodada))
-//                    parametros.putString("jogador_nome", jogador)
-//                    parametros.putString("doenca", doenca)
-//                    parametros.putStringArrayList("doencas", doencas)
-//
-//                    navController!!.navigate(R.id.action_roomDiqueiroDoencaFragment_to_roomDiqueiroDicasFragment, parametros)
-//                }
-//            }
-//        }
-//    }
 }

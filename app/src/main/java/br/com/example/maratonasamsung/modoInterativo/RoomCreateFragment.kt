@@ -27,6 +27,7 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
 
     var navController: NavController? = null
     val parametros = Bundle()
+    var clicavel = true
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,19 +41,29 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
         view.findViewById<Button>(R.id.createBtnCriarSala).setOnClickListener(this)
+
+        createProgressBar.visibility = View.INVISIBLE;
     }
 
     override fun onClick(v: View?) {
         when(v!!.id){
             R.id.createBtnCriarSala -> {
-                if(createEditUsuario.text.toString() == "" || createEditNomeSala.text.toString() == "" || createEditSenha.text.toString() == "") {
-                    val texto = "Preencha todos os campos obrigatórios"
-                    val duracao = Toast.LENGTH_SHORT
-                    val toast = Toast.makeText(context, texto, duracao)
-                    toast.show()
+
+                if(clicavel) {
+                    if(createEditUsuario.text.toString() == "" || createEditNomeSala.text.toString() == "" || createEditSenha.text.toString() == "") {
+                        val texto = "Preencha todos os campos obrigatórios"
+                        val duracao = Toast.LENGTH_SHORT
+                        val toast = Toast.makeText(context, texto, duracao)
+                        toast.show()
+                    }
+                    else if(createEditUsuario.text.toString() != "" && createEditNomeSala.text.toString() != "" && createEditSenha.text.toString() != "") {
+                        createBtnCriarSala.setText("")
+                        createProgressBar.visibility = View.VISIBLE;
+                        clicavel = false
+
+                        criarSala()
+                    }
                 }
-                else if(createEditUsuario.text.toString() != "" && createEditNomeSala.text.toString() != "" && createEditSenha.text.toString() != "")
-                    criarSala()
             }
         }
     }
@@ -80,6 +91,10 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
                         toast.show()
                         createEditNomeSala.setText("")
                         createEditSenha.setText("")
+
+                        clicavel = true
+                        createProgressBar.visibility = View.INVISIBLE;
+                        createBtnCriarSala.setText(R.string.btn_criar)
                     }
                     else
                         cadastrarSessao(sala.nome, sala.senha)
@@ -87,6 +102,10 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
                 else {
                     Log.d("Erro banco: Criar sala", response.message())
                     context?.let { ErrorCases().error(it)}
+
+                    clicavel = true
+                    createProgressBar.visibility = View.INVISIBLE;
+                    createBtnCriarSala.setText(R.string.btn_criar)
                 }
             }
         })
@@ -120,6 +139,10 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
                 else {
                     Log.d("Erro banco: CadSessão", response.message())
                     context?.let { ErrorCases().error(it)}
+
+                    clicavel = true
+                    createProgressBar.visibility = View.INVISIBLE;
+                    createBtnCriarSala.setText(R.string.btn_criar)
                 }
             }
         })
@@ -144,6 +167,10 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
                 else {
                     Log.d("Erro banco; jogadorNovo", response.message())
                     context?.let { ErrorCases().error(it)}
+
+                    clicavel = true
+                    createProgressBar.visibility = View.INVISIBLE;
+                    createBtnCriarSala.setText(R.string.btn_criar)
                 }
             }
         })

@@ -96,4 +96,14 @@
         android:ems="4"
         android:text="@string/btn_continuar" />
 
+    <ProgressBar
+        android:id="@+id/acessProgressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="280dp"
+        android:layout_marginBottom="2dp" />
+
 </RelativeLayout>

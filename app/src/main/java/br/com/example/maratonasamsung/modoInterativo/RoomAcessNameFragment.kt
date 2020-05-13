@@ -28,6 +28,7 @@ class RoomAcessNameFragment : Fragment(), View.OnClickListener {
     var navController: NavController? = null
     val parametros = Bundle()
     var rodada: Int = 0
+    var clicavel = true
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,21 +43,31 @@ class RoomAcessNameFragment : Fragment(), View.OnClickListener {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
         view.findViewById<Button>(R.id.acessnameBtnAcessarSala).setOnClickListener(this)
+
+        acessNameProgressBar.visibility = View.INVISIBLE;
     }
 
     override fun onClick(v: View?) {
         when(v!!.id){
             R.id.acessnameBtnAcessarSala -> {
-                val id_sessao = requireArguments().getInt("id_sessao")
 
-                if(acessnameEditUsuario.text.toString() == "") {
-                    val texto = "Preencha o campos obrigatório"
-                    val duracao = Toast.LENGTH_SHORT
-                    val toast = Toast.makeText(context, texto, duracao)
-                    toast.show()
+                if(clicavel) {
+                    val id_sessao = requireArguments().getInt("id_sessao")
+
+                    if(acessnameEditUsuario.text.toString() == "") {
+                        val texto = "Preencha o campos obrigatório"
+                        val duracao = Toast.LENGTH_SHORT
+                        val toast = Toast.makeText(context, texto, duracao)
+                        toast.show()
+                    }
+                    else {
+                        acessnameBtnAcessarSala.setText("")
+                        acessNameProgressBar.visibility = View.VISIBLE;
+                        clicavel = false
+
+                        jogadores(id_sessao)
+                    }
                 }
-                else
-                    jogadores(id_sessao)
             }
         }
     }
@@ -68,7 +79,6 @@ class RoomAcessNameFragment : Fragment(), View.OnClickListener {
             override fun onFailure(call: Call<RankingResponse>, t: Throwable) {
                 Log.d("Ruim: Jogadores", t.toString())
             }
-
             override fun onResponse(call: Call<RankingResponse>, response: Response<RankingResponse>) {
                 Log.d("Bom: Jogadores", response.body().toString())
 
@@ -97,6 +107,10 @@ class RoomAcessNameFragment : Fragment(), View.OnClickListener {
                 else {
                     Log.d("Erro banco: Jogadores", response.message())
                     context?.let { ErrorCases().error(it)}
+
+                    clicavel = true
+                    acessNameProgressBar.visibility = View.INVISIBLE;
+                    acessnameBtnAcessarSala.setText(R.string.btn_acessar)
                 }
             }
         })
@@ -125,12 +139,21 @@ class RoomAcessNameFragment : Fragment(), View.OnClickListener {
                             val toast = Toast.makeText(context, texto, duracao)
                             toast.show()
                             acessnameEditUsuario.setText("")
-                        } else if (jogador.message == "Sessao já foi iniciada") {
+
+                            clicavel = true
+                            acessNameProgressBar.visibility = View.INVISIBLE;
+                            acessnameBtnAcessarSala.setText(R.string.btn_acessar)
+                        }
+                        else if (jogador.message == "Sessao já foi iniciada") {
                             val texto = "Rodada já iniciada, entrada não mais permitida"
                             val duracao = Toast.LENGTH_SHORT
                             val toast = Toast.makeText(context, texto, duracao)
                             toast.show()
                             acessnameEditUsuario.setText("")
+
+                            clicavel = true
+                            acessNameProgressBar.visibility = View.INVISIBLE;
+                            acessnameBtnAcessarSala.setText(R.string.btn_acessar)
                         }
                     }
                     else
@@ -139,6 +162,10 @@ class RoomAcessNameFragment : Fragment(), View.OnClickListener {
                 else {
                     Log.d("Erro banco: JogadorNovo", response.message())
                     context?.let { ErrorCases().error(it)}
+
+                    clicavel = true
+                    acessNameProgressBar.visibility = View.INVISIBLE;
+                    acessnameBtnAcessarSala.setText(R.string.btn_acessar)
                 }
             }
         })
@@ -161,6 +188,10 @@ class RoomAcessNameFragment : Fragment(), View.OnClickListener {
                 else {
                     Log.d("Erro banco: PegarRodada", response.message())
                     context?.let { ErrorCases().error(it)}
+
+                    clicavel = true
+                    acessNameProgressBar.visibility = View.INVISIBLE;
+                    acessnameBtnAcessarSala.setText(R.string.btn_acessar)
                 }
             }
         })

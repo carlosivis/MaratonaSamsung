@@ -16,6 +16,7 @@ import br.com.example.maratonasamsung.model.Responses.SalaResponse
 import br.com.example.maratonasamsung.service.ErrorCases
 import br.com.example.maratonasamsung.service.Service
 import kotlinx.android.synthetic.main.fragment_room_acess.*
+import kotlinx.android.synthetic.main.fragment_room_create.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -23,6 +24,7 @@ import retrofit2.Response
 class RoomAcessFragment : Fragment(), View.OnClickListener {
 
     var navController: NavController? = null
+    var clicavel = true
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,19 +39,29 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
         view.findViewById<Button>(R.id.acessBtnContinuar).setOnClickListener(this)
+
+        acessProgressBar.visibility = View.INVISIBLE;
     }
 
     override fun onClick(v: View?) {
         when(v!!.id){
             R.id.acessBtnContinuar -> {
-                if(acessEditNomeSala.text.toString() == "" || acessEditSenha.text.toString() == "") {
-                    val texto = "Preencha todos os campos obrigatórios"
-                    val duracao = Toast.LENGTH_SHORT
-                    val toast = Toast.makeText(context, texto, duracao)
-                    toast.show()
+
+                if(clicavel) {
+                    if(acessEditNomeSala.text.toString() == "" || acessEditSenha.text.toString() == "") {
+                        val texto = "Preencha todos os campos obrigatórios"
+                        val duracao = Toast.LENGTH_SHORT
+                        val toast = Toast.makeText(context, texto, duracao)
+                        toast.show()
+                    }
+                    else if(acessEditNomeSala.text.toString() != "" && acessEditSenha.text.toString() != "") {
+                        acessBtnContinuar.setText("")
+                        acessProgressBar.visibility = View.VISIBLE;
+                        clicavel = false
+
+                        acessarSala()
+                    }
                 }
-                else if(acessEditNomeSala.text.toString() != "" && acessEditSenha.text.toString() != "")
-                    acessarSala()
             }
         }
     }
@@ -75,6 +87,10 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
                             val toast = Toast.makeText(context, texto, duracao)
                             toast.show()
                             acessEditSenha.setText("")
+
+                            clicavel = true
+                            acessProgressBar.visibility = View.INVISIBLE;
+                            acessBtnContinuar.setText(R.string.btn_continuar)
                         }
                     }
                     else {
@@ -84,11 +100,19 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
                         toast.show()
                         acessEditNomeSala.setText("")
                         acessEditSenha.setText("")
+
+                        clicavel = true
+                        acessProgressBar.visibility = View.INVISIBLE;
+                        acessBtnContinuar.setText(R.string.btn_continuar)
                     }
                 }
                 else {
                     Log.d("Erro banco: AcessarSala", response.message())
                     context?.let { ErrorCases().error(it)}
+
+                    clicavel = true
+                    acessProgressBar.visibility = View.INVISIBLE;
+                    acessBtnContinuar.setText(R.string.btn_continuar)
                 }
             }
         })
@@ -121,6 +145,10 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
                 else {
                     Log.d("Erro banco: CadSessao", response.message())
                     context?.let { ErrorCases().error(it)}
+
+                    clicavel = true
+                    acessProgressBar.visibility = View.INVISIBLE;
+                    acessBtnContinuar.setText(R.string.btn_continuar)
                 }
             }
         })
