@@ -134,7 +134,7 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
                 if (response.isSuccessful) {
                     val sessao = response.body()!!
 
-                    val doencas: ArrayList<String> = arrayListOf("")
+                    var doencas: ArrayList<String> = arrayListOf("")
                     sessao.doencas.forEach { doencas.add((it.nome)) }
 
                     val parametros = Bundle()
