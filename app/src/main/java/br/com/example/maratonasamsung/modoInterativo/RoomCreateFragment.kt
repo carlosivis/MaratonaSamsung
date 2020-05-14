@@ -133,6 +133,8 @@ class RoomCreateFragment : Fragment(), View.OnClickListener {
                     parametros.putInt("id_sessao", sessao.id_sessao)
                     parametros.putString("jogador_nome", createEditUsuario.text.toString())
                     parametros.putStringArrayList("doencas", doencas)
+                    parametros.putString("sala_nome", nome)
+                    parametros.putString("sala_senha", senha)
 
                     jogadorNovo(sessao.id_sessao)
                 }

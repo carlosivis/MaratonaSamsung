@@ -30,6 +30,7 @@
 
     <string name="txt_diqueiro">Diqueiro</string>
     <string name="txt_adivinhador">Adivinhador</string>
+    <string name="txt_jogadores">Jogadores</string>
 
     <string name="txt_configuracao">Configurações</string>
 
@@ -84,17 +85,32 @@
     <string name="creditsProtozoario">Ícone feito por \n<a href="https://www.flaticon.com/authors/freepik">Freepik</a> de \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
     <string name="creditsVirus">Ícone feito por \n<a href="https://www.flaticon.com/authors/freepik">Freepik</a> de \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
     <string name="creditsWinner">Ícone feito por \n<a href="https://www.flaticon.com/authors/freepik">Freepik</a> de \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
-    <string name="sair">Sair</string>
-    <string name="cancelar">Cancelar</string>
-    <string name="sairApp">Você deseja sair do app?</string>
-    <string name="sairJogo">Você deseja sair do jogo?</string>
-    <string name="sairJogoPont">Ao sair da sala você perderá toda a sua pontuação.</string>
     <string name="labelSetaDir">Seta para a direita</string>
     <string name="labelCheck">Sinal de check</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="aguardando_jogadores">Aguardando jogadores. Clique em começar para iniciar a partida</string>
+
+    <string name="sair">Sair</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="ok">Ok</string>
+
+    <string name="aguardando_comecar">Aguardando o primeiro jogador a entrar na sala começar a partida</string>
+    <string name="aguardando_jogadores_title">Olá, você é o primeiro a entrar nesta sala!</string>
+    <string name="aguardando_jogadores_message">
+        Verifique em tempo real os jogadores que estão aguardando o inicio da partida e aperte no botão começar quando ver que todos os seus colegas já entraram, lembre-se que você precisa de pelo menos mais uma pessoa para iniciar a partida.
+        Aqui você também encontra os dados de acesso da sala, para caso se esqueça.
+    </string>
+    <string name="txt_dados">Dados da sala</string>
+    <string name="txt_nomeSala">Nome:</string>
+    <string name="txt_senhaSala">Senha:</string>
+
+    <string name="sairApp">Você deseja sair do app?</string>
+    <string name="sairJogo">Você deseja sair do jogo?</string>
+    <string name="sairJogoPont">Ao sair da sala você perderá toda a sua pontuação.</string>
+
+    <string name="txt_expulso">
+        Todos os seus colegas saíram do jogo e, infelizmente, você não poderá continuar sozinho.
+        Chame mais um amigo e volte para se divertir!
+    </string>
 
     <string name="transmissao">Transmissão</string>
     <string name="labelSetaEsq">Seta para a esquerda</string>
@@ -102,7 +118,6 @@
     <string name="doisdequatro">2/4</string>
     <string name="tresdequatro">3/4</string>
     <string name="quatrodequatro">4/4</string>
-    <string name="aguardandoComecar">Aguardando o criador da sala começar a partida</string>
     <string name="voceJaAcertou">Você já acertou, aguardar final da rodada</string>
     <string name="sorteandoDoenca">Sorteando uma doença...</string>
     <string name="jogoFim">Jogo finalizado! O(A) vencedor(a) foi</string>

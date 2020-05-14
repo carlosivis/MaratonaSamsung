@@ -140,6 +140,9 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
                     val parametros = Bundle()
                     parametros.putInt("id_sessao", sessao.id_sessao)
                     parametros.putStringArrayList("doencas", doencas)
+                    parametros.putString("sala_nome", nome)
+                    parametros.putString("sala_senha", senha)
+
                     navController!!.navigate(R.id.action_roomAcessFragment_to_roomAcessNameFragment, parametros)
                 }
                 else {

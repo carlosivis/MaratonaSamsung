@@ -26,10 +26,9 @@ import retrofit2.Response
 import java.util.*
 import kotlin.concurrent.schedule
 
-class AguardandoComecarFragment : Fragment() {
+class ExpulsoSalaFragment : Fragment() {
 
     var navController: NavController? = null
-    val timerComecar = Timer()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,7 +36,7 @@ class AguardandoComecarFragment : Fragment() {
     ): View? {
 
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_aguardando_comecar, container, false)
+        return inflater.inflate(R.layout.fragment_expulso_sala, container, false)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,8 +49,6 @@ class AguardandoComecarFragment : Fragment() {
                 AlertDialog.Builder(it)
                     .setTitle(R.string.sairJogo)
                     .setPositiveButton(R.string.sair) { dialog, which ->
-                        timerComecar.cancel()
-                        timerComecar.purge()
                         jogadorEncerrar(id_sessao, jogador)
                         navController!!.navigate(R.id.action_aguardandoComecarFragment_to_mainFragment)
                     }
@@ -84,8 +81,6 @@ class AguardandoComecarFragment : Fragment() {
                     val resposta = response.body()!!
 
                     if(resposta.status) {
-                        timerComecar.cancel()
-                        timerComecar.purge()
 
                         val jogador = requireArguments().getString("jogador_nome").toString()
                         val doencas = requireArguments().getStringArrayList("doencas")
@@ -104,9 +99,6 @@ class AguardandoComecarFragment : Fragment() {
                 }
             }
         })
-        timerComecar.schedule(1000){
-            verificarPartida(id_sessao)
-        }
     }
 
     fun jogadorEncerrar(id_sessao: Int, jogador: String) {

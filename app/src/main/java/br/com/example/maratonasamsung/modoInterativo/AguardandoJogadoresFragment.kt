@@ -69,9 +69,23 @@ class AguardandoJogadoresFragment : Fragment(), View.OnClickListener {
         navController = Navigation.findNavController(view)
         view.findViewById<Button>(R.id.btnAguardandoJogadores).setOnClickListener(this)
 
+        activity?.let {
+            AlertDialog.Builder(it)
+                .setTitle(R.string.aguardando_jogadores_title)
+                .setMessage(R.string.aguardando_jogadores_message)
+                .setPositiveButton(R.string.ok) { dialog, which ->  }
+                .show()
+        }
+
+        val sala_nome = requireArguments().getString("sala_nome").toString()
+        val sala_senha = requireArguments().getString("sala_senha").toString()
+        val id_sessao = requireArguments().getInt("id_sessao")
+
         aguardandoJogadoresProgressBar.visibility = View.INVISIBLE
 
-        val id_sessao = requireArguments().getInt("id_sessao")
+        aguardandoJogadoresCampoNome.text = sala_nome
+        aguardandoJogadoresCampoSenha.text = sala_senha
+
         jogadores(id_sessao)
     }
 

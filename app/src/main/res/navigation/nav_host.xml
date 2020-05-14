@@ -66,6 +66,10 @@
             android:id="@+id/action_roomAcessNameFragment_to_aguardandoComecarFragment"
             app:destination="@id/aguardandoComecarFragment"
             app:enterAnim="@anim/nav_default_enter_anim" />
+        <action
+            android:id="@+id/action_roomAcessNameFragment_to_aguardandoJogadoresFragment"
+            app:destination="@id/aguardandoJogadoresFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
     </fragment>
     <fragment
         android:id="@+id/roomDiqueiroDoencaFragment"
@@ -216,7 +220,20 @@
             app:destination="@id/roomAdivinhadorFragment"
             app:enterAnim="@anim/nav_default_enter_anim" />
         <action
+            android:id="@+id/action_aguardandoComecarFragment_to_roomDiqueiroDoencaFragment"
+            app:destination="@id/roomDiqueiroDoencaFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+        <action
             android:id="@+id/action_aguardandoComecarFragment_to_mainFragment"
+            app:destination="@id/mainFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/expulsoSalaFragment"
+        android:name="br.com.example.maratonasamsung.modoInterativo.ExpulsoSalaFragment"
+        android:label="ExpulsoSalaFragment" >
+        <action
+            android:id="@+id/action_expulsoSalaFragment_to_mainFragment"
             app:destination="@id/mainFragment"
             app:enterAnim="@anim/nav_default_enter_anim" />
     </fragment>
