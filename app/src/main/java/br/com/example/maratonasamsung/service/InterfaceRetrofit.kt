@@ -12,9 +12,6 @@ interface InterfaceRetrofit {
     @GET("/sala/{nome}")
     fun acessarSala(@Path("nome") nome: String): Call<SalaResponse>
 
-    @GET("/ranking/{id_sessao}")
-    fun ranking(@Path ("id_sessao") id_sessao: Int): Call<RankingResponse>
-
     @POST("/sala")
     fun criarSala(@Body sala: SalaRequest): Call<SalaResponse>
 
@@ -39,6 +36,12 @@ interface InterfaceRetrofit {
     @PUT("/sessao")
     fun editarSessaoTransmicao(@Body sessao: EditSessaoTransmicaoRequest): Call<SessaoResponseEditing>
 
+    @GET("/setComecou/{id_sessao}")
+    fun comecarPartida(@Path ("id_sessao") id_sessao: Int): Call<StatusBoolean>
+
+    @GET("/getComecou/{id_sessao}")
+    fun verificarPartida(@Path ("id_sessao") id_sessao: Int): Call<StatusBoolean>
+
     @GET("/doenca")
     fun doencas(): Call<List<DoencasResponse>>
 
@@ -51,6 +54,9 @@ interface InterfaceRetrofit {
     @GET("/transmicaos/{doenca}")
     fun transmicoes(@Path("doenca") doenca: String): Call<Transmissoes>
 
+    @GET("/ranking/{id_sessao}")
+    fun ranking(@Path ("id_sessao") id_sessao: Int): Call<RankingResponse>
+
     @POST("/jogador")
     fun jogadorNovo(@Body jogador: JogadorRequest): Call<JogadorResponse>
 
@@ -58,5 +64,5 @@ interface InterfaceRetrofit {
     fun jogadorUpdate(@Body jogadorUpdate: JogadorUpdate): Call<JogadorResponse>
 
     @HTTP(method = "DELETE", path = "/jogador/encerra", hasBody = true)
-    fun jogadorEncerrar(@Body jogador: JogadorRequest): Call<JogadorEncerra>
+    fun jogadorEncerrar(@Body jogador: JogadorRequest): Call<StatusBoolean>
 }

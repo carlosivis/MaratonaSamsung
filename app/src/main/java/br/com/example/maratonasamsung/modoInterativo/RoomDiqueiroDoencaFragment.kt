@@ -14,7 +14,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import br.com.example.maratonasamsung.R
 import br.com.example.maratonasamsung.model.Requests.JogadorRequest
-import br.com.example.maratonasamsung.model.Responses.JogadorEncerra
+import br.com.example.maratonasamsung.model.Responses.StatusBoolean
 import br.com.example.maratonasamsung.model.Responses.SessaoResponseListing
 import br.com.example.maratonasamsung.service.ErrorCases
 import br.com.example.maratonasamsung.service.Service
@@ -53,11 +53,10 @@ class RoomDiqueiroDoencaFragment : Fragment() { //, View.OnClickListener
                 AlertDialog.Builder(it)
                     .setTitle(R.string.sairJogo)
                     .setPositiveButton(R.string.sair) { dialog, which ->
-                        navController!!.navigate(R.id.action_roomDiqueiroDoencaFragment_to_mainFragment)
-//                        diqueiroDoencaChronometro.stop()
                         timerCronometro.cancel()
                         timerCronometro.purge()
                         jogadorEncerrar(id_sessao, jogador)
+                        navController!!.navigate(R.id.action_roomDiqueiroDoencaFragment_to_mainFragment)
                     }
                     .setNegativeButton(R.string.voltar) { dialog, which -> }
                     .show()
@@ -116,12 +115,12 @@ class RoomDiqueiroDoencaFragment : Fragment() { //, View.OnClickListener
                 id_sessao = id_sessao,
                 nome = jogador
             )
-        ).enqueue(object : Callback<JogadorEncerra> {
-            override fun onFailure(call: Call<JogadorEncerra>, t: Throwable) {
+        ).enqueue(object : Callback<StatusBoolean> {
+            override fun onFailure(call: Call<StatusBoolean>, t: Throwable) {
                 Log.d("Ruim: Jogador Encerrar", t.toString())
             }
 
-            override fun onResponse(call: Call<JogadorEncerra>, response: Response<JogadorEncerra>) {
+            override fun onResponse(call: Call<StatusBoolean>, response: Response<StatusBoolean>) {
                 Log.d("Bom: Jogador Encerrar", response.body().toString())
 
                 if (response.code() == 500) {

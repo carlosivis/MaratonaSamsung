@@ -9,28 +9,50 @@
     android:layout_marginBottom="20dp"
     tools:context=".modoInterativo.AguardandoJogadoresFragment">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true">
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="29dp"
+        android:text="@string/aguardando_jogadores" />
 
-        <TextView
-            android:id="@+id/txtNextRound"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:text="@string/aguardando_jogadores"
-            android:textAlignment="center"
-            android:textSize="20sp" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerRanking"
+        android:layout_width="347dp"
+        android:layout_height="331dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="153dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="134dp" />
 
-        <ProgressBar
-            android:id="@+id/chronoPlaceholder"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/txtNextRound"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="40dp" />
+    <Button
+        android:id="@+id/btnAguardandoJogadores"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="122dp"
+        android:layout_marginBottom="22dp"
+        android:text="@string/btn_comecar" />
 
-    </RelativeLayout>
+    <ProgressBar
+        android:id="@+id/aguardandoJogadoresProgressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="152dp"
+        android:layout_marginBottom="22dp" />
 </RelativeLayout>

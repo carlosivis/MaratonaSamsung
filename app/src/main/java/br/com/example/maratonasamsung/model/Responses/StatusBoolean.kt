@@ -1,5 +1,5 @@
 package br.com.example.maratonasamsung.model.Responses
 
-data class JogadorEncerra(
+data class StatusBoolean(
     val status: Boolean
 )

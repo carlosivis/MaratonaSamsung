@@ -20,7 +20,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.example.maratonasamsung.R
 import br.com.example.maratonasamsung.model.Requests.JogadorRequest
 import br.com.example.maratonasamsung.model.Requests.JogadorUpdate
-import br.com.example.maratonasamsung.model.Responses.JogadorEncerra
+import br.com.example.maratonasamsung.model.Responses.StatusBoolean
 import br.com.example.maratonasamsung.model.Responses.JogadorResponse
 import br.com.example.maratonasamsung.model.Responses.RankingResponse
 import br.com.example.maratonasamsung.model.Responses.SessaoResponseListing
@@ -71,7 +71,6 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
                     .setTitle(R.string.sairJogo)
                     .setMessage(R.string.sairJogoPont)
                     .setPositiveButton(R.string.sair) { dialog, which ->
-                        navController!!.navigate(R.id.action_roomAdivinhadorFragment_to_mainFragment)
                         tempoCronometro.stop()
                         timerCronometro.cancel()
                         timerCronometro.purge()
@@ -80,6 +79,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
                         timerDicas.cancel()
                         timerDicas.purge()
                         jogadorEncerrar(id_sessao, jogador)
+                        navController!!.navigate(R.id.action_roomAdivinhadorFragment_to_mainFragment)
                     }
                     .setNegativeButton(R.string.cancelar) { dialog, which -> }
                     .show()
@@ -393,12 +393,12 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
                 id_sessao = id_sessao,
                 nome = jogador
             )
-        ).enqueue(object : Callback<JogadorEncerra> {
-            override fun onFailure(call: Call<JogadorEncerra>, t: Throwable) {
+        ).enqueue(object : Callback<StatusBoolean> {
+            override fun onFailure(call: Call<StatusBoolean>, t: Throwable) {
                 Log.d("Ruim: Jogador Encerrar", t.toString())
             }
 
-            override fun onResponse(call: Call<JogadorEncerra>, response: Response<JogadorEncerra>) {
+            override fun onResponse(call: Call<StatusBoolean>, response: Response<StatusBoolean>) {
                 Log.d("Bom: Jogador Encerrar", response.body().toString())
 
                 if (response.code() == 500) {

@@ -7,32 +7,36 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.example.maratonasamsung.R
 import br.com.example.maratonasamsung.model.Requests.JogadorRequest
-import br.com.example.maratonasamsung.model.Responses.JogadorEncerra
+import br.com.example.maratonasamsung.model.Responses.StatusBoolean
 import br.com.example.maratonasamsung.model.Responses.RankingResponse
 import br.com.example.maratonasamsung.service.ErrorCases
 import br.com.example.maratonasamsung.service.Service
+import kotlinx.android.synthetic.main.fragment_aguardando_jogadores.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
 import kotlin.concurrent.schedule
 
-class AguardandoJogadoresFragment : Fragment() {
+class AguardandoJogadoresFragment : Fragment(), View.OnClickListener {
 
     var navController: NavController? = null
     val timerJogadores = Timer()
+    var clicavel = true
+    var quantidadeJogadores = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_aguardando_jogadores, container, false)
@@ -48,10 +52,10 @@ class AguardandoJogadoresFragment : Fragment() {
                 AlertDialog.Builder(it)
                     .setTitle(R.string.sairJogo)
                     .setPositiveButton(R.string.sair) { dialog, which ->
-                        navController!!.navigate(R.id.action_aguardandoJogadoresFragment_to_mainFragment)
                         timerJogadores.cancel()
                         timerJogadores.purge()
                         jogadorEncerrar(id_sessao, jogador)
+                        navController!!.navigate(R.id.action_aguardandoJogadoresFragment_to_mainFragment)
                     }
                     .setNegativeButton(R.string.cancelar) { dialog, which -> }
                     .show()
@@ -63,9 +67,48 @@ class AguardandoJogadoresFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
+        view.findViewById<Button>(R.id.btnAguardandoJogadores).setOnClickListener(this)
+
+        aguardandoJogadoresProgressBar.visibility = View.INVISIBLE
 
         val id_sessao = requireArguments().getInt("id_sessao")
         jogadores(id_sessao)
+    }
+
+    override fun onClick(v: View?) {
+        when(v!!.id){
+            R.id.btnAguardandoJogadores -> {
+
+                if(clicavel) {
+                    val id_sessao = requireArguments().getInt("id_sessao")
+
+                    if(quantidadeJogadores > 1) {
+                        btnAguardandoJogadores.setText("")
+                        aguardandoJogadoresProgressBar.visibility = View.VISIBLE;
+                        clicavel = false
+
+                        comecarPartida(id_sessao)
+                    }
+                    else {
+                        val texto = "É necessário pelo menos duas pessoas para começar a jogar!"
+                        val duracao = Toast.LENGTH_SHORT
+                        val toast = Toast.makeText(context, texto, duracao)
+                        toast.show()
+                    }
+                }
+            }
+        }
+    }
+
+    private fun configureRecyclerViewRanking(list: RankingResponse) {
+        val rankingAdapter = RankingAdapter(list)
+        recyclerRanking.apply {
+            layoutManager = LinearLayoutManager(context)
+            isComputingLayout
+            adapter= rankingAdapter
+            onPause()
+            onCancelPendingInputEvents()
+        }
     }
 
     fun jogadores(id_sessao: Int){
@@ -89,25 +132,13 @@ class AguardandoJogadoresFragment : Fragment() {
                         toast.show()
                     }
                     else {
-                        val quantidadeJogadores: ArrayList<String> = arrayListOf("")
-                        jogadores.jogadores.forEach { quantidadeJogadores.add((it.nome)) }
+                        configureRecyclerViewRanking(jogadores)
 
-                        quantidadeJogadores.removeAt(0)
+                        val quantidade: ArrayList<String> = arrayListOf("")
+                        jogadores.jogadores.forEach { quantidade.add((it.nome)) }
 
-                        if (quantidadeJogadores.size > 1) {
-                            timerJogadores.cancel()
-                            timerJogadores.purge()
-
-                            val jogador = requireArguments().getString("jogador_nome").toString()
-                            val doencas = requireArguments().getStringArrayList("doencas")
-
-                            val parametros = Bundle()
-                            parametros.putInt("id_sessao", id_sessao)
-                            parametros.putString("jogador_nome", jogador)
-                            parametros.putStringArrayList("doencas", doencas)
-
-                            navController!!.navigate(R.id.action_aguardandoJogadoresFragment_to_roomDiqueiroDoencaFragment, parametros)
-                        }
+                        quantidade.removeAt(0)
+                        quantidadeJogadores = quantidade.size
                     }
                 }
                 else {
@@ -116,9 +147,45 @@ class AguardandoJogadoresFragment : Fragment() {
                 }
             }
         })
-        timerJogadores.schedule(1000) {
+        timerJogadores.schedule(3000){
             jogadores(id_sessao)
         }
+    }
+
+    fun comecarPartida(id_sessao: Int) {
+        Service.retrofit.comecarPartida(
+            id_sessao = id_sessao
+        ).enqueue(object : Callback<StatusBoolean> {
+            override fun onFailure(call: Call<StatusBoolean>, t: Throwable) {
+                Log.d("Ruim: Começar Partida", t.toString())
+            }
+            override fun onResponse(call: Call<StatusBoolean>, response: Response<StatusBoolean>) {
+                Log.d("Bom: Começar Partida", response.body().toString())
+
+                if (response.isSuccessful) {
+                    timerJogadores.cancel()
+                    timerJogadores.purge()
+
+                    val jogador = requireArguments().getString("jogador_nome").toString()
+                    val doencas = requireArguments().getStringArrayList("doencas")
+
+                    val parametros = Bundle()
+                    parametros.putInt("id_sessao", id_sessao)
+                    parametros.putString("jogador_nome", jogador)
+                    parametros.putStringArrayList("doencas", doencas)
+
+                    navController!!.navigate(R.id.action_aguardandoJogadoresFragment_to_roomDiqueiroDoencaFragment, parametros)
+                }
+                else {
+                    Log.d("Erro banco: ComeçarPart", response.message())
+                    context?.let { ErrorCases().error(it)}
+
+                    clicavel = true
+                    aguardandoJogadoresProgressBar.visibility = View.INVISIBLE;
+                    btnAguardandoJogadores.setText(R.string.btn_comecar)
+                }
+            }
+        })
     }
 
     fun jogadorEncerrar(id_sessao: Int, jogador: String) {
@@ -127,12 +194,12 @@ class AguardandoJogadoresFragment : Fragment() {
                 id_sessao = id_sessao,
                 nome = jogador
             )
-        ).enqueue(object : Callback<JogadorEncerra> {
-            override fun onFailure(call: Call<JogadorEncerra>, t: Throwable) {
+        ).enqueue(object : Callback<StatusBoolean> {
+            override fun onFailure(call: Call<StatusBoolean>, t: Throwable) {
                 Log.d("Ruim: Jogador Encerrar", t.toString())
             }
 
-            override fun onResponse(call: Call<JogadorEncerra>, response: Response<JogadorEncerra>) {
+            override fun onResponse(call: Call<StatusBoolean>, response: Response<StatusBoolean>) {
                 Log.d("Bom: Jogador Encerrar", response.body().toString())
 
                 if (response.code() == 500) {

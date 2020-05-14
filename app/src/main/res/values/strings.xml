@@ -6,6 +6,7 @@
     <string name="btn_criar">Criar</string>
     <string name="btn_acessar">Acessar</string>
     <string name="btn_continuar">Continuar</string>
+    <string name="btn_comecar">Começar</string>
 
     <string name="btn_enviar_dica">Enviar dica</string>
     <string name="btn_adivinhar">Enviar tentativa</string>
@@ -93,7 +94,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="aguardando_jogadores">Aguardando pelo menos mais um jogador para iniciar a rodada</string>
+    <string name="aguardando_jogadores">Aguardando jogadores. Clique em começar para iniciar a partida</string>
 
     <string name="transmissao">Transmissão</string>
     <string name="labelSetaEsq">Seta para a esquerda</string>
@@ -101,7 +102,7 @@
     <string name="doisdequatro">2/4</string>
     <string name="tresdequatro">3/4</string>
     <string name="quatrodequatro">4/4</string>
-    <string name="aguardandoRodada">Aguardando próxima rodada...</string>
+    <string name="aguardandoComecar">Aguardando o criador da sala começar a partida</string>
     <string name="voceJaAcertou">Você já acertou, aguardar final da rodada</string>
     <string name="sorteandoDoenca">Sorteando uma doença...</string>
     <string name="jogoFim">Jogo finalizado! O(A) vencedor(a) foi</string>

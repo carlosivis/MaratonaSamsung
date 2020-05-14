@@ -65,56 +65,57 @@ class RoomAcessNameFragment : Fragment(), View.OnClickListener {
                         acessNameProgressBar.visibility = View.VISIBLE;
                         clicavel = false
 
-                        jogadores(id_sessao)
+                        jogadorNovo(id_sessao)
+//                        jogadores(id_sessao)
                     }
                 }
             }
         }
     }
 
-    fun jogadores(id_sessao: Int){
-        Service.retrofit.ranking(
-            id_sessao = id_sessao
-        ).enqueue(object : Callback<RankingResponse> {
-            override fun onFailure(call: Call<RankingResponse>, t: Throwable) {
-                Log.d("Ruim: Jogadores", t.toString())
-            }
-            override fun onResponse(call: Call<RankingResponse>, response: Response<RankingResponse>) {
-                Log.d("Bom: Jogadores", response.body().toString())
-
-                if (response.isSuccessful) {
-                    val jogadores = response.body()!!
-
-                    val quantidadeJogadores: ArrayList<String> = arrayListOf("")
-                    jogadores.jogadores.forEach { quantidadeJogadores.add((it.nome)) }
-
-                    quantidadeJogadores.removeAt(0)
-
-                    val doencas = arguments!!.getStringArrayList("doencas")
-
-                    parametros.putInt("id_sessao", id_sessao)
-                    parametros.putString("jogador_nome", acessnameEditUsuario.text.toString())
-                    parametros.putStringArrayList("doencas", doencas)
-
-                    if (quantidadeJogadores.size >= 2) {
-                        pegarRodada(id_sessao)
-                        parametros.putInt("rodada", rodada)
-                        navController!!.navigate(R.id.action_roomAcessNameFragment_to_aguardandoRodadaFragment, parametros)
-                    }
-                    else
-                        jogadorNovo(id_sessao)
-                }
-                else {
-                    Log.d("Erro banco: Jogadores", response.message())
-                    context?.let { ErrorCases().error(it)}
-
-                    clicavel = true
-                    acessNameProgressBar.visibility = View.INVISIBLE;
-                    acessnameBtnAcessarSala.setText(R.string.btn_acessar)
-                }
-            }
-        })
-    }
+//    fun jogadores(id_sessao: Int){
+//        Service.retrofit.ranking(
+//            id_sessao = id_sessao
+//        ).enqueue(object : Callback<RankingResponse> {
+//            override fun onFailure(call: Call<RankingResponse>, t: Throwable) {
+//                Log.d("Ruim: Jogadores", t.toString())
+//            }
+//            override fun onResponse(call: Call<RankingResponse>, response: Response<RankingResponse>) {
+//                Log.d("Bom: Jogadores", response.body().toString())
+//
+//                if (response.isSuccessful) {
+//                    val jogadores = response.body()!!
+//
+//                    val quantidadeJogadores: ArrayList<String> = arrayListOf("")
+//                    jogadores.jogadores.forEach { quantidadeJogadores.add((it.nome)) }
+//
+//                    quantidadeJogadores.removeAt(0)
+//
+//                    val doencas = arguments!!.getStringArrayList("doencas")
+//
+//                    parametros.putInt("id_sessao", id_sessao)
+//                    parametros.putString("jogador_nome", acessnameEditUsuario.text.toString())
+//                    parametros.putStringArrayList("doencas", doencas)
+//
+//                    if (quantidadeJogadores.size >= 2) {
+//                        pegarRodada(id_sessao)
+//                        parametros.putInt("rodada", rodada)
+//                        navController!!.navigate(R.id.action_roomAcessNameFragment_to_aguardandoRodadaFragment, parametros)
+//                    }
+//                    else
+//                        jogadorNovo(id_sessao)
+//                }
+//                else {
+//                    Log.d("Erro banco: Jogadores", response.message())
+//                    context?.let { ErrorCases().error(it)}
+//
+//                    clicavel = true
+//                    acessNameProgressBar.visibility = View.INVISIBLE;
+//                    acessnameBtnAcessarSala.setText(R.string.btn_acessar)
+//                }
+//            }
+//        })
+//    }
 
     fun jogadorNovo(id_sessao: Int){
         Service.retrofit.jogadorNovo(
@@ -145,7 +146,7 @@ class RoomAcessNameFragment : Fragment(), View.OnClickListener {
                             acessnameBtnAcessarSala.setText(R.string.btn_acessar)
                         }
                         else if (jogador.message == "Sessao já foi iniciada") {
-                            val texto = "Rodada já iniciada, entrada não mais permitida"
+                            val texto = "Jogo já começou, a entrada não é mais permitida"
                             val duracao = Toast.LENGTH_SHORT
                             val toast = Toast.makeText(context, texto, duracao)
                             toast.show()
@@ -157,7 +158,7 @@ class RoomAcessNameFragment : Fragment(), View.OnClickListener {
                         }
                     }
                     else
-                        navController!!.navigate(R.id.action_roomAcessNameFragment_to_roomAdivinhadorFragment, parametros)
+                        navController!!.navigate(R.id.action_roomAcessNameFragment_to_aguardandoComecarFragment, parametros)
                 }
                 else {
                     Log.d("Erro banco: JogadorNovo", response.message())
@@ -171,29 +172,29 @@ class RoomAcessNameFragment : Fragment(), View.OnClickListener {
         })
     }
 
-    fun pegarRodada(id_sessao: Int) {
-        Service.retrofit.listarSessao(
-            id_sessao = id_sessao
-        ).enqueue(object : Callback<SessaoResponseListing> {
-            override fun onFailure(call: Call<SessaoResponseListing>, t: Throwable) {
-                Log.d("Ruim: Pegar Rodada", t.toString())
-            }
-            override fun onResponse(call: Call<SessaoResponseListing>, response: Response<SessaoResponseListing>) {
-                Log.d("Bom: Pegar Rodada", response.toString())
-
-                if (response.isSuccessful) {
-                    val resposta = response.body()!!
-                    rodada = resposta.sessao.rodada
-                }
-                else {
-                    Log.d("Erro banco: PegarRodada", response.message())
-                    context?.let { ErrorCases().error(it)}
-
-                    clicavel = true
-                    acessNameProgressBar.visibility = View.INVISIBLE;
-                    acessnameBtnAcessarSala.setText(R.string.btn_acessar)
-                }
-            }
-        })
-    }
+//    fun pegarRodada(id_sessao: Int) {
+//        Service.retrofit.listarSessao(
+//            id_sessao = id_sessao
+//        ).enqueue(object : Callback<SessaoResponseListing> {
+//            override fun onFailure(call: Call<SessaoResponseListing>, t: Throwable) {
+//                Log.d("Ruim: Pegar Rodada", t.toString())
+//            }
+//            override fun onResponse(call: Call<SessaoResponseListing>, response: Response<SessaoResponseListing>) {
+//                Log.d("Bom: Pegar Rodada", response.toString())
+//
+//                if (response.isSuccessful) {
+//                    val resposta = response.body()!!
+//                    rodada = resposta.sessao.rodada
+//                }
+//                else {
+//                    Log.d("Erro banco: PegarRodada", response.message())
+//                    context?.let { ErrorCases().error(it)}
+//
+//                    clicavel = true
+//                    acessNameProgressBar.visibility = View.INVISIBLE;
+//                    acessnameBtnAcessarSala.setText(R.string.btn_acessar)
+//                }
+//            }
+//        })
+//    }
 }
