@@ -16,6 +16,7 @@ import kotlinx.android.synthetic.main.fragment_winner.*
 class WinnerFragment : Fragment(), View.OnClickListener {
 
     var navController: NavController? = null
+    var clicavel = true
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,13 +45,21 @@ class WinnerFragment : Fragment(), View.OnClickListener {
         navController = Navigation.findNavController(view)
         view.findViewById<Button>(R.id.btnExit).setOnClickListener(this)
 
+        winnerProgressBar.visibility = View.INVISIBLE
+
         nomeVencedor.text = requireArguments().getString("vencedor")
     }
 
     override fun onClick(v: View?) {
         when(v!!.id){
             R.id.btnExit -> {
-                navController!!.navigate(R.id.action_winnerFragment_to_mainFragment)
+                if(clicavel) {
+                    btnExit.setText("")
+                    winnerProgressBar.visibility = View.VISIBLE
+                    clicavel = false
+
+                    navController!!.navigate(R.id.action_winnerFragment_to_mainFragment)
+                }
             }
         }
     }

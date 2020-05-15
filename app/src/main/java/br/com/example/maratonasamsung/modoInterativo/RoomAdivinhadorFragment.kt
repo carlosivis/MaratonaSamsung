@@ -100,6 +100,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
 
         adivinhadorProgressBar.visibility = View.INVISIBLE
         adivinhadorTxtAcertou.visibility = View.INVISIBLE
+
         doencas!!.toArray()
         doencas.sort()
         context?.let {
