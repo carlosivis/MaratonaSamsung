@@ -1,6 +1,5 @@
 package br.com.example.maratonasamsung.modoInterativo
 
-import android.app.Dialog
 import androidx.appcompat.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
@@ -8,18 +7,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.addCallback
-import androidx.fragment.app.DialogFragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import br.com.example.maratonasamsung.R
 import br.com.example.maratonasamsung.model.Requests.JogadorRequest
 import br.com.example.maratonasamsung.model.Responses.StatusBoolean
-import br.com.example.maratonasamsung.model.Responses.JogadorResponse
-import br.com.example.maratonasamsung.model.Responses.SessaoResponseListing
-import br.com.example.maratonasamsung.service.ErrorCases
-import br.com.example.maratonasamsung.service.Service
+import br.com.example.maratonasamsung.data.service.ErrorCases
+import br.com.example.maratonasamsung.data.service.Service
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

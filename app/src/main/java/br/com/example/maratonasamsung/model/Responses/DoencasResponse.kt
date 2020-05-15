@@ -1,5 +1,6 @@
 package br.com.example.maratonasamsung.model.Responses
 
+import br.com.example.maratonasamsung.domain.model.DoencasResponse
 import java.io.Serializable
 
 data class DoencasResponse(
@@ -10,4 +11,8 @@ data class DoencasResponse(
     val sintomas: List<Sintoma>,
     var tipo: String,
     val transmicao: List<Transmicao>
-):Serializable
+) : Serializable
+
+fun DoencasResponse.toModel() = DoencasResponse(this.agente,this.id,this.nome,this.prevencao,
+        this.sintomas,this.tipo,this.transmicao)
+

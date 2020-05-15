@@ -18,8 +18,8 @@ import br.com.example.maratonasamsung.R
 import br.com.example.maratonasamsung.model.Requests.JogadorRequest
 import br.com.example.maratonasamsung.model.Responses.StatusBoolean
 import br.com.example.maratonasamsung.model.Responses.RankingResponse
-import br.com.example.maratonasamsung.service.ErrorCases
-import br.com.example.maratonasamsung.service.Service
+import br.com.example.maratonasamsung.data.service.ErrorCases
+import br.com.example.maratonasamsung.data.service.Service
 import kotlinx.android.synthetic.main.fragment_aguardando_jogadores.*
 import retrofit2.Call
 import retrofit2.Callback

@@ -25,8 +25,8 @@ import br.com.example.maratonasamsung.model.Responses.StatusBoolean
 import br.com.example.maratonasamsung.model.Responses.JogadorResponse
 import br.com.example.maratonasamsung.model.Responses.RankingResponse
 import br.com.example.maratonasamsung.model.Responses.SessaoResponseListing
-import br.com.example.maratonasamsung.service.ErrorCases
-import br.com.example.maratonasamsung.service.Service
+import br.com.example.maratonasamsung.data.service.ErrorCases
+import br.com.example.maratonasamsung.data.service.Service
 import kotlinx.android.synthetic.main.fragment_room_adivinhador.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -389,7 +389,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
 
                 if (response.code() == 500) {
                     Log.d("Erro banco: JogUpdate", response.message())
-                    context?.let { ErrorCases().error(it)}
+
                 }
             }
         })
