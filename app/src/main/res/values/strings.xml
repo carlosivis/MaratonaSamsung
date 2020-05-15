@@ -85,6 +85,7 @@
     <string name="creditsProtozoario">Ícone feito por \n<a href="https://www.flaticon.com/authors/freepik">Freepik</a> de \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
     <string name="creditsVirus">Ícone feito por \n<a href="https://www.flaticon.com/authors/freepik">Freepik</a> de \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
     <string name="creditsWinner">Ícone feito por \n<a href="https://www.flaticon.com/authors/freepik">Freepik</a> de \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
+    <string name="creditsSad">Ícone feito por \n<a href="https://www.flaticon.com/authors/smashicons">Smashicons</a> de \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
     <string name="labelSetaDir">Seta para a direita</string>
     <string name="labelCheck">Sinal de check</string>
 
@@ -121,4 +122,5 @@
     <string name="voceJaAcertou">Você já acertou, aguardar final da rodada</string>
     <string name="sorteandoDoenca">Sorteando uma doença...</string>
     <string name="jogoFim">Jogo finalizado! O(A) vencedor(a) foi</string>
+    <string name="labelSad">Ilustração de um fantasma triste</string>
 </resources>
