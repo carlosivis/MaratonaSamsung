@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/roomAcessNameFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginStart="20dp"
+    android:layout_marginEnd="20dp"
+    android:layout_marginBottom="20dp"
+    tools:context=".ui.main.MainActivity">
+
+    <TextView
+        android:id="@+id/acessModoInterativo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="30dp"
+        android:text="@string/interativo"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/acessTxtAcessarSala"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/acessModoInterativo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:text="@string/txt_acessar_sala"
+        android:textSize="24sp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_above="@+id/acessnameBtnAcessarSala"
+        android:layout_below="@+id/acessTxtAcessarSala">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true">
+
+            <TextView
+                android:id="@+id/acessnameTxtUsuario"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_usuario"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/acessnameEditUsuario"
+                style="@style/textViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/acessnameTxtUsuario"
+                android:autofillHints="@string/nomeUser"
+                android:hint="@string/nomeUser"
+                android:inputType="textPersonName"
+                android:backgroundTint="@color/colorLight"
+                android:textCursorDrawable="@null"
+                android:textSize="18sp" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/acessnameBtnAcessarSala"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/roundbutton"
+        android:layout_alignParentEnd="true"
+        android:ems="4"
+        android:text="@string/btn_acessar"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="30dp" />
+
+    <ProgressBar
+        android:id="@+id/acessNameProgressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="40dp" />
+
+</RelativeLayout>

@@ -1,8 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorAccent">#dddddd</color>
-    <color name="colorDark">#222222</color>
-    <color name="colorFullDark">#000000</color>
-    <color name="colorBackground">#111111</color>
-    <color name="colorText">#EEEEEE</color>
+    <color name="colorAccent">#802336</color>
+    <color name="colorLight">#f3f3f3</color>
+    <color name="colorDark">#3c102f</color>
+    <color name="colorBackground">#3c102f</color>
+    <color name="colorText">#ffffff</color>
+    <color name="colorButton">#581845</color>
+    <color name="colorteste" />
+
+    <color name="colorGeralBase">#542437</color>
+    <color name="colorGeral1">#873F47</color>
+    <color name="colorGeral2">#B6634F</color>
+    <color name="colorGeral3">#DC8E53</color>
+    <color name="colorGeral4">#F3C15A</color>
+    <color name="colorGeral5">#F9F871</color>
+
+    <color name="colorModoBase1">#D95B43</color>
+    <color name="colorModoBase1Dark">#D95B43</color>
+    <color name="colorModo1">#C54C6B</color>
+    <color name="colorModo2">#9C4E83</color>
+    <color name="colorModoBase2">#6A5386</color>
+    <color name="colorModoBase2Dark">#6A5386</color>
+    <color name="colorModo3">#3F5175</color>
+    <color name="colorModo4">#2F4858</color>
+
+    <color name="colorGeral">#581845</color>
+    <color name="colorGeralEscuro">#3c102f</color>
+    <color name="colorGeralMedio">#900C3F</color>
+    <color name="colorGeralClaro">#C70039</color>
+    <color name="colorEstudo">#FF5733</color>
+    <color name="colorEstudoEscuro">#ff3333</color>
+    <color name="colorInterativo">#FFC300</color>
+    <color name="colorInterativoEscuro">#ff8000</color>
 </resources>

@@ -1,8 +1,9 @@
 package br.com.example.maratonasamsung.model.Responses
 
 data class SalaResponse(
-    val id: Int,
+    val status: Boolean,
     val nome: String,
-    val publica: Boolean,
-    val senha: String
+    val senha: String,
+    val id_sessao: Int,
+    val doencas: List<Doenca>
 )

@@ -12,28 +12,16 @@
         tools:layout="@layout/main_fragment" >
         <action
             android:id="@+id/action_mainFragment_to_roomTypekFragment"
-            app:destination="@id/roomTypekFragment" />
+            app:destination="@id/roomTypekFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
         <action
-            android:id="@+id/action_mainFragment_to_chooseFragment"
-            app:destination="@id/chooseFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/roomAcessFragment"
-        android:name="br.com.example.maratonasamsung.modoInterativo.RoomAcessFragment"
-        android:label="fragment_room_acess"
-        tools:layout="@layout/fragment_room_acess" >
+            android:id="@+id/action_mainFragment_to_agentsFragment"
+            app:destination="@id/agentsFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
         <action
-            android:id="@+id/action_roomAcessFragment_to_roomFragment"
-            app:destination="@id/roomFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/roomCreateFragment"
-        android:name="br.com.example.maratonasamsung.modoInterativo.RoomCreateFragment"
-        android:label="fragment_room_create"
-        tools:layout="@layout/fragment_room_create" >
-        <action
-            android:id="@+id/action_roomCreateFragment_to_roomFragment"
-            app:destination="@id/roomFragment" />
+            android:id="@+id/action_mainFragment_to_moreFragment"
+            app:destination="@id/moreFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
     </fragment>
     <fragment
         android:id="@+id/roomTypekFragment"
@@ -41,20 +29,229 @@
         android:label="fragment_room_typek"
         tools:layout="@layout/fragment_room_typek" >
         <action
-            android:id="@+id/action_roomTypekFragment_to_roomAcessFragment"
-            app:destination="@id/roomAcessFragment" />
-        <action
             android:id="@+id/action_roomTypekFragment_to_roomCreateFragment"
-            app:destination="@id/roomCreateFragment" />
+            app:destination="@id/roomCreateFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+        <action
+            android:id="@+id/action_roomTypekFragment_to_roomAcessFragment"
+            app:destination="@id/roomAcessFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/roomCreateFragment"
+        android:name="br.com.example.maratonasamsung.modoInterativo.RoomCreateFragment"
+        android:label="fragment_room_create"
+        tools:layout="@layout/fragment_room_create" >
+        <action
+            android:id="@+id/action_roomCreateFragment_to_aguardandoJogadoresFragment"
+            app:destination="@id/aguardandoJogadoresFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/roomAcessFragment"
+        android:name="br.com.example.maratonasamsung.modoInterativo.RoomAcessFragment"
+        android:label="fragment_room_acess"
+        tools:layout="@layout/fragment_room_acess" >
+        <action
+            android:id="@+id/action_roomAcessFragment_to_roomAcessNameFragment"
+            app:destination="@id/roomAcessNameFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/roomAcessNameFragment"
+        android:name="br.com.example.maratonasamsung.modoInterativo.RoomAcessNameFragment"
+        android:label="fragment_room_acess_name"
+        tools:layout="@layout/fragment_room_acess_name" >
+        <action
+            android:id="@+id/action_roomAcessNameFragment_to_aguardandoComecarFragment"
+            app:destination="@id/aguardandoComecarFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+        <action
+            android:id="@+id/action_roomAcessNameFragment_to_aguardandoJogadoresFragment"
+            app:destination="@id/aguardandoJogadoresFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/roomDiqueiroDoencaFragment"
+        android:name="br.com.example.maratonasamsung.modoInterativo.RoomDiqueiroDoencaFragment"
+        android:label="RoomDiqueiroDoencaFragment" >
+        <action
+            android:id="@+id/action_roomDiqueiroDoencaFragment_to_roomDiqueiroDicasFragment"
+            app:destination="@id/roomDiqueiroDicasFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+        <action
+            android:id="@+id/action_roomDiqueiroDoencaFragment_to_expulsoSalaFragment"
+            app:destination="@id/expulsoSalaFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+        <action
+            android:id="@+id/action_roomDiqueiroDoencaFragment_to_mainFragment"
+            app:destination="@id/mainFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/roomDiqueiroDicasFragment"
+        android:name="br.com.example.maratonasamsung.modoInterativo.RoomDiqueiroDicasFragment"
+        android:label="RoomDiqueiroDicasFragment" >
+        <action
+            android:id="@+id/action_roomDiqueiroDicasFragment_to_placeholderRodadaFragment"
+            app:destination="@id/placeholderRodadaFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+        <action
+            android:id="@+id/action_roomDiqueiroDicasFragment_to_expulsoSalaFragment"
+            app:destination="@id/expulsoSalaFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+        <action
+            android:id="@+id/action_roomDiqueiroDicasFragment_to_mainFragment"
+            app:destination="@id/mainFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+        <action
+            android:id="@+id/action_roomDiqueiroDicasFragment_to_winnerFragment"
+            app:destination="@id/winnerFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/roomAdivinhadorFragment"
+        android:name="br.com.example.maratonasamsung.modoInterativo.RoomAdivinhadorFragment"
+        android:label="RoomAdivinhadorFragment" >
+        <action
+            android:id="@+id/action_roomAdivinhadorFragment_to_placeholderRodadaFragment"
+            app:destination="@id/placeholderRodadaFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+        <action
+            android:id="@+id/action_roomAdivinhadorFragment_to_expulsoSalaFragment"
+            app:destination="@id/expulsoSalaFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+        <action
+            android:id="@+id/action_roomAdivinhadorFragment_to_mainFragment"
+            app:destination="@id/mainFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+        <action
+            android:id="@+id/action_roomAdivinhadorFragment_to_winnerFragment"
+            app:destination="@id/winnerFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
     </fragment>
     <fragment
         android:id="@+id/chooseFragment"
         android:name="br.com.example.maratonasamsung.modoEstudo.ChooseFragment"
         android:label="fragment_choose"
-        tools:layout="@layout/fragment_choose" />
+        tools:layout="@layout/fragment_choose" >
+        <action
+            android:id="@+id/action_chooseFragment_to_itemChooseFragment"
+            app:destination="@id/itemChooseFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+        <argument
+            android:name="self"
+            app:argType="br.com.example.maratonasamsung.model.Responses.DoencasResponse" />
+    </fragment>
     <fragment
-        android:id="@+id/roomFragment"
-        android:name="br.com.example.maratonasamsung.modoInterativo.RoomFragment"
-        android:label="fragment_room"
-        tools:layout="@layout/fragment_room" />
+        android:id="@+id/rulesFragment"
+        android:name="br.com.example.maratonasamsung.tutoriaisRegras.RulesFragment"
+        android:label="fragment_rules"
+        tools:layout="@layout/fragment_rules" />
+    <fragment
+        android:id="@+id/agentsFragment"
+        android:name="br.com.example.maratonasamsung.modoEstudo.AgentsFragment"
+        android:label="AgentsFragment" >
+        <action
+            android:id="@+id/action_agentsFragment_to_chooseFragment"
+            app:destination="@id/chooseFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/itemChooseFragment"
+        android:name="br.com.example.maratonasamsung.modoEstudo.ItemChooseFragment"
+        android:label="fragment_item_choose"
+        tools:layout="@layout/fragment_item_choose" />
+    <fragment
+        android:id="@+id/moreFragment"
+        android:name="br.com.example.maratonasamsung.ui.main.MoreFragment"
+        android:label="MoreFragment">
+        <action
+            android:id="@+id/action_moreFragment_to_rulesFragment"
+            app:destination="@id/rulesFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+        <action
+            android:id="@+id/action_moreFragment_to_creditsFragment"
+            app:destination="@id/creditsFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/creditsFragment"
+        android:name="br.com.example.maratonasamsung.ui.main.CreditsFragment"
+        android:label="fragment_credits"
+        tools:layout="@layout/fragment_credits" />
+    <fragment
+        android:id="@+id/aguardandoJogadoresFragment"
+        android:name="br.com.example.maratonasamsung.modoInterativo.AguardandoJogadoresFragment"
+        android:label="fragment_aguardando_jogadores"
+        tools:layout="@layout/fragment_aguardando_jogadores" >
+        <action
+            android:id="@+id/action_aguardandoJogadoresFragment_to_roomDiqueiroDoencaFragment"
+            app:destination="@id/roomDiqueiroDoencaFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+        <action
+            android:id="@+id/action_aguardandoJogadoresFragment_to_mainFragment"
+            app:destination="@id/mainFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/winnerFragment"
+        android:name="br.com.example.maratonasamsung.modoInterativo.WinnerFragment"
+        android:label="fragment_winner"
+        tools:layout="@layout/fragment_winner" >
+        <action
+            android:id="@+id/action_winnerFragment_to_mainFragment"
+            app:destination="@id/mainFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/placeholderRodadaFragment"
+        android:name="br.com.example.maratonasamsung.modoInterativo.PlaceholderRodadaFragment"
+        android:label="fragment_placeholder_rodada"
+        tools:layout="@layout/fragment_placeholder_rodada" >
+        <action
+            android:id="@+id/action_placeholderRodadaFragment_to_roomDiqueiroDoencaFragment"
+            app:destination="@id/roomDiqueiroDoencaFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+        <action
+            android:id="@+id/action_placeholderRodadaFragment_to_roomAdivinhadorFragment"
+            app:destination="@id/roomAdivinhadorFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+        <action
+            android:id="@+id/action_placeholderRodadaFragment_to_expulsoSalaFragment"
+            app:destination="@id/expulsoSalaFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+        <action
+            android:id="@+id/action_placeholderRodadaFragment_to_mainFragment"
+            app:destination="@id/mainFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/aguardandoComecarFragment"
+        android:name="br.com.example.maratonasamsung.modoInterativo.AguardandoComecarFragment"
+        android:label="fragment_aguardando_comecar"
+        tools:layout="@layout/fragment_aguardando_comecar" >
+        <action
+            android:id="@+id/action_aguardandoComecarFragment_to_roomAdivinhadorFragment"
+            app:destination="@id/roomAdivinhadorFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+        <action
+            android:id="@+id/action_aguardandoComecarFragment_to_roomDiqueiroDoencaFragment"
+            app:destination="@id/roomDiqueiroDoencaFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+        <action
+            android:id="@+id/action_aguardandoComecarFragment_to_mainFragment"
+            app:destination="@id/mainFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/expulsoSalaFragment"
+        android:name="br.com.example.maratonasamsung.modoInterativo.ExpulsoSalaFragment"
+        android:label="ExpulsoSalaFragment" >
+        <action
+            android:id="@+id/action_expulsoSalaFragment_to_mainFragment"
+            app:destination="@id/mainFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+    </fragment>
 </navigation>
+

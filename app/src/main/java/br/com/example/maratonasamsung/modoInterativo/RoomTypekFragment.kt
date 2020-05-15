@@ -10,6 +10,7 @@ import android.widget.Button
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import br.com.example.maratonasamsung.R
+import kotlinx.android.synthetic.main.fragment_room_typek.*
 
 
 class RoomTypekFragment : Fragment(), View.OnClickListener {
@@ -27,14 +28,14 @@ class RoomTypekFragment : Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
-        view.findViewById<Button>(R.id.btnCriar).setOnClickListener(this)
-        view.findViewById<Button>(R.id.btnAcessar).setOnClickListener(this)
+        view.findViewById<Button>(R.id.typeBtnCriarSala).setOnClickListener(this)
+        view.findViewById<Button>(R.id.typeBtnAcessarSala).setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
         when(v!!.id){
-            R.id.btnCriar -> navController!!.navigate(R.id.action_roomTypekFragment_to_roomCreateFragment)
-            R.id.btnAcessar -> navController!!.navigate(R.id.action_roomTypekFragment_to_roomAcessFragment)
+            R.id.typeBtnCriarSala -> navController!!.navigate(R.id.action_roomTypekFragment_to_roomCreateFragment)
+            R.id.typeBtnAcessarSala -> navController!!.navigate(R.id.action_roomTypekFragment_to_roomAcessFragment)
         }
     }
 

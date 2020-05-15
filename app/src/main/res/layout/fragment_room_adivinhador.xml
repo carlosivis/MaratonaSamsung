@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/roomAdivinhador"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:layout_marginBottom="20dp"
+    android:orientation="vertical"
+    tools:context=".ui.main.MainActivity">
+
+    <TextView
+        android:id="@+id/txtDiqueiro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="30dp"
+        android:text="@string/txt_adivinhador"
+        android:textColor="@color/colorText"
+        android:textSize="30sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/textResposta"
+        android:layout_below="@+id/txtDiqueiro"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/adivinhadorTxtRanking"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:shadowColor="@color/colorAccent"
+            android:text="@string/ranking"
+            android:layout_gravity="center"
+            android:textColor="@color/colorText"
+            android:textSize="20sp" />
+
+        <Chronometer
+            android:id="@+id/tempoCronometro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="end"
+            android:fontFamily="@font/lanehum"
+            />
+    </LinearLayout>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerRanking"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="30dp"
+            android:layout_weight="1"
+            android:background="@drawable/border"
+            android:scrollbars="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/recycler_view_ranking" />
+
+
+        <TextView
+            android:id="@+id/textDicas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:shadowColor="@color/colorAccent"
+            android:text="@string/dicas"
+            android:textColor="@color/colorText"
+            android:textSize="20sp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerDicas"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="20dp"
+            android:layout_weight="2"
+            android:background="@drawable/border"
+            android:scrollbars="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/recycler_view_dicas" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textResposta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/spinnerResposta"
+        android:layout_marginBottom="10dp"
+        android:shadowColor="@color/colorAccent"
+        android:text="@string/txt_resposta"
+        android:textColor="@color/colorText"
+        android:textSize="25sp" />
+
+    <Spinner
+        android:id="@+id/spinnerResposta"
+        style="@style/spinnerTheme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:dropDownWidth="wrap_content"
+        android:scrollbarSize="4dp"
+        android:layout_above="@+id/adivinhadorBtnAdivinhar"
+        android:layout_marginBottom="10dp" />
+
+    <Button
+        android:id="@+id/adivinhadorBtnAdivinhar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/roundbutton"
+        android:ems="4"
+        android:text="@string/btn_adivinhar" />
+
+    <ProgressBar
+        android:id="@+id/adivinhadorProgressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/adivinhadorBtnAdivinhar"
+        android:layout_alignBottom="@+id/adivinhadorBtnAdivinhar"
+        android:layout_alignStart="@+id/adivinhadorBtnAdivinhar"
+        android:layout_alignEnd="@+id/adivinhadorBtnAdivinhar"/>
+
+    <TextView
+        android:id="@+id/adivinhadorTxtAcertou"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginBottom="0dp"
+        android:text="@string/voceJaAcertou" />
+
+
+</RelativeLayout>
