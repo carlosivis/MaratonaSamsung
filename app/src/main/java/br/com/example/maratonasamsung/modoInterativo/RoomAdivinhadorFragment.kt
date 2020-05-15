@@ -79,7 +79,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
                         timerDicas.cancel()
                         timerDicas.purge()
                         jogadorEncerrar(id_sessao, jogador)
-                        navController!!.navigate(R.id.action_roomAdivinhadorFragment_to_mainFragment)
+                        navController!!.navigate(R.id.action_roomAdivinhadorFragment_to_expulsoSalaFragment)
                     }
                     .setNegativeButton(R.string.cancelar) { dialog, which -> }
                     .show()
@@ -100,6 +100,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
 
         adivinhadorProgressBar.visibility = View.INVISIBLE
         adivinhadorTxtAcertou.visibility = View.INVISIBLE
+
         doencas!!.toArray()
         doencas.sort()
         context?.let {
@@ -220,7 +221,6 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
                         val duracao = Toast.LENGTH_SHORT
                         val toast = Toast.makeText(context, texto, duracao)
                         toast.show()
-                        configureRecyclerViewRanking(ranking)
                     }
                     else {
                         vencedor.putString("vencedor", ranking.jogadores.first().nome)
@@ -234,6 +234,10 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
                         if (quantidadeJogadores.size < 2) {
                             val jogador = requireArguments().getString("jogador_nome").toString()
 
+                            val parametros = Bundle()
+                            parametros.putInt("id_sessao", id_sessao)
+                            parametros.putString("jogador_nome", jogador)
+
                             tempoCronometro.stop()
                             timerCronometro.cancel()
                             timerCronometro.purge()
@@ -241,8 +245,9 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
                             timerRanking.purge()
                             timerDicas.cancel()
                             timerDicas.purge()
+
                             jogadorEncerrar(id_sessao, jogador)
-                            navController!!.navigate(R.id.action_roomAdivinhadorFragment_to_mainFragment)
+                            navController!!.navigate(R.id.action_roomAdivinhadorFragment_to_expulsoSalaFragment, parametros)
                         }
                     }
                 }

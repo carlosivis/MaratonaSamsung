@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.fragment.app.DialogFragment
@@ -20,15 +21,17 @@ import br.com.example.maratonasamsung.model.Responses.JogadorResponse
 import br.com.example.maratonasamsung.model.Responses.SessaoResponseListing
 import br.com.example.maratonasamsung.service.ErrorCases
 import br.com.example.maratonasamsung.service.Service
+import kotlinx.android.synthetic.main.fragment_expulso_sala.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
 import kotlin.concurrent.schedule
 
-class ExpulsoSalaFragment : Fragment() {
+class ExpulsoSalaFragment : Fragment(), View.OnClickListener {
 
     var navController: NavController? = null
+    var clicavel = true
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,7 +53,6 @@ class ExpulsoSalaFragment : Fragment() {
                     .setTitle(R.string.sairJogo)
                     .setPositiveButton(R.string.sair) { dialog, which ->
                         jogadorEncerrar(id_sessao, jogador)
-                        navController!!.navigate(R.id.action_aguardandoComecarFragment_to_mainFragment)
                     }
                     .setNegativeButton(R.string.cancelar) { dialog, which -> }
                     .show()
@@ -61,44 +63,27 @@ class ExpulsoSalaFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
+        view.findViewById<Button>(R.id.expulsoBtn).setOnClickListener(this)
 
-        val id_sessao = requireArguments().getInt("id_sessao")
-
-        verificarPartida(id_sessao)
+        expulsoProgressBar.visibility = View.INVISIBLE
     }
 
-    fun verificarPartida(id_sessao: Int) {
-        Service.retrofit.verificarPartida(
-            id_sessao = id_sessao
-        ).enqueue(object : Callback<StatusBoolean> {
-            override fun onFailure(call: Call<StatusBoolean>, t: Throwable) {
-                Log.d("Ruim: Começar Partida", t.toString())
-            }
-            override fun onResponse(call: Call<StatusBoolean>, response: Response<StatusBoolean>) {
-                Log.d("Bom: Começar Partida", response.body().toString())
+    override fun onClick(v: View?) {
+        when(v!!.id){
+            R.id.expulsoBtn -> {
 
-                if (response.isSuccessful) {
-                    val resposta = response.body()!!
+                if(clicavel) {
+                    val id_sessao = requireArguments().getInt("id_sessao")
+                    val jogador = requireArguments().getString("jogador_nome").toString()
 
-                    if(resposta.status) {
+                    expulsoBtn.setText("")
+                    expulsoProgressBar.visibility = View.VISIBLE;
+                    clicavel = false
 
-                        val jogador = requireArguments().getString("jogador_nome").toString()
-                        val doencas = requireArguments().getStringArrayList("doencas")
-
-                        val parametros = Bundle()
-                        parametros.putInt("id_sessao", id_sessao)
-                        parametros.putString("jogador_nome", jogador)
-                        parametros.putStringArrayList("doencas", doencas)
-
-                        navController!!.navigate(R.id.action_aguardandoComecarFragment_to_roomAdivinhadorFragment, parametros)
-                    }
-                }
-                else {
-                    Log.d("Erro banco: ComeçarPart", response.message())
-                    context?.let { ErrorCases().error(it)}
+                    jogadorEncerrar(id_sessao, jogador)
                 }
             }
-        })
+        }
     }
 
     fun jogadorEncerrar(id_sessao: Int, jogador: String) {
@@ -115,9 +100,15 @@ class ExpulsoSalaFragment : Fragment() {
             override fun onResponse(call: Call<StatusBoolean>, response: Response<StatusBoolean>) {
                 Log.d("Bom: Jogador Encerrar", response.body().toString())
 
-                if (response.code() == 500) {
+                if (response.isSuccessful)
+                    navController!!.navigate(R.id.action_expulsoSalaFragment_to_mainFragment)
+                else {
                     Log.d("Erro banco: JogUpdate", response.message())
                     context?.let { ErrorCases().error(it)}
+
+                    expulsoBtn.setText(R.string.sair)
+                    expulsoProgressBar.visibility = View.INVISIBLE;
+                    clicavel = true
                 }
             }
         })

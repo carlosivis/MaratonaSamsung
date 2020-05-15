@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
@@ -14,6 +15,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import br.com.example.maratonasamsung.R
 import br.com.example.maratonasamsung.model.Requests.JogadorRequest
+import br.com.example.maratonasamsung.model.Responses.RankingResponse
 import br.com.example.maratonasamsung.model.Responses.StatusBoolean
 import br.com.example.maratonasamsung.model.Responses.SessaoResponseListing
 import br.com.example.maratonasamsung.service.ErrorCases
@@ -74,6 +76,7 @@ class RoomDiqueiroDoencaFragment : Fragment() { //, View.OnClickListener
         val jogador = requireArguments().getString("jogador_nome").toString()
         val doencas = requireArguments().getStringArrayList("doencas")
 
+        jogadores(id_sessao)
         pegarRodada(id_sessao)
 
         timerCronometro.schedule(5000){
@@ -125,6 +128,54 @@ class RoomDiqueiroDoencaFragment : Fragment() { //, View.OnClickListener
 
                 if (response.code() == 500) {
                     Log.d("Erro banco: JogadorEnc", response.message())
+                    context?.let { ErrorCases().error(it)}
+                }
+            }
+        })
+    }
+
+    fun jogadores(id_sessao: Int){
+        Service.retrofit.ranking(
+            id_sessao = id_sessao
+        ).enqueue(object : Callback<RankingResponse> {
+            override fun onFailure(call: Call<RankingResponse>, t: Throwable) {
+                Log.d("Ruim: Ranking", t.toString())
+            }
+            override fun onResponse(call: Call<RankingResponse>, response: Response<RankingResponse>) {
+                Log.d("Bom: Ranking", response.body().toString())
+
+                if (response.isSuccessful) {
+                    val ranking = response.body()!!
+
+                    if (!ranking.status) {
+                        val texto = "Erro ao atualizar ranking"
+                        val duracao = Toast.LENGTH_SHORT
+                        val toast = Toast.makeText(context, texto, duracao)
+                        toast.show()
+                    }
+                    else {
+                        val quantidadeJogadores: ArrayList<String> = arrayListOf("")
+                        ranking.jogadores.forEach { quantidadeJogadores.add((it.nome)) }
+
+                        quantidadeJogadores.removeAt(0)
+
+                        if (quantidadeJogadores.size < 2) {
+                            val jogador = requireArguments().getString("jogador_nome").toString()
+
+                            val parametrosJogadores = Bundle()
+                            parametrosJogadores.putInt("id_sessao", id_sessao)
+                            parametrosJogadores.putString("jogador_nome", jogador)
+
+                            timerCronometro.cancel()
+                            timerCronometro.purge()
+
+                            jogadorEncerrar(id_sessao, jogador)
+                            navController!!.navigate(R.id.action_roomDiqueiroDoencaFragment_to_expulsoSalaFragment, parametrosJogadores)
+                        }
+                    }
+                }
+                else {
+                    Log.d("Erro banco: Ranking", response.message())
                     context?.let { ErrorCases().error(it)}
                 }
             }

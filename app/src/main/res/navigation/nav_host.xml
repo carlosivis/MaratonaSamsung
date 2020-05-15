@@ -80,6 +80,10 @@
             app:destination="@id/roomDiqueiroDicasFragment"
             app:enterAnim="@anim/nav_default_enter_anim" />
         <action
+            android:id="@+id/action_roomDiqueiroDoencaFragment_to_expulsoSalaFragment"
+            app:destination="@id/expulsoSalaFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+        <action
             android:id="@+id/action_roomDiqueiroDoencaFragment_to_mainFragment"
             app:destination="@id/mainFragment"
             app:enterAnim="@anim/nav_default_enter_anim" />
@@ -91,6 +95,10 @@
         <action
             android:id="@+id/action_roomDiqueiroDicasFragment_to_placeholderRodadaFragment"
             app:destination="@id/placeholderRodadaFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+        <action
+            android:id="@+id/action_roomDiqueiroDicasFragment_to_expulsoSalaFragment"
+            app:destination="@id/expulsoSalaFragment"
             app:enterAnim="@anim/nav_default_enter_anim" />
         <action
             android:id="@+id/action_roomDiqueiroDicasFragment_to_mainFragment"
@@ -108,6 +116,10 @@
         <action
             android:id="@+id/action_roomAdivinhadorFragment_to_placeholderRodadaFragment"
             app:destination="@id/placeholderRodadaFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+        <action
+            android:id="@+id/action_roomAdivinhadorFragment_to_expulsoSalaFragment"
+            app:destination="@id/expulsoSalaFragment"
             app:enterAnim="@anim/nav_default_enter_anim" />
         <action
             android:id="@+id/action_roomAdivinhadorFragment_to_mainFragment"
@@ -204,6 +216,10 @@
         <action
             android:id="@+id/action_placeholderRodadaFragment_to_roomAdivinhadorFragment"
             app:destination="@id/roomAdivinhadorFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+        <action
+            android:id="@+id/action_placeholderRodadaFragment_to_expulsoSalaFragment"
+            app:destination="@id/expulsoSalaFragment"
             app:enterAnim="@anim/nav_default_enter_anim" />
         <action
             android:id="@+id/action_placeholderRodadaFragment_to_mainFragment"
