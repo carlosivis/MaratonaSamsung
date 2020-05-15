@@ -236,10 +236,6 @@
             app:destination="@id/roomAdivinhadorFragment"
             app:enterAnim="@anim/nav_default_enter_anim" />
         <action
-            android:id="@+id/action_aguardandoComecarFragment_to_roomDiqueiroDoencaFragment"
-            app:destination="@id/roomDiqueiroDoencaFragment"
-            app:enterAnim="@anim/nav_default_enter_anim" />
-        <action
             android:id="@+id/action_aguardandoComecarFragment_to_mainFragment"
             app:destination="@id/mainFragment"
             app:enterAnim="@anim/nav_default_enter_anim" />
