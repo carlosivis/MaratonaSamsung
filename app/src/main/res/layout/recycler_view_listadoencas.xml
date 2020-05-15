@@ -12,6 +12,7 @@
             android:layout_centerHorizontal="true"
             android:background="@drawable/roundbutton"
             android:layout_marginBottom="10dp"
+            android:textSize="15sp"
             android:ems="8"
             android:textAllCaps="false"
             tools:text="ESQUISTOSSOMOSE" />

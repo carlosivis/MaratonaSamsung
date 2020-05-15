@@ -39,6 +39,7 @@ class AgentsFragment : Fragment(), View.OnClickListener {
         view.findViewById<ImageButton>(R.id.imageVirus).setOnClickListener(this)
         view.findViewById<ImageButton>(R.id.imagePlatelminto).setOnClickListener(this)
         view.findViewById<ImageButton>(R.id.imageProtozoario).setOnClickListener(this)
+        view.findViewById<ImageButton>(R.id.btn_back).setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -64,6 +65,7 @@ class AgentsFragment : Fragment(), View.OnClickListener {
                 parametros.putString("agenteInfectante", agenteInfectante)
                 navController!!.navigate(R.id.action_agentsFragment_to_chooseFragment, parametros)
             }
+            R.id.btn_back -> activity?.onBackPressed()
         }
     }
 }

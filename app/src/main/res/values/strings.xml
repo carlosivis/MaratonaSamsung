@@ -92,7 +92,7 @@
 
     <string name="sair">Sair</string>
     <string name="cancelar">Cancelar</string>
-    <string name="ok">Ok</string>
+    <string name="ok">OK</string>
 
     <string name="aguardando_comecar">Aguardando o primeiro jogador a entrar na sala começar a partida</string>
     <string name="aguardando_jogadores_title">Olá, você é o primeiro a entrar nesta sala!</string>
@@ -123,4 +123,5 @@
     <string name="sorteandoDoenca">Sorteando uma doença...</string>
     <string name="jogoFim">Jogo finalizado! O(A) vencedor(a) foi</string>
     <string name="labelSad">Ilustração de um fantasma triste</string>
+    <string name="morbus">Morbus</string>
 </resources>

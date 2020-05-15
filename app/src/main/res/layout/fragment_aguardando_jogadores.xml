@@ -4,11 +4,56 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginStart="40dp"
-    android:layout_marginTop="20dp"
-    android:layout_marginEnd="40dp"
-    android:layout_marginBottom="20dp"
     tools:context=".modoInterativo.AguardandoJogadoresFragment">
+
+    <RelativeLayout
+        android:id="@+id/menuLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="20dp"
+        android:background="@color/colorDark">
+
+        <ImageButton
+            android:id="@+id/btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:background="@null"
+            android:src="@drawable/ic_arrow_left" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_centerHorizontal="true"
+            android:textSize="20sp"
+            android:text="@string/interativo"
+            android:textColor="@android:color/white" />
+
+        <ImageView
+            android:id="@+id/imageLogo"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/labelGame"
+            android:src="@drawable/game"
+            android:visibility="visible" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/menuLayout">
+
 
     <TextView
         android:id="@+id/aguardandoJogadoresTxtJogadores"
@@ -18,7 +63,6 @@
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/colorText"
         android:textSize="30sp" />
 
     <LinearLayout
@@ -38,7 +82,7 @@
             android:scrollbars="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:layout_marginBottom="30dp"
-            tools:listitem="@layout/recycler_view_ranking"/>
+            tools:listitem="@layout/recycler_view_jogadores"/>
 
         <TextView
             android:id="@+id/aguardandoJogadoresTxtDados"
@@ -71,7 +115,8 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp"
-        android:text="@string/btn_comecar" />
+        android:text="@string/btn_comecar"
+        android:ems="4"/>
 
     <ProgressBar
         android:id="@+id/aguardandoJogadoresProgressBar"
@@ -82,4 +127,5 @@
         android:layout_alignTop="@+id/btnAguardandoJogadores"
         android:layout_alignStart="@+id/btnAguardandoJogadores"
         android:layout_alignEnd="@+id/btnAguardandoJogadores"/>
+</RelativeLayout>
 </RelativeLayout>

@@ -10,23 +10,10 @@
     android:layout_marginBottom="20dp"
     tools:context=".ui.main.MainActivity">
 
-    <TextView
-        android:id="@+id/txtDiqueiro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/txt_diqueiro"
-        android:layout_marginTop="20dp"
-        android:layout_centerHorizontal="true"
-        android:textColor="@color/colorText"
-        android:textSize="30sp" />
-
-
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txtDiqueiro"
-        android:layout_alignParentBottom="true">
+        android:layout_centerInParent="true">
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -50,7 +37,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/diqueiroTxtDoenca"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp" />
+                android:layout_marginTop="20dp"
+                android:indeterminateTint="@android:color/black"/>
         </RelativeLayout>
     </RelativeLayout>
 </RelativeLayout>

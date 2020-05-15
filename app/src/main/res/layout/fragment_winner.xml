@@ -84,7 +84,8 @@
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="40dp" />
+        android:layout_alignEnd="@+id/btnExit"
+        android:layout_alignStart="@+id/btnExit"
+        android:layout_alignBottom="@+id/btnExit"
+        android:layout_alignTop="@+id/btnExit" />
 </RelativeLayout>
