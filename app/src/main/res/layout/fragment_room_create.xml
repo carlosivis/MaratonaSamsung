@@ -4,26 +4,60 @@
     android:id="@+id/roomCreateFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginStart="20dp"
-    android:layout_marginEnd="20dp"
-    android:layout_marginBottom="20dp"
     tools:context=".ui.main.MainActivity">
 
-    <TextView
-        android:id="@+id/createModoInterativo"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:id="@+id/menuLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
-        android:layout_marginBottom="30dp"
-        android:text="@string/interativo"
-        android:textSize="30sp" />
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="20dp"
+        android:background="@color/colorDark">
+
+        <ImageButton
+            android:id="@+id/btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:background="@null"
+            android:src="@drawable/ic_arrow_left" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_centerHorizontal="true"
+            android:textSize="20sp"
+            android:text="@string/interativo"
+            android:textColor="@android:color/white" />
+
+        <ImageView
+            android:id="@+id/imageLogo"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/labelBooks"
+            android:src="@drawable/books"
+            android:visibility="visible" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/menuLayout">
 
     <TextView
         android:id="@+id/createTxtCriarSala"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/createModoInterativo"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp"
         android:text="@string/txt_criar_sala"
@@ -50,7 +84,7 @@
 
             <EditText
                 android:id="@+id/createEditUsuario"
-                style="@style/textViewStyle"
+                style="@style/MyEditTextstyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/createTxtUsuario"
@@ -58,7 +92,6 @@
                 android:autofillHints="@string/nomeUser"
                 android:hint="@string/nomeUser"
                 android:inputType="textPersonName"
-                android:backgroundTint="@color/colorLight"
                 android:textCursorDrawable="@null"
                 android:textSize="18sp" />
 
@@ -72,7 +105,7 @@
 
             <EditText
                 android:id="@+id/createEditNomeSala"
-                style="@style/textViewStyle"
+                style="@style/MyEditTextstyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/createTxtNomeSala"
@@ -80,7 +113,6 @@
                 android:autofillHints="@string/nomeSala"
                 android:hint="@string/nomeSala"
                 android:inputType="textPersonName"
-                android:backgroundTint="@color/colorLight"
                 android:textCursorDrawable="@null"
                 android:textSize="18sp" />
 
@@ -94,14 +126,13 @@
 
             <EditText
                 android:id="@+id/createEditSenha"
-                style="@style/textViewStyle"
+                style="@style/MyEditTextstyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/createTxtSenha"
                 android:autofillHints="@string/senha"
                 android:hint="@string/senha"
                 android:inputType="textPassword"
-                android:backgroundTint="@color/colorLight"
                 android:textCursorDrawable="@null"
                 android:textSize="18sp" />
         </RelativeLayout>
@@ -125,7 +156,8 @@
         android:layout_height="35dp"
         android:layout_alignBottom="@id/createBtnCriarSala"
         android:layout_alignTop="@id/createBtnCriarSala"
-        android:layout_alignRight="@id/createBtnCriarSala"
-        android:layout_alignLeft="@id/createBtnCriarSala" />
+        android:layout_alignEnd="@id/createBtnCriarSala"
+        android:layout_alignStart="@id/createBtnCriarSala" />
 
+</RelativeLayout>
 </RelativeLayout>

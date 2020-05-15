@@ -1,6 +1,7 @@
-package br.com.example.maratonasamsung.service
+package br.com.example.maratonasamsung.data.service
 
 import android.content.Context
+import android.view.View
 import android.widget.Toast
 
 class ErrorCases() {

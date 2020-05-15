@@ -2,10 +2,9 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="colorBackgroundFloating">@color/colorButton</item>
-        <item name="colorAccent">@color/colorInterativo</item>
-        <item name="android:colorBackground">@color/colorDark</item>
-        <item name="android:textColor">@color/colorText</item>
-        <item name="android:textStyle">bold</item>
+        <item name="colorAccent">#005e66</item>
+        <item name="android:colorBackground">#e8e3e6</item>
+        <item name="android:textColor">@android:color/black</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:textViewStyle">@style/textViewStyle</item>
         <item name="android:buttonStyle">@style/buttonStyle</item>
@@ -17,86 +16,26 @@
         <item name="android:indeterminateTint">@android:color/white</item>
     </style>
 
-    <style name="geralTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="colorBackgroundFloating">@color/colorGeralMedio</item>
-        <item name="android:popupBackground">@color/colorGeralMedio</item>
-        <item name="android:colorBackground">@color/colorGeral</item>
-        <item name="android:backgroundTint">@android:color/darker_gray</item>
-        <item name="android:textColor">@android:color/white</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textAllCaps">false</item>
-        <item name="android:textViewStyle">@style/textViewStyle</item>
-        <item name="android:buttonStyle">@style/buttonStyle</item>
-        <item name="android:textSize">20sp</item>
-        <item name="android:textAppearanceSmall">@style/textViewStyle</item>
-        <item name="android:textAppearanceMedium">@style/textViewStyle</item>
-        <item name="android:textAppearanceLarge">@style/textViewStyle</item>
-        <item name="dialogCornerRadius">10dp</item>
-    </style>
-
-    <style name="estudoTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="colorBackgroundFloating">@color/colorEstudoEscuro</item>
-        <item name="android:popupBackground">@color/colorEstudoEscuro</item>
-        <item name="android:colorBackground">@color/colorEstudo</item>
-        <item name="android:backgroundTint">@android:color/darker_gray</item>
-        <item name="android:textColor">@android:color/white</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textAllCaps">false</item>
-        <item name="android:textViewStyle">@style/textViewStyle</item>
-        <item name="android:buttonStyle">@style/buttonStyle</item>
-        <item name="android:textSize">20sp</item>
-        <item name="android:textAppearanceSmall">@style/textViewStyle</item>
-        <item name="android:textAppearanceMedium">@style/textViewStyle</item>
-        <item name="android:textAppearanceLarge">@style/textViewStyle</item>
-        <item name="dialogCornerRadius">10dp</item>
-    </style>
-
-    <style name="interativoTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="colorBackgroundFloating">@color/colorInterativoEscuro</item>
-        <item name="android:popupBackground">@color/colorInterativoEscuro</item>
-        <item name="android:colorBackground">@color/colorInterativo</item>
-        <item name="android:backgroundTint">@android:color/darker_gray</item>
-        <item name="android:textColor">@android:color/white</item>
-        <item name="android:shadowColor">@android:color/black</item>
-        <item name="android:shadowDx">5</item>
-        <item name="android:shadowDy">5</item>
-        <item name="android:shadowRadius">5</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textAllCaps">false</item>
-        <item name="android:textViewStyle">@style/textViewStyle</item>
-        <item name="android:buttonStyle">@style/buttonStyle</item>
-        <item name="android:textSize">20sp</item>
-        <item name="android:textAppearanceSmall">@style/textViewStyle</item>
-        <item name="android:textAppearanceMedium">@style/textViewStyle</item>
-        <item name="android:textAppearanceLarge">@style/textViewStyle</item>
-        <item name="dialogCornerRadius">10dp</item>
-    </style>
-
     <style name="AppThemeTeste">
         <item name="colorBackgroundFloating">@color/colorText</item>
         <item name="android:colorBackground">@color/colorText</item>
     </style>
     <style name="textViewStyle" parent="android:Widget.TextView">
-        <item name="android:fontFamily">@font/lanehum</item>
-        <item name="android:letterSpacing">0.1</item>
-    </style>
-
-    <style name="buttonStyle" parent="android:Widget.Holo.Button">
-        <item name="android:fontFamily">@font/lanehum</item>
-        <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">@font/clarity</item>
         <item name="android:letterSpacing">0.1</item>
         <item name="android:textColor">@android:color/black</item>
     </style>
 
-
-    <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.ActionBar">
-        <item name="android:fontFamily">@font/lanehum</item>
-        <item name="android:textSize">23sp</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textColor">@color/colorText</item>
+    <style name="buttonStyle" parent="android:Widget.Holo.Button">
         <item name="android:textAllCaps">false</item>
         <item name="android:letterSpacing">0.1</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:shadowColor">@android:color/black</item>
+        <item name="android:shadowDx">-1</item>
+        <item name="android:shadowDy">-1</item>
+        <item name="android:shadowRadius">1</item>
     </style>
+
 
     <style name="spinnerTheme">
         <item name="android:layout_width">match_parent</item>
@@ -113,9 +52,18 @@
     </style>
 
     <style name="Theme.App.Base" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorControlNormal">@android:color/white</item>
-        <item name="colorControlActivated">@android:color/white</item>
-        <item name="colorControlHighlight">@android:color/white</item>
+        <item name="colorControlNormal">@android:color/black</item>
+        <item name="colorControlActivated">@android:color/black</item>
+        <item name="colorControlHighlight">@android:color/black</item>
+        <item name="android:backgroundTint">@android:color/black</item>
+    </style>
+
+    <style name="MyEditTextstyle">
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:backgroundTint">@android:color/black</item>
+        <item name="android:editTextColor">@android:color/black</item>
+        <item name="android:textCursorDrawable">@null</item>
+        <item name="android:textColorHighlight">@color/colorButton</item>
     </style>
 
 </resources>

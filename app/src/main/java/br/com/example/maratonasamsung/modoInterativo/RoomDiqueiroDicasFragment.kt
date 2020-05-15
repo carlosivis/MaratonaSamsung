@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.annotation.RequiresApi
@@ -20,8 +21,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.example.maratonasamsung.R
 import br.com.example.maratonasamsung.model.Requests.*
 import br.com.example.maratonasamsung.model.Responses.*
-import br.com.example.maratonasamsung.service.ErrorCases
-import br.com.example.maratonasamsung.service.Service
+import br.com.example.maratonasamsung.data.service.ErrorCases
+import br.com.example.maratonasamsung.data.service.Service
 import kotlinx.android.synthetic.main.fragment_room_diqueiro_dicas.*
 import kotlinx.android.synthetic.main.fragment_room_diqueiro_dicas.recyclerRanking
 import retrofit2.Call
@@ -85,6 +86,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
         view.findViewById<Button>(R.id.diqueiroBtnDicas).setOnClickListener(this)
+        view.findViewById<ImageButton>(R.id.btn_back).setOnClickListener(this)
 
         val id_sessao = requireArguments().getInt("id_sessao")
         val rodada = requireArguments().getInt("rodada")
@@ -135,6 +137,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when(v!!.id){
+            R.id.btn_back -> activity?.onBackPressed()
             R.id.diqueiroBtnDicas -> {
 
                 if(clicavel) {
@@ -150,7 +153,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                         if (diqueiroSpinnerTransmicao.visibility == View.VISIBLE) diqueiroSpinnerTransmicao.selectedItem.toString()
                         else ""
 
-                    if(sintoma.isEmpty() && prevencao.isEmpty() && transmicao.isEmpty()) {
+                    if(sintoma.equals("Sintomas disponíveis") && prevencao.isEmpty() && transmicao.isEmpty()) {
                         val texto = "Selecione uma dica"
                         val duracao = Toast.LENGTH_SHORT
                         val toast = Toast.makeText(context, texto, duracao)
@@ -436,7 +439,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                         sintomasGlobal.removeAll(sintomasSelecionados)
                     }
 
-                    sintomasGlobal.add(0, "")
+                    sintomasGlobal.add(0, "Sintomas disponíveis")
                     populaSpinnerSintoma(sintomasGlobal)
                 }
                 else {
@@ -485,7 +488,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                         prevencoesGlobal.removeAll(prevecoesSelecionados)
                     }
 
-                    prevencoesGlobal.add(0, "")
+                    //prevencoesGlobal.add(0, "")
                     populaSpinnerSintoma(prevencoesGlobal)
                 }
                 else {
@@ -534,7 +537,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                         transmicoesGlobal.removeAll(transmicoesSelecionados)
                     }
 
-                    transmicoesGlobal.add(0, "")
+                    //transmicoesGlobal.add(0, "")
                     populaSpinnerSintoma(transmicoesGlobal)
                 }
                 else {

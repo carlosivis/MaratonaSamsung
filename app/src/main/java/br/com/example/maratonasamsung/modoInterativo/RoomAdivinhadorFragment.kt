@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.annotation.RequiresApi
@@ -24,8 +25,8 @@ import br.com.example.maratonasamsung.model.Responses.StatusBoolean
 import br.com.example.maratonasamsung.model.Responses.JogadorResponse
 import br.com.example.maratonasamsung.model.Responses.RankingResponse
 import br.com.example.maratonasamsung.model.Responses.SessaoResponseListing
-import br.com.example.maratonasamsung.service.ErrorCases
-import br.com.example.maratonasamsung.service.Service
+import br.com.example.maratonasamsung.data.service.ErrorCases
+import br.com.example.maratonasamsung.data.service.Service
 import kotlinx.android.synthetic.main.fragment_room_adivinhador.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -93,6 +94,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
         view.findViewById<Button>(R.id.adivinhadorBtnAdivinhar).setOnClickListener(this)
+        view.findViewById<ImageButton>(R.id.btn_back).setOnClickListener(this)
 
         val id_sessao = requireArguments().getInt("id_sessao")
         val doencas = requireArguments().getStringArrayList("doencas")
@@ -146,6 +148,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when(v!!.id){
+            R.id.btn_back -> activity?.onBackPressed()
             R.id.adivinhadorBtnAdivinhar -> {
                 val resposta = spinnerResposta.selectedItem.toString()
 
@@ -386,7 +389,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
 
                 if (response.code() == 500) {
                     Log.d("Erro banco: JogUpdate", response.message())
-                    context?.let { ErrorCases().error(it)}
+
                 }
             }
         })

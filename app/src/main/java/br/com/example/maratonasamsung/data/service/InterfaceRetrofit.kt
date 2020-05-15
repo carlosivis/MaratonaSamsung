@@ -3,6 +3,7 @@ package br.com.example.appacessibilidade
 
 import br.com.example.maratonasamsung.model.Requests.*
 import br.com.example.maratonasamsung.model.Responses.*
+import kotlinx.coroutines.Deferred
 import retrofit2.Call
 import retrofit2.http.*
 

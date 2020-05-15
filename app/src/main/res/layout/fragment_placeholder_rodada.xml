@@ -22,7 +22,7 @@
             android:layout_centerHorizontal="true"
             tools:text="A doença era:"
             android:layout_marginBottom="40dp"
-            android:textSize="25sp"
+            android:textSize="20sp"
             />
         <TextView
             android:id="@+id/txtTipoJogador"
@@ -41,7 +41,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/txtTipoJogador"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="40dp" />
+            android:layout_marginTop="40dp"
+            android:indeterminateTint="@android:color/black"/>
 
     </RelativeLayout>
 </RelativeLayout>

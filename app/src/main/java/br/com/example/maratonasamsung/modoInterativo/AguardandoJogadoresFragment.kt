@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.navigation.NavController
@@ -17,8 +18,8 @@ import br.com.example.maratonasamsung.R
 import br.com.example.maratonasamsung.model.Requests.JogadorRequest
 import br.com.example.maratonasamsung.model.Responses.StatusBoolean
 import br.com.example.maratonasamsung.model.Responses.RankingResponse
-import br.com.example.maratonasamsung.service.ErrorCases
-import br.com.example.maratonasamsung.service.Service
+import br.com.example.maratonasamsung.data.service.ErrorCases
+import br.com.example.maratonasamsung.data.service.Service
 import kotlinx.android.synthetic.main.fragment_aguardando_jogadores.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -68,6 +69,7 @@ class AguardandoJogadoresFragment : Fragment(), View.OnClickListener {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
         view.findViewById<Button>(R.id.btnAguardandoJogadores).setOnClickListener(this)
+        view.findViewById<ImageButton>(R.id.btn_back).setOnClickListener(this)
 
         activity?.let {
             AlertDialog.Builder(it)
@@ -83,14 +85,15 @@ class AguardandoJogadoresFragment : Fragment(), View.OnClickListener {
 
         aguardandoJogadoresProgressBar.visibility = View.INVISIBLE
 
-        aguardandoJogadoresCampoNome.text = sala_nome
-        aguardandoJogadoresCampoSenha.text = sala_senha
+        aguardandoJogadoresTxtNome.text = "Nome: $sala_nome"
+        aguardandoJogadoresTxtSenha.text = "Senha: $sala_senha"
 
         jogadores(id_sessao)
     }
 
     override fun onClick(v: View?) {
         when(v!!.id){
+            R.id.btn_back -> activity?.onBackPressed()
             R.id.btnAguardandoJogadores -> {
 
                 if(clicavel) {

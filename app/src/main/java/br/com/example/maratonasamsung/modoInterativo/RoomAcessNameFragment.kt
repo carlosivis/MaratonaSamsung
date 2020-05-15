@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
@@ -14,9 +15,8 @@ import br.com.example.maratonasamsung.R
 import br.com.example.maratonasamsung.model.Requests.JogadorRequest
 import br.com.example.maratonasamsung.model.Responses.JogadorResponse
 import br.com.example.maratonasamsung.model.Responses.RankingResponse
-import br.com.example.maratonasamsung.model.Responses.SessaoResponseListing
-import br.com.example.maratonasamsung.service.ErrorCases
-import br.com.example.maratonasamsung.service.Service
+import br.com.example.maratonasamsung.data.service.ErrorCases
+import br.com.example.maratonasamsung.data.service.Service
 import kotlinx.android.synthetic.main.fragment_room_acess_name.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -44,12 +44,14 @@ class RoomAcessNameFragment : Fragment(), View.OnClickListener {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
         view.findViewById<Button>(R.id.acessnameBtnAcessarSala).setOnClickListener(this)
+        view.findViewById<ImageButton>(R.id.btn_back).setOnClickListener(this)
 
         acessNameProgressBar.visibility = View.INVISIBLE;
     }
 
     override fun onClick(v: View?) {
         when(v!!.id){
+            R.id.btn_back -> activity?.onBackPressed()
             R.id.acessnameBtnAcessarSala -> {
 
                 if(clicavel) {

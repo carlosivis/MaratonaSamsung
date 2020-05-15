@@ -3,11 +3,57 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginStart="20dp"
-    android:layout_marginTop="20dp"
-    android:layout_marginEnd="20dp"
-    android:layout_marginBottom="20dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".modoInterativo.AguardandoJogadoresFragment">
+
+    <RelativeLayout
+        android:id="@+id/menuLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="20dp"
+        android:background="@color/colorDark">
+
+        <ImageButton
+            android:id="@+id/btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:background="@null"
+            android:src="@drawable/ic_arrow_left" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_centerHorizontal="true"
+            android:textSize="20sp"
+            android:text="@string/interativo"
+            android:textColor="@android:color/white" />
+
+        <ImageView
+            android:id="@+id/imageLogo"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/labelGame"
+            android:src="@drawable/game"
+            android:visibility="visible" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/menuLayout">
+
 
     <TextView
         android:id="@+id/aguardandoJogadoresTxtJogadores"
@@ -15,92 +61,71 @@
         android:layout_height="wrap_content"
         android:text="@string/txt_jogadores"
         android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/colorText"
         android:textSize="30sp" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerRanking"
-        android:layout_width="347dp"
-        android:layout_height="331dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
-        android:layout_marginStart="9dp"
-        android:layout_marginTop="95dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="192dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="30dp"
+        android:layout_below="@+id/aguardandoJogadoresTxtJogadores"
+        android:layout_above="@+id/btnAguardandoJogadores">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerRanking"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/border"
+            android:scrollbars="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:layout_marginBottom="30dp"
+            tools:listitem="@layout/recycler_view_jogadores"/>
+
+        <TextView
+            android:id="@+id/aguardandoJogadoresTxtDados"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="25sp"
+            android:layout_marginBottom="20dp"
+            android:text="@string/txt_dados" />
+
+        <TextView
+            android:id="@+id/aguardandoJogadoresTxtNome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:text="@string/txt_nomeSala" />
+
+        <TextView
+            android:id="@+id/aguardandoJogadoresTxtSenha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_senhaSala" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/btnAguardandoJogadores"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/roundbutton"
-        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginEnd="122dp"
-        android:layout_marginBottom="22dp"
-        android:text="@string/btn_comecar" />
+        android:layout_marginBottom="20dp"
+        android:text="@string/btn_comecar"
+        android:ems="4"/>
 
     <ProgressBar
         android:id="@+id/aguardandoJogadoresProgressBar"
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginEnd="152dp"
-        android:layout_marginBottom="22dp" />
-
-    <TextView
-        android:id="@+id/aguardandoJogadoresTxtDados"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="17dp"
-        android:layout_marginBottom="154dp"
-        android:text="@string/txt_dados" />
-
-    <TextView
-        android:id="@+id/aguardandoJogadoresTxtNome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="15dp"
-        android:layout_marginBottom="109dp"
-        android:text="@string/txt_nomeSala" />
-
-    <TextView
-        android:id="@+id/aguardandoJogadoresTxtSenha"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="15dp"
-        android:layout_marginBottom="69dp"
-        android:text="@string/txt_senhaSala" />
-
-    <TextView
-        android:id="@+id/aguardandoJogadoresCampoNome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="97dp"
-        android:layout_marginBottom="109dp" />
-
-    <TextView
-        android:id="@+id/aguardandoJogadoresCampoSenha"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="103dp"
-        android:layout_marginBottom="67dp" />
+        android:layout_alignBottom="@+id/btnAguardandoJogadores"
+        android:layout_alignTop="@+id/btnAguardandoJogadores"
+        android:layout_alignStart="@+id/btnAguardandoJogadores"
+        android:layout_alignEnd="@+id/btnAguardandoJogadores"/>
+</RelativeLayout>
 </RelativeLayout>

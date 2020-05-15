@@ -1,4 +1,4 @@
-package br.com.example.maratonasamsung.service
+package br.com.example.maratonasamsung.data.service
 
 import br.com.example.appacessibilidade.InterfaceRetrofit
 import okhttp3.OkHttpClient

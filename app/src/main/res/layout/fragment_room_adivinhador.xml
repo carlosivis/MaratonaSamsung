@@ -5,22 +5,66 @@
     android:id="@+id/roomAdivinhador"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="20dp"
-    android:layout_marginRight="20dp"
-    android:layout_marginBottom="20dp"
-    android:orientation="vertical"
     tools:context=".ui.main.MainActivity">
+
+
+    <RelativeLayout
+        android:id="@+id/menuLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="20dp"
+        android:background="@color/colorDark">
+
+        <ImageButton
+            android:id="@+id/btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:background="@null"
+            android:src="@drawable/ic_arrow_left" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_centerHorizontal="true"
+            android:textSize="20sp"
+            android:text="@string/interativo"
+            android:textColor="@android:color/white" />
+
+        <ImageView
+            android:id="@+id/imageLogo"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/labelBooks"
+            android:src="@drawable/books"
+            android:visibility="visible" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/menuLayout">
+
 
     <TextView
         android:id="@+id/txtDiqueiro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
         android:layout_marginBottom="30dp"
         android:text="@string/txt_adivinhador"
-        android:textColor="@color/colorText"
-        android:textSize="30sp" />
+        android:textSize="24sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -43,7 +87,6 @@
             android:shadowColor="@color/colorAccent"
             android:text="@string/ranking"
             android:layout_gravity="center"
-            android:textColor="@color/colorText"
             android:textSize="20sp" />
 
         <Chronometer
@@ -52,7 +95,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="end"
-            android:fontFamily="@font/lanehum"
+            android:fontFamily="@font/clarity"
             />
     </LinearLayout>
 
@@ -76,7 +119,6 @@
             android:layout_marginBottom="10dp"
             android:shadowColor="@color/colorAccent"
             android:text="@string/dicas"
-            android:textColor="@color/colorText"
             android:textSize="20sp"/>
 
         <androidx.recyclerview.widget.RecyclerView
@@ -100,7 +142,6 @@
         android:layout_marginBottom="10dp"
         android:shadowColor="@color/colorAccent"
         android:text="@string/txt_resposta"
-        android:textColor="@color/colorText"
         android:textSize="25sp" />
 
     <Spinner
@@ -121,7 +162,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:background="@drawable/roundbutton"
-        android:ems="4"
+        android:ems="7"
         android:text="@string/btn_adivinhar" />
 
     <ProgressBar
@@ -141,9 +182,11 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:gravity="center"
         android:layout_marginStart="0dp"
         android:layout_marginBottom="0dp"
         android:text="@string/voceJaAcertou" />
 
 
+</RelativeLayout>
 </RelativeLayout>
