@@ -21,6 +21,7 @@ import br.com.example.maratonasamsung.model.Responses.JogadorResponse
 import br.com.example.maratonasamsung.model.Responses.SessaoResponseListing
 import br.com.example.maratonasamsung.service.ErrorCases
 import br.com.example.maratonasamsung.service.Service
+import kotlinx.android.synthetic.main.fragment_expulso_sala.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -63,6 +64,8 @@ class ExpulsoSalaFragment : Fragment(), View.OnClickListener {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
         view.findViewById<Button>(R.id.expulsoBtn).setOnClickListener(this)
+
+        expulsoProgressBar.visibility = View.INVISIBLE
     }
 
     override fun onClick(v: View?) {
@@ -73,6 +76,8 @@ class ExpulsoSalaFragment : Fragment(), View.OnClickListener {
                     val id_sessao = requireArguments().getInt("id_sessao")
                     val jogador = requireArguments().getString("jogador_nome").toString()
 
+                    expulsoBtn.setText("")
+                    expulsoProgressBar.visibility = View.VISIBLE;
                     clicavel = false
 
                     jogadorEncerrar(id_sessao, jogador)
@@ -101,6 +106,8 @@ class ExpulsoSalaFragment : Fragment(), View.OnClickListener {
                     Log.d("Erro banco: JogUpdate", response.message())
                     context?.let { ErrorCases().error(it)}
 
+                    expulsoBtn.setText(R.string.sair)
+                    expulsoProgressBar.visibility = View.INVISIBLE;
                     clicavel = true
                 }
             }

@@ -108,6 +108,25 @@ class PlaceholderRodadaFragment : Fragment() {
                         toast.show()
                     }
                     else {
+                        val quantidadeJogadores: ArrayList<String> = arrayListOf("")
+                        resposta.jogadores.forEach { quantidadeJogadores.add((it.nome)) }
+
+                        quantidadeJogadores.removeAt(0)
+
+                        if (quantidadeJogadores.size < 2) {
+                            val jogador = requireArguments().getString("jogador_nome").toString()
+
+                            val parametros = Bundle()
+                            parametros.putInt("id_sessao", id_sessao)
+                            parametros.putString("jogador_nome", jogador)
+
+                            timerCronometro.cancel()
+                            timerCronometro.purge()
+
+                            jogadorEncerrar(id_sessao, jogador)
+                            navController!!.navigate(R.id.action_placeholderRodadaFragment_to_expulsoSalaFragment, parametros)
+                        }
+
                         diqueiro = resposta.darDica.nome
                         val jogador = requireArguments().getString("jogador_nome").toString()
 

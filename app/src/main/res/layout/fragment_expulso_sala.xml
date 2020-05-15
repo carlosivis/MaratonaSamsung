@@ -30,4 +30,13 @@
         android:background="@drawable/roundbutton"
         android:ems="4"
         android:text="@string/sair" />
+
+    <ProgressBar
+        android:id="@+id/expulsoProgressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="31dp" />
 </RelativeLayout>
