@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
@@ -43,12 +44,14 @@ class RoomAcessNameFragment : Fragment(), View.OnClickListener {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
         view.findViewById<Button>(R.id.acessnameBtnAcessarSala).setOnClickListener(this)
+        view.findViewById<ImageButton>(R.id.btn_back).setOnClickListener(this)
 
         acessNameProgressBar.visibility = View.INVISIBLE;
     }
 
     override fun onClick(v: View?) {
         when(v!!.id){
+            R.id.btn_back -> activity?.onBackPressed()
             R.id.acessnameBtnAcessarSala -> {
 
                 if(clicavel) {

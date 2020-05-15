@@ -44,6 +44,7 @@ class ChooseFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         viewModel = ChooseViewModel(DoencasRepositoryImpl(Service))
         navController = Navigation.findNavController(view)
 
@@ -51,6 +52,12 @@ class ChooseFragment : Fragment() {
         observerLoading()
         observerResponse()
         viewModel.doencas()
+        view.findViewById<ImageButton>(R.id.btn_back).setOnClickListener(this)
+        }
+
+    override fun onClick(v: View?) {
+        when (v!!.id) {
+            R.id.btn_back -> activity?.onBackPressed()
         }
   
     private fun configureRecyclerView(list: List<DoencasResponse>) {

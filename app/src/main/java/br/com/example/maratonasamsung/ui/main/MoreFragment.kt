@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -33,11 +34,12 @@ class MoreFragment : Fragment(), View.OnClickListener {
         view.findViewById<Button>(R.id.btnTutorial).setOnClickListener(this)
         view.findViewById<Button>(R.id.btnRegras).setOnClickListener(this)
         view.findViewById<Button>(R.id.btnCreditos).setOnClickListener(this)
-
+        view.findViewById<ImageButton>(R.id.btn_back).setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
         when (v!!.id) {
+            R.id.btn_back -> activity?.onBackPressed()
             R.id.btnTutorial -> startActivity(Intent(activity, TutorialActivity::class.java))
             R.id.btnRegras -> {
                 navController!!.navigate(R.id.action_moreFragment_to_rulesFragment)

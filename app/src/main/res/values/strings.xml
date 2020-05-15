@@ -85,13 +85,14 @@
     <string name="creditsProtozoario">Ícone feito por \n<a href="https://www.flaticon.com/authors/freepik">Freepik</a> de \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
     <string name="creditsVirus">Ícone feito por \n<a href="https://www.flaticon.com/authors/freepik">Freepik</a> de \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
     <string name="creditsWinner">Ícone feito por \n<a href="https://www.flaticon.com/authors/freepik">Freepik</a> de \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
+    <string name="creditsSad">Ícone feito por \n<a href="https://www.flaticon.com/authors/smashicons">Smashicons</a> de \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
     <string name="labelSetaDir">Seta para a direita</string>
     <string name="labelCheck">Sinal de check</string>
 
 
     <string name="sair">Sair</string>
     <string name="cancelar">Cancelar</string>
-    <string name="ok">Ok</string>
+    <string name="ok">OK</string>
 
     <string name="aguardando_comecar">Aguardando o primeiro jogador a entrar na sala começar a partida</string>
     <string name="aguardando_jogadores_title">Olá, você é o primeiro a entrar nesta sala!</string>
@@ -121,4 +122,6 @@
     <string name="voceJaAcertou">Você já acertou, aguardar final da rodada</string>
     <string name="sorteandoDoenca">Sorteando uma doença...</string>
     <string name="jogoFim">Jogo finalizado! O(A) vencedor(a) foi</string>
+    <string name="labelSad">Ilustração de um fantasma triste</string>
+    <string name="morbus">Morbus</string>
 </resources>

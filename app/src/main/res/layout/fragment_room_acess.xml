@@ -4,26 +4,59 @@
     android:id="@+id/roomAcessFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginStart="20dp"
-    android:layout_marginEnd="20dp"
-    android:layout_marginBottom="20dp"
     tools:context=".ui.main.MainActivity">
-
-    <TextView
-        android:id="@+id/acessModoInterativo"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:id="@+id/menuLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
-        android:layout_marginBottom="30dp"
-        android:text="@string/interativo"
-        android:textSize="30sp" />
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="20dp"
+        android:background="@color/colorDark">
+
+        <ImageButton
+            android:id="@+id/btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:background="@null"
+            android:src="@drawable/ic_arrow_left" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_centerHorizontal="true"
+            android:textSize="20sp"
+            android:text="@string/interativo"
+            android:textColor="@android:color/white" />
+
+        <ImageView
+            android:id="@+id/imageLogo"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/labelGame"
+            android:src="@drawable/game"
+            android:visibility="visible" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/menuLayout">
 
     <TextView
         android:id="@+id/acessTxtAcessarSala"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/acessModoInterativo"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp"
         android:text="@string/txt_acessar_sala"
@@ -50,7 +83,7 @@
 
             <EditText
                 android:id="@+id/acessEditNomeSala"
-                style="@style/textViewStyle"
+                style="@style/MyEditTextstyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/acessTxtNomeSala"
@@ -58,8 +91,6 @@
                 android:autofillHints="@string/nomeSala"
                 android:hint="@string/nomeSala"
                 android:inputType="textPersonName"
-                android:backgroundTint="@color/colorLight"
-                android:textCursorDrawable="@null"
                 android:textSize="18sp" />
 
             <TextView
@@ -72,15 +103,13 @@
 
             <EditText
                 android:id="@+id/acessEditSenha"
-                style="@style/textViewStyle"
+                style="@style/MyEditTextstyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/acessTxtSenha"
                 android:autofillHints="@string/senha"
                 android:hint="@string/senha"
                 android:inputType="textPassword"
-                android:backgroundTint="@color/colorLight"
-                android:textCursorDrawable="@null"
                 android:textSize="18sp" />
         </RelativeLayout>
     </RelativeLayout>
@@ -93,7 +122,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginTop="30dp"
         android:background="@drawable/roundbutton"
-        android:ems="4"
+        android:ems="5"
         android:text="@string/btn_continuar" />
 
     <ProgressBar
@@ -106,4 +135,5 @@
         android:layout_alignStart="@+id/acessBtnContinuar"
         android:layout_alignEnd="@+id/acessBtnContinuar"/>
 
+</RelativeLayout>
 </RelativeLayout>
