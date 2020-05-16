@@ -488,7 +488,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                         prevencoesGlobal.removeAll(prevecoesSelecionados)
                     }
 
-                    //prevencoesGlobal.add(0, "")
+                    prevencoesGlobal.add(0, "")
                     populaSpinnerSintoma(prevencoesGlobal)
                 }
                 else {
@@ -537,7 +537,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                         transmicoesGlobal.removeAll(transmicoesSelecionados)
                     }
 
-                    //transmicoesGlobal.add(0, "")
+                    transmicoesGlobal.add(0, "")
                     populaSpinnerSintoma(transmicoesGlobal)
                 }
                 else {

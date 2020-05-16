@@ -46,44 +46,36 @@
             android:visibility="visible" />
     </RelativeLayout>
 
-    <RelativeLayout
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/menuLayout">
-    <TextView
-        android:id="@+id/textViewTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/escolhaDoenca"
-        android:layout_marginStart="20dp"
-        android:layout_marginBottom="20dp"
-        android:textSize="20sp" />
-    <ProgressBar
-        android:id="@+id/Loading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        />
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/linearLayout"
-        android:layout_below="@+id/textViewTitle">
+        <RelativeLayout
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/menuLayout">
+        <TextView
+            android:id="@+id/textViewTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/escolhaDoenca"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="40dp"
+            android:textSize="20sp" />
+        <ProgressBar
+            android:id="@+id/Loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerDoencas"
+            android:layout_below="@+id/textViewTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_marginTop="30dp"
             android:scrollbars="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/recycler_view_listadoencas" />
-    </RelativeLayout>
     </RelativeLayout>
 </RelativeLayout>
