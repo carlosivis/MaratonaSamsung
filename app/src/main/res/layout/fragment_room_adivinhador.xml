@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginBottom="20dp"
-        android:background="@color/colorDark">
+        android:background="@color/colorMenu">
 
         <ImageButton
             android:id="@+id/btn_back"

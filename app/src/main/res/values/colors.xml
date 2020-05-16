@@ -4,9 +4,11 @@
     <color name="colorLight">#581845</color>
     <color name="colorDark">#3c102f</color>
     <color name="colorBackground">#3c102f</color>
+    <color name="colorMenu">#240017</color>
     <color name="colorText">#ffffff</color>
-    <color name="colorButton">#008c99</color>
-    <color name="colorteste" />
+    <color name="colorButton">#673857</color>
+    <color name="colorButtonDark">#521441</color>
+    <color name="colorteste">#008c99</color>
 
     <color name="colorGeralBase">#542437</color>
     <color name="colorGeral1">#873F47</color>

@@ -10,7 +10,7 @@
             </item>
             <item android:bottom="3px">
                 <shape android:shape="oval">
-                    <solid android:color="#521441" />
+                    <solid android:color="@color/colorButton" />
                     <corners android:radius="12dp" />
                 </shape>
             </item>
@@ -27,7 +27,7 @@
             </item>
             <item android:bottom="3px">
                 <shape android:shape="oval">
-                    <solid android:color="#290a21" />
+                    <solid android:color="@color/colorButtonDark" />
                     <corners android:radius="12dp" />
                 </shape>
             </item>
