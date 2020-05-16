@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
@@ -18,7 +19,7 @@ import br.com.example.maratonasamsung.data.service.ErrorCases
 import br.com.example.maratonasamsung.data.service.Service
 import kotlinx.android.synthetic.main.fragment_choose.*
 
-class ChooseFragment : Fragment() {
+class ChooseFragment : Fragment(), View.OnClickListener {
     private lateinit var viewModel: ChooseViewModel
 
     var navController: NavController? = null
@@ -40,10 +41,8 @@ class ChooseFragment : Fragment() {
 
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
 
         viewModel = ChooseViewModel(DoencasRepositoryImpl(Service))
         navController = Navigation.findNavController(view)
@@ -59,14 +58,16 @@ class ChooseFragment : Fragment() {
         when (v!!.id) {
             R.id.btn_back -> activity?.onBackPressed()
         }
-  
+    }
+
     private fun configureRecyclerView(list: List<DoencasResponse>) {
         doencaAdapter = DoencaAdapter(list)
         recyclerDoencas.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter=doencaAdapter
+            adapter = doencaAdapter
         }
     }
+
     private fun observerResponse() {
         viewModel.response.observe(viewLifecycleOwner,
             Observer {
@@ -76,17 +77,19 @@ class ChooseFragment : Fragment() {
             })
 
     }
+
     private fun observerError() {
         viewModel.error.observe(viewLifecycleOwner,
-            Observer{
+            Observer {
                 Log.d("Error message", it.toString())
-                context?.let { ErrorCases().error(it)}
+                context?.let { ErrorCases().error(it) }
             })
     }
-    private fun observerLoading(){
+
+    private fun observerLoading() {
         viewModel.loading.observe(viewLifecycleOwner,
             Observer {
-                Loading.visibility= if (it==true) View.VISIBLE else View.GONE
+                Loading.visibility = if (it == true) View.VISIBLE else View.GONE
             })
     }
 }
