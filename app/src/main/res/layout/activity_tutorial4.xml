@@ -5,13 +5,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    tools:context=".tutoriaisRegras.TutorialActivity4">
+    tools:context=".tutoriaisRegras.TutorialActivity">
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
+        android:layout_above="@id/button_layout"
         android:layout_marginBottom="20dp">
         <TextView
             android:id="@+id/fragment_title"
@@ -21,6 +22,7 @@
             android:layout_marginTop="40dp"
             android:layout_marginBottom="20dp"
             android:text="@string/config"
+            android:gravity="center"
             android:textSize="30sp" />
 
         <ImageView
@@ -38,29 +40,39 @@
             android:id="@+id/fragment_title2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@id/button_layout"
             android:layout_marginTop="20dp"
+            android:layout_alignParentBottom="true"
             android:justificationMode="inter_word"
             android:text="@string/configText"
             android:textSize="20sp" />
 
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/button_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:background="@color/colorMenu"
+        android:layout_alignParentBottom="true">
+
         <RelativeLayout
-            android:id="@+id/button_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
-            android:layout_alignParentBottom="true">
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp">
 
             <ImageButton
                 android:id="@+id/btn_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="onClick"
-                android:background="@null"
-                android:layout_alignParentStart="true"
-                android:contentDescription="@string/labelSetaEsq"
                 android:src="@drawable/ic_arrow_right"
-                android:scaleX="-1"/>
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:background="@null"
+                android:scaleX="-1"
+                android:contentDescription="@string/labelSetaEsq" />
 
             <TextView
                 android:id="@+id/indicator1"
@@ -68,6 +80,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@+id/btn_next"
                 android:layout_centerInParent="true"
+                android:padding="15sp"
                 android:text="@string/quatrodequatro"
                 android:textSize="18sp" />
 
@@ -78,9 +91,9 @@
                 android:onClick="onClick"
                 android:src="@drawable/ic_end"
                 android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
                 android:background="@null"
                 android:contentDescription="@string/labelCheck" />
         </RelativeLayout>
-
     </RelativeLayout>
 </RelativeLayout>
