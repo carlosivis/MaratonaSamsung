@@ -120,14 +120,14 @@
                     android:textSize="18sp"
                     android:layout_width="match_parent"
                     android:gravity="center"
-                    android:layout_gravity="center"
+                    android:layout_gravity="top"
                     />
                 <TextView
                     android:text="@string/platelminto"
                     android:textSize="18sp"
                     android:layout_width="match_parent"
                     android:gravity="center"
-                    android:layout_gravity="center"
+                    android:layout_gravity="top"
                     />
 
             </TableRow>
@@ -172,15 +172,15 @@
                     android:layout_width="match_parent"
                     android:text="@string/protozoario"
                     android:gravity="center"
+                    android:layout_gravity="top"
                     android:textSize="18sp"
-                    android:layout_gravity="center"
                     />
                 <TextView
                     android:text="@string/virus"
                     android:textSize="18sp"
                     android:layout_width="match_parent"
                     android:gravity="center"
-                    android:layout_gravity="center"
+                    android:layout_gravity="top"
                     />
 
             </TableRow>
