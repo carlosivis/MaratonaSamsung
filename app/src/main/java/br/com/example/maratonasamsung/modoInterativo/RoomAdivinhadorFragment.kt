@@ -101,6 +101,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
 
         adivinhadorProgressBar.visibility = View.INVISIBLE
         adivinhadorTxtAcertou.visibility = View.INVISIBLE
+        adivinhadorBtnAdivinhar.visibility = View.INVISIBLE
         textResposta.visibility = View.INVISIBLE
         spinnerResposta.visibility = View.INVISIBLE
 
@@ -114,6 +115,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
         chronometro()
         ranking(id_sessao)
         timerAguardando.schedule(5000) {
+            adivinhadorBtnAdivinhar.visibility = View.VISIBLE
             textResposta.visibility = View.VISIBLE
             spinnerResposta.visibility = View.VISIBLE
 
