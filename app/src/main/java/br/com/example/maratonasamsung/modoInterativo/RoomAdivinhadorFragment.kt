@@ -195,7 +195,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
 
                 if (response.isSuccessful) {
                     val resposta = response.body()!!
-                    rodada = resposta.sessao.rodada
+                    rodada = resposta.sessao.rodada + 1
                     doencaRodada = resposta.ultimaDoenca
                 }
                 else {

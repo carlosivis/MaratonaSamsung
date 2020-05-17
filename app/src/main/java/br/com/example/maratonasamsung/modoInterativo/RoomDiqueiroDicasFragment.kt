@@ -98,6 +98,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
         Toast.makeText(context,"Você pode enviar varias dicas!", Toast.LENGTH_SHORT).show()
 
         chronometro()
+        editarRodada(id_sessao, doenca)
         definirDoenca()
         sintomas(doenca)
         prevencoes(doenca)
@@ -113,12 +114,10 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
             parametros.putStringArrayList("doencas", doencas)
             parametros.putString("ultimaDoenca", doenca)
 
-            editarRodada(id_sessao, doenca)
             diqueirotempoCronometro.stop()
             timerRanking.cancel()
             timerRanking.purge()
 
-            //Porque a rodada 0 está sendo jogada (confirmar)
             if (rodada == 4){
                 jogadorEncerrar(id_sessao, jogador)
                 navController!!.navigate(R.id.action_roomDiqueiroDicasFragment_to_winnerFragment, vencedor)

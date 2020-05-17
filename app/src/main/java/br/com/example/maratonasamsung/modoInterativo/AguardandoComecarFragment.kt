@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -15,6 +16,7 @@ import br.com.example.maratonasamsung.model.Requests.JogadorRequest
 import br.com.example.maratonasamsung.model.Responses.StatusBoolean
 import br.com.example.maratonasamsung.data.service.ErrorCases
 import br.com.example.maratonasamsung.data.service.Service
+import br.com.example.maratonasamsung.model.Responses.RankingResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -25,6 +27,7 @@ class AguardandoComecarFragment : Fragment() {
 
     var navController: NavController? = null
     val timerComecar = Timer()
+    val timerJogadores = Timer()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,6 +50,8 @@ class AguardandoComecarFragment : Fragment() {
                     .setPositiveButton(R.string.sair) { dialog, which ->
                         timerComecar.cancel()
                         timerComecar.purge()
+                        timerJogadores.cancel()
+                        timerJogadores.purge()
                         jogadorEncerrar(id_sessao, jogador)
                         navController!!.navigate(R.id.action_aguardandoComecarFragment_to_mainFragment)
                     }
@@ -63,6 +68,7 @@ class AguardandoComecarFragment : Fragment() {
         val id_sessao = requireArguments().getInt("id_sessao")
 
         verificarPartida(id_sessao)
+        jogadores(id_sessao)
     }
 
     fun verificarPartida(id_sessao: Int) {
@@ -81,6 +87,8 @@ class AguardandoComecarFragment : Fragment() {
                     if(resposta.status) {
                         timerComecar.cancel()
                         timerComecar.purge()
+                        timerJogadores.cancel()
+                        timerJogadores.purge()
 
                         val jogador = requireArguments().getString("jogador_nome").toString()
                         val doencas = requireArguments().getStringArrayList("doencas")
@@ -101,6 +109,60 @@ class AguardandoComecarFragment : Fragment() {
         })
         timerComecar.schedule(1000){
             verificarPartida(id_sessao)
+        }
+    }
+
+    fun jogadores(id_sessao: Int){
+        Service.retrofit.ranking(
+            id_sessao = id_sessao
+        ).enqueue(object : Callback<RankingResponse> {
+            override fun onFailure(call: Call<RankingResponse>, t: Throwable) {
+                Log.d("Ruim: jogadores", t.toString())
+            }
+
+            override fun onResponse(call: Call<RankingResponse>, response: Response<RankingResponse>) {
+                Log.d("Bom: jogadores", response.body().toString())
+
+                if (response.isSuccessful) {
+                    val jogadores = response.body()!!
+
+                    if (!jogadores.status) {
+                        val texto = "Erro ao atualizar ranking"
+                        val duracao = Toast.LENGTH_SHORT
+                        val toast = Toast.makeText(context, texto, duracao)
+                        toast.show()
+                    }
+                    else {
+                        val quantidadeJogadores: ArrayList<String> = arrayListOf("")
+                        jogadores.jogadores.forEach { quantidadeJogadores.add((it.nome)) }
+
+                        quantidadeJogadores.removeAt(0)
+                        if(quantidadeJogadores.size < 2) {
+                            timerComecar.cancel()
+                            timerComecar.purge()
+                            timerJogadores.cancel()
+                            timerJogadores.purge()
+
+                            activity?.let {
+                                AlertDialog.Builder(it)
+                                    .setTitle(R.string.aguardando_comecar_title)
+                                    .setMessage(R.string.aguardando_comecar_message)
+                                    .setPositiveButton(R.string.sair) { dialog, which ->
+                                        navController!!.navigate(R.id.action_aguardandoComecarFragment_to_mainFragment)
+                                    }
+                                    .show()
+                            }
+                        }
+                    }
+                }
+                else {
+                    Log.d("Erro banco: jogadores", response.message())
+                    context?.let { ErrorCases().error(it)}
+                }
+            }
+        })
+        timerJogadores.schedule(5000){
+            jogadores(id_sessao)
         }
     }
 

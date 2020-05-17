@@ -29,7 +29,6 @@ class RoomAcessNameFragment : Fragment(), View.OnClickListener {
     val parametros = Bundle()
     var rodada: Int = 0
     var clicavel = true
-    var quantidadeJogadores = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -69,14 +68,50 @@ class RoomAcessNameFragment : Fragment(), View.OnClickListener {
                         clicavel = false
 
                         jogadores(id_sessao)
-                        jogadorNovo(id_sessao)
                     }
                 }
             }
         }
     }
 
-    fun jogadorNovo(id_sessao: Int){
+    fun jogadores(id_sessao: Int){
+        Service.retrofit.ranking(
+            id_sessao = id_sessao
+        ).enqueue(object : Callback<RankingResponse> {
+            override fun onFailure(call: Call<RankingResponse>, t: Throwable) {
+                Log.d("Ruim: jogadores", t.toString())
+            }
+
+            override fun onResponse(call: Call<RankingResponse>, response: Response<RankingResponse>) {
+                Log.d("Bom: jogadores", response.body().toString())
+
+                if (response.isSuccessful) {
+                    val jogadores = response.body()!!
+
+                    if (!jogadores.status) {
+                        val texto = "Erro ao pegar ranking"
+                        val duracao = Toast.LENGTH_SHORT
+                        val toast = Toast.makeText(context, texto, duracao)
+                        toast.show()
+                    }
+                    else {
+                        val quantidadeJogadores: ArrayList<String> = arrayListOf("")
+                        jogadores.jogadores.forEach { quantidadeJogadores.add((it.nome)) }
+
+                        quantidadeJogadores.removeAt(0)
+
+                        jogadorNovo(id_sessao, quantidadeJogadores.size)
+                    }
+                }
+                else {
+                    Log.d("Erro banco: jogadores", response.message())
+                    context?.let { ErrorCases().error(it)}
+                }
+            }
+        })
+    }
+
+    fun jogadorNovo(id_sessao: Int, quantidadeJogadores: Int){
         Service.retrofit.jogadorNovo(
             jogador = JogadorRequest(
                 id_sessao = id_sessao,
@@ -142,42 +177,6 @@ class RoomAcessNameFragment : Fragment(), View.OnClickListener {
                     clicavel = true
                     acessNameProgressBar.visibility = View.INVISIBLE;
                     acessnameBtnAcessarSala.setText(R.string.btn_acessar)
-                }
-            }
-        })
-    }
-
-    fun jogadores(id_sessao: Int){
-        Service.retrofit.ranking(
-            id_sessao = id_sessao
-        ).enqueue(object : Callback<RankingResponse> {
-            override fun onFailure(call: Call<RankingResponse>, t: Throwable) {
-                Log.d("Ruim: jogadores", t.toString())
-            }
-
-            override fun onResponse(call: Call<RankingResponse>, response: Response<RankingResponse>) {
-                Log.d("Bom: jogadores", response.body().toString())
-
-                if (response.isSuccessful) {
-                    val jogadores = response.body()!!
-
-                    if (!jogadores.status) {
-                        val texto = "Erro ao pegar ranking"
-                        val duracao = Toast.LENGTH_SHORT
-                        val toast = Toast.makeText(context, texto, duracao)
-                        toast.show()
-                    }
-                    else {
-                        val quantidade: ArrayList<String> = arrayListOf("")
-                        jogadores.jogadores.forEach { quantidade.add((it.nome)) }
-
-                        quantidade.removeAt(0)
-                        quantidadeJogadores = quantidade.size
-                    }
-                }
-                else {
-                    Log.d("Erro banco: jogadores", response.message())
-                    context?.let { ErrorCases().error(it)}
                 }
             }
         })

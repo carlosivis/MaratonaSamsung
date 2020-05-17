@@ -20,6 +20,8 @@ import br.com.example.maratonasamsung.model.Responses.StatusBoolean
 import br.com.example.maratonasamsung.model.Responses.SessaoResponseListing
 import br.com.example.maratonasamsung.data.service.ErrorCases
 import br.com.example.maratonasamsung.data.service.Service
+import br.com.example.maratonasamsung.model.Requests.EditarSessaoRequest
+import br.com.example.maratonasamsung.model.Responses.SessaoResponseEditing
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -75,22 +77,23 @@ class RoomDiqueiroDoencaFragment : Fragment() { //, View.OnClickListener
         val id_sessao = requireArguments().getInt("id_sessao")
         val jogador = requireArguments().getString("jogador_nome").toString()
         val doencas = requireArguments().getStringArrayList("doencas")
+        val doenca = doencas!!.random()
 
         jogadores(id_sessao)
-        pegarRodada(id_sessao)
+        pegarRodada(id_sessao, doenca)
 
         timerCronometro.schedule(5000){
             parametros.putInt("id_sessao", id_sessao)
-            parametros.putInt("rodada", rodada)
+            parametros.putInt("rodada", (rodada+1))
             parametros.putString("jogador_nome", jogador)
-            parametros.putString("doenca", doencas?.random())
+            parametros.putString("doenca", doenca)
             parametros.putStringArrayList("doencas", doencas)
 
             navController!!.navigate(R.id.action_roomDiqueiroDoencaFragment_to_roomDiqueiroDicasFragment, parametros)
         }
     }
 
-    fun pegarRodada(id_sessao: Int) {
+    fun pegarRodada(id_sessao: Int, doenca: String) {
         Service.retrofit.listarSessao(
             id_sessao = id_sessao
         ).enqueue(object : Callback<SessaoResponseListing> {
@@ -103,9 +106,34 @@ class RoomDiqueiroDoencaFragment : Fragment() { //, View.OnClickListener
                 if (response.isSuccessful) {
                     val sessao = response.body()!!
                     rodada = sessao.sessao.rodada
+//                    editarRodada(id_sessao, doenca)
                 }
                 else {
                     Log.d("Erro do banco", response.message())
+                    context?.let { ErrorCases().error(it)}
+                }
+            }
+        })
+    }
+
+    fun editarRodada(id_sessao: Int, doenca: String){
+        val rodada = requireArguments().getInt("rodada")
+
+        Service.retrofit.editarRodada(
+            sessao = EditarSessaoRequest(
+                id_sessao = id_sessao,
+                rodada = (rodada+1),
+                doenca = doenca
+            )
+        ).enqueue(object : Callback<SessaoResponseEditing>{
+            override fun onFailure(call: Call<SessaoResponseEditing>, t: Throwable) {
+                Log.d("Ruim: Editar Rodada", t.toString())
+            }
+            override fun onResponse(call: Call<SessaoResponseEditing>, response: Response<SessaoResponseEditing>) {
+                Log.d("Bom: Editar Rodada", response.body().toString())
+
+                if (response.code() == 500) {
+                    Log.d("Erro banco: EditarRodad", response.message())
                     context?.let { ErrorCases().error(it)}
                 }
             }
