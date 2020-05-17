@@ -141,17 +141,11 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
             R.id.diqueiroBtnDicas -> {
 
                 if(clicavel) {
-                    val sintoma: String =
-                        if (diqueiroSpinnerSintoma.visibility == View.VISIBLE) diqueiroSpinnerSintoma.selectedItem.toString()
-                        else ""
+                    val sintoma: String = diqueiroSpinnerSintoma.selectedItem.toString()
 
-                    val prevencao: String =
-                        if (diqueiroSpinnerPrevencao.visibility == View.VISIBLE) diqueiroSpinnerPrevencao.selectedItem.toString()
-                        else ""
+                    val prevencao: String = diqueiroSpinnerPrevencao.selectedItem.toString()
 
-                    val transmicao: String =
-                        if (diqueiroSpinnerTransmicao.visibility == View.VISIBLE) diqueiroSpinnerTransmicao.selectedItem.toString()
-                        else ""
+                    val transmicao: String = diqueiroSpinnerTransmicao.selectedItem.toString()
 
                     if(sintoma.equals("Sintomas disponíveis") && prevencao.isEmpty() && transmicao.isEmpty()) {
                         val texto = "Selecione uma dica"
@@ -189,9 +183,9 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                         val toast = Toast.makeText(context, texto, duracao)
                         toast.show()
 
-                        if (diqueiroSpinnerSintoma.visibility == View.VISIBLE) diqueiroSpinnerSintoma.setSelection(0)
-                        if (diqueiroSpinnerPrevencao.visibility == View.VISIBLE) diqueiroSpinnerPrevencao.setSelection(0)
-                        if (diqueiroSpinnerTransmicao.visibility == View.VISIBLE) diqueiroSpinnerTransmicao.setSelection(0)
+                        diqueiroSpinnerSintoma.setSelection(0)
+                        diqueiroSpinnerPrevencao.setSelection(0)
+                        diqueiroSpinnerTransmicao.setSelection(0)
                     }
                 }
             }
@@ -312,10 +306,6 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                         listaSintomas.sintomas.forEach { sintomasGlobal.add((it.nome)) }
                         populaSpinnerSintoma(sintomasGlobal)
                     }
-                    else {
-                        diqueiroSpinnerSintoma.visibility = View.INVISIBLE
-                        diqueiroTxtSintomas.visibility = View.INVISIBLE
-                    }
                 }
                 else {
                     Log.d("Erro banco: Sintomas", response.message())
@@ -352,9 +342,6 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                         listaPrevencao.prevencoes.forEach { prevencoesGlobal.add((it.nome)) }
 
                         populaSpinnerPrevencoes(prevencoesGlobal)
-                    } else {
-                        diqueiroSpinnerPrevencao.visibility = View.INVISIBLE
-                        diqueiroTxtPrevencoes.visibility = View.INVISIBLE
                     }
                 }
                 else {
@@ -392,9 +379,6 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                         listaTransmicao.transmicao.forEach { transmicoesGlobal.add((it.nome)) }
 
                         populaSpinnerTransmicoes(transmicoesGlobal)
-                    } else {
-                        diqueiroSpinnerTransmicao.visibility = View.INVISIBLE
-                        diqueiroTxtTransmissoes.visibility = View.INVISIBLE
                     }
                 }
                 else {
@@ -439,11 +423,10 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                     val sintomasSelecionados: ArrayList<String> = arrayListOf("")
                     sessao.dicas.sintomas.forEach { sintomasSelecionados.add((it.nome)) }
 
-                    if (sintomasSelecionados.isNotEmpty()) {
+                    if (sintomasSelecionados.isNotEmpty())
                         sintomasGlobal.removeAll(sintomasSelecionados)
-                    }
 
-                    sintomasGlobal.add(0, "Sintomas disponíveis")
+                    sintomasGlobal.add(0, "")
                     populaSpinnerSintoma(sintomasGlobal)
                 }
                 else {
@@ -488,9 +471,8 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                     val prevecoesSelecionados: ArrayList<String> = arrayListOf("")
                     sessao.dicas.sintomas.forEach { prevecoesSelecionados.add((it.nome)) }
 
-                    if (prevecoesSelecionados.isNotEmpty()) {
+                    if (prevecoesSelecionados.isNotEmpty())
                         prevencoesGlobal.removeAll(prevecoesSelecionados)
-                    }
 
                     prevencoesGlobal.add(0, "")
                     populaSpinnerSintoma(prevencoesGlobal)
@@ -537,9 +519,8 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                     val transmicoesSelecionados: ArrayList<String> = arrayListOf("")
                     sessao.dicas.sintomas.forEach { transmicoesSelecionados.add((it.nome)) }
 
-                    if (transmicoesSelecionados.isNotEmpty()) {
+                    if (transmicoesSelecionados.isNotEmpty())
                         transmicoesGlobal.removeAll(transmicoesSelecionados)
-                    }
 
                     transmicoesGlobal.add(0, "")
                     populaSpinnerSintoma(transmicoesGlobal)
