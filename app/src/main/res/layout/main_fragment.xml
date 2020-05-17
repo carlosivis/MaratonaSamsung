@@ -56,25 +56,17 @@
                 android:id="@+id/btnModoInterativo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="50dp"
                 android:background="@drawable/roundbutton"
                 android:ems="9"
                 android:text="@string/interativo"
                 android:textSize="18sp" />
 
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="30dp"
-                android:contentDescription="@string/labelVirus"
-                android:src="@drawable/virus" />
-
             <Button
                 android:id="@+id/btnMais"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="50dp"
                 android:background="@drawable/roundbutton"
                 android:ems="9"
                 android:text="@string/config"

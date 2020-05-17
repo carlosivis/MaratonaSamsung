@@ -51,7 +51,7 @@
     android:layout_marginBottom="20dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-        android:layout_below="@id/menuLayout">
+    android:layout_below="@id/menuLayout">
 
         <TextView
             android:id="@+id/txtDoencaNome"
@@ -59,108 +59,107 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="40dp"
             android:layout_centerHorizontal="true"
-            android:textSize="30sp"
+            android:textSize="25sp"
             tools:text="MALARIA" />
 
-    <ScrollView
-        android:id="@+id/scrView"
-        android:fadeScrollbars="false"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/txtDoencaNome">
+        <ScrollView
+            android:id="@+id/scrView"
+            android:fadeScrollbars="false"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/txtDoencaNome">
 
-        <TableLayout
-            android:id="@+id/main_table"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:stretchColumns="*">
-
-            <LinearLayout
-                android:id="@+id/doenca"
-                android:layout_width="wrap_content"
+            <TableLayout
+                android:id="@+id/main_table"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="30dp"
-                android:orientation="horizontal">
+                android:stretchColumns="*">
 
-                <ImageView
-                    android:id="@+id/imageDoenca"
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:adjustViewBounds="true"
-                    android:contentDescription="@string/labelLupa"
-                    android:scaleType="fitCenter"
-                    android:scaleX="-1"
-                    android:src="@drawable/logo"
-                    android:visibility="visible" />
-
-                <TextView
-                    android:id="@+id/txtAgente"
+                <LinearLayout
+                    android:id="@+id/doenca"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:text="@string/agente"
-                    android:textSize="18sp" />
-            </LinearLayout>
+                    android:layout_marginBottom="30dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imageDoenca"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="@string/labelLupa"
+                        android:scaleType="fitCenter"
+                        android:scaleX="-1"
+                        android:src="@drawable/logo"
+                        android:visibility="visible" />
+
+                    <TextView
+                        android:id="@+id/txtAgente"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:text="@string/agente"
+                        android:textSize="18sp" />
+                </LinearLayout>
 
 
-            <TextView
-                android:id="@+id/txtStaticSintomas"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:gravity="center"
-                android:text="@string/sintomas"
-                android:textSize="23sp" />
+                <TextView
+                    android:id="@+id/txtStaticSintomas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center"
+                    android:text="@string/sintomas"
+                    android:textSize="23sp" />
 
-            <TextView
-                android:id="@+id/txtArraySintoma"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="30dp"
-                android:textSize="18sp"
-                tools:text="Sintoma X" />
+                <TextView
+                    android:id="@+id/txtArraySintoma"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="30dp"
+                    android:textSize="18sp"
+                    tools:text="Sintoma X" />
 
-            <TextView
-                android:id="@+id/txtStaticPrevencao"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:gravity="center"
-                android:text="@string/prevencao"
-                android:textSize="23sp" />
+                <TextView
+                    android:id="@+id/txtStaticPrevencao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center"
+                    android:text="@string/prevencao"
+                    android:textSize="23sp" />
 
-            <TextView
-                android:id="@+id/txtPrevencao"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="30dp"
-                android:textSize="18sp"
-                tools:text="Item de prevencao" />
+                <TextView
+                    android:id="@+id/txtPrevencao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="30dp"
+                    android:textSize="18sp"
+                    tools:text="Item de prevencao" />
 
-            <TextView
-                android:id="@+id/txtStaticTransmissao"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:gravity="center"
-                android:text="@string/transmissao"
-                android:textSize="23sp" />
+                <TextView
+                    android:id="@+id/txtStaticTransmissao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center"
+                    android:text="@string/transmissao"
+                    android:textSize="23sp" />
 
-            <TextView
-                android:id="@+id/txtTransmissao"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                tools:text="Item de transmissao" />
+                <TextView
+                    android:id="@+id/txtTransmissao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    tools:text="Item de transmissao" />
 
-        </TableLayout>
+            </TableLayout>
 
-    </ScrollView>
+        </ScrollView>
     </RelativeLayout>
 
 </RelativeLayout>

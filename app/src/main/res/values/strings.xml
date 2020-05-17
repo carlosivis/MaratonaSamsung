@@ -51,7 +51,7 @@
     <string name="regrasText">Em cada rodada, os adivinhadores terão 1 (um) minuto para adivinhar a doença, enquanto poderão ser dadas mais dicas a critério do diqueiro.\n\nAo acertar a doença, tanto os adivinhadores que fizeram o acerto quanto o diqueiro ganham pontos. Cada adivinhador ganha uma quantidade de pontos diferente, sendo esse valor de 10 (dez) dividido pela ordem de acerto do adivinhador (1 (um) se for o primeiro a adivinhar a doença, 2 (dois) se for o segundo e assim por diante). \n\nO diqueiro ganha 75% dos pontos adquiridos por cada adivinhador.</string>
     <string name="chooseFragmentTitle">Escolha uma classe de agente infectante:</string>
     <string name="bacteria">Bactérias</string>
-    <string name="platelminto">Platelmintos e nematelmintos</string>
+    <string name="platelminto">Platelmintos e Nematelmintos</string>
     <string name="protozoario">Protozoários</string>
     <string name="virus">Vírus</string>
     <string name="labelLupa">Vários micro-organismos sendo vistos em uma lupa</string>
@@ -97,13 +97,13 @@
     <string name="aguardando_comecar">Aguardando o primeiro jogador a entrar na sala começar a partida</string>
     <string name="aguardando_comecar_title">Partida cancelada</string>
     <string name="aguardando_comecar_message">
-        O jogador com o poder de iniciar a partida saiu do jogo e, infelizmente, você não poderá continuar.
+        O jogador com o poder de iniciar a partida saiu do jogo e, infelizmente, você não poderá continuar.\n
         Tente acessar a sala novamente para ser seu gestor ou então crie sua própria sala.
     </string>
 
     <string name="aguardando_jogadores_title">Olá, você é o primeiro a entrar nesta sala!</string>
     <string name="aguardando_jogadores_message">
-        Verifique em tempo real os jogadores que estão aguardando o inicio da partida e aperte no botão começar quando ver que todos os seus colegas já entraram, lembre-se que você precisa de pelo menos mais uma pessoa para iniciar a partida.
+        Verifique em tempo real os jogadores que estão aguardando o inicio da partida e aperte no botão começar quando ver que todos os seus colegas já entraram, lembre-se que você precisa de pelo menos mais uma pessoa para iniciar a partida.\n
         Aqui você também encontra os dados de acesso da sala, para caso se esqueça.
     </string>
     <string name="txt_dados">Dados da sala</string>
@@ -115,7 +115,7 @@
     <string name="sairJogoPont">Ao sair da sala você perderá toda a sua pontuação.</string>
 
     <string name="txt_expulso">
-        Todos os seus colegas saíram do jogo e, infelizmente, você não poderá continuar sozinho.
+        Todos os seus colegas saíram do jogo e, infelizmente, você não poderá continuar sozinho.\n
         Chame mais um amigo e volte para se divertir!
     </string>
 
