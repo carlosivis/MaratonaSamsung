@@ -33,7 +33,7 @@ class ItemChooseFragment : Fragment(), View.OnClickListener {
         var param = arguments?.get("self") as DoencasResponse
         Log.d("Teste nome", param.toString())
         txtDoencaNome.text = param.nome
-        Log.d(param.tipo, "euaqui")
+
         when (param.tipo) {
             "BACTERIAS" -> imageDoenca.setImageResource(R.drawable.bacteria)
             "VIRUS" -> imageDoenca.setImageResource(R.drawable.virus)
