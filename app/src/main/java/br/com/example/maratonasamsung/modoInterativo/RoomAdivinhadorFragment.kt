@@ -21,12 +21,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.example.maratonasamsung.R
 import br.com.example.maratonasamsung.model.Requests.JogadorRequest
 import br.com.example.maratonasamsung.model.Requests.JogadorUpdate
-import br.com.example.maratonasamsung.model.Responses.StatusBoolean
-import br.com.example.maratonasamsung.model.Responses.JogadorResponse
-import br.com.example.maratonasamsung.model.Responses.RankingResponse
-import br.com.example.maratonasamsung.model.Responses.SessaoResponseListing
 import br.com.example.maratonasamsung.data.service.ErrorCases
 import br.com.example.maratonasamsung.data.service.Service
+import br.com.example.maratonasamsung.model.Requests.EditarSessaoRequest
+import br.com.example.maratonasamsung.model.Responses.*
 import kotlinx.android.synthetic.main.fragment_room_adivinhador.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -42,6 +40,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
     lateinit var spinnerAdapter: ArrayAdapter<String>
     val  vencedor = Bundle()
     val timerCronometro = Timer()
+    val timerAguardando = Timer()
     val timerRanking = Timer()
     val timerDicas = Timer()
     lateinit var dicasAdapter: DicasAdapter
@@ -102,6 +101,8 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
 
         adivinhadorProgressBar.visibility = View.INVISIBLE
         adivinhadorTxtAcertou.visibility = View.INVISIBLE
+        textResposta.visibility = View.INVISIBLE
+        spinnerResposta.visibility = View.INVISIBLE
 
         doencas!!.toArray()
         doencas.sort()
@@ -111,11 +112,18 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
         spinnerResposta.adapter = spinnerAdapter
 
         chronometro()
-        pegarRodadaDoenca(id_sessao)
-        dicas(id_sessao)
         ranking(id_sessao)
+        timerAguardando.schedule(5000) {
+            textResposta.visibility = View.VISIBLE
+            spinnerResposta.visibility = View.VISIBLE
+
+            pegarRodadaDoenca(id_sessao)
+            dicas(id_sessao)
+        }
 
         timerCronometro.schedule(45000) {
+            editarRodada(id_sessao, doencaRodada)
+
             val parametros = Bundle()
             parametros.putInt("id_sessao", id_sessao)
             parametros.putString("jogador_nome", jogador)
@@ -123,6 +131,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
             parametros.putString("ultimaDoenca", doencaRodada)
 
             jogadorUpdate(id_sessao,true)
+
             tempoCronometro.stop()
             timerRanking.cancel()
             timerRanking.purge()
@@ -130,7 +139,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
             timerDicas.purge()
             listDicas.clear()
 
-            if (rodada == 4){
+            if (rodada == 5){
                 jogadorEncerrar(id_sessao, jogador)
                 navController!!.navigate(R.id.action_roomAdivinhadorFragment_to_winnerFragment, vencedor)
             }
@@ -200,6 +209,28 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
                 }
                 else {
                     Log.d("Erro do banco", response.message())
+                    context?.let { ErrorCases().error(it)}
+                }
+            }
+        })
+    }
+
+    fun editarRodada(id_sessao: Int, doenca: String){
+        Service.retrofit.editarRodada(
+            sessao = EditarSessaoRequest(
+                id_sessao = id_sessao,
+                rodada = rodada,
+                doenca = doenca
+            )
+        ).enqueue(object : Callback<SessaoResponseEditing>{
+            override fun onFailure(call: Call<SessaoResponseEditing>, t: Throwable) {
+                Log.d("Ruim: Editar Rodada", t.toString())
+            }
+            override fun onResponse(call: Call<SessaoResponseEditing>, response: Response<SessaoResponseEditing>) {
+                Log.d("Bom: Editar Rodada", response.body().toString())
+
+                if (response.code() == 500) {
+                    Log.d("Erro banco: EditarRodad", response.message())
                     context?.let { ErrorCases().error(it)}
                 }
             }
