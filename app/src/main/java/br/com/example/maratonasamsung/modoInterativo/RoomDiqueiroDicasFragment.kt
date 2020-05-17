@@ -108,6 +108,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
         nomeDoenca.text = "DOENÇA SELECIONADA: $doenca"
 
         timerCronometro.schedule(40000) {
+            editarRodada(id_sessao, doenca)
 
             parametros.putInt("id_sessao", id_sessao)
             parametros.putString("jogador_nome", jogador)
@@ -118,7 +119,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
             timerRanking.cancel()
             timerRanking.purge()
 
-            if (rodada == 4){
+            if (rodada == 5){
                 jogadorEncerrar(id_sessao, jogador)
                 navController!!.navigate(R.id.action_roomDiqueiroDicasFragment_to_winnerFragment, vencedor)
             }
@@ -233,13 +234,17 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                         if (quantidadeJogadores.size < 2) {
                             val jogador = requireArguments().getString("jogador_nome").toString()
 
+                            val parametros = Bundle()
+                            parametros.putInt("id_sessao", id_sessao)
+                            parametros.putString("jogador_nome", jogador)
+
                             diqueirotempoCronometro.stop()
                             timerCronometro.cancel()
                             timerCronometro.purge()
                             timerRanking.cancel()
                             timerRanking.purge()
                             jogadorEncerrar(id_sessao, jogador)
-                            navController!!.navigate(R.id.action_roomDiqueiroDicasFragment_to_expulsoSalaFragment)
+                            navController!!.navigate(R.id.action_roomDiqueiroDicasFragment_to_expulsoSalaFragment, parametros)
                         }
                     }
                 }
@@ -553,7 +558,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
         Service.retrofit.editarRodada(
             sessao = EditarSessaoRequest(
                 id_sessao = id_sessao,
-                rodada = (rodada+1),
+                rodada = rodada,
                 doenca = doenca
             )
         ).enqueue(object : Callback<SessaoResponseEditing>{

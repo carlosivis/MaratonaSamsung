@@ -67,12 +67,8 @@ class PlaceholderRodadaFragment : Fragment() {
         val id_sessao = requireArguments().getInt("id_sessao")
         val jogador = requireArguments().getString("jogador_nome").toString()
         val doencas = requireArguments().getStringArrayList("doencas")
-        val ultimaDoenca = requireArguments().getString("ultimaDoenca")
-
 
         ranking(id_sessao)
-        txtDoencaRodada.text = "A Doença era: $ultimaDoenca"
-
 
         val parametros = Bundle()
         parametros.putInt("id_sessao", id_sessao)
@@ -132,8 +128,12 @@ class PlaceholderRodadaFragment : Fragment() {
 
                         if (jogador == diqueiro)
                             txtTipoJogador.text = "Agora você será o Diqueiro"
-                        else
+                        else {
+                            val ultimaDoenca = requireArguments().getString("ultimaDoenca")
+
                             txtTipoJogador.text = "Agora você será o Adivinhador"
+                            txtDoencaRodada.text = "A Doença era: $ultimaDoenca"
+                        }
                     }
                 }
                 else {

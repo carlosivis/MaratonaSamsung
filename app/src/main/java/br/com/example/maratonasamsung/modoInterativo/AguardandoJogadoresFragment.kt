@@ -164,7 +164,7 @@ class AguardandoJogadoresFragment : Fragment(), View.OnClickListener {
                 }
             }
         })
-        timerJogadores.schedule(3000){
+        timerJogadores.schedule(5000){
             jogadores(id_sessao)
         }
     }
