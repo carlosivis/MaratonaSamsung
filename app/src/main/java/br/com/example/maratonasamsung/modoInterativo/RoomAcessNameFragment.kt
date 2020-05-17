@@ -67,51 +67,14 @@ class RoomAcessNameFragment : Fragment(), View.OnClickListener {
                         acessNameProgressBar.visibility = View.VISIBLE;
                         clicavel = false
 
-                        jogadores(id_sessao)
+                        jogadorNovo(id_sessao)
                     }
                 }
             }
         }
     }
 
-    fun jogadores(id_sessao: Int){
-        Service.retrofit.ranking(
-            id_sessao = id_sessao
-        ).enqueue(object : Callback<RankingResponse> {
-            override fun onFailure(call: Call<RankingResponse>, t: Throwable) {
-                Log.d("Ruim: jogadores", t.toString())
-            }
-
-            override fun onResponse(call: Call<RankingResponse>, response: Response<RankingResponse>) {
-                Log.d("Bom: jogadores", response.body().toString())
-
-                if (response.isSuccessful) {
-                    val jogadores = response.body()!!
-
-                    if (!jogadores.status) {
-                        val texto = "Erro ao pegar ranking"
-                        val duracao = Toast.LENGTH_SHORT
-                        val toast = Toast.makeText(context, texto, duracao)
-                        toast.show()
-                    }
-                    else {
-                        val quantidadeJogadores: ArrayList<String> = arrayListOf("")
-                        jogadores.jogadores.forEach { quantidadeJogadores.add((it.nome)) }
-
-                        quantidadeJogadores.removeAt(0)
-
-                        jogadorNovo(id_sessao, quantidadeJogadores.size)
-                    }
-                }
-                else {
-                    Log.d("Erro banco: jogadores", response.message())
-                    context?.let { ErrorCases().error(it)}
-                }
-            }
-        })
-    }
-
-    fun jogadorNovo(id_sessao: Int, quantidadeJogadores: Int){
+    fun jogadorNovo(id_sessao: Int){
         Service.retrofit.jogadorNovo(
             jogador = JogadorRequest(
                 id_sessao = id_sessao,
@@ -159,15 +122,7 @@ class RoomAcessNameFragment : Fragment(), View.OnClickListener {
                         parametros.putStringArrayList("doencas", doencas)
                         parametros.putString("jogador_nome", acessnameEditUsuario.text.toString())
 
-                        if(quantidadeJogadores >= 1)
-                            navController!!.navigate(R.id.action_roomAcessNameFragment_to_aguardandoComecarFragment, parametros)
-                        else {
-                            val sala_nome = requireArguments().getString("sala_nome").toString()
-                            val sala_senha = requireArguments().getString("sala_senha").toString()
-                            parametros.putString("sala_nome", sala_nome)
-                            parametros.putString("sala_senha", sala_senha)
-                            navController!!.navigate(R.id.action_roomAcessNameFragment_to_aguardandoJogadoresFragment, parametros)
-                        }
+                        navController!!.navigate(R.id.action_roomAcessNameFragment_to_aguardandoComecarFragment, parametros)
                     }
                 }
                 else {

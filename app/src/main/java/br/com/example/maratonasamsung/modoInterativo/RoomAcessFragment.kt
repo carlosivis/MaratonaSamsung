@@ -16,6 +16,7 @@ import br.com.example.maratonasamsung.model.Requests.SalaRequest
 import br.com.example.maratonasamsung.model.Responses.SalaResponse
 import br.com.example.maratonasamsung.data.service.ErrorCases
 import br.com.example.maratonasamsung.data.service.Service
+import br.com.example.maratonasamsung.model.Responses.RankingResponse
 import kotlinx.android.synthetic.main.fragment_room_acess.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -145,7 +146,7 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
                     parametros.putString("sala_nome", nome)
                     parametros.putString("sala_senha", senha)
 
-                    navController!!.navigate(R.id.action_roomAcessFragment_to_roomAcessNameFragment, parametros)
+                    jogadores(sessao.id_sessao, parametros)
                 }
                 else {
                     Log.d("Erro banco: CadSessao", response.message())
@@ -154,6 +155,50 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
                     clicavel = true
                     acessProgressBar.visibility = View.INVISIBLE;
                     acessBtnContinuar.setText(R.string.btn_continuar)
+                }
+            }
+        })
+    }
+
+    fun jogadores(id_sessao: Int, parametros: Bundle){
+        Service.retrofit.ranking(
+            id_sessao = id_sessao
+        ).enqueue(object : Callback<RankingResponse> {
+            override fun onFailure(call: Call<RankingResponse>, t: Throwable) {
+                Log.d("Ruim: jogadores", t.toString())
+            }
+
+            override fun onResponse(call: Call<RankingResponse>, response: Response<RankingResponse>) {
+                Log.d("Bom: jogadores", response.body().toString())
+
+                if (response.isSuccessful) {
+                    val jogadores = response.body()!!
+
+                    if (!jogadores.status) {
+                        val texto = "Erro ao pegar ranking"
+                        val duracao = Toast.LENGTH_SHORT
+                        val toast = Toast.makeText(context, texto, duracao)
+                        toast.show()
+                    }
+                    else {
+                        val quantidadeJogadores: java.util.ArrayList<String> = arrayListOf("")
+                        jogadores.jogadores.forEach { quantidadeJogadores.add((it.nome)) }
+
+                        quantidadeJogadores.removeAt(0)
+
+                        if(quantidadeJogadores.isNotEmpty())
+                            navController!!.navigate(R.id.action_roomAcessFragment_to_roomAcessNameFragment, parametros)
+                        else {
+                            val texto = "Sala dessabilitada, acesse outra sala ou tente criar outra"
+                            val duracao = Toast.LENGTH_SHORT
+                            val toast = Toast.makeText(context, texto, duracao)
+                            toast.show()
+                        }
+                    }
+                }
+                else {
+                    Log.d("Erro banco: jogadores", response.message())
+                    context?.let { ErrorCases().error(it)}
                 }
             }
         })
