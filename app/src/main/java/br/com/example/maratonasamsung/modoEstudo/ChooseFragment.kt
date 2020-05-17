@@ -73,7 +73,7 @@ class ChooseFragment : Fragment(), View.OnClickListener {
             Observer {
                 Log.d("Teste", it.toString())
                 list = it
-                configureRecyclerView(list.filter { it.tipo == requireArguments().getString("agenteInfectante") })
+                configureRecyclerView(list.filter { it.tipo == requireArguments().getString("agenteInfectante") }.sortedBy { it.nome })
             })
 
     }
