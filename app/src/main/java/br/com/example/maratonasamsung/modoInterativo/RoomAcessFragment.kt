@@ -193,7 +193,7 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
                         if(quantidadeJogadores.isNotEmpty())
                             navController!!.navigate(R.id.action_roomAcessFragment_to_roomAcessNameFragment, parametros)
                         else {
-                            val texto = "Sala dessabilitada, acesse outra sala ou tente criar outra"
+                            val texto = "Sala desabilitada, acesse outra ou tente criar uma nova"
                             val duracao = Toast.LENGTH_SHORT
                             val toast = Toast.makeText(context, texto, duracao)
                             toast.show()
