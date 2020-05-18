@@ -179,6 +179,10 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
                         val duracao = Toast.LENGTH_SHORT
                         val toast = Toast.makeText(context, texto, duracao)
                         toast.show()
+
+                        clicavel = true
+                        acessProgressBar.visibility = View.INVISIBLE;
+                        acessBtnContinuar.setText(R.string.btn_continuar)
                     }
                     else {
                         val quantidadeJogadores: java.util.ArrayList<String> = arrayListOf("")
@@ -189,16 +193,24 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
                         if(quantidadeJogadores.isNotEmpty())
                             navController!!.navigate(R.id.action_roomAcessFragment_to_roomAcessNameFragment, parametros)
                         else {
-                            val texto = "Sala dessabilitada, acesse outra sala ou tente criar outra"
+                            val texto = "Sala desabilitada, acesse outra ou tente criar uma nova"
                             val duracao = Toast.LENGTH_SHORT
                             val toast = Toast.makeText(context, texto, duracao)
                             toast.show()
+
+                            clicavel = true
+                            acessProgressBar.visibility = View.INVISIBLE;
+                            acessBtnContinuar.setText(R.string.btn_continuar)
                         }
                     }
                 }
                 else {
                     Log.d("Erro banco: jogadores", response.message())
                     context?.let { ErrorCases().error(it)}
+
+                    clicavel = true
+                    acessProgressBar.visibility = View.INVISIBLE;
+                    acessBtnContinuar.setText(R.string.btn_continuar)
                 }
             }
         })
