@@ -78,6 +78,8 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
                         timerRanking.purge()
                         timerDicas.cancel()
                         timerDicas.purge()
+                        timerAguardando.cancel()
+                        timerAguardando.purge()
                         jogadorEncerrar(id_sessao, jogador)
                         navController!!.navigate(R.id.action_roomAdivinhadorFragment_to_expulsoSalaFragment)
                     }
@@ -101,9 +103,9 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
 
         adivinhadorProgressBar.visibility = View.INVISIBLE
         adivinhadorTxtAcertou.visibility = View.INVISIBLE
-        adivinhadorBtnAdivinhar.visibility = View.INVISIBLE
-        textResposta.visibility = View.INVISIBLE
-        spinnerResposta.visibility = View.INVISIBLE
+//        adivinhadorBtnAdivinhar.visibility = View.INVISIBLE
+//        textResposta.visibility = View.INVISIBLE
+//        spinnerResposta.visibility = View.INVISIBLE
 
         doencas!!.toArray()
         doencas.sort()
@@ -114,15 +116,9 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
 
         chronometro()
         ranking(id_sessao)
-        timerAguardando.schedule(5000) {
-            adivinhadorBtnAdivinhar.visibility = View.VISIBLE
-            textResposta.visibility = View.VISIBLE
-            spinnerResposta.visibility = View.VISIBLE
-
-        }
-
         pegarRodadaDoenca(id_sessao)
         dicas(id_sessao)
+//        aguardarTempo(id_sessao)
 
         timerCronometro.schedule(45000) {
             editarRodada(id_sessao, doencaRodada)
@@ -183,6 +179,17 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
             }
         }
     }
+
+//    fun aguardarTempo(id_sessao: Int) {
+//        timerAguardando.schedule(5000) {
+//            adivinhadorBtnAdivinhar.visibility = View.VISIBLE
+//            textResposta.visibility = View.VISIBLE
+//            spinnerResposta.visibility = View.VISIBLE
+//
+//            pegarRodadaDoenca(id_sessao)
+//            dicas(id_sessao)
+//        }
+//    }
 
     private fun configureRecyclerViewRanking(list: RankingResponse) {
         rankingAdapter = RankingAdapter(list)
