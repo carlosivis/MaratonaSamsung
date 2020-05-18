@@ -43,9 +43,6 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
     val timerAguardando = Timer()
     val timerRanking = Timer()
     val timerDicas = Timer()
-    lateinit var dicasAdapter: DicasAdapter
-    lateinit var rankingAdapter: RankingAdapter
-    var listDicas: ArrayList<String> = arrayListOf("")
     lateinit var doencaRodada: String
     var rodada: Int = 0
     var clicavel = true
@@ -116,9 +113,8 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
 
         chronometro()
         ranking(id_sessao)
-        pegarRodadaDoenca(id_sessao)
+//        pegarRodadaDoenca(id_sessao)
         dicas(id_sessao)
-//        aguardarTempo(id_sessao)
 
         timerCronometro.schedule(45000) {
             editarRodada(id_sessao, doencaRodada)
@@ -136,7 +132,6 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
             timerRanking.purge()
             timerDicas.cancel()
             timerDicas.purge()
-            listDicas.clear()
 
             if (rodada == 5){
                 jogadorEncerrar(id_sessao, jogador)
@@ -180,71 +175,40 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
         }
     }
 
-//    fun aguardarTempo(id_sessao: Int) {
-//        timerAguardando.schedule(5000) {
-//            adivinhadorBtnAdivinhar.visibility = View.VISIBLE
-//            textResposta.visibility = View.VISIBLE
-//            spinnerResposta.visibility = View.VISIBLE
+//    fun pegarRodadaDoenca(id_sessao: Int) {
+//        Service.retrofit.listarSessao(
+//            id_sessao = id_sessao
+//        ).enqueue(object : Callback<SessaoResponseListing> {
+//            override fun onFailure(call: Call<SessaoResponseListing>, t: Throwable) {
+//                Log.d("Ruim: PegarRD", t.toString())
+//            }
+//            override fun onResponse(call: Call<SessaoResponseListing>, response: Response<SessaoResponseListing>) {
+//                Log.d("Bom: PegarRD", response.toString())
 //
-//            pegarRodadaDoenca(id_sessao)
-//            dicas(id_sessao)
-//        }
+//                if (response.isSuccessful) {
+//                    val resposta = response.body()!!
+//                    rodada = resposta.sessao.rodada + 1
+//                    doencaRodada = resposta.ultimaDoenca
+//
+//                    Log.d("ultimaDoenca", doencaRodada)
+//                }
+//                else {
+//                    Log.d("Erro banco: PegarRD", response.message())
+//                    context?.let { ErrorCases().error(it)}
+//                }
+//            }
+//        })
 //    }
 
     private fun configureRecyclerViewRanking(list: RankingResponse) {
-        rankingAdapter = RankingAdapter(list)
+        val rankingAdapter: RankingAdapter = RankingAdapter(list)
         recyclerRanking.apply {
             layoutManager = LinearLayoutManager(context)
             isComputingLayout
-            adapter= rankingAdapter
+            adapter = rankingAdapter
             onPause()
             onCancelPendingInputEvents()
         }
-    }
-
-    fun pegarRodadaDoenca(id_sessao: Int) {
-        Service.retrofit.listarSessao(
-            id_sessao = id_sessao
-        ).enqueue(object : Callback<SessaoResponseListing> {
-            override fun onFailure(call: Call<SessaoResponseListing>, t: Throwable) {
-                Log.d("Deu ruim", t.toString())
-            }
-            override fun onResponse(call: Call<SessaoResponseListing>, response: Response<SessaoResponseListing>) {
-                Log.d("Nice", response.toString())
-
-                if (response.isSuccessful) {
-                    val resposta = response.body()!!
-                    rodada = resposta.sessao.rodada + 1
-                    doencaRodada = resposta.ultimaDoenca
-                }
-                else {
-                    Log.d("Erro do banco", response.message())
-                    context?.let { ErrorCases().error(it)}
-                }
-            }
-        })
-    }
-
-    fun editarRodada(id_sessao: Int, doenca: String){
-        Service.retrofit.editarRodada(
-            sessao = EditarSessaoRequest(
-                id_sessao = id_sessao,
-                rodada = rodada,
-                doenca = doenca
-            )
-        ).enqueue(object : Callback<SessaoResponseEditing>{
-            override fun onFailure(call: Call<SessaoResponseEditing>, t: Throwable) {
-                Log.d("Ruim: Editar Rodada", t.toString())
-            }
-            override fun onResponse(call: Call<SessaoResponseEditing>, response: Response<SessaoResponseEditing>) {
-                Log.d("Bom: Editar Rodada", response.body().toString())
-
-                if (response.code() == 500) {
-                    Log.d("Erro banco: EditarRodad", response.message())
-                    context?.let { ErrorCases().error(it)}
-                }
-            }
-        })
     }
 
     fun ranking(id_sessao: Int){
@@ -307,9 +271,10 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
     }
 
     private fun configureRecyclerViewDicas(list: ArrayList<String>) {
-        dicasAdapter = DicasAdapter(list)
+        val dicasAdapter: DicasAdapter = DicasAdapter(list)
         recyclerDicas.apply {
             layoutManager = LinearLayoutManager(activity)
+            isComputingLayout
             adapter= dicasAdapter
             onCancelPendingInputEvents()
             onPause()
@@ -328,7 +293,8 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
 
                 if (response.isSuccessful) {
                     val resposta = response.body()!!
-                    listDicas = arrayListOf("")
+
+                    var listDicas: ArrayList<String> = arrayListOf("")
 
                     if(resposta.dicas.sintomas.isNotEmpty())
                         resposta.dicas.sintomas.forEach { listDicas.add(it.nome) }
@@ -337,7 +303,11 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
                     if(resposta.dicas.transmicao.isNotEmpty())
                         resposta.dicas.transmicao.forEach { listDicas.add(it.nome) }
 
+                    listDicas.removeAt(0)
                     configureRecyclerViewDicas(listDicas)
+
+                    rodada = resposta.sessao.rodada + 1
+                    doencaRodada = resposta.ultimaDoenca
                 }
                 else {
                     Log.d("Erro banco: Dicas", response.message())
@@ -431,6 +401,28 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
                 if (response.code() == 500) {
                     Log.d("Erro banco: JogUpdate", response.message())
 
+                }
+            }
+        })
+    }
+
+    fun editarRodada(id_sessao: Int, doenca: String){
+        Service.retrofit.editarRodada(
+            sessao = EditarSessaoRequest(
+                id_sessao = id_sessao,
+                rodada = rodada,
+                doenca = doenca
+            )
+        ).enqueue(object : Callback<SessaoResponseEditing>{
+            override fun onFailure(call: Call<SessaoResponseEditing>, t: Throwable) {
+                Log.d("Ruim: Editar Rodada", t.toString())
+            }
+            override fun onResponse(call: Call<SessaoResponseEditing>, response: Response<SessaoResponseEditing>) {
+                Log.d("Bom: Editar Rodada", response.body().toString())
+
+                if (response.code() == 500) {
+                    Log.d("Erro banco: EditarRodad", response.message())
+                    context?.let { ErrorCases().error(it)}
                 }
             }
         })

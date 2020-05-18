@@ -67,15 +67,18 @@ class PlaceholderRodadaFragment : Fragment() {
         val id_sessao = requireArguments().getInt("id_sessao")
         val jogador = requireArguments().getString("jogador_nome").toString()
         val doencas = requireArguments().getStringArrayList("doencas")
+        val ultimaDoenca = requireArguments().getString("ultimaDoenca")
 
         ranking(id_sessao)
 
-        val parametros = Bundle()
-        parametros.putInt("id_sessao", id_sessao)
-        parametros.putString("jogador_nome",jogador)
-        parametros.putStringArrayList("doencas", doencas)
+        txtDoencaRodada.text = "A doença era: $ultimaDoenca"
 
         timerCronometro.schedule(5000) {
+            val parametros = Bundle()
+            parametros.putInt("id_sessao", id_sessao)
+            parametros.putString("jogador_nome",jogador)
+            parametros.putStringArrayList("doencas", doencas)
+
             if (jogador == diqueiro)
                 navController!!.navigate(R.id.action_placeholderRodadaFragment_to_roomDiqueiroDoencaFragment,parametros)
             else
@@ -128,12 +131,8 @@ class PlaceholderRodadaFragment : Fragment() {
 
                         if (jogador == diqueiro)
                             txtTipoJogador.text = "Agora você será o Diqueiro"
-                        else {
-                            val ultimaDoenca = requireArguments().getString("ultimaDoenca")
-
+                        else
                             txtTipoJogador.text = "Agora você será o Adivinhador"
-                            txtDoencaRodada.text = "A doença era: $ultimaDoenca"
-                        }
                     }
                 }
                 else {
