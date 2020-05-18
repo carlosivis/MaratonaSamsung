@@ -100,9 +100,6 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
 
         adivinhadorProgressBar.visibility = View.INVISIBLE
         adivinhadorTxtAcertou.visibility = View.INVISIBLE
-//        adivinhadorBtnAdivinhar.visibility = View.INVISIBLE
-//        textResposta.visibility = View.INVISIBLE
-//        spinnerResposta.visibility = View.INVISIBLE
 
         doencas!!.toArray()
         doencas.sort()
@@ -113,12 +110,10 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
 
         chronometro()
         ranking(id_sessao)
-//        pegarRodadaDoenca(id_sessao)
+        pegarRodadaDoenca(id_sessao)
         dicas(id_sessao)
 
         timerCronometro.schedule(45000) {
-//            editarRodada(id_sessao, doencaRodada)
-
             val parametros = Bundle()
             parametros.putInt("id_sessao", id_sessao)
             parametros.putString("jogador_nome", jogador)
@@ -175,30 +170,32 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
         }
     }
 
-//    fun pegarRodadaDoenca(id_sessao: Int) {
-//        Service.retrofit.listarSessao(
-//            id_sessao = id_sessao
-//        ).enqueue(object : Callback<SessaoResponseListing> {
-//            override fun onFailure(call: Call<SessaoResponseListing>, t: Throwable) {
-//                Log.d("Ruim: PegarRD", t.toString())
-//            }
-//            override fun onResponse(call: Call<SessaoResponseListing>, response: Response<SessaoResponseListing>) {
-//                Log.d("Bom: PegarRD", response.toString())
-//
-//                if (response.isSuccessful) {
-//                    val resposta = response.body()!!
-//                    rodada = resposta.sessao.rodada + 1
-//                    doencaRodada = resposta.ultimaDoenca
-//
-//                    Log.d("ultimaDoenca", doencaRodada)
-//                }
-//                else {
-//                    Log.d("Erro banco: PegarRD", response.message())
-//                    context?.let { ErrorCases().error(it)}
-//                }
-//            }
-//        })
-//    }
+    fun pegarRodadaDoenca(id_sessao: Int) {
+        Service.retrofit.listarSessao(
+            id_sessao = id_sessao
+        ).enqueue(object : Callback<SessaoResponseListing> {
+            override fun onFailure(call: Call<SessaoResponseListing>, t: Throwable) {
+                Log.d("Ruim: PegarRD", t.toString())
+            }
+            override fun onResponse(call: Call<SessaoResponseListing>, response: Response<SessaoResponseListing>) {
+                Log.d("Bom: PegarRD", response.toString())
+
+                if (response.isSuccessful) {
+                    val resposta = response.body()!!
+
+                    rodada = resposta.sessao.rodada
+                    doencaRodada = resposta.ultimaDoenca
+
+                    Log.d("EUAQUI_rodadaAdivinhador", rodada.toString())
+                    Log.d("EUAQUI_doencaAdivinhador", doencaRodada)
+                }
+                else {
+                    Log.d("Erro banco: PegarRD", response.message())
+                    context?.let { ErrorCases().error(it)}
+                }
+            }
+        })
+    }
 
     private fun configureRecyclerViewRanking(list: RankingResponse) {
         val rankingAdapter: RankingAdapter = RankingAdapter(list)
@@ -305,15 +302,6 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
 
                     listDicas.removeAt(0)
                     configureRecyclerViewDicas(listDicas)
-
-
-                    rodada = resposta.sessao.rodada
-
-                    doencaRodada = resposta.ultimaDoenca
-
-                    Log.d("EUAQUI_rodadaAdivinhador", rodada.toString())
-                    Log.d("EUAQUI_doencaAdivinhador", doencaRodada)
-
                 }
                 else {
                     Log.d("Erro banco: Dicas", response.message())
@@ -411,28 +399,6 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
             }
         })
     }
-
-//    fun editarRodada(id_sessao: Int, doenca: String){
-//        Service.retrofit.editarRodada(
-//            sessao = EditarSessaoRequest(
-//                id_sessao = id_sessao,
-//                rodada = rodada,
-//                doenca = doenca
-//            )
-//        ).enqueue(object : Callback<SessaoResponseEditing>{
-//            override fun onFailure(call: Call<SessaoResponseEditing>, t: Throwable) {
-//                Log.d("Ruim: Editar Rodada", t.toString())
-//            }
-//            override fun onResponse(call: Call<SessaoResponseEditing>, response: Response<SessaoResponseEditing>) {
-//                Log.d("Bom: Editar Rodada", response.body().toString())
-//
-//                if (response.code() == 500) {
-//                    Log.d("Erro banco: EditarRodad", response.message())
-//                    context?.let { ErrorCases().error(it)}
-//                }
-//            }
-//        })
-//    }
 
     fun jogadorEncerrar(id_sessao: Int, jogador: String) {
         Service.retrofit.jogadorEncerrar(

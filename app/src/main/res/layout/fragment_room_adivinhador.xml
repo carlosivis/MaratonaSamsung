@@ -210,15 +210,6 @@
         android:layout_marginBottom="0dp"
         android:text="@string/voceJaAcertou" />
 
-        <ProgressBar
-            android:id="@+id/adivinhadorRespostaProgressBar"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@id/spinnerResposta"
-            android:layout_alignBottom="@id/spinnerResposta"
-            android:layout_centerHorizontal="true"/>
-
 
     </RelativeLayout>
 </RelativeLayout>

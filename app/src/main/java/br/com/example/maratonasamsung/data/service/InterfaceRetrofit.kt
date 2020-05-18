@@ -22,8 +22,8 @@ interface InterfaceRetrofit {
     @GET("/sessao/{id_sessao}")
     fun listarSessao(@Path ("id_sessao") id_sessao: Int): Call<SessaoResponseListing>
 
-    @PUT("/sessao")
-    fun editarRodada(@Body sessao: EditarSessaoRequest): Call<SessaoResponseEditing>
+//    @PUT("/sessao")
+//    fun editarRodada(@Body sessao: EditarSessaoRequest): Call<SessaoResponseEditing>
 
     @PUT("/sessao")
     fun editarSessao(@Body sessao: EditarSessaoRequest): Call<SessaoResponseEditing>

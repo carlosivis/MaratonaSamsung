@@ -20,6 +20,8 @@ import br.com.example.maratonasamsung.model.Responses.StatusBoolean
 import br.com.example.maratonasamsung.model.Responses.RankingResponse
 import br.com.example.maratonasamsung.data.service.ErrorCases
 import br.com.example.maratonasamsung.data.service.Service
+import br.com.example.maratonasamsung.model.Requests.EditarSessaoRequest
+import br.com.example.maratonasamsung.model.Responses.SessaoResponseEditing
 import kotlinx.android.synthetic.main.fragment_aguardando_jogadores.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -183,15 +185,10 @@ class AguardandoJogadoresFragment : Fragment(), View.OnClickListener {
                     timerJogadores.cancel()
                     timerJogadores.purge()
 
-                    val jogador = requireArguments().getString("jogador_nome").toString()
                     val doencas = requireArguments().getStringArrayList("doencas")
+                    val doenca = doencas!!.random().toString()
 
-                    val parametros = Bundle()
-                    parametros.putInt("id_sessao", id_sessao)
-                    parametros.putString("jogador_nome", jogador)
-                    parametros.putStringArrayList("doencas", doencas)
-
-                    navController!!.navigate(R.id.action_aguardandoJogadoresFragment_to_roomDiqueiroDoencaFragment, parametros)
+                    definirDoencaRodada(doenca)
                 }
                 else {
                     Log.d("Erro banco: ComeçarPart", response.message())
@@ -200,6 +197,42 @@ class AguardandoJogadoresFragment : Fragment(), View.OnClickListener {
                     clicavel = true
                     aguardandoJogadoresProgressBar.visibility = View.INVISIBLE;
                     btnAguardandoJogadores.setText(R.string.btn_comecar)
+                }
+            }
+        })
+    }
+
+    fun definirDoencaRodada(doenca: String){
+        val id_sessao = requireArguments().getInt("id_sessao")
+
+        Service.retrofit.editarSessao(
+            sessao = EditarSessaoRequest(
+                id_sessao = id_sessao,
+                rodada = 1,
+                doenca = doenca
+            )
+        ).enqueue(object : Callback<SessaoResponseEditing>{
+            override fun onFailure(call: Call<SessaoResponseEditing>, t: Throwable) {
+                Log.d("Ruim: EditarSessao", t.toString())
+            }
+            override fun onResponse(call: Call<SessaoResponseEditing>, response: Response<SessaoResponseEditing>) {
+                Log.d("Bom: EditarSessao", response.body().toString())
+
+                if(response.isSuccessful) {
+                    val jogador = requireArguments().getString("jogador_nome").toString()
+                    val doencas = requireArguments().getStringArrayList("doencas")
+
+                    val parametros = Bundle()
+                    parametros.putInt("id_sessao", id_sessao)
+                    parametros.putString("jogador_nome", jogador)
+                    parametros.putString("doenca", doenca)
+                    parametros.putStringArrayList("doencas", doencas)
+
+                    navController!!.navigate(R.id.action_aguardandoJogadoresFragment_to_roomDiqueiroDoencaFragment, parametros)
+                }
+                else {
+                    Log.d("Erro banco: EditarSes", response.message())
+                    context?.let { ErrorCases().error(it)}
                 }
             }
         })
