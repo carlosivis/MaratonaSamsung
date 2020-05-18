@@ -21,7 +21,7 @@
     <string name="txt_senha">Senha:</string>
 
     <string name="txt_escolha_doenca">Escolha uma doença:</string>
-    <string name="txt_resposta">Escolha sua resposta aqui</string>
+    <string name="txt_resposta">Escolha uma resposta</string>
 
     <string name="txt_sintomas">Sintomas disponíveis</string>
     <string name="txt_prevencoes">Prevenções disponíveis</string>
