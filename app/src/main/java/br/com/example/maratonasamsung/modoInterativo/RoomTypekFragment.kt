@@ -19,7 +19,7 @@ import br.com.example.maratonasamsung.ui.main.MainActivity
 class RoomTypekFragment : Fragment(), View.OnClickListener {
 
     var navController: NavController? = null
-//    lateinit var firstRun: String
+    lateinit var firstRun: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -36,7 +36,7 @@ class RoomTypekFragment : Fragment(), View.OnClickListener {
         view.findViewById<Button>(R.id.typeBtnAcessarSala).setOnClickListener(this)
         view.findViewById<ImageButton>(R.id.btn_back).setOnClickListener(this)
 
-/*        val mainActivity: MainActivity = activity as MainActivity
+        val mainActivity: MainActivity = activity as MainActivity
         firstRun = mainActivity.getMyData()
 
         if(firstRun.equals("firstRunTrue")){
@@ -51,7 +51,6 @@ class RoomTypekFragment : Fragment(), View.OnClickListener {
                     .show()
             }
         }
-*/
     }
 
     override fun onClick(v: View?) {
