@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
     var navController: NavController? = null
     lateinit var sharedPreferences: SharedPreferences
     lateinit var editor: SharedPreferences.Editor
-    val fragment = RoomTypekFragment()
+//    val fragment = RoomTypekFragment()
 //    lateinit var myString: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,14 +29,14 @@ class MainActivity : AppCompatActivity() {
     @SuppressLint("CommitPrefEdits")
     override fun onResume() {
         super.onResume()
-/*
-        val intent = Intent(baseContext, TutorialActivity::class.java)
-        intent.putExtra("param1", "qualquerCoisaServe")
 
-        val sessionId = getIntent().getStringExtra("param2")
-*/
+        val intent = Intent(this@MainActivity, TutorialActivity::class.java)
+//        intent.putExtra("param1", "qualquerCoisaServe")
+
+//        val sessionId = getIntent().getStringExtra("param2")
+
         if (sharedPreferences.getBoolean("firstRun", true)) {
-//            startActivity(intent)
+            startActivity(intent)
             editor = sharedPreferences.edit()
             editor.putBoolean("firstRun", false).commit()
 
