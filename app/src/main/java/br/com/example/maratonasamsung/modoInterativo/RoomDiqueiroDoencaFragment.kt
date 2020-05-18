@@ -78,8 +78,6 @@ class RoomDiqueiroDoencaFragment : Fragment() {
         val doencas = requireArguments().getStringArrayList("doencas")
         val doenca = doencas!!.random().toString()
 
-        Log.d("doencaX",doenca)
-
         pegarRodada(id_sessao, doenca)
         jogadores(id_sessao)
 
@@ -108,8 +106,10 @@ class RoomDiqueiroDoencaFragment : Fragment() {
                     val sessao = response.body()!!
                     rodada = sessao.sessao.rodada + 1
 
-                    Log.d("rodadaX", rodada.toString())
+                    Log.d("RodadaDiqueiro", rodada.toString())
+                    Log.d("DoencaDiqueiro", doenca)
 
+                    editarRodada(id_sessao, doenca)
                     definirDoenca(doenca)
                 }
                 else {
@@ -138,6 +138,30 @@ class RoomDiqueiroDoencaFragment : Fragment() {
 
                 if (response.code() == 500) {
                     Log.d("Erro banco: EditarSes", response.message())
+                    context?.let { ErrorCases().error(it)}
+                }
+            }
+        })
+    }
+
+    fun editarRodada(id_sessao: Int, doenca: String){
+        val rodada = requireArguments().getInt("rodada")
+
+        Service.retrofit.editarRodada(
+            sessao = EditarSessaoRequest(
+                id_sessao = id_sessao,
+                rodada = rodada,
+                doenca = doenca
+            )
+        ).enqueue(object : Callback<SessaoResponseEditing>{
+            override fun onFailure(call: Call<SessaoResponseEditing>, t: Throwable) {
+                Log.d("Ruim: Editar Rodada", t.toString())
+            }
+            override fun onResponse(call: Call<SessaoResponseEditing>, response: Response<SessaoResponseEditing>) {
+                Log.d("Bom: Editar Rodada", response.body().toString())
+
+                if (response.code() == 500) {
+                    Log.d("Erro banco: EditarRodad", response.message())
                     context?.let { ErrorCases().error(it)}
                 }
             }

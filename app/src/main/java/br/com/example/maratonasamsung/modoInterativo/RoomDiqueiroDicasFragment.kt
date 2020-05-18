@@ -145,7 +145,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
 
                     val transmicao: String = diqueiroSpinnerTransmicao.selectedItem.toString()
 
-                    if(sintoma.equals("Sintomas disponíveis") && prevencao.isEmpty() && transmicao.isEmpty()) {
+                    if(sintoma.isEmpty() && prevencao.isEmpty() && transmicao.isEmpty()) {
                         val texto = "Selecione uma dica"
                         val duracao = Toast.LENGTH_SHORT
                         val toast = Toast.makeText(context, texto, duracao)
@@ -505,29 +505,29 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
         })
     }
 
-    fun editarRodada(id_sessao: Int, doenca: String){
-        val rodada = requireArguments().getInt("rodada")
-
-        Service.retrofit.editarRodada(
-            sessao = EditarSessaoRequest(
-                id_sessao = id_sessao,
-                rodada = rodada,
-                doenca = doenca
-            )
-        ).enqueue(object : Callback<SessaoResponseEditing>{
-            override fun onFailure(call: Call<SessaoResponseEditing>, t: Throwable) {
-                Log.d("Ruim: Editar Rodada", t.toString())
-            }
-            override fun onResponse(call: Call<SessaoResponseEditing>, response: Response<SessaoResponseEditing>) {
-                Log.d("Bom: Editar Rodada", response.body().toString())
-
-                if (response.code() == 500) {
-                    Log.d("Erro banco: EditarRodad", response.message())
-                    context?.let { ErrorCases().error(it)}
-                }
-            }
-        })
-    }
+//    fun editarRodada(id_sessao: Int, doenca: String){
+//        val rodada = requireArguments().getInt("rodada")
+//
+//        Service.retrofit.editarRodada(
+//            sessao = EditarSessaoRequest(
+//                id_sessao = id_sessao,
+//                rodada = rodada,
+//                doenca = doenca
+//            )
+//        ).enqueue(object : Callback<SessaoResponseEditing>{
+//            override fun onFailure(call: Call<SessaoResponseEditing>, t: Throwable) {
+//                Log.d("Ruim: Editar Rodada", t.toString())
+//            }
+//            override fun onResponse(call: Call<SessaoResponseEditing>, response: Response<SessaoResponseEditing>) {
+//                Log.d("Bom: Editar Rodada", response.body().toString())
+//
+//                if (response.code() == 500) {
+//                    Log.d("Erro banco: EditarRodad", response.message())
+//                    context?.let { ErrorCases().error(it)}
+//                }
+//            }
+//        })
+//    }
 
     fun jogadorEncerrar(id_sessao: Int, jogador: String) {
         Service.retrofit.jogadorEncerrar(

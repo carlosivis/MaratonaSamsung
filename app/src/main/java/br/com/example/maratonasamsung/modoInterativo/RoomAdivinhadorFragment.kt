@@ -311,7 +311,9 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
 
                     doencaRodada = resposta.ultimaDoenca
 
-                    Log.d("rodadaY", rodada.toString())
+                    Log.d("rodadaAdivinhador", rodada.toString())
+                    Log.d("doencaAdivinhador", doencaRodada)
+
                 }
                 else {
                     Log.d("Erro banco: Dicas", response.message())
