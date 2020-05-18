@@ -109,7 +109,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
         transmicoes(doenca)
         ranking(id_sessao)
 
-        nomeDoenca.text = "DOENÇA SELECIONADA: $doenca"
+        nomeDoenca.text = "Doença selecionada: $doenca"
 
         timerCronometro.schedule(40000) {
             parametros.putInt("id_sessao", id_sessao)
