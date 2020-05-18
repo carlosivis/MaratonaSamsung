@@ -99,7 +99,6 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
 
         chronometro()
         editarRodada(id_sessao, doenca)
-        definirDoenca()
         sintomas(doenca)
         prevencoes(doenca)
         transmicoes(doenca)
@@ -251,32 +250,6 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
         timerRanking.schedule(30000) {
             ranking(id_sessao)
         }
-    }
-
-    fun definirDoenca(){
-        val id_sessao = requireArguments().getInt("id_sessao")
-        val rodada = requireArguments().getInt("rodada")
-        val doenca: String = requireArguments().getString("doenca").toString()
-
-        Service.retrofit.editarSessao(
-            sessao = EditarSessaoRequest(
-                id_sessao = id_sessao,
-                rodada = rodada,
-                doenca = doenca
-            )
-        ).enqueue(object : Callback<SessaoResponseEditing>{
-            override fun onFailure(call: Call<SessaoResponseEditing>, t: Throwable) {
-                Log.d("Ruim: EditarSessao", t.toString())
-            }
-            override fun onResponse(call: Call<SessaoResponseEditing>, response: Response<SessaoResponseEditing>) {
-                Log.d("Bom: EditarSessao", response.body().toString())
-
-                if (response.code() == 500) {
-                    Log.d("Erro banco: EditarSes", response.message())
-                    context?.let { ErrorCases().error(it)}
-                }
-            }
-        })
     }
 
     fun populaSpinnerSintoma(sintomas: ArrayList<String>) {

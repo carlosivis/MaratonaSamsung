@@ -29,9 +29,8 @@ import java.util.*
 import kotlin.concurrent.schedule
 
 
-class RoomDiqueiroDoencaFragment : Fragment() { //, View.OnClickListener
+class RoomDiqueiroDoencaFragment : Fragment() {
 
-    //    lateinit var spinnerAdapter: ArrayAdapter<String>
     var navController: NavController? = null
     val timerCronometro = Timer()
     val parametros = Bundle()
@@ -77,10 +76,10 @@ class RoomDiqueiroDoencaFragment : Fragment() { //, View.OnClickListener
         val id_sessao = requireArguments().getInt("id_sessao")
         val jogador = requireArguments().getString("jogador_nome").toString()
         val doencas = requireArguments().getStringArrayList("doencas")
-        val doenca = doencas!!.random()
+        val doenca = doencas!!.random().toString()
 
+        pegarRodada(id_sessao, doenca)
         jogadores(id_sessao)
-        pegarRodada(id_sessao)
 
         timerCronometro.schedule(5000){
             parametros.putInt("id_sessao", id_sessao)
@@ -93,7 +92,7 @@ class RoomDiqueiroDoencaFragment : Fragment() { //, View.OnClickListener
         }
     }
 
-    fun pegarRodada(id_sessao: Int) {
+    fun pegarRodada(id_sessao: Int, doenca: String) {
         Service.retrofit.listarSessao(
             id_sessao = id_sessao
         ).enqueue(object : Callback<SessaoResponseListing> {
@@ -106,9 +105,35 @@ class RoomDiqueiroDoencaFragment : Fragment() { //, View.OnClickListener
                 if (response.isSuccessful) {
                     val sessao = response.body()!!
                     rodada = sessao.sessao.rodada
+
+                    definirDoenca(doenca)
                 }
                 else {
                     Log.d("Erro do banco", response.message())
+                    context?.let { ErrorCases().error(it)}
+                }
+            }
+        })
+    }
+
+    fun definirDoenca(doenca: String){
+        val id_sessao = requireArguments().getInt("id_sessao")
+
+        Service.retrofit.editarSessao(
+            sessao = EditarSessaoRequest(
+                id_sessao = id_sessao,
+                rodada = (rodada+1),
+                doenca = doenca
+            )
+        ).enqueue(object : Callback<SessaoResponseEditing>{
+            override fun onFailure(call: Call<SessaoResponseEditing>, t: Throwable) {
+                Log.d("Ruim: EditarSessao", t.toString())
+            }
+            override fun onResponse(call: Call<SessaoResponseEditing>, response: Response<SessaoResponseEditing>) {
+                Log.d("Bom: EditarSessao", response.body().toString())
+
+                if (response.code() == 500) {
+                    Log.d("Erro banco: EditarSes", response.message())
                     context?.let { ErrorCases().error(it)}
                 }
             }
