@@ -116,7 +116,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp"
         android:text="@string/btn_comecar"
-        android:ems="4"/>
+        android:ems="5"/>
 
     <ProgressBar
         android:id="@+id/aguardandoJogadoresProgressBar"
