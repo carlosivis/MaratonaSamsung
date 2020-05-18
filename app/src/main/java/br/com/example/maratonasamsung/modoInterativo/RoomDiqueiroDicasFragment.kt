@@ -166,7 +166,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                         clicavel = false
 
                         editarSessaoPrevencao(DicaUnicaPrevencao(prevencao))
-                        diqueiroSpinnerSintoma.setSelection(0)
+                        diqueiroSpinnerPrevencao.setSelection(0)
                     }
                     else if(sintoma.isEmpty() && prevencao.isEmpty() && transmicao.isNotEmpty()) {
                         diqueiroBtnDicas.setText("")
@@ -174,7 +174,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                         clicavel = false
 
                         editarSessaoTransmicao(DicaUnicaTransmicao(transmicao))
-                        diqueiroSpinnerSintoma.setSelection(0)
+                        diqueiroSpinnerTransmicao.setSelection(0)
                     }
                     else {
                         val texto = "Você pode enviar apenas uma dica por vez"
