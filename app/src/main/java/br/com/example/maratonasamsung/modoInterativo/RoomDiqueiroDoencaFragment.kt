@@ -78,14 +78,14 @@ class RoomDiqueiroDoencaFragment : Fragment() {
         val doencas = requireArguments().getStringArrayList("doencas")
         val doenca = doencas!!.random().toString()
 
-        Log.d("doençaX",doenca)
+        Log.d("doencaX",doenca)
 
         pegarRodada(id_sessao, doenca)
         jogadores(id_sessao)
 
         timerCronometro.schedule(5000){
             parametros.putInt("id_sessao", id_sessao)
-            parametros.putInt("rodada", (rodada+1))
+            parametros.putInt("rodada", rodada)
             parametros.putString("jogador_nome", jogador)
             parametros.putString("doenca", doenca)
             parametros.putStringArrayList("doencas", doencas)
@@ -106,7 +106,7 @@ class RoomDiqueiroDoencaFragment : Fragment() {
 
                 if (response.isSuccessful) {
                     val sessao = response.body()!!
-                    rodada = sessao.sessao.rodada
+                    rodada = sessao.sessao.rodada + 1
 
                     Log.d("rodadaX", rodada.toString())
 
@@ -126,7 +126,7 @@ class RoomDiqueiroDoencaFragment : Fragment() {
         Service.retrofit.editarSessao(
             sessao = EditarSessaoRequest(
                 id_sessao = id_sessao,
-                rodada = (rodada+1),
+                rodada = rodada,
                 doenca = doenca
             )
         ).enqueue(object : Callback<SessaoResponseEditing>{
