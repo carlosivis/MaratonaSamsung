@@ -91,14 +91,13 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
         val id_sessao = requireArguments().getInt("id_sessao")
         val rodada = requireArguments().getInt("rodada")
         val jogador = requireArguments().getString("jogador_nome").toString()
-        val doenca: String = requireArguments().getString("doenca").toString()
+        val doenca = requireArguments().getString("doenca").toString()
         val doencas = requireArguments().getStringArrayList("doencas")
 
         diqueiroProgressBar.visibility = View.INVISIBLE
         Toast.makeText(context,"Você pode enviar varias dicas!", Toast.LENGTH_SHORT).show()
 
         chronometro()
-        editarRodada(id_sessao, doenca)
         sintomas(doenca)
         prevencoes(doenca)
         transmicoes(doenca)
@@ -107,7 +106,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
         nomeDoenca.text = "DOENÇA SELECIONADA: $doenca"
 
         timerCronometro.schedule(40000) {
-            editarRodada(id_sessao, doenca)
+//            editarRodada(id_sessao, doenca)
 
             parametros.putInt("id_sessao", id_sessao)
             parametros.putString("jogador_nome", jogador)
