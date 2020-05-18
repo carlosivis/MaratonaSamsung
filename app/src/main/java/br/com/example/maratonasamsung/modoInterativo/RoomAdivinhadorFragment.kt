@@ -116,7 +116,6 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
 
         chronometro()
         ranking(id_sessao)
-
         pegarRodadaDoenca(id_sessao)
         dicas(id_sessao)
 //        aguardarTempo(id_sessao)

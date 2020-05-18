@@ -132,7 +132,7 @@ class PlaceholderRodadaFragment : Fragment() {
                             val ultimaDoenca = requireArguments().getString("ultimaDoenca")
 
                             txtTipoJogador.text = "Agora você será o Adivinhador"
-                            txtDoencaRodada.text = "A Doença era: $ultimaDoenca"
+                            txtDoencaRodada.text = "A doença era: $ultimaDoenca"
                         }
                     }
                 }
