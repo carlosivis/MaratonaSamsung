@@ -145,8 +145,14 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                 if(clicavel) {
                     val dica = diqueiroSpinnerDicas.selectedItem.toString()
 
-                    if(dica.isEmpty() || dica.equals(sintomasZero) || dica.equals(prevecoesZero) || dica.equals(transmissoesZero)) {
+                    if(dica.isEmpty()) {
                         val texto = "Selecione uma dica"
+                        val duracao = Toast.LENGTH_SHORT
+                        val toast = Toast.makeText(context, texto, duracao)
+                        toast.show()
+                    }
+                    else if(dica.equals(sintomasZero) || dica.equals(prevecoesZero) || dica.equals(transmissoesZero)) {
+                        val texto = "Esta não é uma dica"
                         val duracao = Toast.LENGTH_SHORT
                         val toast = Toast.makeText(context, texto, duracao)
                         toast.show()
@@ -287,7 +293,6 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                         listaSintomas.sintomas.forEach { sintomasGlobal.add((it.nome)) }
 
                         responseSintomas = true
-//                        sintomasGlobal.removeAt(0)
 
                         populaSpinner()
                     }
@@ -317,8 +322,8 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                     if (listaPrevencao.prevencoes.isNotEmpty()) {
                         listaPrevencao.prevencoes.forEach { prevencoesGlobal.add((it.nome)) }
 
+                        prevencoesGlobal.add(0, "")
                         responsePrevencoes = true
-//                        prevencoesGlobal.removeAt(0)
 
                         populaSpinner()
                     }
@@ -348,8 +353,8 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                     if (listaTransmicao.transmicao.isNotEmpty()) {
                         listaTransmicao.transmicao.forEach { transmicoesGlobal.add((it.nome)) }
 
+                        transmicoesGlobal.add(0, "")
                         responseTransmicoes = true
-//                        transmicoesGlobal.removeAt(0)
 
                         populaSpinner()
                     }
@@ -399,9 +404,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                     if (sintomasSelecionados.isNotEmpty())
                         sintomasGlobal.removeAll(sintomasSelecionados)
 
-                    sintomasGlobal.add(0, "")
                     populaSpinner()
-//                    populaSpinnerSintoma(sintomasGlobal)
                 }
                 else {
                     Log.d("Erro banco: EditSessaoS", response.message())
@@ -448,9 +451,8 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                     if (prevecoesSelecionados.isNotEmpty())
                         prevencoesGlobal.removeAll(prevecoesSelecionados)
 
-                    prevencoesGlobal.add(0, "")
+                    prevecoesSelecionados.add(0, "")
                     populaSpinner()
-//                    populaSpinnerSintoma(prevencoesGlobal)
                 }
                 else {
                     Log.d("Erro banco: EditSessaoP", response.message())
@@ -497,9 +499,8 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                     if (transmicoesSelecionados.isNotEmpty())
                         transmicoesGlobal.removeAll(transmicoesSelecionados)
 
-                    transmicoesGlobal.add(0, "")
+                    transmicoesSelecionados.add(0, "")
                     populaSpinner()
-//                    populaSpinnerSintoma(transmicoesGlobal)
                 }
                 else {
                     Log.d("Erro banco: EditSessaoT", response.message())
