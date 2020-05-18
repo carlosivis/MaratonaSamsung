@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
-        val intent = Intent(this@MainActivity, TutorialActivity::class.java)
+        val intent = Intent(this, TutorialActivity::class.java)
 //        intent.putExtra("param1", "qualquerCoisaServe")
 
 //        val sessionId = getIntent().getStringExtra("param2")
