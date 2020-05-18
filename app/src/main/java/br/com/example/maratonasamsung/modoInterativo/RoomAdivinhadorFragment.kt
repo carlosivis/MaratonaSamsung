@@ -306,7 +306,9 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
                     listDicas.removeAt(0)
                     configureRecyclerViewDicas(listDicas)
 
+
                     rodada = resposta.sessao.rodada
+
                     doencaRodada = resposta.ultimaDoenca
 
                     Log.d("rodadaY", rodada.toString())
@@ -321,7 +323,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
             dicas(id_sessao)
         }
     }
-      
+
     fun listarSessao(id_sessao: Int) {
         Service.retrofit.listarSessao(
             id_sessao = id_sessao
@@ -452,7 +454,3 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
         })
     }
 }
-
-
-
-

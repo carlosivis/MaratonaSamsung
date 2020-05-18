@@ -54,16 +54,14 @@
         android:layout_height="match_parent"
         android:layout_below="@id/menuLayout">
 
-
     <TextView
         android:id="@+id/aguardandoJogadoresTxtJogadores"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/txt_jogadores"
-        android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
         android:layout_centerHorizontal="true"
-        android:textSize="25sp" />
+        android:textSize="23sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -89,7 +87,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:textSize="25sp"
+            android:textSize="23sp"
             android:layout_marginBottom="20dp"
             android:text="@string/txt_dados" />
 
@@ -97,6 +95,7 @@
             android:id="@+id/aguardandoJogadoresTxtNome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="18sp"
             android:layout_marginBottom="15dp"
             android:text="@string/txt_nomeSala" />
 
@@ -104,6 +103,7 @@
             android:id="@+id/aguardandoJogadoresTxtSenha"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="18sp"
             android:text="@string/txt_senhaSala" />
     </LinearLayout>
 
