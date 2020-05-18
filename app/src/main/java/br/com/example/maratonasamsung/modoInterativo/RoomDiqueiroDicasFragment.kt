@@ -40,9 +40,12 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
     val vencedor = Bundle()
     val timerCronometro = Timer()
     val timerRanking = Timer()
-    var sintomasGlobal: ArrayList<String> = arrayListOf("")
-    var prevencoesGlobal: ArrayList<String> = arrayListOf("")
-    var transmicoesGlobal: ArrayList<String> = arrayListOf("")
+    val sintomasZero = "     SINTOMAS:"
+    val transmissoesZero = "     TRANSMISSÕES:"
+    val prevecoesZero = "     PREVENÇÕES:"
+    var sintomasGlobal: ArrayList<String> = arrayListOf(sintomasZero)
+    var prevencoesGlobal: ArrayList<String> = arrayListOf(prevecoesZero)
+    var transmicoesGlobal: ArrayList<String> = arrayListOf(transmissoesZero)
     var responseSintomas = false
     var responsePrevencoes = false
     var responseTransmicoes = false
@@ -142,7 +145,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                 if(clicavel) {
                     val dica = diqueiroSpinnerDicas.selectedItem.toString()
 
-                    if(dica.isEmpty()) {
+                    if(dica.isEmpty() || dica.equals(sintomasZero) || dica.equals(prevecoesZero) || dica.equals(transmissoesZero)) {
                         val texto = "Selecione uma dica"
                         val duracao = Toast.LENGTH_SHORT
                         val toast = Toast.makeText(context, texto, duracao)
