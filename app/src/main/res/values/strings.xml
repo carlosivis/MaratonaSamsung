@@ -88,37 +88,21 @@
     <string name="creditsSad">Ícone feito por \n<a href="https://www.flaticon.com/authors/smashicons">Smashicons</a> de \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
     <string name="labelSetaDir">Seta para a direita</string>
     <string name="labelCheck">Sinal de check</string>
-
-
     <string name="sair">Sair</string>
     <string name="cancelar">Cancelar</string>
     <string name="ok">OK</string>
-
     <string name="aguardando_comecar">Aguardando o primeiro jogador a entrar na sala começar a partida</string>
     <string name="aguardando_comecar_title">Partida cancelada</string>
-    <string name="aguardando_comecar_message">
-        O jogador com o poder de iniciar a partida saiu do jogo e, infelizmente, você não poderá continuar.\n
-        Tente acessar a sala novamente para ser seu gestor ou então crie sua própria sala.
-    </string>
-
+    <string name="aguardando_comecar_message">O jogador com o poder de iniciar a partida saiu do jogo e, infelizmente, você não poderá continuar.\nTente acessar a sala novamente para ser seu gestor ou então crie sua própria sala.</string>
     <string name="aguardando_jogadores_title">Olá, você é o primeiro a entrar nesta sala!</string>
-    <string name="aguardando_jogadores_message">
-        Verifique em tempo real os jogadores que estão aguardando o inicio da partida e aperte no botão começar quando ver que todos os seus colegas já entraram, lembre-se que você precisa de pelo menos mais uma pessoa para iniciar a partida.\n
-        Aqui você também encontra os dados de acesso da sala, para caso se esqueça.
-    </string>
+    <string name="aguardando_jogadores_message">Verifique em tempo real os jogadores que estão aguardando o inicio da partida e aperte no botão começar quando ver que todos os seus colegas já entraram, lembre-se que você precisa de pelo menos mais uma pessoa para iniciar a partida.\nAqui você também encontra os dados de acesso da sala, para caso se esqueça.</string>
     <string name="txt_dados">Dados da sala</string>
     <string name="txt_nomeSala">Nome:</string>
     <string name="txt_senhaSala">Senha:</string>
-
     <string name="sairApp">Você deseja sair do app?</string>
     <string name="sairJogo">Você deseja sair do jogo?</string>
     <string name="sairJogoPont">Ao sair da sala você perderá toda a sua pontuação.</string>
-
-    <string name="txt_expulso">
-        Todos os seus colegas saíram do jogo e, infelizmente, você não poderá continuar sozinho.\n
-        Chame mais um amigo e volte para se divertir!
-    </string>
-
+    <string name="txt_expulso">Todos os seus colegas saíram do jogo e, infelizmente, você não poderá continuar sozinho.\nChame mais um amigo e volte para se divertir.</string>
     <string name="transmissao">Transmissão</string>
     <string name="labelSetaEsq">Seta para a esquerda</string>
     <string name="umdequatro">1/4</string>
