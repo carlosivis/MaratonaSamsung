@@ -17,6 +17,9 @@ import br.com.example.maratonasamsung.model.Responses.StatusBoolean
 import br.com.example.maratonasamsung.model.Responses.RankingResponse
 import br.com.example.maratonasamsung.data.service.ErrorCases
 import br.com.example.maratonasamsung.data.service.Service
+import br.com.example.maratonasamsung.model.Requests.EditarSessaoRequest
+import br.com.example.maratonasamsung.model.Responses.SessaoResponseEditing
+import br.com.example.maratonasamsung.model.Responses.SessaoResponseListing
 import kotlinx.android.synthetic.main.fragment_placeholder_rodada.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -29,6 +32,8 @@ class PlaceholderRodadaFragment : Fragment() {
     var navController: NavController? = null
     val timerCronometro = Timer()
     lateinit var diqueiro: String
+    var rodada = 0
+    var doenca = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -79,8 +84,10 @@ class PlaceholderRodadaFragment : Fragment() {
             parametros.putString("jogador_nome",jogador)
             parametros.putStringArrayList("doencas", doencas)
 
-            if (jogador == diqueiro)
+            if (jogador == diqueiro) {
+                parametros.putString("doenca", doenca)
                 navController!!.navigate(R.id.action_placeholderRodadaFragment_to_roomDiqueiroDoencaFragment,parametros)
+            }
             else
                 navController!!.navigate(R.id.action_placeholderRodadaFragment_to_roomAdivinhadorFragment,parametros)
         }
@@ -129,14 +136,74 @@ class PlaceholderRodadaFragment : Fragment() {
                         diqueiro = resposta.darDica.nome
                         val jogador = requireArguments().getString("jogador_nome").toString()
 
-                        if (jogador == diqueiro)
+                        if (jogador == diqueiro) {
                             txtTipoJogador.text = "Agora você será o Diqueiro"
+
+                            pegarRodada(id_sessao)
+                        }
                         else
                             txtTipoJogador.text = "Agora você será o Adivinhador"
                     }
                 }
                 else {
                     Log.d("Erro banco: Ranking", response.message())
+                    context?.let { ErrorCases().error(it)}
+                }
+            }
+        })
+    }
+
+    fun pegarRodada(id_sessao: Int) {
+        Service.retrofit.listarSessao(
+            id_sessao = id_sessao
+        ).enqueue(object : Callback<SessaoResponseListing> {
+            override fun onFailure(call: Call<SessaoResponseListing>, t: Throwable) {
+                Log.d("Deu ruim", t.toString())
+            }
+            override fun onResponse(call: Call<SessaoResponseListing>, response: Response<SessaoResponseListing>) {
+                Log.d("Nice", response.toString())
+
+                if (response.isSuccessful) {
+                    val sessao = response.body()!!
+                    rodada = sessao.sessao.rodada
+
+                    val doencas = requireArguments().getStringArrayList("doencas")
+                    doenca = doencas!!.random().toString()
+
+                    definirDoencaRodada()
+
+                    Log.d("EUAQUI_RodadaDiqueiro", rodada.toString())
+                    Log.d("EUAQUI_DoencaDiqueiro", doenca)
+                }
+                else {
+                    Log.d("Erro do banco", response.message())
+                    context?.let { ErrorCases().error(it)}
+                }
+            }
+        })
+    }
+
+    fun definirDoencaRodada(){
+        val id_sessao = requireArguments().getInt("id_sessao")
+
+        Service.retrofit.editarSessao(
+            sessao = EditarSessaoRequest(
+                id_sessao = id_sessao,
+                rodada = rodada + 1,
+                doenca = doenca
+            )
+        ).enqueue(object : Callback<SessaoResponseEditing>{
+            override fun onFailure(call: Call<SessaoResponseEditing>, t: Throwable) {
+                Log.d("Ruim: EditarSessao", t.toString())
+            }
+            override fun onResponse(call: Call<SessaoResponseEditing>, response: Response<SessaoResponseEditing>) {
+                Log.d("Bom: EditarSessao", response.body().toString())
+
+                if(response.isSuccessful) {
+
+                }
+                else {
+                    Log.d("Erro banco: EditarSes", response.message())
                     context?.let { ErrorCases().error(it)}
                 }
             }
