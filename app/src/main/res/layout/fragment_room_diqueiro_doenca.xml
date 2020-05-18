@@ -38,7 +38,7 @@
                 android:layout_below="@+id/diqueiroTxtDoenca"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
-                android:indeterminateTint="@android:color/black"/>
+                android:indeterminateTint="@android:color/white"/>
         </RelativeLayout>
     </RelativeLayout>
 </RelativeLayout>

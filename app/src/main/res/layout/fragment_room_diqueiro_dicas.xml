@@ -59,7 +59,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/txt_diqueiro"
-        android:textSize="25sp"
+        android:textSize="23sp"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp" />
 
@@ -120,7 +120,7 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:layout_gravity="center"
-            tools:text="DOENÇA SELECIONADA: XX" />
+            tools:text="DOENÇA SELECIONADA: UM NOME MUITO GRANDE DE DOENÇA" />
     </LinearLayout>
 
     <TextView
@@ -128,7 +128,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_centerHorizontal="true"
         android:text="Envie dicas para os Adivinhadores:"
         android:textSize="20sp"
         android:layout_above="@+id/diqueiroTxtSintomas"/>
@@ -187,17 +186,16 @@
         android:dropDownWidth="wrap_content"
         android:scrollbarSize="4dp" />
 
-    <Button
-        android:id="@+id/diqueiroBtnDicas"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/roundbutton"
-        android:ems="5"
-        android:text="@string/btn_enviar_dica"
-        />
+        <Button
+            android:id="@+id/diqueiroBtnDicas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/roundbutton"
+            android:ems="6"
+            android:text="@string/btn_enviar_dica" />
 
     <ProgressBar
         android:id="@+id/diqueiroProgressBar"
