@@ -119,9 +119,10 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
             textResposta.visibility = View.VISIBLE
             spinnerResposta.visibility = View.VISIBLE
 
-            pegarRodadaDoenca(id_sessao)
-            dicas(id_sessao)
         }
+
+        pegarRodadaDoenca(id_sessao)
+        dicas(id_sessao)
 
         timerCronometro.schedule(45000) {
             editarRodada(id_sessao, doencaRodada)
