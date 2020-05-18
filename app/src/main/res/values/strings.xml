@@ -130,4 +130,6 @@
     <string name="jogoFim">Jogo finalizado! O(A) vencedor(a) foi</string>
     <string name="labelSad">Ilustração de um fantasma triste</string>
     <string name="morbus">Morbus</string>
+    <string name="interativo_title">Primeira vez aqui?</string>
+    <string name="interativo_msg">Nesta tela você tem duas opções: Criar uma sala para uma partida nova, com um nome e senha que deverá ser informado aos seus colegas para que eles a acessem, ou acessar uma sala existente com as informações passadas pelo seu criador.</string>
 </resources>
