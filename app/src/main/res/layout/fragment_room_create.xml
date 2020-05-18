@@ -61,7 +61,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp"
         android:text="@string/txt_criar_sala"
-        android:textSize="24sp" />
+        android:textSize="23sp" />
 
     <RelativeLayout
         android:layout_width="match_parent"
