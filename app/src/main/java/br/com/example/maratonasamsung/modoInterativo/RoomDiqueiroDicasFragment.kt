@@ -43,6 +43,9 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
     var sintomasGlobal: ArrayList<String> = arrayListOf("")
     var prevencoesGlobal: ArrayList<String> = arrayListOf("")
     var transmicoesGlobal: ArrayList<String> = arrayListOf("")
+    var responseSintomas = false
+    var responsePrevencoes = false
+    var responseTransmicoes = false
     var clicavel = true
 
     override fun onCreateView(
@@ -106,8 +109,6 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
         nomeDoenca.text = "DOENÇA SELECIONADA: $doenca"
 
         timerCronometro.schedule(40000) {
-//            editarRodada(id_sessao, doenca)
-
             parametros.putInt("id_sessao", id_sessao)
             parametros.putString("jogador_nome", jogador)
             parametros.putStringArrayList("doencas", doencas)
@@ -139,51 +140,47 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
             R.id.diqueiroBtnDicas -> {
 
                 if(clicavel) {
-                    val sintoma: String = diqueiroSpinnerSintoma.selectedItem.toString()
+                    val dica = diqueiroSpinnerDicas.selectedItem.toString()
 
-                    val prevencao: String = diqueiroSpinnerPrevencao.selectedItem.toString()
-
-                    val transmicao: String = diqueiroSpinnerTransmicao.selectedItem.toString()
-
-                    if(sintoma.isEmpty() && prevencao.isEmpty() && transmicao.isEmpty()) {
+                    if(dica.isEmpty()) {
                         val texto = "Selecione uma dica"
                         val duracao = Toast.LENGTH_SHORT
                         val toast = Toast.makeText(context, texto, duracao)
                         toast.show()
                     }
-                    else if(sintoma.isNotEmpty() && prevencao.isEmpty() && transmicao.isEmpty()) {
-                        diqueiroBtnDicas.setText("")
-                        diqueiroProgressBar.visibility = View.VISIBLE;
-                        clicavel = false
-
-                        editarSessaoSintoma(DicaUnicaSintoma(sintoma))
-                        diqueiroSpinnerSintoma.setSelection(0)
-                    }
-                    else if(sintoma.isEmpty() && prevencao.isNotEmpty() && transmicao.isEmpty()) {
-                        diqueiroBtnDicas.setText("")
-                        diqueiroProgressBar.visibility = View.VISIBLE;
-                        clicavel = false
-
-                        editarSessaoPrevencao(DicaUnicaPrevencao(prevencao))
-                        diqueiroSpinnerPrevencao.setSelection(0)
-                    }
-                    else if(sintoma.isEmpty() && prevencao.isEmpty() && transmicao.isNotEmpty()) {
-                        diqueiroBtnDicas.setText("")
-                        diqueiroProgressBar.visibility = View.VISIBLE;
-                        clicavel = false
-
-                        editarSessaoTransmicao(DicaUnicaTransmicao(transmicao))
-                        diqueiroSpinnerTransmicao.setSelection(0)
-                    }
                     else {
-                        val texto = "Você pode enviar apenas uma dica por vez"
-                        val duracao = Toast.LENGTH_SHORT
-                        val toast = Toast.makeText(context, texto, duracao)
-                        toast.show()
+                        diqueiroBtnDicas.setText("")
+                        diqueiroProgressBar.visibility = View.VISIBLE;
+                        clicavel = false
 
-                        diqueiroSpinnerSintoma.setSelection(0)
-                        diqueiroSpinnerPrevencao.setSelection(0)
-                        diqueiroSpinnerTransmicao.setSelection(0)
+                        diqueiroSpinnerDicas.setSelection(0)
+
+                        var encontraTipo = false
+
+                        sintomasGlobal.forEach {
+                            if(it == dica) {
+                                encontraTipo = true
+                                editarSessaoSintoma(DicaUnicaSintoma(dica))
+                            }
+                        }
+
+                        if(!encontraTipo) {
+                            prevencoesGlobal.forEach {
+                                if(it == dica) {
+                                    encontraTipo = true
+                                    editarSessaoPrevencao(DicaUnicaPrevencao(dica))
+                                }
+                            }
+                        }
+
+                        if(!encontraTipo) {
+                            transmicoesGlobal.forEach {
+                                if(it == dica) {
+                                    encontraTipo = true
+                                    editarSessaoTransmicao(DicaUnicaTransmicao(dica))
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -251,13 +248,22 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
         }
     }
 
-    fun populaSpinnerSintoma(sintomas: ArrayList<String>) {
-        sintomas.toMutableList()
-        context?.let {
-            spinnerAdapter =
-                ArrayAdapter(it, android.R.layout.simple_spinner_item, sintomas)
+
+    fun populaSpinner() {
+        if(responseSintomas && responsePrevencoes && responseTransmicoes) {
+            var dicas: ArrayList<String> = arrayListOf("")
+
+            sintomasGlobal.forEach { dicas.add(it) }
+            prevencoesGlobal.forEach { dicas.add(it) }
+            transmicoesGlobal.forEach { dicas.add(it) }
+
+            dicas.toMutableList()
+            context?.let {
+                spinnerAdapter =
+                    ArrayAdapter(it, android.R.layout.simple_spinner_item, dicas)
+            }
+            diqueiroSpinnerDicas.adapter = spinnerAdapter
         }
-        diqueiroSpinnerSintoma.adapter = spinnerAdapter
     }
 
     fun sintomas(doenca: String) {
@@ -276,7 +282,11 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
 
                     if (listaSintomas.sintomas.isNotEmpty()) {
                         listaSintomas.sintomas.forEach { sintomasGlobal.add((it.nome)) }
-                        populaSpinnerSintoma(sintomasGlobal)
+
+                        responseSintomas = true
+//                        sintomasGlobal.removeAt(0)
+
+                        populaSpinner()
                     }
                 }
                 else {
@@ -285,15 +295,6 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                 }
             }
         })
-    }
-
-    fun populaSpinnerPrevencoes(prevencoes: ArrayList<String>) {
-        prevencoes.toMutableList()
-        context?.let {
-            spinnerAdapter =
-                ArrayAdapter(it, android.R.layout.simple_spinner_item, prevencoes)
-        }
-        diqueiroSpinnerPrevencao.adapter = spinnerAdapter
     }
 
     fun prevencoes(doenca: String){
@@ -313,7 +314,10 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                     if (listaPrevencao.prevencoes.isNotEmpty()) {
                         listaPrevencao.prevencoes.forEach { prevencoesGlobal.add((it.nome)) }
 
-                        populaSpinnerPrevencoes(prevencoesGlobal)
+                        responsePrevencoes = true
+//                        prevencoesGlobal.removeAt(0)
+
+                        populaSpinner()
                     }
                 }
                 else {
@@ -322,15 +326,6 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                 }
             }
         })
-    }
-
-    fun populaSpinnerTransmicoes(transmicoes: ArrayList<String>) {
-        transmicoes.toMutableList()
-        context?.let {
-            spinnerAdapter =
-                ArrayAdapter(it, android.R.layout.simple_spinner_item, transmicoes)
-        }
-        diqueiroSpinnerTransmicao.adapter = spinnerAdapter
     }
 
     fun transmicoes(doenca: String) {
@@ -350,7 +345,10 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                     if (listaTransmicao.transmicao.isNotEmpty()) {
                         listaTransmicao.transmicao.forEach { transmicoesGlobal.add((it.nome)) }
 
-                        populaSpinnerTransmicoes(transmicoesGlobal)
+                        responseTransmicoes = true
+//                        transmicoesGlobal.removeAt(0)
+
+                        populaSpinner()
                     }
                 }
                 else {
@@ -399,7 +397,8 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                         sintomasGlobal.removeAll(sintomasSelecionados)
 
                     sintomasGlobal.add(0, "")
-                    populaSpinnerSintoma(sintomasGlobal)
+                    populaSpinner()
+//                    populaSpinnerSintoma(sintomasGlobal)
                 }
                 else {
                     Log.d("Erro banco: EditSessaoS", response.message())
@@ -447,7 +446,8 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                         prevencoesGlobal.removeAll(prevecoesSelecionados)
 
                     prevencoesGlobal.add(0, "")
-                    populaSpinnerSintoma(prevencoesGlobal)
+                    populaSpinner()
+//                    populaSpinnerSintoma(prevencoesGlobal)
                 }
                 else {
                     Log.d("Erro banco: EditSessaoP", response.message())
@@ -495,7 +495,8 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                         transmicoesGlobal.removeAll(transmicoesSelecionados)
 
                     transmicoesGlobal.add(0, "")
-                    populaSpinnerSintoma(transmicoesGlobal)
+                    populaSpinner()
+//                    populaSpinnerSintoma(transmicoesGlobal)
                 }
                 else {
                     Log.d("Erro banco: EditSessaoT", response.message())
@@ -504,30 +505,6 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
             }
         })
     }
-
-//    fun editarRodada(id_sessao: Int, doenca: String){
-//        val rodada = requireArguments().getInt("rodada")
-//
-//        Service.retrofit.editarRodada(
-//            sessao = EditarSessaoRequest(
-//                id_sessao = id_sessao,
-//                rodada = rodada,
-//                doenca = doenca
-//            )
-//        ).enqueue(object : Callback<SessaoResponseEditing>{
-//            override fun onFailure(call: Call<SessaoResponseEditing>, t: Throwable) {
-//                Log.d("Ruim: Editar Rodada", t.toString())
-//            }
-//            override fun onResponse(call: Call<SessaoResponseEditing>, response: Response<SessaoResponseEditing>) {
-//                Log.d("Bom: Editar Rodada", response.body().toString())
-//
-//                if (response.code() == 500) {
-//                    Log.d("Erro banco: EditarRodad", response.message())
-//                    context?.let { ErrorCases().error(it)}
-//                }
-//            }
-//        })
-//    }
 
     fun jogadorEncerrar(id_sessao: Int, jogador: String) {
         Service.retrofit.jogadorEncerrar(

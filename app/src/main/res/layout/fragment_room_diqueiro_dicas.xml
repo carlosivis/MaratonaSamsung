@@ -136,13 +136,13 @@
         android:id="@+id/diqueiroTxtSintomas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/diqueiroSpinnerSintoma"
+        android:layout_above="@id/diqueiroSpinnerDicas"
         android:text="@string/txt_sintomas"
         android:textSize="18sp"
         android:layout_marginTop="10dp" />
 
     <Spinner
-        android:id="@+id/diqueiroSpinnerSintoma"
+        android:id="@+id/diqueiroSpinnerDicas"
         style="@style/spinnerTheme"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
