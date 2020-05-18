@@ -71,9 +71,8 @@ class ChooseFragment : Fragment(), View.OnClickListener {
     private fun observerResponse() {
         viewModel.response.observe(viewLifecycleOwner,
             Observer {
-                Log.d("Teste", it.toString())
                 list = it
-                configureRecyclerView(list.filter { it.tipo == requireArguments().getString("agenteInfectante") })
+                configureRecyclerView(list.filter { it.tipo == requireArguments().getString("agenteInfectante") }.sortedBy { it.nome })
             })
 
     }
@@ -81,7 +80,6 @@ class ChooseFragment : Fragment(), View.OnClickListener {
     private fun observerError() {
         viewModel.error.observe(viewLifecycleOwner,
             Observer {
-                Log.d("Error message", it.toString())
                 context?.let { ErrorCases().error(it) }
             })
     }
