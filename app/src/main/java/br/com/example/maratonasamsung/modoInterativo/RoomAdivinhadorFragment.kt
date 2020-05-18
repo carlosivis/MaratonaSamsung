@@ -307,6 +307,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
                     configureRecyclerViewDicas(listDicas)
 
                     rodada = resposta.sessao.rodada + 1
+                    Log.d("euaquiadivinhador", rodada.toString())
                     doencaRodada = resposta.ultimaDoenca
                 }
                 else {

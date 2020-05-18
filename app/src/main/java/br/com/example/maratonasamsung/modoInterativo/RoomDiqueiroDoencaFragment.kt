@@ -78,6 +78,8 @@ class RoomDiqueiroDoencaFragment : Fragment() {
         val doencas = requireArguments().getStringArrayList("doencas")
         val doenca = doencas!!.random().toString()
 
+        Log.d("euaqui1",doenca)
+
         pegarRodada(id_sessao, doenca)
         jogadores(id_sessao)
 
@@ -105,6 +107,8 @@ class RoomDiqueiroDoencaFragment : Fragment() {
                 if (response.isSuccessful) {
                     val sessao = response.body()!!
                     rodada = sessao.sessao.rodada
+
+                    Log.d("euaqui", rodada.toString())
 
                     definirDoenca(doenca)
                 }
