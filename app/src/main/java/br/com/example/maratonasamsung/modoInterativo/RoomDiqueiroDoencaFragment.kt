@@ -106,8 +106,8 @@ class RoomDiqueiroDoencaFragment : Fragment() {
                     val sessao = response.body()!!
                     rodada = sessao.sessao.rodada + 1
 
-                    Log.d("RodadaDiqueiro", rodada.toString())
-                    Log.d("DoencaDiqueiro", doenca)
+                    Log.d("EUAQUI_RodadaDiqueiro", rodada.toString())
+                    Log.d("EUAQUI_DoencaDiqueiro", doenca)
 
                     editarRodada(id_sessao, doenca)
                     definirDoenca(doenca)

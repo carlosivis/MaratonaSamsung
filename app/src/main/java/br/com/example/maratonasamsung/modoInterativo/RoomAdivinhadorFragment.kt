@@ -311,8 +311,8 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
 
                     doencaRodada = resposta.ultimaDoenca
 
-                    Log.d("rodadaAdivinhador", rodada.toString())
-                    Log.d("doencaAdivinhador", doencaRodada)
+                    Log.d("EUAQUI_rodadaAdivinhador", rodada.toString())
+                    Log.d("EUAQUI_doencaAdivinhador", doencaRodada)
 
                 }
                 else {
