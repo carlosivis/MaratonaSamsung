@@ -104,12 +104,12 @@ class RoomDiqueiroDoencaFragment : Fragment() {
 
                 if (response.isSuccessful) {
                     val sessao = response.body()!!
-                    rodada = sessao.sessao.rodada + 1
+                    rodada = sessao.sessao.rodada
 
                     Log.d("EUAQUI_RodadaDiqueiro", rodada.toString())
                     Log.d("EUAQUI_DoencaDiqueiro", doenca)
 
-                    editarRodada(id_sessao, doenca)
+//                    editarRodada(id_sessao, doenca)
                     definirDoenca(doenca)
                 }
                 else {
@@ -144,29 +144,29 @@ class RoomDiqueiroDoencaFragment : Fragment() {
         })
     }
 
-    fun editarRodada(id_sessao: Int, doenca: String){
-        val rodada = requireArguments().getInt("rodada")
-
-        Service.retrofit.editarRodada(
-            sessao = EditarSessaoRequest(
-                id_sessao = id_sessao,
-                rodada = rodada,
-                doenca = doenca
-            )
-        ).enqueue(object : Callback<SessaoResponseEditing>{
-            override fun onFailure(call: Call<SessaoResponseEditing>, t: Throwable) {
-                Log.d("Ruim: Editar Rodada", t.toString())
-            }
-            override fun onResponse(call: Call<SessaoResponseEditing>, response: Response<SessaoResponseEditing>) {
-                Log.d("Bom: Editar Rodada", response.body().toString())
-
-                if (response.code() == 500) {
-                    Log.d("Erro banco: EditarRodad", response.message())
-                    context?.let { ErrorCases().error(it)}
-                }
-            }
-        })
-    }
+//    fun editarRodada(id_sessao: Int, doenca: String){
+//        val rodada = requireArguments().getInt("rodada")
+//
+//        Service.retrofit.editarRodada(
+//            sessao = EditarSessaoRequest(
+//                id_sessao = id_sessao,
+//                rodada = rodada,
+//                doenca = doenca
+//            )
+//        ).enqueue(object : Callback<SessaoResponseEditing>{
+//            override fun onFailure(call: Call<SessaoResponseEditing>, t: Throwable) {
+//                Log.d("Ruim: Editar Rodada", t.toString())
+//            }
+//            override fun onResponse(call: Call<SessaoResponseEditing>, response: Response<SessaoResponseEditing>) {
+//                Log.d("Bom: Editar Rodada", response.body().toString())
+//
+//                if (response.code() == 500) {
+//                    Log.d("Erro banco: EditarRodad", response.message())
+//                    context?.let { ErrorCases().error(it)}
+//                }
+//            }
+//        })
+//    }
 
     fun jogadorEncerrar(id_sessao: Int, jogador: String) {
         Service.retrofit.jogadorEncerrar(
