@@ -186,7 +186,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:background="@drawable/roundbutton"
-        android:ems="7"
+        android:ems="9"
         android:text="@string/btn_adivinhar" />
 
         <ProgressBar
