@@ -133,7 +133,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
     @RequiresApi(Build.VERSION_CODES.N)
     fun chronometro(){
         diqueirotempoCronometro.isCountDown= true
-        diqueirotempoCronometro.base = SystemClock.elapsedRealtime()+40000
+        diqueirotempoCronometro.base = SystemClock.elapsedRealtime()+60000
         diqueirotempoCronometro.start()
     }
 
