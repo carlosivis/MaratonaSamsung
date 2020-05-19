@@ -119,7 +119,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
             parametros.putStringArrayList("doencas",doencas!!)
             parametros.putString("ultimaDoenca", doencaRodada)
 
-            jogadorUpdate(id_sessao,true)
+            jogadorUpdate(rodada,true)
 
             tempoCronometro.stop()
             timerRanking.cancel()
