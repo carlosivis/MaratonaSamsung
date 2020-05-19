@@ -451,7 +451,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                     if (prevecoesSelecionados.isNotEmpty())
                         prevencoesGlobal.removeAll(prevecoesSelecionados)
 
-                    prevecoesSelecionados.add(0, "")
+                    prevencoesGlobal.add(0, "")
                     populaSpinner()
                 }
                 else {
@@ -499,7 +499,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                     if (transmicoesSelecionados.isNotEmpty())
                         transmicoesGlobal.removeAll(transmicoesSelecionados)
 
-                    transmicoesSelecionados.add(0, "")
+                    transmicoesGlobal.add(0, "")
                     populaSpinner()
                 }
                 else {
