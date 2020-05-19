@@ -111,7 +111,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
 
         nomeDoenca.text = "Doença selecionada: $doenca"
 
-        timerCronometro.schedule(40000) {
+        timerCronometro.schedule(60000) {
             parametros.putInt("id_sessao", id_sessao)
             parametros.putString("jogador_nome", jogador)
             parametros.putStringArrayList("doencas", doencas)
@@ -158,7 +158,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                         toast.show()
                     }
                     else {
-                        diqueiroBtnDicas.text = ""
+                        diqueiroBtnDicas.setText("")
                         diqueiroProgressBar.visibility = View.VISIBLE;
                         clicavel = false
 
@@ -387,7 +387,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                 Log.d("Bom: EditarSessaoSint", response.body().toString())
 
                 clicavel = true
-                diqueiroBtnDicas.text = R.string.btn_enviar_dica.toString()
+                diqueiroBtnDicas.setText(R.string.btn_enviar_dica)
                 diqueiroProgressBar.visibility = View.INVISIBLE
 
                 if (response.isSuccessful) {
@@ -434,7 +434,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                 Log.d("Bom: EditarSessaoPrev", response.body().toString())
 
                 clicavel = true
-                diqueiroBtnDicas.text = R.string.btn_enviar_dica.toString()
+                diqueiroBtnDicas.setText(R.string.btn_enviar_dica)
                 diqueiroProgressBar.visibility = View.INVISIBLE
 
                 if (response.isSuccessful) {
@@ -482,7 +482,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                 Log.d("Bom: EditarSessaoTrans", response.body().toString())
 
                 clicavel = true
-                diqueiroBtnDicas.text = R.string.btn_enviar_dica.toString()
+                diqueiroBtnDicas.setText(R.string.btn_enviar_dica)
                 diqueiroProgressBar.visibility = View.INVISIBLE
 
                 if (response.isSuccessful) {
