@@ -158,7 +158,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                         toast.show()
                     }
                     else {
-                        diqueiroBtnDicas.setText("")
+                        diqueiroBtnDicas.text = ""
                         diqueiroProgressBar.visibility = View.VISIBLE;
                         clicavel = false
 
@@ -387,7 +387,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                 Log.d("Bom: EditarSessaoSint", response.body().toString())
 
                 clicavel = true
-                diqueiroBtnDicas.setText(R.string.btn_enviar_dica)
+                diqueiroBtnDicas.text = R.string.btn_enviar_dica.toString()
                 diqueiroProgressBar.visibility = View.INVISIBLE
 
                 if (response.isSuccessful) {
@@ -434,7 +434,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                 Log.d("Bom: EditarSessaoPrev", response.body().toString())
 
                 clicavel = true
-                diqueiroBtnDicas.setText(R.string.btn_enviar_dica)
+                diqueiroBtnDicas.text = R.string.btn_enviar_dica.toString()
                 diqueiroProgressBar.visibility = View.INVISIBLE
 
                 if (response.isSuccessful) {
@@ -482,7 +482,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                 Log.d("Bom: EditarSessaoTrans", response.body().toString())
 
                 clicavel = true
-                diqueiroBtnDicas.setText(R.string.btn_enviar_dica)
+                diqueiroBtnDicas.text = R.string.btn_enviar_dica.toString()
                 diqueiroProgressBar.visibility = View.INVISIBLE
 
                 if (response.isSuccessful) {
