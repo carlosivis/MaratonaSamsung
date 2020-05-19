@@ -23,7 +23,6 @@ import br.com.example.maratonasamsung.model.Requests.JogadorRequest
 import br.com.example.maratonasamsung.model.Requests.JogadorUpdate
 import br.com.example.maratonasamsung.data.service.ErrorCases
 import br.com.example.maratonasamsung.data.service.Service
-import br.com.example.maratonasamsung.model.Requests.EditarSessaoRequest
 import br.com.example.maratonasamsung.model.Responses.*
 import kotlinx.android.synthetic.main.fragment_room_adivinhador.*
 import retrofit2.Call
@@ -350,7 +349,8 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
                         spinnerResposta.visibility = View.INVISIBLE
                         adivinhadorBtnAdivinhar.visibility = View.INVISIBLE
                         adivinhadorProgressBar.visibility = View.INVISIBLE
-                        setinha.visibility = View.INVISIBLE
+                        setinhaD.visibility = View.INVISIBLE
+                        setinhaE.visibility = View.INVISIBLE
                         adivinhadorTxtAcertou.visibility = View.VISIBLE
                     }
                     else {

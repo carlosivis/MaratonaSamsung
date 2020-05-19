@@ -171,9 +171,6 @@ class PlaceholderRodadaFragment : Fragment() {
                     doenca = doencas!!.random().toString()
 
                     definirDoencaRodada()
-
-                    Log.d("EUAQUI_RodadaDiqueiro", rodada.toString())
-                    Log.d("EUAQUI_DoencaDiqueiro", doenca)
                 }
                 else {
                     Log.d("Erro do banco", response.message())
@@ -199,10 +196,7 @@ class PlaceholderRodadaFragment : Fragment() {
             override fun onResponse(call: Call<SessaoResponseEditing>, response: Response<SessaoResponseEditing>) {
                 Log.d("Bom: EditarSessao", response.body().toString())
 
-                if(response.isSuccessful) {
-
-                }
-                else {
+                if (response.code() == 500) {
                     Log.d("Erro banco: EditarSes", response.message())
                     context?.let { ErrorCases().error(it)}
                 }
