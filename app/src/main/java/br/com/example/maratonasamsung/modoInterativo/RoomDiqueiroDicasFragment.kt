@@ -446,7 +446,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                     toast.show()
 
                     val prevecoesSelecionados: ArrayList<String> = arrayListOf("")
-                    sessao.dicas.sintomas.forEach { prevecoesSelecionados.add((it.nome)) }
+                    sessao.dicas.prevencao.forEach { prevecoesSelecionados.add((it.nome)) }
 
                     if (prevecoesSelecionados.isNotEmpty())
                         prevencoesGlobal.removeAll(prevecoesSelecionados)
@@ -494,7 +494,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                     toast.show()
 
                     val transmicoesSelecionados: ArrayList<String> = arrayListOf("")
-                    sessao.dicas.sintomas.forEach { transmicoesSelecionados.add((it.nome)) }
+                    sessao.dicas.transmicao.forEach { transmicoesSelecionados.add((it.nome)) }
 
                     if (transmicoesSelecionados.isNotEmpty())
                         transmicoesGlobal.removeAll(transmicoesSelecionados)
