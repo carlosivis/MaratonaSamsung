@@ -16,9 +16,9 @@ class TutorialActivity2 : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
 
-//        val sessionId = intent.getStringExtra("param1")
+        val sessionId = intent.getStringExtra("param1")
         val intent = Intent(this@TutorialActivity2, TutorialActivity3::class.java)
-//        intent.putExtra("param1", sessionId)
+        intent.putExtra("param1", sessionId)
 
         when (v!!.id) {
             R.id.btn_next -> startActivity(intent)
