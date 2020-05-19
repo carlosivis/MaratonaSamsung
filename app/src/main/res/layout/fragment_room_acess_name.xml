@@ -41,8 +41,8 @@
             android:layout_centerVertical="true"
             android:layout_marginEnd="10dp"
             android:adjustViewBounds="true"
-            android:contentDescription="@string/labelBooks"
-            android:src="@drawable/books"
+            android:contentDescription="@string/labelGame"
+            android:src="@drawable/game"
             android:visibility="visible" />
     </RelativeLayout>
 
