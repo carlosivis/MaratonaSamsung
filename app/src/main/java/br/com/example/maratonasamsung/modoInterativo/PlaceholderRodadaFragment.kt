@@ -138,7 +138,6 @@ class PlaceholderRodadaFragment : Fragment() {
 
                         if (jogador == diqueiro) {
                             txtTipoJogador.text = "Agora você será o Diqueiro"
-
                             pegarRodada(id_sessao)
                         }
                         else

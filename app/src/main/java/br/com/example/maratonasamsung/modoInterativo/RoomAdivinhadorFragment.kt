@@ -112,7 +112,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
         pegarRodadaDoenca(id_sessao)
         dicas(id_sessao)
 
-        timerCronometro.schedule(45000) {
+        timerCronometro.schedule(65000) {
             val parametros = Bundle()
             parametros.putInt("id_sessao", id_sessao)
             parametros.putString("jogador_nome", jogador)
@@ -139,7 +139,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
     @RequiresApi(Build.VERSION_CODES.N)
     fun chronometro(){
         tempoCronometro.isCountDown= true
-        tempoCronometro.base = SystemClock.elapsedRealtime()+45000
+        tempoCronometro.base = SystemClock.elapsedRealtime()+65000
         tempoCronometro.start()
     }
 
