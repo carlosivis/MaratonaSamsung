@@ -140,7 +140,8 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/diqueiroBtnDicas"
         android:dropDownWidth="wrap_content"
-        android:scrollbarSize="4dp" />
+        android:scrollbarSize="4dp"
+        android:singleLine="false" />
 
         <Button
             android:id="@+id/diqueiroBtnDicas"
