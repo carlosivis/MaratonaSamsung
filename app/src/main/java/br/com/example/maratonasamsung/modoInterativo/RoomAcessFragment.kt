@@ -228,6 +228,8 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
                 Log.d("Bom: Começar Partida", response.body().toString())
                 if (response.body()?.status == true)
                     navController!!.navigate(R.id.action_roomAcessFragment_to_roomAcessNameFragment, parametros)
+                if (response.body()?.status == false)
+                        Toast.makeText(context, "A partida já começou, tente outra sala", Toast.LENGTH_SHORT).show()
                 else {
                     Log.d("Erro banco: ComeçarPart", response.message())
                     context?.let { ErrorCases().error(it)}
