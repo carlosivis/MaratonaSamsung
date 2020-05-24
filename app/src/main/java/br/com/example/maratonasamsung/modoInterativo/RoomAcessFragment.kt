@@ -17,6 +17,7 @@ import br.com.example.maratonasamsung.model.Responses.SalaResponse
 import br.com.example.maratonasamsung.data.service.ErrorCases
 import br.com.example.maratonasamsung.data.service.Service
 import br.com.example.maratonasamsung.model.Responses.RankingResponse
+import br.com.example.maratonasamsung.model.Responses.StatusBoolean
 import kotlinx.android.synthetic.main.fragment_room_acess.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -191,7 +192,7 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
                         quantidadeJogadores.removeAt(0)
 
                         if(quantidadeJogadores.isNotEmpty())
-                            navController!!.navigate(R.id.action_roomAcessFragment_to_roomAcessNameFragment, parametros)
+                            verificarPartida(id_sessao, parametros)
                         else {
                             val texto = "Sala desabilitada, acesse outra ou tente criar uma nova"
                             val duracao = Toast.LENGTH_SHORT
@@ -214,5 +215,25 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
                 }
             }
         })
+    }
+
+    fun verificarPartida(id_sessao: Int, parametros: Bundle) {
+        Service.retrofit.verificarPartida(
+            id_sessao = id_sessao
+        ).enqueue(object : Callback<StatusBoolean> {
+            override fun onFailure(call: Call<StatusBoolean>, t: Throwable) {
+                Log.d("Ruim: Começar Partida", t.toString())
+            }
+            override fun onResponse(call: Call<StatusBoolean>, response: Response<StatusBoolean>) {
+                Log.d("Bom: Começar Partida", response.body().toString())
+                if (response.body()?.status == true)
+                    navController!!.navigate(R.id.action_roomAcessFragment_to_roomAcessNameFragment, parametros)
+                else {
+                    Log.d("Erro banco: ComeçarPart", response.message())
+                    context?.let { ErrorCases().error(it)}
+                }
+            }
+        })
+
     }
 }
