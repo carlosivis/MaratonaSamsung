@@ -23,8 +23,10 @@ import br.com.example.maratonasamsung.model.Requests.*
 import br.com.example.maratonasamsung.model.Responses.*
 import br.com.example.maratonasamsung.data.service.ErrorCases
 import br.com.example.maratonasamsung.data.service.Service
+import kotlinx.android.synthetic.main.fragment_room_adivinhador.*
 import kotlinx.android.synthetic.main.fragment_room_diqueiro_dicas.*
 import kotlinx.android.synthetic.main.fragment_room_diqueiro_dicas.recyclerRanking
+import kotlinx.android.synthetic.main.fragment_room_diqueiro_dicas.txtQtdeJogadores
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -228,6 +230,9 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                         ranking.jogadores.forEach { quantidadeJogadores.add((it.nome)) }
 
                         quantidadeJogadores.removeAt(0)
+
+                        //teste taís
+                        txtQtdeJogadores.text = "$quantidadeJogadores jogadores online"
 
                         if (quantidadeJogadores.size < 2) {
                             val jogador = requireArguments().getString("jogador_nome").toString()

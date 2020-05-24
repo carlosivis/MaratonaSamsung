@@ -13,16 +13,21 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.main.SplashScreen"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".tutoriaisRegras.TutorialActivity4" />
-        <activity android:name=".tutoriaisRegras.TutorialActivity3" />
-        <activity android:name=".tutoriaisRegras.TutorialActivity2" />
-        <activity android:name=".tutoriaisRegras.TutorialActivity" />
+        <activity android:name=".tutoriaisRegras.TutorialActivity4"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".tutoriaisRegras.TutorialActivity3"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".tutoriaisRegras.TutorialActivity2"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".tutoriaisRegras.TutorialActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ui.main.MainActivity"
             android:screenOrientation="portrait">
