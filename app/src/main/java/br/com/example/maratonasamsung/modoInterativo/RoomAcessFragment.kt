@@ -196,7 +196,7 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
                         quantidadeJogadores.removeAt(0)
 
                         if(quantidadeJogadores.isNotEmpty())
-                            if (verificarPartida(id_sessao)== false)
+                            if (verificarPartida(id_sessao)== true)
                             navController!!.navigate(R.id.action_roomAcessFragment_to_roomAcessNameFragment, parametros)
                             else{
                                 clicavel = true
