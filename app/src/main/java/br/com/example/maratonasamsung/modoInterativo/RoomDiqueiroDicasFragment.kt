@@ -221,7 +221,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
 
                         recyclerRanking.apply {
                             layoutManager = LinearLayoutManager(activity)
-                            adapter = RankingAdapter(response.body()!!)
+                            adapter = JogadoresAdapter(response.body()!!)
                         }
 
                         val quantidadeJogadores: ArrayList<String> = arrayListOf("")

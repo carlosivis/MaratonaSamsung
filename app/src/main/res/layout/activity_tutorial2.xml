@@ -64,6 +64,7 @@
 
             <ImageButton
                 android:id="@+id/btn_back"
+                android:padding="9dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="onClick"
@@ -86,6 +87,7 @@
 
             <ImageButton
                 android:id="@+id/btn_next"
+                android:padding="9dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="onClick"
