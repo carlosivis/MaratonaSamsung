@@ -200,6 +200,8 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
                             navController!!.navigate(R.id.action_roomAcessFragment_to_roomAcessNameFragment, parametros)
                             else{
                                 clicavel = true
+                                acessProgressBar.visibility = View.INVISIBLE;
+                                acessBtnContinuar.setText(R.string.btn_continuar)
                                 Toast.makeText(context, "A partida já começou, tente outra sala", Toast.LENGTH_SHORT).show()
                             }
                         else {
