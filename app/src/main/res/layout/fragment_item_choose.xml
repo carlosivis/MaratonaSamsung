@@ -93,7 +93,6 @@
                         android:adjustViewBounds="true"
                         android:contentDescription="@string/labelLupa"
                         android:scaleType="fitCenter"
-                        android:scaleX="-1"
                         android:src="@drawable/logo"
                         android:visibility="visible" />
 
