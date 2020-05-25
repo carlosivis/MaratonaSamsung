@@ -20,6 +20,10 @@
         <item name="android:fontFamily">@font/clarity</item>
         <item name="android:letterSpacing">0.1</item>
         <item name="android:textColor">@android:color/white</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:ellipsize">none</item>
+        <item name="android:maxLines">100</item>
+        <item name="android:scrollHorizontally">false</item>
     </style>
 
     <style name="buttonStyle" parent="android:Widget.Holo.Button">
@@ -33,12 +37,23 @@
         <item name="android:color">@color/colorteste</item>
     </style>
 
+    <style name="spinnerItemStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:singleLine">false</item>
+        <item name="android:textViewStyle">@style/textViewStyle</item>
+    </style>
+
     <style name="spinnerTheme">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:popupBackground">@color/colorButton</item>
         <item name="android:letterSpacing">0.1</item>
         <item name="android:background">@drawable/spinners</item>
+        <item name="android:singleLine">false</item>
+        <item name="android:spinnerMode">dialog</item>
+        <item name="android:textViewStyle">@style/textViewStyle</item>
+        <item name="android:spinnerItemStyle">@style/spinnerItemStyle</item>
     </style>
 
 

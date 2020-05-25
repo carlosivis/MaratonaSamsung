@@ -235,8 +235,7 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
 
                         quantidadeJogadores.removeAt(0)
 
-                        //teste taís
-                        txtQtdeJogadores.text = "$quantidadeJogadores jogadores online"
+                        txtQtdeJogadores.text = "${quantidadeJogadores.size} jogadores"
 
                         if (quantidadeJogadores.size < 2) {
                             val jogador = requireArguments().getString("jogador_nome").toString()

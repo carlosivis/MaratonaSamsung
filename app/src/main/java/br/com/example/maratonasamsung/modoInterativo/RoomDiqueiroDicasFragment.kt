@@ -23,10 +23,8 @@ import br.com.example.maratonasamsung.model.Requests.*
 import br.com.example.maratonasamsung.model.Responses.*
 import br.com.example.maratonasamsung.data.service.ErrorCases
 import br.com.example.maratonasamsung.data.service.Service
-import kotlinx.android.synthetic.main.fragment_room_adivinhador.*
 import kotlinx.android.synthetic.main.fragment_room_diqueiro_dicas.*
 import kotlinx.android.synthetic.main.fragment_room_diqueiro_dicas.recyclerRanking
-import kotlinx.android.synthetic.main.fragment_room_diqueiro_dicas.txtQtdeJogadores
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -231,8 +229,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
 
                         quantidadeJogadores.removeAt(0)
 
-                        //teste taís
-                        txtQtdeJogadores.text = "$quantidadeJogadores jogadores online"
+                        txtQtdeJogadores.text = "${quantidadeJogadores.size} jogadores"
 
                         if (quantidadeJogadores.size < 2) {
                             val jogador = requireArguments().getString("jogador_nome").toString()
@@ -274,7 +271,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
             dicas.toMutableList()
             context?.let {
                 spinnerAdapter =
-                    ArrayAdapter(it, android.R.layout.simple_spinner_item, dicas)
+                    ArrayAdapter(it, R.layout.spinner_item, dicas)
             }
             diqueiroSpinnerDicas.adapter = spinnerAdapter
         }

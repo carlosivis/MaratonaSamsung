@@ -60,7 +60,6 @@
         android:layout_height="wrap_content"
         android:text="@string/txt_jogadores"
         android:layout_marginBottom="20dp"
-        android:layout_centerHorizontal="true"
         android:textSize="23sp" />
 
     <LinearLayout

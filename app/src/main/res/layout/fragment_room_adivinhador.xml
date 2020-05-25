@@ -109,6 +109,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="end"
+            android:textSize="15sp"
             tools:text = "XX jogadores online"
             />
     </LinearLayout>
@@ -193,8 +194,7 @@
         android:dropDownWidth="wrap_content"
         android:scrollbarSize="4dp"
         android:layout_above="@+id/adivinhadorBtnAdivinhar"
-        android:layout_marginBottom="10dp"
-        android:singleLine="false" />
+        android:layout_marginBottom="10dp" />
 
     <Button
         android:id="@+id/adivinhadorBtnAdivinhar"
