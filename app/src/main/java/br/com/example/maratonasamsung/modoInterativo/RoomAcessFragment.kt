@@ -31,6 +31,7 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
 
     var navController: NavController? = null
     var clicavel = true
+    var bool: Boolean = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -195,15 +196,23 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
 
                         quantidadeJogadores.removeAt(0)
 
-                        if(quantidadeJogadores.isNotEmpty())
-                            if (verificarPartida(id_sessao)== true)
-                            navController!!.navigate(R.id.action_roomAcessFragment_to_roomAcessNameFragment, parametros)
-                            else{
+                        if(quantidadeJogadores.isNotEmpty()) {
+                            if (verificarPartida(id_sessao) == true)
+                                navController!!.navigate(
+                                    R.id.action_roomAcessFragment_to_roomAcessNameFragment,
+                                    parametros
+                                )
+                            else {
                                 clicavel = true
                                 acessProgressBar.visibility = View.INVISIBLE;
                                 acessBtnContinuar.setText(R.string.btn_continuar)
-                                Toast.makeText(context, "A partida já começou, tente outra sala", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    context,
+                                    "A partida já começou, tente outra sala",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             }
+                        }
                         else {
                             val texto = "Sala desabilitada, acesse outra ou tente criar uma nova"
                             val duracao = Toast.LENGTH_SHORT
@@ -228,7 +237,6 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
         })
     }
     fun verificarPartida(id_sessao: Int): Boolean {
-        var bool = true
         Service.retrofit.verificarPartida(
             id_sessao = id_sessao
         ).enqueue(object : Callback<StatusBoolean> {
@@ -238,7 +246,7 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
             override fun onResponse(call: Call<StatusBoolean>, response: Response<StatusBoolean>) {
                 Log.d("Bom: Começar Partida", response.body().toString())
                 if (response.isSuccessful)
-                bool = response.body()?.status!!
+                    bool = response.body()?.status!!
 
                 else {
                     Log.d("Erro banco: ComeçarPart", response.message())
