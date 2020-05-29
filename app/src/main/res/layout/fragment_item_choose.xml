@@ -41,7 +41,6 @@
             android:layout_centerVertical="true"
             android:layout_marginEnd="10dp"
             android:adjustViewBounds="true"
-            android:contentDescription="@string/labelBooks"
             android:src="@drawable/books"
             android:visibility="visible" />
     </RelativeLayout>
@@ -91,7 +90,6 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:adjustViewBounds="true"
-                        android:contentDescription="@string/labelLupa"
                         android:scaleType="fitCenter"
                         android:src="@drawable/logo"
                         android:visibility="visible" />

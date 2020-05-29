@@ -41,7 +41,6 @@
             android:layout_centerVertical="true"
             android:layout_marginEnd="10dp"
             android:adjustViewBounds="true"
-            android:contentDescription="@string/labelLupa"
             android:src="@drawable/logo"
             android:visibility="visible" />
     </RelativeLayout>
