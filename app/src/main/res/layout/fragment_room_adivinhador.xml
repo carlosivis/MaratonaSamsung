@@ -68,7 +68,7 @@
                 android:shadowColor="@color/colorAccent"
                 android:layout_gravity="center"
                 android:text="@string/txt_adivinhador"
-                android:textSize="21sp"/>
+                android:textSize="20sp"/>
 
             <Chronometer
                 android:id="@+id/tempoCronometro"
@@ -76,7 +76,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="end"
-                android:textSize="21sp"
+                android:textSize="20sp"
                 android:fontFamily="@font/clarity" />
         </LinearLayout>
 
@@ -100,7 +100,7 @@
                 android:shadowColor="@color/colorAccent"
                 android:text="@string/ranking"
                 android:layout_gravity="center"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/txtQtdeJogadores"
@@ -131,7 +131,7 @@
             android:layout_marginBottom="10dp"
             android:shadowColor="@color/colorAccent"
             android:text="@string/dicas"
-            android:textSize="20sp"/>
+            android:textSize="18sp"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerDicas"
@@ -149,7 +149,7 @@
         android:id="@+id/textResposta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:layout_gravity="center"
         android:gravity="center"
         android:layout_marginBottom="3dp"
@@ -189,12 +189,9 @@
         android:id="@+id/adivinhadorTxtAcertou"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
+        android:layout_alignTop="@+id/textResposta"
+        android:layout_alignBottom="@+id/adivinhadorBtnAdivinhar"
         android:gravity="center"
-        android:layout_marginStart="0dp"
-        android:layout_marginBottom="0dp"
         android:text="@string/voceJaAcertou" />
 </RelativeLayout>
 </RelativeLayout>

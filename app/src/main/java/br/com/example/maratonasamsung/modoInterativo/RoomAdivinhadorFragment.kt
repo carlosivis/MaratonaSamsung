@@ -351,8 +351,6 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
                         spinnerResposta.visibility = View.INVISIBLE
                         adivinhadorBtnAdivinhar.visibility = View.INVISIBLE
                         adivinhadorProgressBar.visibility = View.INVISIBLE
-                        setinhaD.visibility = View.INVISIBLE
-                        setinhaE.visibility = View.INVISIBLE
                         adivinhadorTxtAcertou.visibility = View.VISIBLE
                     }
                     else {

@@ -14,15 +14,35 @@
         android:layout_marginBottom="20dp"
         android:background="@color/colorMenu">
 
+        <ImageView
+            android:id="@+id/btn_back"
+            android:padding="9dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_centerVertical="true"
+            android:contentDescription="@string/labelSetaEsq"
+            android:src="@null" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
             android:textSize="18sp"
             android:text="@string/morbus"
             android:textColor="@android:color/white" />
+
+        <ImageView
+            android:id="@+id/imageLogo"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/logo"
+            android:visibility="visible" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -74,24 +94,5 @@
 
         </LinearLayout>
     </RelativeLayout>
-
-    <ImageView
-        android:id="@+id/imageLogo"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:adjustViewBounds="true"
-        android:scaleType="fitCenter"
-        android:src="@drawable/logo"
-        android:visibility="visible"
-        android:scaleX="-1"
-        android:shadowColor="@android:color/black"
-        android:shadowDx="5"
-        android:shadowDy="5"
-        android:shadowRadius="5"
-        />
-
-
 </RelativeLayout>
 </RelativeLayout>
