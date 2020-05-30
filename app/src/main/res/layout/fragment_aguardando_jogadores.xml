@@ -61,7 +61,7 @@
         android:layout_height="wrap_content"
         android:text="@string/txt_jogadores"
         android:layout_marginBottom="20dp"
-        android:textSize="23sp" />
+        android:textSize="20sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -87,7 +87,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:textSize="23sp"
+            android:textSize="20sp"
             android:layout_marginBottom="20dp"
             android:text="@string/txt_dados" />
 
@@ -113,8 +113,8 @@
         android:layout_height="wrap_content"
         android:background="@drawable/roundbutton"
         android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"
         android:text="@string/btn_comecar"
         android:ems="5"/>
 

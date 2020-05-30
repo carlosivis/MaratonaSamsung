@@ -64,7 +64,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/roundbutton"
-            android:ems="9"
+            android:ems="8"
             android:text="@string/btn_criar_sala"
             android:textSize="16sp" />
 
@@ -74,7 +74,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
             android:background="@drawable/roundbutton"
-            android:ems="9"
+            android:ems="8"
             android:text="@string/btn_acessar_sala"
             android:textSize="16sp" />
     </LinearLayout>

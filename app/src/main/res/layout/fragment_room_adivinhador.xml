@@ -108,7 +108,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="end"
-                android:textSize="15sp"
+                android:textSize="14sp"
                 tools:text = "XX jogadores online" />
         </LinearLayout>
 

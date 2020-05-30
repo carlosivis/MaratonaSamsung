@@ -61,7 +61,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="40dp"
             android:layout_centerHorizontal="true"
-            android:textSize="23sp"
+            android:textSize="20sp"
             tools:text="MALARIA" />
 
         <ScrollView
@@ -113,7 +113,7 @@
                     android:layout_marginBottom="10dp"
                     android:gravity="center"
                     android:text="@string/sintomas"
-                    android:textSize="21sp" />
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/txtArraySintoma"
@@ -130,7 +130,7 @@
                     android:layout_marginBottom="10dp"
                     android:gravity="center"
                     android:text="@string/prevencao"
-                    android:textSize="21sp" />
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/txtPrevencao"
@@ -147,7 +147,7 @@
                     android:layout_marginBottom="10dp"
                     android:gravity="center"
                     android:text="@string/transmissao"
-                    android:textSize="21sp" />
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/txtTransmissao"

@@ -60,7 +60,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp"
         android:text="@string/txt_acessar_sala"
-        android:textSize="22sp" />
+        android:textSize="20sp" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -122,7 +122,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginTop="30dp"
         android:background="@drawable/roundbutton"
-        android:ems="5"
+        android:ems="6"
         android:text="@string/btn_continuar" />
 
     <ProgressBar

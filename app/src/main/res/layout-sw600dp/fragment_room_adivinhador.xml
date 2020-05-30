@@ -68,7 +68,7 @@
                 android:shadowColor="@color/colorAccent"
                 android:layout_gravity="center"
                 android:text="@string/txt_adivinhador"
-                android:textSize="21sp"/>
+                android:textSize="20sp"/>
 
             <Chronometer
                 android:id="@+id/tempoCronometro"
@@ -107,7 +107,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="end"
-                android:textSize="15sp"
+                android:textSize="14sp"
                 tools:text = "XX jogadores online" />
         </LinearLayout>
 
