@@ -20,7 +20,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:layout_centerHorizontal="true"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:text="@string/morbus"
             android:textColor="@android:color/white" />
     </RelativeLayout>
@@ -50,7 +50,7 @@
                 android:background="@drawable/roundbutton"
                 android:ems="9"
                 android:text="@string/estudo"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <Button
                 android:id="@+id/btnModoInterativo"
@@ -60,7 +60,7 @@
                 android:background="@drawable/roundbutton"
                 android:ems="9"
                 android:text="@string/interativo"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <Button
                 android:id="@+id/btnMais"
@@ -70,7 +70,7 @@
                 android:background="@drawable/roundbutton"
                 android:ems="9"
                 android:text="@string/config"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
         </LinearLayout>
     </RelativeLayout>

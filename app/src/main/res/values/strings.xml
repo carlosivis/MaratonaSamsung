@@ -9,7 +9,7 @@
     <string name="btn_comecar">Começar</string>
 
     <string name="btn_enviar_dica">Enviar dica</string>
-    <string name="btn_adivinhar">Enviar tentativa</string>
+    <string name="btn_adivinhar">Tentar adivinhar!</string>
 
     <string name="txt_modo_interativo">Modo Interativo</string>
 
@@ -21,7 +21,7 @@
     <string name="txt_senha">Senha:</string>
 
     <string name="txt_escolha_doenca">Escolha uma doença:</string>
-    <string name="txt_resposta">Escolha uma resposta</string>
+    <string name="txt_resposta">Sua resposta:</string>
 
     <string name="txt_sintomas">Sintomas disponíveis</string>
     <string name="txt_prevencoes">Prevenções disponíveis</string>
@@ -64,7 +64,7 @@
     <string name="senha">Inserir senha</string>
     <string name="nomeUser">Inserir o nome do usuário</string>
     <string name="ranking">Ranking</string>
-    <string name="dicas">Dicas enviadas pelo Diqueiro</string>
+    <string name="dicas">Dicas do Diqueiro</string>
     <string name="labelGear">Ilustração de um ponto de interrogação</string>
     <string name="labelBooks">Ilustração de um livro e, acima, um cérebro</string>
     <string name="labelGame">Ilustração de um controle de videogame</string>
@@ -116,4 +116,5 @@
     <string name="morbus">Morbus</string>
     <string name="interativo_title">Primeira vez aqui?</string>
     <string name="interativo_msg">Nesta tela você tem duas opções: Criar uma sala para uma partida nova, com um nome e senha que deverá ser informado aos seus colegas para que eles a acessem, ou acessar uma sala existente com as informações passadas pelo seu criador.</string>
+    <string name="dicas_disponiveis">Dicas disponíveis:</string>
 </resources>

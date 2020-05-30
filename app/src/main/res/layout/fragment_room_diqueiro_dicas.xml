@@ -29,7 +29,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:layout_centerHorizontal="true"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:text="@string/interativo"
             android:textColor="@android:color/white" />
 
@@ -66,7 +66,7 @@
                 android:shadowColor="@color/colorAccent"
                 android:text="@string/txt_diqueiro"
                 android:layout_gravity="center"
-                android:textSize="23sp" />
+                android:textSize="21sp" />
 
             <Chronometer
                 android:id="@+id/diqueirotempoCronometro"
@@ -74,6 +74,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="end"
+                android:textSize="21sp"
                 android:fontFamily="@font/clarity" />
         </LinearLayout>
 
@@ -92,7 +93,7 @@
             android:shadowColor="@color/colorAccent"
             android:text="@string/ranking"
             android:layout_gravity="center"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/txtQtdeJogadores"
@@ -100,7 +101,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="end"
-            android:textSize="15sp"
+            android:textSize="14sp"
             tools:text = "XX jogadores online"
             />
     </LinearLayout>
@@ -133,7 +134,7 @@
             android:id="@+id/nomeDoenca"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:layout_gravity="center"
             tools:text="DOENÇA SELECIONADA: UM NOME MUITO GRANDE DE DOENÇA" />
     </LinearLayout>
@@ -144,8 +145,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="10dp"
-        android:text="Dicas disponíveis para envio:"
-        android:textSize="20sp"
+        android:text="@string/dicas_disponiveis"
+        android:textSize="18sp"
         android:layout_above="@+id/diqueiroSpinnerDicas"/>
 
     <Spinner
@@ -164,7 +165,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/roundbutton"
         android:ems="6"
         android:text="@string/btn_enviar_dica" />

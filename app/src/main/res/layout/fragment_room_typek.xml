@@ -29,7 +29,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:layout_centerHorizontal="true"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:text="@string/interativo"
             android:textColor="@android:color/white" />
 
@@ -66,7 +66,7 @@
             android:background="@drawable/roundbutton"
             android:ems="9"
             android:text="@string/btn_criar_sala"
-            android:textSize="18sp" />
+            android:textSize="16sp" />
 
         <Button
             android:id="@+id/typeBtnAcessarSala"
@@ -76,7 +76,7 @@
             android:background="@drawable/roundbutton"
             android:ems="9"
             android:text="@string/btn_acessar_sala"
-            android:textSize="18sp" />
+            android:textSize="16sp" />
     </LinearLayout>
 
 </RelativeLayout>

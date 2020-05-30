@@ -23,7 +23,7 @@
             android:layout_marginBottom="20dp"
             android:text="@string/interativo"
             android:gravity="center"
-            android:textSize="30sp" />
+            android:textSize="28sp" />
 
         <ImageView
             android:id="@+id/imageView"
@@ -43,7 +43,7 @@
             android:layout_marginTop="20dp"
             android:layout_alignParentBottom="true"
             android:text="@string/interativoText"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
     </RelativeLayout>
 

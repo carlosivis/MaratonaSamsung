@@ -30,7 +30,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:layout_centerHorizontal="true"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:text="@string/estudo"
             android:textColor="@android:color/white" />
 
@@ -60,7 +60,7 @@
             android:text="@string/escolhaDoenca"
             android:layout_marginStart="20dp"
             android:layout_marginBottom="40dp"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
         <ProgressBar
             android:id="@+id/Loading"
             android:layout_width="wrap_content"
