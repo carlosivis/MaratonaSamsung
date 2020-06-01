@@ -25,10 +25,11 @@ class TutorialActivity4 : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
 
-        val sessionId = intent.getStringExtra("param1")
+//        val sessionId = intent.getStringExtra("param1")
         val intent = Intent(this@TutorialActivity4, MainActivity::class.java)
-        if(sessionId != null) {
-        }
+//        if(sessionId != null) {
+//            intent.putExtra("param2", "qualquerCoisaServe")
+//        }
 
         when (v!!.id) {
             R.id.btn_end -> startActivity(intent)
