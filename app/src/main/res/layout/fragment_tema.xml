@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.MoreFragment">
+    tools:context=".ui.main.TemaFragment">
 
     <RelativeLayout
         android:id="@+id/menuLayout"
@@ -31,7 +30,7 @@
             android:layout_marginBottom="10dp"
             android:layout_centerInParent="true"
             android:textSize="18sp"
-            android:text="@string/config"
+            android:text="@string/escolherTema"
             android:textColor="@android:color/white" />
 
         <ImageView
@@ -54,53 +53,17 @@
         android:layout_height="match_parent"
         android:layout_below="@id/menuLayout">
 
-        <LinearLayout
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/mudarTema"
+            android:layout_above="@+id/switchBtn"
+            android:gravity="center"/>
+        <Switch
+            android:id="@+id/switchBtn"
+            android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:orientation="vertical">
-
-            <Button
-                android:id="@+id/btnTutorial"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/roundbutton"
-                android:ems="9"
-                android:text="@string/reverInt"
-                android:textSize="16sp" />
-
-            <Button
-                android:id="@+id/btnRegras"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                android:background="@drawable/roundbutton"
-                android:ems="9"
-                android:text="@string/regrasPont"
-                android:textSize="16sp" />
-
-            <Button
-                android:id="@+id/btnTema"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                android:background="@drawable/roundbutton"
-                android:ems="9"
-                android:text="@string/escolherTema"
-                android:textSize="16sp" />
-
-            <Button
-                android:id="@+id/btnCreditos"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                android:background="@drawable/roundbutton"
-                android:ems="9"
-                android:text="@string/creditos"
-                android:textSize="16sp" />
-
-        </LinearLayout>
+            android:layout_centerInParent="true"/>
     </RelativeLayout>
-
-
 </RelativeLayout>

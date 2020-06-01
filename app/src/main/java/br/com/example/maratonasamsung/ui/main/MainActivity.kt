@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.NavController
 import br.com.example.maratonasamsung.R
 import br.com.example.maratonasamsung.modoInterativo.RoomTypekFragment
@@ -22,8 +23,21 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.main_activity)
+
         sharedPreferences = getSharedPreferences("br.com.example.maratonasamsung", MODE_PRIVATE)
+        editor = sharedPreferences.edit()
+
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            setTheme(R.style.DarkTheme)
+            editor.putBoolean("temaEscuroOn", true)
+            editor.commit()
+        } else {
+            setTheme(R.style.AppTheme)
+            editor.putBoolean("temaEscuroOn", false)
+            editor.commit()
+        }
+
+        setContentView(R.layout.main_activity)
     }
 
     @SuppressLint("CommitPrefEdits")

@@ -184,9 +184,6 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
 
                     rodada = resposta.sessao.rodada
                     doencaRodada = resposta.ultimaDoenca
-
-                    Log.d("EUAQUIrodadaAdivinhador", rodada.toString())
-                    Log.d("EUAQUIdoencaAdivinhador", doencaRodada)
                 }
                 else {
                     Log.d("Erro banco: PegarRD", response.message())
