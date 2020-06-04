@@ -16,10 +16,11 @@
 
         <ImageButton
             android:id="@+id/btn_back"
+            android:padding="9dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="1dp"
             android:background="@null"
             android:src="@drawable/ic_arrow_left" />
 
@@ -28,8 +29,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:layout_centerHorizontal="true"
-            android:textSize="20sp"
+            android:layout_centerInParent="true"
+            android:textSize="18sp"
             android:text="@string/interativo"
             android:textColor="@android:color/white" />
 
@@ -41,7 +42,6 @@
             android:layout_centerVertical="true"
             android:layout_marginEnd="10dp"
             android:adjustViewBounds="true"
-            android:contentDescription="@string/labelGame"
             android:src="@drawable/game"
             android:visibility="visible" />
     </RelativeLayout>
@@ -61,7 +61,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp"
         android:text="@string/txt_criar_sala"
-        android:textSize="23sp" />
+        android:textSize="20sp" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -80,7 +80,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/txt_usuario"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/createEditUsuario"
@@ -93,7 +93,7 @@
                 android:hint="@string/nomeUser"
                 android:inputType="textPersonName"
                 android:textCursorDrawable="@null"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/createTxtNomeSala"
@@ -101,7 +101,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/createEditUsuario"
                 android:text="@string/txt_nome_da_sala"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/createEditNomeSala"
@@ -114,7 +114,7 @@
                 android:hint="@string/nomeSala"
                 android:inputType="textPersonName"
                 android:textCursorDrawable="@null"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/createTxtSenha"
@@ -122,7 +122,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/createEditNomeSala"
                 android:text="@string/txt_senha"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/createEditSenha"
@@ -134,7 +134,7 @@
                 android:hint="@string/senha"
                 android:inputType="textPassword"
                 android:textCursorDrawable="@null"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
         </RelativeLayout>
     </RelativeLayout>
 

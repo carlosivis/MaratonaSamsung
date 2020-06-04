@@ -16,10 +16,11 @@
 
         <ImageButton
             android:id="@+id/btn_back"
+            android:padding="9dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginStart="10dp"
+            android:contentDescription="@string/labelSetaEsq"
             android:background="@null"
             android:src="@drawable/ic_arrow_left" />
 
@@ -28,8 +29,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:layout_centerHorizontal="true"
-            android:textSize="20sp"
+            android:layout_centerInParent="true"
+            android:textSize="18sp"
             android:text="@string/estudo"
             android:textColor="@android:color/white" />
 
@@ -41,7 +42,6 @@
             android:layout_centerVertical="true"
             android:layout_marginEnd="10dp"
             android:adjustViewBounds="true"
-            android:contentDescription="@string/labelBooks"
             android:src="@drawable/books"
             android:visibility="visible" />
     </RelativeLayout>
@@ -51,22 +51,20 @@
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@id/menuLayout">
 
     <TextView
         android:id="@+id/textViewTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:text="@string/chooseFragmentTitle"
-        android:textSize="20sp" />
+        android:textSize="18sp" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
         android:layout_marginTop="40dp"
         android:layout_below="@+id/textViewTitle">
 
@@ -74,12 +72,12 @@
             android:id="@+id/tableVetores"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:shrinkColumns="*"
-            android:stretchColumns="*">
+            android:shrinkColumns="*">
 
             <TableRow
                 android:layout_width="0dp"
-                android:layout_height="0dp">
+                android:layout_height="0dp"
+                android:layout_weight=".35">
 
                 <ImageButton
                     android:id="@+id/imageBacteria"
@@ -89,7 +87,7 @@
                     android:scaleType="fitCenter"
                     android:padding="5dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:visibility="visible"
                     android:contentDescription="@string/labelBacteria"
                     android:src="@drawable/bacteria"/>
@@ -102,38 +100,40 @@
                     android:adjustViewBounds="true"
                     android:scaleType="fitCenter"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:visibility="visible"
                     android:contentDescription="@string/labelPlatelminto"
                     android:src="@drawable/platelminto" />
             </TableRow>
 
             <TableRow
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="40dp">
 
-                <TextView
+                <Button
                     android:text="@string/bacteria"
-                    android:textSize="18sp"
+                    android:textSize="14sp"
+                    android:background="@null"
                     android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:gravity="center"
-                    android:layout_gravity="top"
                     />
-                <TextView
+                <Button
                     android:text="@string/platelminto"
-                    android:textSize="18sp"
+                    android:textSize="14sp"
+                    android:background="@null"
                     android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:gravity="center"
-                    android:layout_gravity="top"
                     />
             </TableRow>
 
             <TableRow
                 android:layout_width="0dp"
-                android:layout_height="0dp">
+                android:layout_height="0dp"
+                android:layout_weight=".35">
 
                 <ImageButton
                     android:id="@+id/imageProtozoario"
@@ -143,7 +143,7 @@
                     android:adjustViewBounds="true"
                     android:scaleType="fitCenter"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:visibility="visible"
                     android:contentDescription="@string/labelProtozoario"
                     android:src="@drawable/protozoario" />
@@ -156,33 +156,33 @@
                     android:adjustViewBounds="true"
                     android:scaleType="fitCenter"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:visibility="visible"
                     android:contentDescription="@string/labelVirus"
                     android:src="@drawable/virus" />
             </TableRow>
 
             <TableRow
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp">
 
-                <TextView
+                <Button
                     android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:text="@string/protozoario"
+                    android:background="@null"
                     android:gravity="center"
-                    android:layout_gravity="top"
-                    android:textSize="18sp"
+                    android:textSize="14sp"
                     />
-                <TextView
+                <Button
                     android:text="@string/virus"
-                    android:textSize="18sp"
+                    android:textSize="14sp"
+                    android:background="@null"
                     android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:gravity="center"
-                    android:layout_gravity="top"
                     />
-
             </TableRow>
         </TableLayout>
 

@@ -23,7 +23,7 @@
             android:layout_marginBottom="20dp"
             android:text="@string/interativo"
             android:gravity="center"
-            android:textSize="30sp" />
+            android:textSize="28sp" />
 
         <ImageView
             android:id="@+id/imageView"
@@ -42,9 +42,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_alignParentBottom="true"
-            android:justificationMode="inter_word"
             android:text="@string/interativoText"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
     </RelativeLayout>
 
@@ -64,6 +63,7 @@
 
             <ImageButton
                 android:id="@+id/btn_back"
+                android:padding="9dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="onClick"
@@ -80,12 +80,13 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@+id/btn_next"
                 android:layout_centerInParent="true"
-                android:padding="15sp"
+                android:padding="14sp"
                 android:text="@string/tresdequatro"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <ImageButton
                 android:id="@+id/btn_next"
+                android:padding="9dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="onClick"

@@ -107,9 +107,6 @@ class RoomDiqueiroDoencaFragment : Fragment() {
                     rodada = sessao.sessao.rodada
 
                     val doenca = requireArguments().getString("doenca").toString()
-
-                    Log.d("EUAQUI_RodadaDiqueiro", rodada.toString())
-                    Log.d("EUAQUI_DoencaDiqueiro", doenca)
                 }
                 else {
                     Log.d("Erro do banco", response.message())

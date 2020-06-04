@@ -25,8 +25,7 @@
         <activity android:name=".tutoriaisRegras.TutorialActivity" />
         <activity
             android:name=".ui.main.MainActivity"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait"></activity>
 
         <meta-data
             android:name="preloaded_fonts"

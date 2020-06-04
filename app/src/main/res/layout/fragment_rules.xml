@@ -15,10 +15,11 @@
 
         <ImageButton
             android:id="@+id/btn_back"
+            android:padding="9dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="1dp"
             android:background="@null"
             android:src="@drawable/ic_arrow_left" />
 
@@ -27,8 +28,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:layout_centerHorizontal="true"
-            android:textSize="20sp"
+            android:layout_centerInParent="true"
+            android:textSize="18sp"
             android:text="@string/regrasPont"
             android:textColor="@android:color/white" />
 
@@ -40,7 +41,6 @@
             android:layout_centerVertical="true"
             android:layout_marginEnd="10dp"
             android:adjustViewBounds="true"
-            android:contentDescription="@string/labelLupa"
             android:src="@drawable/logo"
             android:visibility="visible" />
     </RelativeLayout>
@@ -67,16 +67,15 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginEnd="20dp">
 
             <TextView
                 android:id="@+id/textViewContent"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginEnd="10dp"
-                android:justificationMode="inter_word"
                 android:text="@string/regrasText"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

@@ -40,9 +40,9 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
     val vencedor = Bundle()
     val timerCronometro = Timer()
     val timerRanking = Timer()
-    val sintomasZero = "     SINTOMAS:"
-    val transmissoesZero = "     TRANSMISSÕES:"
-    val prevecoesZero = "     PREVENÇÕES:"
+    val sintomasZero = "SINTOMAS:"
+    val transmissoesZero = "TRANSMISSÕES:"
+    val prevecoesZero = "PREVENÇÕES:"
     var sintomasGlobal: ArrayList<String> = arrayListOf(sintomasZero)
     var prevencoesGlobal: ArrayList<String> = arrayListOf(prevecoesZero)
     var transmicoesGlobal: ArrayList<String> = arrayListOf(transmissoesZero)
@@ -109,7 +109,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
         transmicoes(doenca)
         ranking(id_sessao)
 
-        nomeDoenca.text = "Doença selecionada: $doenca"
+        nomeDoenca.text = "Doença: $doenca"
 
         timerCronometro.schedule(60000) {
             parametros.putInt("id_sessao", id_sessao)
@@ -169,7 +169,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                         sintomasGlobal.forEach {
                             if(it == dica) {
                                 encontraTipo = true
-                                editarSessaoSintoma(DicaUnicaSintoma(dica))
+                                editarSessaoSintoma(DicaUnicaSintoma(dica.removePrefix("· ")))
                             }
                         }
 
@@ -177,7 +177,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                             prevencoesGlobal.forEach {
                                 if(it == dica) {
                                     encontraTipo = true
-                                    editarSessaoPrevencao(DicaUnicaPrevencao(dica))
+                                    editarSessaoPrevencao(DicaUnicaPrevencao(dica.removePrefix("· ")))
                                 }
                             }
                         }
@@ -186,7 +186,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                             transmicoesGlobal.forEach {
                                 if(it == dica) {
                                     encontraTipo = true
-                                    editarSessaoTransmicao(DicaUnicaTransmicao(dica))
+                                    editarSessaoTransmicao(DicaUnicaTransmicao(dica.removePrefix("· ")))
                                 }
                             }
                         }
@@ -221,13 +221,15 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
 
                         recyclerRanking.apply {
                             layoutManager = LinearLayoutManager(activity)
-                            adapter = RankingAdapter(response.body()!!)
+                            adapter = JogadoresAdapter(response.body()!!)
                         }
 
                         val quantidadeJogadores: ArrayList<String> = arrayListOf("")
                         ranking.jogadores.forEach { quantidadeJogadores.add((it.nome)) }
 
                         quantidadeJogadores.removeAt(0)
+
+                        txtQtdeJogadores.text = "${quantidadeJogadores.size} jogadores"
 
                         if (quantidadeJogadores.size < 2) {
                             val jogador = requireArguments().getString("jogador_nome").toString()
@@ -269,7 +271,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
             dicas.toMutableList()
             context?.let {
                 spinnerAdapter =
-                    ArrayAdapter(it, android.R.layout.simple_spinner_item, dicas)
+                    ArrayAdapter(it, R.layout.spinner_item, dicas)
             }
             diqueiroSpinnerDicas.adapter = spinnerAdapter
         }
@@ -290,7 +292,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                     val listaSintomas = response.body()!!
 
                     if (listaSintomas.sintomas.isNotEmpty()) {
-                        listaSintomas.sintomas.forEach { sintomasGlobal.add((it.nome)) }
+                        listaSintomas.sintomas.forEach { sintomasGlobal.add("· ${it.nome}") }
 
                         responseSintomas = true
 
@@ -320,7 +322,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                     val listaPrevencao = response.body()!!
 
                     if (listaPrevencao.prevencoes.isNotEmpty()) {
-                        listaPrevencao.prevencoes.forEach { prevencoesGlobal.add((it.nome)) }
+                        listaPrevencao.prevencoes.forEach { prevencoesGlobal.add("· ${it.nome}") }
 
                         prevencoesGlobal.add(0, "")
                         responsePrevencoes = true
@@ -351,7 +353,7 @@ class RoomDiqueiroDicasFragment : Fragment(), View.OnClickListener {
                     val listaTransmicao = response.body()!!
 
                     if (listaTransmicao.transmicao.isNotEmpty()) {
-                        listaTransmicao.transmicao.forEach { transmicoesGlobal.add((it.nome)) }
+                        listaTransmicao.transmicao.forEach { transmicoesGlobal.add("· ${it.nome}") }
 
                         transmicoesGlobal.add(0, "")
                         responseTransmicoes = true

@@ -120,7 +120,7 @@ class AguardandoJogadoresFragment : Fragment(), View.OnClickListener {
     }
 
     private fun configureRecyclerViewRanking(list: RankingResponse) {
-        val rankingAdapter = RankingAdapter(list)
+        val rankingAdapter = JogadoresAdapter(list)
         recyclerRanking.apply {
             layoutManager = LinearLayoutManager(context)
             isComputingLayout

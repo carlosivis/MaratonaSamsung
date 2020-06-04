@@ -15,10 +15,11 @@
 
         <ImageButton
             android:id="@+id/btn_back"
+            android:padding="9dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="1dp"
             android:background="@null"
             android:src="@drawable/ic_arrow_left" />
 
@@ -27,8 +28,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:layout_centerHorizontal="true"
-            android:textSize="20sp"
+            android:layout_centerInParent="true"
+            android:textSize="18sp"
             android:text="@string/estudo"
             android:textColor="@android:color/white" />
 
@@ -40,7 +41,6 @@
             android:layout_centerVertical="true"
             android:layout_marginEnd="10dp"
             android:adjustViewBounds="true"
-            android:contentDescription="@string/labelBooks"
             android:src="@drawable/books"
             android:visibility="visible" />
     </RelativeLayout>
@@ -61,7 +61,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="40dp"
             android:layout_centerHorizontal="true"
-            android:textSize="25sp"
+            android:textSize="20sp"
             tools:text="MALARIA" />
 
         <ScrollView
@@ -75,6 +75,7 @@
                 android:id="@+id/main_table"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
                 android:stretchColumns="*">
 
                 <LinearLayout
@@ -90,9 +91,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:adjustViewBounds="true"
-                        android:contentDescription="@string/labelLupa"
                         android:scaleType="fitCenter"
-                        android:scaleX="-1"
                         android:src="@drawable/logo"
                         android:visibility="visible" />
 
@@ -103,7 +102,7 @@
                         android:layout_gravity="center"
                         android:layout_marginLeft="10dp"
                         android:text="@string/agente"
-                        android:textSize="18sp" />
+                        android:textSize="16sp" />
                 </LinearLayout>
 
 
@@ -114,14 +113,14 @@
                     android:layout_marginBottom="10dp"
                     android:gravity="center"
                     android:text="@string/sintomas"
-                    android:textSize="23sp" />
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/txtArraySintoma"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="30dp"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     tools:text="Sintoma X" />
 
                 <TextView
@@ -131,14 +130,14 @@
                     android:layout_marginBottom="10dp"
                     android:gravity="center"
                     android:text="@string/prevencao"
-                    android:textSize="23sp" />
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/txtPrevencao"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="30dp"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     tools:text="Item de prevencao" />
 
                 <TextView
@@ -148,13 +147,13 @@
                     android:layout_marginBottom="10dp"
                     android:gravity="center"
                     android:text="@string/transmissao"
-                    android:textSize="23sp" />
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/txtTransmissao"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     tools:text="Item de transmissao" />
 
             </TableLayout>

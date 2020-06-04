@@ -22,7 +22,7 @@
             android:layout_centerHorizontal="true"
             tools:text="A doença era: NOMEDOENÇA"
             android:layout_marginBottom="40dp"
-            android:textSize="20sp"
+            android:textSize="18sp"
             />
         <TextView
             android:id="@+id/txtTipoJogador"
@@ -32,7 +32,7 @@
             android:layout_below="@id/txtDoencaRodada"
             tools:text="Você é tal tipo de jogador"
             android:textAlignment="center"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
         <ProgressBar
             android:id="@+id/chronoPlaceholder"

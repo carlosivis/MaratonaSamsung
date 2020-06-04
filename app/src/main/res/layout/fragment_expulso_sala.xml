@@ -48,8 +48,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:justificationMode="inter_word"
-                    android:textSize="25sp"
+                    android:textSize="20sp"
                     android:text="@string/txt_expulso" />
 
             </TableRow>

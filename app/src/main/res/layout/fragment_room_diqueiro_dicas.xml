@@ -15,10 +15,11 @@
 
         <ImageButton
             android:id="@+id/btn_back"
+            android:padding="9dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="1dp"
             android:background="@null"
             android:src="@drawable/ic_arrow_left" />
 
@@ -27,8 +28,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:layout_centerHorizontal="true"
-            android:textSize="20sp"
+            android:layout_centerInParent="true"
+            android:textSize="18sp"
             android:text="@string/interativo"
             android:textColor="@android:color/white" />
 
@@ -40,7 +41,6 @@
             android:layout_centerVertical="true"
             android:layout_marginEnd="10dp"
             android:adjustViewBounds="true"
-            android:contentDescription="@string/labelGame"
             android:src="@drawable/game"
             android:visibility="visible" />
     </RelativeLayout>
@@ -53,22 +53,37 @@
         android:layout_height="match_parent"
         android:layout_below="@id/menuLayout">
 
+        <LinearLayout
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/txtDiqueiro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/txt_diqueiro"
-        android:textSize="23sp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:shadowColor="@color/colorAccent"
+                android:text="@string/txt_diqueiro"
+                android:layout_gravity="center"
+                android:textSize="20sp" />
 
-    <LinearLayout
+            <Chronometer
+                android:id="@+id/diqueirotempoCronometro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="end"
+                android:textSize="20sp"
+                android:fontFamily="@font/clarity" />
+        </LinearLayout>
+
+        <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txtDiqueiro"
         android:layout_marginBottom="10dp"
+        android:layout_below="@+id/title"
         android:orientation="horizontal">
 
         <TextView
@@ -78,15 +93,16 @@
             android:shadowColor="@color/colorAccent"
             android:text="@string/ranking"
             android:layout_gravity="center"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
-        <Chronometer
-            android:id="@+id/diqueirotempoCronometro"
+        <TextView
+            android:id="@+id/txtQtdeJogadores"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="end"
-            android:fontFamily="@font/clarity"
+            android:textSize="14sp"
+            tools:text = "XX jogadores online"
             />
     </LinearLayout>
 
@@ -118,7 +134,7 @@
             android:id="@+id/nomeDoenca"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:layout_gravity="center"
             tools:text="DOENÇA SELECIONADA: UM NOME MUITO GRANDE DE DOENÇA" />
     </LinearLayout>
@@ -129,8 +145,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="10dp"
-        android:text="Dicas disponíveis para envio:"
-        android:textSize="20sp"
+        android:text="@string/dicas_disponiveis"
+        android:textSize="18sp"
         android:layout_above="@+id/diqueiroSpinnerDicas"/>
 
     <Spinner
@@ -139,19 +155,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/diqueiroBtnDicas"
-        android:dropDownWidth="wrap_content"
+        android:dropDownWidth="match_parent"
+        android:spinnerMode="dialog"
         android:scrollbarSize="4dp" />
 
-        <Button
-            android:id="@+id/diqueiroBtnDicas"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/roundbutton"
-            android:ems="6"
-            android:text="@string/btn_enviar_dica" />
+    <Button
+        android:id="@+id/diqueiroBtnDicas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/roundbutton"
+        android:ems="6"
+        android:text="@string/btn_enviar_dica" />
 
     <ProgressBar
         android:id="@+id/diqueiroProgressBar"

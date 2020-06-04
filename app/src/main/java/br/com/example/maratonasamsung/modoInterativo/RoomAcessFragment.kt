@@ -17,15 +17,21 @@ import br.com.example.maratonasamsung.model.Responses.SalaResponse
 import br.com.example.maratonasamsung.data.service.ErrorCases
 import br.com.example.maratonasamsung.data.service.Service
 import br.com.example.maratonasamsung.model.Responses.RankingResponse
+import br.com.example.maratonasamsung.model.Responses.StatusBoolean
 import kotlinx.android.synthetic.main.fragment_room_acess.*
+import kotlinx.coroutines.delay
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.concurrent.schedule
 
 class RoomAcessFragment : Fragment(), View.OnClickListener {
 
     var navController: NavController? = null
     var clicavel = true
+    var bool: Boolean = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -190,8 +196,23 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
 
                         quantidadeJogadores.removeAt(0)
 
-                        if(quantidadeJogadores.isNotEmpty())
-                            navController!!.navigate(R.id.action_roomAcessFragment_to_roomAcessNameFragment, parametros)
+                        if(quantidadeJogadores.isNotEmpty()) {
+                            if (verificarPartida(id_sessao) == true)
+                                navController!!.navigate(
+                                    R.id.action_roomAcessFragment_to_roomAcessNameFragment,
+                                    parametros
+                                )
+                            else {
+                                clicavel = true
+                                acessProgressBar.visibility = View.INVISIBLE;
+                                acessBtnContinuar.setText(R.string.btn_continuar)
+                                Toast.makeText(
+                                    context,
+                                    "A partida já começou, tente outra sala",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        }
                         else {
                             val texto = "Sala desabilitada, acesse outra ou tente criar uma nova"
                             val duracao = Toast.LENGTH_SHORT
@@ -215,4 +236,25 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
             }
         })
     }
+    fun verificarPartida(id_sessao: Int): Boolean {
+        Service.retrofit.verificarPartida(
+            id_sessao = id_sessao
+        ).enqueue(object : Callback<StatusBoolean> {
+            override fun onFailure(call: Call<StatusBoolean>, t: Throwable) {
+                Log.d("Ruim: Começar Partida", t.toString())
+            }
+            override fun onResponse(call: Call<StatusBoolean>, response: Response<StatusBoolean>) {
+                Log.d("Bom: Começar Partida", response.body().toString())
+                if (response.isSuccessful)
+                    bool = response.body()?.status!!
+
+                else {
+                    Log.d("Erro banco: ComeçarPart", response.message())
+                    context?.let { ErrorCases().error(it)}
+                }
+            }
+        })
+        return bool
+    }
+
 }

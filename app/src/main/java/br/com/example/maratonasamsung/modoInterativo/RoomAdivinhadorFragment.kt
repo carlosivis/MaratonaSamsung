@@ -184,9 +184,6 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
 
                     rodada = resposta.sessao.rodada
                     doencaRodada = resposta.ultimaDoenca
-
-                    Log.d("EUAQUI_rodadaAdivinhador", rodada.toString())
-                    Log.d("EUAQUI_doencaAdivinhador", doencaRodada)
                 }
                 else {
                     Log.d("Erro banco: PegarRD", response.message())
@@ -234,6 +231,8 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
                         ranking.jogadores.forEach { quantidadeJogadores.add((it.nome)) }
 
                         quantidadeJogadores.removeAt(0)
+
+                        txtQtdeJogadores.text = "${quantidadeJogadores.size} jogadores"
 
                         if (quantidadeJogadores.size < 2) {
                             val jogador = requireArguments().getString("jogador_nome").toString()
@@ -349,8 +348,6 @@ class RoomAdivinhadorFragment :  Fragment(), View.OnClickListener {
                         spinnerResposta.visibility = View.INVISIBLE
                         adivinhadorBtnAdivinhar.visibility = View.INVISIBLE
                         adivinhadorProgressBar.visibility = View.INVISIBLE
-                        setinhaD.visibility = View.INVISIBLE
-                        setinhaE.visibility = View.INVISIBLE
                         adivinhadorTxtAcertou.visibility = View.VISIBLE
                     }
                     else {

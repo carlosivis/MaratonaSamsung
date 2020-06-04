@@ -9,7 +9,7 @@
     <string name="btn_comecar">Começar</string>
 
     <string name="btn_enviar_dica">Enviar dica</string>
-    <string name="btn_adivinhar">Enviar tentativa</string>
+    <string name="btn_adivinhar">Tentar adivinhar!</string>
 
     <string name="txt_modo_interativo">Modo Interativo</string>
 
@@ -21,7 +21,7 @@
     <string name="txt_senha">Senha:</string>
 
     <string name="txt_escolha_doenca">Escolha uma doença:</string>
-    <string name="txt_resposta">Escolha uma resposta</string>
+    <string name="txt_resposta">Sua resposta:</string>
 
     <string name="txt_sintomas">Sintomas disponíveis</string>
     <string name="txt_prevencoes">Prevenções disponíveis</string>
@@ -41,18 +41,18 @@
     <string name="estudoText">Neste modo você tem acesso a informações importantes sobre as doenças, de forma interativa e simplificada. Fundamental para um bom desempenho no Modo Interativo.</string>
     <string name="interativo">Modo Interativo</string>
     <string name="interativoText">Aqui você praticará os conhecimentos adquiridos no Modo Estudo ao interagir com amigos e colegas em um jogo de adivinhação de doenças. Por enquanto, ele ainda não está disponível para ser jogado sozinho.</string>
-    <string name="config">Sobre o APP</string>
-    <string name="configText">Aqui você encontrará todas as informações sobre o aplicativo, incluindo mais detalhes sobre o funcionamento do jogo, além de poder rever essa introdução quando quiser. Vamos lá!</string>
+    <string name="config">Mais</string>
+    <string name="configText">Aqui você encontrará todas as informações sobre o aplicativo, incluindo mais detalhes sobre o funcionamento do jogo, mudar o tema do APP, além de poder rever essa introdução quando quiser. Vamos lá!</string>
     <string name="voltar">Voltar</string>
     <string name="design">Dissecadores do Conhecimento</string>
     <string name="tutorial">Tutorial</string>
     <string name="regrasPont">Funcionamento</string>
-    <string name="regrasText2" tools:ignore="Typos">O jogador a dar dicas tem 10 (dez) segundos para escolher sua dica inicial, ou passará a vez a outro jogador. Os demais, então, terão 1 (um) minuto para adivinhar a doença, enquanto poderão ser dadas mais dicas a critério do jogador da vez.\n\nAo acertar a doença, tanto os adivinhadores que fizeram o acerto quanto o jogador que está dando as dicas ganham pontos. Cada adivinhador ganha uma quantidade de pontos diferente de acordo com o valor da rodada no momento do seu acerto. A rodada começa valendo 10 (dez) pontos, mas tem seu valor alterado com os seguintes acontecimentos:\n\n\u2022 A cada nova dica dada pelo jogador da vez, a rodada passa a valer menos 1 (um) ponto para todos os adivinhadores.\n\u2022 Quando um adivinhador acerta a doença, a rodada também passa a valer menos 1 (um) ponto para os adivinhadores que ainda não a acertaram.\n\u2022 Quando um adivinhador faz uma tentativa errada, a rodada passa a valer ainda menos 1 (um) ponto somente para aquele adivinhador em questão.\n\nO jogador a dar dicas ganha a mesma quantidade de pontos do primeiro adivinhador e mais 2 (dois) pontos por cada acerto seguinte dos demais adivinhadores.</string>
-    <string name="regrasText">Em cada rodada, os adivinhadores terão 1 (um) minuto para adivinhar a doença, enquanto poderão ser dadas mais dicas a critério do diqueiro.\n\nAo acertar a doença, tanto os adivinhadores que fizeram o acerto quanto o diqueiro ganham pontos. Cada adivinhador ganha uma quantidade de pontos diferente, sendo esse valor de 10 (dez) dividido pela ordem de acerto do adivinhador (1 (um) se for o primeiro a adivinhar a doença, 2 (dois) se for o segundo e assim por diante). \n\nO diqueiro ganha 75% dos pontos adquiridos por cada adivinhador.</string>
+    <string name="regrasText2" tools:ignore="Typos">O jogador a dar dicas tem 10 (dez) segundos para escolher sua dica inicial, ou passará a vez a outro jogador. Os demais, então, terão 1 (um) minuto para adivinhar a doença, enquanto poderão ser dadas mais dicas a critério do jogador da vez.\n\nAo acertar a doença, tanto os a\u00addi\u00advi\u00adnha\u00addo\u00adres que fizeram o acerto quanto o jogador que está dando as dicas ganham pontos. Cada adivinhador ganha uma quantidade de pontos diferente de acordo com o valor da rodada no momento do seu acerto. A rodada começa valendo 10 (dez) pontos, mas tem seu valor alterado com os seguintes acontecimentos:\n\n\u2022 A cada nova dica dada pelo jogador da vez, a rodada passa a valer menos 1 (um) ponto para todos os a\u00addi\u00advi\u00adnha\u00addo\u00adres.\n\u2022 Quando um adivinhador acerta a doença, a rodada também passa a valer menos 1 (um) ponto para os a\u00addi\u00advi\u00adnha\u00addo\u00adres que ainda não a acertaram.\n\u2022 Quando um adivinhador faz uma tentativa errada, a rodada passa a valer ainda menos 1 (um) ponto somente para aquele adivinhador em questão.\n\nO jogador a dar dicas ganha a mesma quantidade de pontos do primeiro adivinhador e mais 2 (dois) pontos por cada acerto seguinte dos demais a\u00addi\u00advi\u00adnha\u00addo\u00adres.</string>
+    <string name="regrasText">Ao entrar no Modo Interativo você tem duas opções: Criar uma sala para uma partida nova, com um nome e senha que deverá ser informado aos seus colegas para que eles a acessem, ou acessar uma sala existente com as informações passadas pelo seu criador.\n\nDurante o jogo, em cada rodada, os a\u00addi\u00advi\u00adnha\u00addo\u00adres terão 1 (um) minuto para adivinhar a doença, enquanto poderão ser dadas mais dicas a critério do diqueiro.\n\nAo acertar a doença, tanto os a\u00addi\u00advi\u00adnha\u00addo\u00adresadivinhadores que fizeram o acerto quanto o diqueiro ganham pontos. Cada adivinhador ganha uma quantidade de pontos diferente, sendo esse valor de 10 (dez) dividido pela ordem de acerto do adivinhador (1 (um) se for o primeiro a adivinhar a doença, 2 (dois) se for o segundo e assim por diante). \n\nO diqueiro ganha 75% dos pontos adquiridos por cada adivinhador.</string>
     <string name="chooseFragmentTitle">Escolha uma classe de agente infectante:</string>
     <string name="bacteria">Bactérias</string>
     <string name="platelminto">Platelmintos e Nematelmintos</string>
-    <string name="protozoario">Protozoários</string>
+    <string name="protozoario">Pro\u00adto\u00adzo\u00adá\u00adrios</string>
     <string name="virus">Vírus</string>
     <string name="labelLupa">Vários micro-organismos sendo vistos em uma lupa</string>
     <string name="escolhaDoenca">Escolha uma doença:</string>
@@ -64,7 +64,7 @@
     <string name="senha">Inserir senha</string>
     <string name="nomeUser">Inserir o nome do usuário</string>
     <string name="ranking">Ranking</string>
-    <string name="dicas">Dicas enviadas pelo Diqueiro</string>
+    <string name="dicas">Dicas do Diqueiro</string>
     <string name="labelGear">Ilustração de um ponto de interrogação</string>
     <string name="labelBooks">Ilustração de um livro e, acima, um cérebro</string>
     <string name="labelGame">Ilustração de um controle de videogame</string>
@@ -80,10 +80,10 @@
     <string name="creditsBooks">Ícone feito por \n<a href="https://www.flaticon.com/authors/smashicons">Smashicons</a> de \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
     <string name="creditsGame">Ícone feito por \n<a href="https://www.flaticon.com/authors/mynamepong">mynamepong</a> de \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
     <string name="creditsGear">Ícone feito por \n<a href="https://www.flaticon.com/br/autores/pixel-perfect">Pixel perfect</a> de \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
-    <string name="creditsBacteria">Ícone feito por \n<a href="https://www.flaticon.com/authors/smashicons">Smashicons</a> de \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
+    <string name="creditsBacteria">Ícone feito por \n<a href="https://creativemarket.com/eucalyp">Eucalyp</a> de \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
     <string name="creditsPlatelminto">Ícone feito por \n<a href="https://www.flaticon.com/authors/freepik">Freepik</a> de \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
     <string name="creditsProtozoario">Ícone feito por \n<a href="https://www.flaticon.com/authors/freepik">Freepik</a> de \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
-    <string name="creditsVirus">Ícone feito por \n<a href="https://www.flaticon.com/authors/freepik">Freepik</a> de \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
+    <string name="creditsVirus">Ícone feito por \n<a href="https://www.flaticon.com/authors/pixelmeetup">Pixelmeetup</a> de \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
     <string name="creditsWinner">Ícone feito por \n<a href="https://www.flaticon.com/authors/freepik">Freepik</a> de \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
     <string name="creditsSad">Ícone feito por \n<a href="https://www.flaticon.com/authors/smashicons">Smashicons</a> de \n<a href="https://www.flaticon.com">www.flaticon.com</a></string>
     <string name="labelSetaDir">Seta para a direita</string>
@@ -116,4 +116,10 @@
     <string name="morbus">Morbus</string>
     <string name="interativo_title">Primeira vez aqui?</string>
     <string name="interativo_msg">Nesta tela você tem duas opções: Criar uma sala para uma partida nova, com um nome e senha que deverá ser informado aos seus colegas para que eles a acessem, ou acessar uma sala existente com as informações passadas pelo seu criador.</string>
+    <string name="dicas_disponiveis">Dicas disponíveis:</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="mudarTema">Aperte para ativar ou desativar o tema escuro:</string>
+    <string name="escuro">Escuro</string>
+    <string name="escolherTema">Trocar tema</string>
 </resources>

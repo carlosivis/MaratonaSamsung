@@ -16,10 +16,11 @@
 
         <ImageButton
             android:id="@+id/btn_back"
+            android:padding="9dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="1dp"
             android:background="@null"
             android:src="@drawable/ic_arrow_left" />
 
@@ -28,8 +29,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:layout_centerHorizontal="true"
-            android:textSize="20sp"
+            android:layout_centerInParent="true"
+            android:textSize="18sp"
             android:text="@string/estudo"
             android:textColor="@android:color/white" />
 
@@ -41,7 +42,6 @@
             android:layout_centerVertical="true"
             android:layout_marginEnd="10dp"
             android:adjustViewBounds="true"
-            android:contentDescription="@string/labelBooks"
             android:src="@drawable/books"
             android:visibility="visible" />
     </RelativeLayout>
@@ -58,9 +58,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/escolhaDoenca"
-            android:layout_marginStart="20dp"
             android:layout_marginBottom="40dp"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
         <ProgressBar
             android:id="@+id/Loading"
             android:layout_width="wrap_content"

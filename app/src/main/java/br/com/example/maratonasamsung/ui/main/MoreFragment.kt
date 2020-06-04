@@ -33,6 +33,7 @@ class MoreFragment : Fragment(), View.OnClickListener {
         navController = Navigation.findNavController(view)
         view.findViewById<Button>(R.id.btnTutorial).setOnClickListener(this)
         view.findViewById<Button>(R.id.btnRegras).setOnClickListener(this)
+        view.findViewById<Button>(R.id.btnTema).setOnClickListener(this)
         view.findViewById<Button>(R.id.btnCreditos).setOnClickListener(this)
         view.findViewById<ImageButton>(R.id.btn_back).setOnClickListener(this)
     }
@@ -41,6 +42,9 @@ class MoreFragment : Fragment(), View.OnClickListener {
         when (v!!.id) {
             R.id.btn_back -> activity?.onBackPressed()
             R.id.btnTutorial -> startActivity(Intent(activity, TutorialActivity::class.java))
+            R.id.btnTema -> {
+                navController!!.navigate(R.id.action_moreFragment_to_temaFragment)
+            }
             R.id.btnRegras -> {
                 navController!!.navigate(R.id.action_moreFragment_to_rulesFragment)
             }
