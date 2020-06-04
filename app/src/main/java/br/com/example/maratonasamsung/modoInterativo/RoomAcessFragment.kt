@@ -107,8 +107,9 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
                         val duracao = Toast.LENGTH_SHORT
                         val toast = Toast.makeText(context, texto, duracao)
                         toast.show()
-                        acessEditNomeSala.setText("")
+
                         acessEditSenha.setText("")
+                        acessEditNomeSala.setText("")
 
                         clicavel = true
                         acessProgressBar.visibility = View.INVISIBLE;
@@ -153,6 +154,7 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
                     parametros.putString("sala_senha", senha)
 
                     jogadores(sessao.id_sessao, parametros)
+                    verificarPartida(sessao.id_sessao)
                 }
                 else {
                     Log.d("Erro banco: CadSessao", response.message())
@@ -178,6 +180,7 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
                 Log.d("Bom: jogadores", response.body().toString())
 
                 if (response.isSuccessful) {
+
                     val jogadores = response.body()!!
 
                     if (!jogadores.status) {
@@ -197,27 +200,33 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
                         quantidadeJogadores.removeAt(0)
 
                         if(quantidadeJogadores.isNotEmpty()) {
-                            if (verificarPartida(id_sessao) == true)
+                            if (!bool)
                                 navController!!.navigate(
                                     R.id.action_roomAcessFragment_to_roomAcessNameFragment,
                                     parametros
                                 )
                             else {
+                                val texto = "A partida já começou, tente outra sala"
+                                val duracao = Toast.LENGTH_SHORT
+                                val toast = Toast.makeText(context, texto, duracao)
+                                toast.show()
+
+                                acessEditSenha.setText("")
+                                acessEditNomeSala.setText("")
+
                                 clicavel = true
                                 acessProgressBar.visibility = View.INVISIBLE;
                                 acessBtnContinuar.setText(R.string.btn_continuar)
-                                Toast.makeText(
-                                    context,
-                                    "A partida já começou, tente outra sala",
-                                    Toast.LENGTH_SHORT
-                                ).show()
                             }
                         }
                         else {
-                            val texto = "Sala desabilitada, acesse outra ou tente criar uma nova"
+                            val texto = "Sala desativada, acesse outra ou tente criar uma nova"
                             val duracao = Toast.LENGTH_SHORT
                             val toast = Toast.makeText(context, texto, duracao)
                             toast.show()
+
+                            acessEditSenha.setText("")
+                            acessEditNomeSala.setText("")
 
                             clicavel = true
                             acessProgressBar.visibility = View.INVISIBLE;
@@ -236,7 +245,7 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
             }
         })
     }
-    fun verificarPartida(id_sessao: Int): Boolean {
+    fun verificarPartida(id_sessao: Int) {
         Service.retrofit.verificarPartida(
             id_sessao = id_sessao
         ).enqueue(object : Callback<StatusBoolean> {
@@ -254,7 +263,6 @@ class RoomAcessFragment : Fragment(), View.OnClickListener {
                 }
             }
         })
-        return bool
     }
 
 }
